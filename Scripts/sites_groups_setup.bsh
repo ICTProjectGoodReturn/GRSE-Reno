@@ -1,0 +1,104 @@
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.UserGroupLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
+
+//Site groups
+Group grSite;
+Group mfiSite;
+Group adminSite;
+
+//Ids which will be needed for later access.
+long companyId;
+long defaultUserId;
+Company defaultCompany;
+
+void createRoles() throws SystemException, PortalException {
+	//TODO some checking?
+	
+	//NOTE: This specific script will not work if ran for second time or pre-configured through properties/web interface. 
+	//Retrieves company id, sets webid/mail.
+	defaultCompany = CompanyLocalServiceUtil.getCompanyByWebId("liferay.com");
+	companyId = defaultCompany.getCompanyId();
+	defaultCompany.setWebId("goodreturn.org");
+	defaultCompany.setMx("goodreturn.org");
+	CompanyLocalServiceUtil.updateCompany(defaultCompany);
+	
+	defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
+	
+	//Retrieves default group and updates details for default GoodReturn.
+	grSite = GroupLocalServiceUtil.getGroup(companyId, "liferay.com");
+	grSite.setDescription("Public site for goodreturn.org members, for public lenders.");
+	grSite.setName("goodreturn.org");
+	GroupLocalServiceUtil.updateGroup(grSite);
+	
+	//Creates MFI site group
+	mfiSite = GroupLocalServiceUtil.addGroup(defaultUserId, Group.class.getName(),
+			0, 0, "MFI",
+			"Microfinance Institution (MFI) site for MFI partners, allows for MFI management.",
+			GroupConstants.TYPE_SITE_PRIVATE, "/MFI", true, true, null);
+	
+	//Creates Admin site group
+	adminSite = GroupLocalServiceUtil.addGroup(defaultUserId, Group.class.getName(),
+			0, 0, "WEAL",
+			"WEAL/GoodReturn admin site, used to manage the content of the other sites.",
+			GroupConstants.TYPE_SITE_PRIVATE, "/WEAL", true, true, null);
+	
+	
+	//System groups TODO
+	
+	//Public Site groups.
+	//Guest not needed.
+	UserGroupLocalServiceUtil.addUserGroup(defaultUserId, companyId,"Public Lender",
+			"For a public user who desires to microfinance lend or donate.");
+	
+	UserGroupLocalServiceUtil.addUserGroup(defaultUserId, companyId, "Lending Team Leader",
+			"For a Public Lender who is the administrator of a public lending team.");
+	
+	UserGroupLocalServiceUtil.addUserGroup(defaultUserId, companyId, "Lending Team Member",
+			"For a Public Lender who is the member of a public lending team.");
+	
+	//MFI Groups
+	UserGroupLocalServiceUtil.addUserGroup(defaultUserId, companyId, "MFI Leader",
+			"For MFI administrative users for a specific branches.");
+	
+	UserGroupLocalServiceUtil.addUserGroup(defaultUserId, companyId, "MFI Finance",
+			"For MFI financial users for specific branches.");
+	
+	UserGroupLocalServiceUtil.addUserGroup(defaultUserId, companyId, "MFI Story",
+			"For MFI story users for specific branches.");
+	
+	//GRSE/WEAL portal.
+	UserGroupLocalServiceUtil.addUserGroup(defaultUserId, companyId, "GRSE Owner",
+			"For Good Return admin account who can view anything, approve anything but cannot edit.");
+	
+	UserGroupLocalServiceUtil.addUserGroup(defaultUserId, companyId, "GRSE Admin",
+			"For Good Return admin account who performs some housekeeping tasks on website portals, and manages users for private sites.");
+	
+	UserGroupLocalServiceUtil.addUserGroup(defaultUserId, companyId, "Marketing",
+			"For Good Return marketing team member.");
+	
+	UserGroupLocalServiceUtil.addUserGroup(defaultUserId, companyId, "Finance",
+			"For Good Return finance members who perform financial operations for sites.");
+	
+	UserGroupLocalServiceUtil.addUserGroup(defaultUserId, companyId, "Operations",
+			"For Good Return support members who support and aid low level users and their operations.");
+	
+	UserGroupLocalServiceUtil.addUserGroup(defaultUserId, companyId, "Volunteer",
+			"For Good Return volunteer members who aid operations in limited ways for the operations.");
+}
+
+try {
+	createRoles();
+} catch (SystemException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+} catch (PortalException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
