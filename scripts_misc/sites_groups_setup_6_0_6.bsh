@@ -1,0 +1,147 @@
+/*
+ * Project: Good Return Renovation Project
+ * Date: 12/09/2012
+ * Author: Kyle Pink
+ * Description: A script to be used to configure portal settings. Specifically creates
+ *    the MFI and WEAL sites as well as the groups/roles needed for permissions.
+ *
+ * Note: to be executed once on the Server:
+ *    Control Panel -> Server -> Server Administration -> Script Tab,
+ *    Select BeanShell, paste contents and click execute.
+ *        Written for liferay 6.1.GA2, modified slightly for Liferay 6.0.6
+ * 
+ * NOTE: This specific script will not work if ran for second time
+ *       or pre-configured through properties/web interface. 	
+ */
+import java.util.Hashtable;
+import java.util.Locale;
+
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
+import com.liferay.portal.model.Organization;
+import com.liferay.portal.model.OrganizationConstants;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.OrganizationLocalServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
+
+
+
+//Site groups
+Group pubSite;
+Group mfiSite;
+Group wealSite;
+
+//Helpers for creating new sites (communities) and roles.
+Group createNewSite(String name, String description, String url, int type) {
+	//Retrieves company ID, and default user ID.
+	long theDefaultCompanyId = CompanyLocalServiceUtil.getCompanies(QueryUtil.ALL_POS, QueryUtil.ALL_POS).get(0).getCompanyId();
+	long theDefaultUserId = UserLocalServiceUtil.getDefaultUserId(theDefaultCompanyId);
+	
+	return GroupLocalServiceUtil.addGroup(theDefaultUserId, Group.class.getName(),
+			0, 0, name, description, type, url, true, null);
+}
+
+//Creates new portal role.
+Role createNewPortalRole(String name, String description, int type) {
+	//Retrieves company ID, and default user ID.
+	long theDefaultCompanyId = CompanyLocalServiceUtil.getCompanies(QueryUtil.ALL_POS, QueryUtil.ALL_POS).get(0).getCompanyId();
+	long theDefaultUserId = UserLocalServiceUtil.getDefaultUserId(theDefaultCompanyId);
+
+	//Locale map for title/description.
+	Hashtable titleMap = new Hashtable();
+	titleMap.put(Locale.ENGLISH, name);
+	Hashtable descriptionMap = new Hashtable();
+	descriptionMap.put(Locale.UK, description);
+	
+	return RoleLocalServiceUtil.addRole(theDefaultUserId, theDefaultCompanyId,
+			name, titleMap, description, type);
+}
+
+//Creates organization.
+Organization createNewOrganization(String orgName, long parentOrganizationId) {
+	//Retrieves company ID, and default user ID.
+	long theDefaultCompanyId = CompanyLocalServiceUtil.getCompanies(QueryUtil.ALL_POS, QueryUtil.ALL_POS).get(0).getCompanyId();
+	long theDefaultUserId = UserLocalServiceUtil.getDefaultUserId(theDefaultCompanyId);
+
+	return OrganizationLocalServiceUtil.addOrganization(theDefaultUserId, parentOrganizationId,
+			orgName, OrganizationConstants.TYPE_REGULAR_ORGANIZATION, false, 0, 0,
+			12017, "", null);//TODO check statusId.
+}
+
+//Creates child organization.
+Organization createNewChildOrganization(String childOrganizationName, String parentOrganizationName) {
+	//Retrieves company ID, and default user ID.
+	long theDefaultCompanyId = CompanyLocalServiceUtil.getCompanies(QueryUtil.ALL_POS, QueryUtil.ALL_POS).get(0).getCompanyId();
+	long theDefaultUserId = UserLocalServiceUtil.getDefaultUserId(theDefaultCompanyId);
+
+	//Gets parentId
+	long parentOrgId = OrganizationLocalServiceUtil.getOrganization(theDefaultCompanyId, parentOrganizationName).getOrganizationId();
+	
+	return createNewOrganization(childOrganizationName, parentOrgId);
+}
+
+//Creates specific child organizations.
+Organization createGoodReturnOrganization(String GrBranch) {
+	return createNewChildOrganization("GoodReturn - " + GrBranch, "WEAL");
+}
+
+Organization createMfiOrganization(String MfiBranch) {
+	return createNewChildOrganization("MFI - " + MfiBranch, "MFI");
+}
+
+Organization createPublicLendingOrganization(String team) {
+	return createNewChildOrganization("Public Lending Team - " + team, "Public");
+}
+
+//Retrieves default group and updates description.
+pubSite = GroupLocalServiceUtil.getGroup(CompanyLocalServiceUtil.getCompanies(QueryUtil.ALL_POS, QueryUtil.ALL_POS).get(0).getCompanyId(), "Guest");
+pubSite.setDescription("GoodReturn's site for the public, used by public lenders and " +
+		"for guests to find out information about good return.");
+GroupLocalServiceUtil.updateGroup(pubSite);
+
+//Site creations.
+//Creates MFI site group
+mfiSite = createNewSite("MFI", "Microfinance Institution (MFI) site for MFI partners, allows for MFI management.",
+		"/MFI", GroupConstants.TYPE_COMMUNITY_PRIVATE);
+
+//Creates Admin site group
+wealSite = createNewSite("WEAL", "WEAL/GoodReturn admin site, used to manage the content of the other sites.",
+		"/WEAL", GroupConstants.TYPE_COMMUNITY_PRIVATE);
+
+//Public Site roles.
+//Guest not needed.
+createNewPortalRole("Public Lender", "Public user who desires to microfinance lend or donate.", RoleConstants.TYPE_REGULAR);
+createNewPortalRole("Lending Team Leader", "Public Lender who is the administrator of a public lending team.", RoleConstants.TYPE_REGULAR);
+createNewPortalRole("Lending Team Member", "Public Lender who is the member of a public lending team.", RoleConstants.TYPE_REGULAR);
+
+//MFI Roles
+createNewPortalRole("MFI Leader", "MFI administrative users for a specific branches.", RoleConstants.TYPE_REGULAR);
+createNewPortalRole("MFI Finance", "MFI financial users for specific branch.", RoleConstants.TYPE_REGULAR);
+createNewPortalRole("MFI Story", "MFI story users for specific branches.", RoleConstants.TYPE_REGULAR);
+
+//WEAL Roles.
+createNewPortalRole("WEAL Owner", "Good Return admin account who can view anything, approve anything but cannot edit.", RoleConstants.TYPE_REGULAR);
+createNewPortalRole("WEAL Admin", "Good Return admin account who performs some housekeeping tasks on website portals, and manages users for private sites.", RoleConstants.TYPE_REGULAR);
+createNewPortalRole("WEAL Marketing", "Good Return marketing team member.", RoleConstants.TYPE_REGULAR);
+createNewPortalRole("WEAL Finance", "Good Return finance members who perform financial operations for sites.", RoleConstants.TYPE_REGULAR);
+createNewPortalRole("WEAL Operations", "Good Return support members who support and aid low level users and their operations.", RoleConstants.TYPE_REGULAR);
+createNewPortalRole("WEAL Volunteer", "Good Return volunteer members who aid operations in limited ways for the operations.", RoleConstants.TYPE_REGULAR);
+
+//Creation of organizations
+createNewOrganization("Public", OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID);
+createNewOrganization("MFI", OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID);
+createNewOrganization("WEAL", OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID);
+
+
+//Creation of child organizations.
+createGoodReturnOrganization("Australia");
+//createMfiOrganization("Country-Division Name");
+//createPublicLendingOrganization("TeamX");
