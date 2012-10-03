@@ -3,8 +3,10 @@
 
 <struts-config>
 	<action-mappings>
-		<action path="/login/create_account" type="org.goodreturn.ExtCreateAccountAction">
+	<!-- NOTE: was not working resorted to copying source, and extending/replacing directly.
+		<action path="/login/create_account" type="com.liferay.portlet.login.action.ExtCreateAccountAction">
 			<forward name="portlet.login.create_account" path="portlet.login.create_account" />
 		</action>
+	 -->
 	</action-mappings>
 </struts-config>

@@ -118,66 +118,125 @@ boolean male = ParamUtil.getBoolean(request, "male", true);
 	<aui:model-context model="<%= Contact.class %>" />
 
 	<aui:fieldset>
-		<aui:column>
-			<aui:input model="<%= User.class %>" name="firstName" />
+		<aui:input model="<%= User.class %>" name="firstName" />
 
-			<aui:input model="<%= User.class %>" name="middleName" />
+		<aui:input model="<%= User.class %>" name="middleName" />
 
-			<aui:input model="<%= User.class %>" name="lastName">
-				<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_LAST_NAME_REQUIRED, PropsValues.USERS_LAST_NAME_REQUIRED) %>">
-					<aui:validator name="required" />
-				</c:if>
+		<aui:input model="<%= User.class %>" name="lastName">
+			<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_LAST_NAME_REQUIRED, PropsValues.USERS_LAST_NAME_REQUIRED) %>">
+				<aui:validator name="required" />
+			</c:if>
+		</aui:input>
+
+		<c:if test="<%= !PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_SCREEN_NAME_ALWAYS_AUTOGENERATE) %>">
+			<aui:input model="<%= User.class %>" name="screenName" />
+		</c:if>
+
+		<aui:input model="<%= User.class %>" name="emailAddress">
+			<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_EMAIL_ADDRESS_REQUIRED, PropsValues.USERS_EMAIL_ADDRESS_REQUIRED) %>">
+				<aui:validator name="required" />
+			</c:if>
+		</aui:input>
+
+		<c:if test="<%= PropsValues.LOGIN_CREATE_ACCOUNT_ALLOW_CUSTOM_PASSWORD %>">
+			<aui:input label="password" name="password1" size="30" type="password" value="" />
+
+			<aui:input label="enter-again" name="password2" size="30" type="password" value="">
+				<aui:validator name="equalTo">
+					'#<portlet:namespace />password1'
+				</aui:validator>
 			</aui:input>
+		</c:if>
 
-			<c:if test="<%= !PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_SCREEN_NAME_ALWAYS_AUTOGENERATE) %>">
-				<aui:input model="<%= User.class %>" name="screenName" />
-			</c:if>
+		<c:choose>
+			<c:when test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.FIELD_ENABLE_COM_LIFERAY_PORTAL_MODEL_CONTACT_BIRTHDAY) %>">
+				<aui:input name="birthday" value="<%= birthday %>" />
+			</c:when>
+			<c:otherwise>
+				<aui:input name="birthdayMonth" type="hidden" value="<%= Calendar.JANUARY %>" />
+				<aui:input name="birthdayDay" type="hidden" value="1" />
+				<aui:input name="birthdayYear" type="hidden" value="1970" />
+			</c:otherwise>
+		</c:choose>
 
-			<aui:input model="<%= User.class %>" name="emailAddress">
-				<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_EMAIL_ADDRESS_REQUIRED, PropsValues.USERS_EMAIL_ADDRESS_REQUIRED) %>">
-					<aui:validator name="required" />
-				</c:if>
-			</aui:input>
-		</aui:column>
+		<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.FIELD_ENABLE_COM_LIFERAY_PORTAL_MODEL_CONTACT_MALE) %>">
+			<aui:select label="gender" name="male">
+				<aui:option label="male" value="1" />
+				<aui:option label="female" selected="<%= !male %>" value="0" />
+			</aui:select>
+		</c:if>
 
-		<aui:column>
-			<c:if test="<%= PropsValues.LOGIN_CREATE_ACCOUNT_ALLOW_CUSTOM_PASSWORD %>">
-				<aui:input label="password" name="password1" size="30" type="password" value="" />
+		<c:if test="<%= PropsValues.CAPTCHA_CHECK_PORTAL_CREATE_ACCOUNT %>">
+			<portlet:actionURL var="captchaURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+				<portlet:param name="struts_action" value="/login/captcha" />
+			</portlet:actionURL>
 
-				<aui:input label="enter-again" name="password2" size="30" type="password" value="">
-					<aui:validator name="equalTo">
-						'#<portlet:namespace />password1'
-					</aui:validator>
-				</aui:input>
-			</c:if>
-
-			<c:choose>
-				<c:when test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.FIELD_ENABLE_COM_LIFERAY_PORTAL_MODEL_CONTACT_BIRTHDAY) %>">
-					<aui:input name="birthday" value="<%= birthday %>" />
-				</c:when>
-				<c:otherwise>
-					<aui:input name="birthdayMonth" type="hidden" value="<%= Calendar.JANUARY %>" />
-					<aui:input name="birthdayDay" type="hidden" value="1" />
-					<aui:input name="birthdayYear" type="hidden" value="1970" />
-				</c:otherwise>
-			</c:choose>
-
-			<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.FIELD_ENABLE_COM_LIFERAY_PORTAL_MODEL_CONTACT_MALE) %>">
-				<aui:select label="gender" name="male">
-					<aui:option label="male" value="1" />
-					<aui:option label="female" selected="<%= !male %>" value="0" />
-				</aui:select>
-			</c:if>
-
-			<c:if test="<%= PropsValues.CAPTCHA_CHECK_PORTAL_CREATE_ACCOUNT %>">
-				<portlet:actionURL var="captchaURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-					<portlet:param name="struts_action" value="/login/captcha" />
-				</portlet:actionURL>
-
-				<liferay-ui:captcha url="<%= captchaURL %>" />
-			</c:if>
-		</aui:column>
+			<liferay-ui:captcha url="<%= captchaURL %>" />
+		</c:if>
+	
+		<!-- Added fields -->
+	
+		<aui:select name="title" label="Title" >
+			<aui:option value="Please Select" label="Please Select" />
+			<aui:option value="Mr" label="Mr" />
+			<aui:option value="Mrs" label="Mrs" />
+			<aui:option value="Ms" label="Ms" />
+		</aui:select>
+		
+		<aui:select name="addressType" label="Address Type">
+			<aui:option value="Please select" label="Please select" />
+			<aui:option value="Business" label="Business" />
+			<aui:option value="Home" label="Home" />
+			<aui:option value="Office Address" label="Office Address" />
+			<aui:option value="PO Box" label="PO Box" />
+		</aui:select>
+		
+		<aui:input name="address1" label="Address Line 1" type="text" />
+		
+		<aui:input name="address2" label="Address Line 2" type="text" />
+		
+		<aui:input name="suburbCity" label="Suburb/City" type="text" />
+		
+		<aui:input name="stateRegion" label="State/Region" type="text" />
+		
+		<aui:select name="country" label="Country">
+			<aui:option value="Please Select" label="Please Select" />
+			<aui:option value="TODO" label="TODO" />
+		</aui:select>
+		<aui:input name="postcodeZip" label="Postcode/Zip code" type="text">
+			<aui:validator name="required" />
+		</aui:input>
+	
+		<aui:select name="heardAboutUs" label="How did you hear about us?">
+			<aui:option value="Please Select" label="Please Select" />
+			<aui:option value="Accenture" label="Accenture" />
+			<aui:option value="Advertising" label="Advertising" />
+			<aui:option value="Deloitte" label="Deloitte" />
+			<aui:option value="Facebook" label="Facebook" />
+			<aui:option value="Gift Certificate" label="Gift Certificate" />
+			<aui:option value="Google / Search Engine" label="Google / Search Engine" />
+			<aui:option value="ME Bank" label="ME Bank" />
+			<aui:option value="My Employer" label="My Employer" />
+			<aui:option value="Origin" label="Origin" />
+			<aui:option value="Westpac" label="Westpac" />
+			<aui:option value="Word of Mouth / Friend" label="Word of Mouth / Friend" />
+			<aui:option value="Other" label="Other" />
+		</aui:select>
+		
+		<aui:input  name="heardAboutUsOther" label="Specify?" type="hidden" />
+		
+	    <aui:input name="recieveRepaymentEmails" label="I wish to receive loan repayment emails from Good Return" type="checkbox" value="false" />
+	    
+	    <aui:input name="recieveInfoEmails" label="I would like to receive information about Good Return events in my area" type="checkbox" value="false" />
+	    
+		<aui:input name="appearAnonymous" label="I wish to appear as anonymous on the Good Return website" type="checkbox" value="false" />
+		
+		<aui:input name="termsAgreed" label="I have read and agree to the Terms of Use and Privacy Policy" type="checkbox" value="false" />
+		
+		<!-- Added fields end -->
+		
 	</aui:fieldset>
+	
 
 	<aui:button-row>
 		<aui:button type="submit" />
