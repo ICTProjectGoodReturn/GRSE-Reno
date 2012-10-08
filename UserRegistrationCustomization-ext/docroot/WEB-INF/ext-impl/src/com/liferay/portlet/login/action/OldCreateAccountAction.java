@@ -85,6 +85,9 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+/*
+ * NOTE: Version is 6.1.1 ce ga2
+ */
 /**
  * @author Brian Wing Shun Chan
  * @author Amos Fong

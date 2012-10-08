@@ -1,4 +1,4 @@
-package com.liferay.portlet.login.action;
+package com.liferay.portal;
 
 import com.liferay.portal.kernel.exception.PortalException;
 

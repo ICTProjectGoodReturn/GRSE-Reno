@@ -15,6 +15,9 @@
 --%>
 
 <%@ include file="/html/portlet/login/init.jsp" %>
+<%@ page import="com.liferay.portal.AddressTypeException" %>
+<%@ page import="com.liferay.portal.ContactTitleException" %>
+<%@ page import="com.liferay.portal.HeardAboutUsException" %>
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
@@ -30,8 +33,37 @@ birthday.set(Calendar.DATE, 1);
 birthday.set(Calendar.YEAR, 1970);
 
 boolean male = ParamUtil.getBoolean(request, "male", true);
+
+//Retrives all countries
+List<Country> countries = CountryServiceUtil.getCountries();
 %>
 
+
+<!-- Custom JavaScript -->
+<!-- NOTE: INTENDED TO SHOW SPECIFY OTHER WHEN OTHER IS SELECTED.
+<script type="text/javascript">
+	//var element = document.getElementById('<portlet:namespace />' + '#heardAboutUs');
+	//console.log(element);
+	
+	AUI().ready(function(A) {
+	   	//Obtains form elements
+	   	var heardAboutUsList = A.one('#heardAboutUs');
+	   	var heardAboutUsInput = A.one('#heardAboutUsOther');
+	   	
+	   	//Obtains selected items.
+	   	heardAboutUsList.on("change", function() {
+	    	var selectedValue = heardAboutUsList.options[heardAboutUsList.selectedIndex].value;
+	    	
+	    	//If item is other display other, else hide.
+	    	if (selectedValue === "Other") {
+	    		heardAboutUsInput.type = "text";
+	    	} else {
+	    		heardAboutUsInput.type = "hidden";
+	    	}
+	   	});
+	});
+</script>
+ -->
 <portlet:actionURL var="createAccoutURL">
 	<portlet:param name="saveLastPath" value="0" />
 	<portlet:param name="struts_action" value="/login/create_account" />
@@ -108,6 +140,14 @@ boolean male = ParamUtil.getBoolean(request, "male", true);
 
 	<liferay-ui:error exception="<%= UserScreenNameException.class %>" message="please-enter-a-valid-screen-name" />
 	<liferay-ui:error exception="<%= WebsiteURLException.class %>" message="please-enter-a-valid-url" />
+	
+	<!-- Custom error exception messages -->
+	<liferay-ui:error exception="<%= ContactTitleException.class %>" message="Please select your preffered Title" />
+	<liferay-ui:error exception="<%= AddressTypeException.class %>" message="Please select an Address Type" />
+	<liferay-ui:error exception="<%= HeardAboutUsException.class %>" message="Please indicate how you heard about us" />
+	
+	<!-- End custom error exception messages -->
+	
 
 	<c:if test='<%= SessionMessages.contains(request, "missingOpenIdUserInformation") %>'>
 		<div class="portlet-msg-info">
@@ -201,13 +241,18 @@ boolean male = ParamUtil.getBoolean(request, "male", true);
 		
 		<aui:select name="country" label="Country">
 			<aui:option value="Please Select" label="Please Select" />
-			<aui:option value="TODO" label="TODO" />
+			<%
+			for (Country currentCountry : countries) { %>
+				<aui:option value="<%=currentCountry.getName()%>" label="<%=currentCountry.getName()%>" />
+			<%
+			}%>
 		</aui:select>
 		<aui:input name="postcodeZip" label="Postcode/Zip code" type="text">
 			<aui:validator name="required" />
 		</aui:input>
+		
 	
-		<aui:select name="heardAboutUs" label="How did you hear about us?">
+		<aui:select id="heardAboutUs" name="heardAboutUs" label="How did you hear about us?">
 			<aui:option value="Please Select" label="Please Select" />
 			<aui:option value="Accenture" label="Accenture" />
 			<aui:option value="Advertising" label="Advertising" />
@@ -223,7 +268,8 @@ boolean male = ParamUtil.getBoolean(request, "male", true);
 			<aui:option value="Other" label="Other" />
 		</aui:select>
 		
-		<aui:input  name="heardAboutUsOther" label="Specify?" type="hidden" />
+		
+		<aui:input id="heardAboutUsOther" name="heardAboutUsOther" label="Specify?" type="hidden" />
 		
 	    <aui:input name="recieveRepaymentEmails" label="I wish to receive loan repayment emails from Good Return" type="checkbox" value="false" />
 	    

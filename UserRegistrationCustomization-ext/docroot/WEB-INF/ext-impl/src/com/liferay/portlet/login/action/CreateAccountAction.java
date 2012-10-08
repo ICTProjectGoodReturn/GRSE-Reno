@@ -9,15 +9,18 @@ import org.apache.struts.action.ActionMapping;
 
 import com.liferay.portal.AddressCityException;
 import com.liferay.portal.AddressStreetException;
+import com.liferay.portal.AddressTypeException;
 import com.liferay.portal.AddressZipException;
 import com.liferay.portal.CompanyMaxUsersException;
 import com.liferay.portal.ContactFirstNameException;
 import com.liferay.portal.ContactFullNameException;
 import com.liferay.portal.ContactLastNameException;
+import com.liferay.portal.ContactTitleException;
 import com.liferay.portal.DuplicateUserEmailAddressException;
 import com.liferay.portal.DuplicateUserScreenNameException;
 import com.liferay.portal.EmailAddressException;
 import com.liferay.portal.GroupFriendlyURLException;
+import com.liferay.portal.HeardAboutUsException;
 import com.liferay.portal.NoSuchCountryException;
 import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.NoSuchListTypeException;
@@ -49,10 +52,12 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.CountryServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -148,7 +153,10 @@ public class CreateAccountAction extends OldCreateAccountAction {
 		//HttpSession session = request.getSession();
 		Company company = ((ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY)).getCompany();
 		
-		UserLocalServiceUtil.getUserByEmailAddress(company.getCompanyId(), emailAddress);
+		//Adds the 'Public Lender' role to the user.
+		User user = UserLocalServiceUtil.getUserByEmailAddress(company.getCompanyId(), emailAddress);
+		Role publicLenderRole = RoleLocalServiceUtil.getRole(company.getCompanyId(), "Public Lender");
+		RoleLocalServiceUtil.addUserRoles(user.getPrimaryKey(), new long[]{publicLenderRole.getRoleId()});
 
 		//Add the secondary data to the user tables.
 		//TODO
@@ -158,6 +166,7 @@ public class CreateAccountAction extends OldCreateAccountAction {
 	
 	/*
 	 * Note: exactly the same apart from the added exceptions for custom error messages.
+	 * 	     Taken from version 6.1.1 ce ga2
 	 * 
 	 * (non-Javadoc)
 	 * @see com.liferay.portlet.login.action.CreateAccountAction#processAction(org.apache.struts.action.ActionMapping, org.apache.struts.action.ActionForm, javax.portlet.PortletConfig, javax.portlet.ActionRequest, javax.portlet.ActionResponse)
@@ -246,9 +255,11 @@ public class CreateAccountAction extends OldCreateAccountAction {
 					 e instanceof UserPasswordException ||
 					 e instanceof UserScreenNameException ||
 					 e instanceof UserSmsException ||
-					 e instanceof WebsiteURLException
+					 e instanceof WebsiteURLException ||
 					 //Custom exceptions handled
-					 //TODO
+					 e instanceof AddressTypeException ||
+					 e instanceof ContactTitleException ||
+					 e instanceof HeardAboutUsException
 					 ) {
 
 				SessionErrors.add(actionRequest, e.getClass(), e);
