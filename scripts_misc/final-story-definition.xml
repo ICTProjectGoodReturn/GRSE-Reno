@@ -13,6 +13,58 @@
 		<initial>true</initial>
 		<transitions>
 			<transition>
+				<name>Video Approval</name>
+				<target>Video Approval</target>
+			</transition>
+		</transitions>
+	</state>
+	
+	
+	<task>
+		<name>Video Approval</name>
+		<actions>
+			<notification>
+				<name>Video Approval Notification</name>
+				<template>You have a new final story video submission waiting for the videos to be approved in the workflow.</template>
+				<template-language>text</template-language>
+				<notification-type>email</notification-type>
+				<recipients>
+					<roles>
+						<role>
+							<role-type>regular</role-type>
+							<name>WEAL Marketing</name>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onEntry</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>regular</role-type>
+					<name>WEAL Marketing</name>
+				</role>
+				<role>
+					<role-type>regular</role-type>
+					<name>WEAL Owner</name>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Finalise Video Approval</name>
+				<target>First Edit</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</task>
+	
+	
+	<state>
+		<name>First Edit</name>
+		<transitions>
+			<transition>
 				<name>Volunteer Edit</name>
 				<target>Volunteer Edit</target>
 			</transition>
@@ -139,12 +191,13 @@
 		</assignments>
 		<transitions>
 			<transition>
-				<name>Approve</name>
+				<name>Final Approval</name>
 				<target>approved</target>
 				<default>true</default>
 			</transition>
 		</transitions>
 	</task>
+	
 	
 	<state>
 		<name>approved</name>
@@ -161,5 +214,6 @@
 			</action>
 		</actions>
 	</state>
+	
 	
 </workflow-definition>
