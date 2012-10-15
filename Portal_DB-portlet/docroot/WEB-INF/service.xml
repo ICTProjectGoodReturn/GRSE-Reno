@@ -157,28 +157,33 @@
 	<column name="story_Id" type="long" primary="true"/>
 	<!-- FK Fields -->
 	<!-- TODO Make FK BELOW -->
-	<column name="loan_Account_Id" type="long" primary="true"/>
+	<column name="loan_Account_Id" type="long"/>
 	
 	<!-- Audit Fields -->
-	<column name="final_Story" type="String"/>
+	<column name="story_Text" type="String"/>
+	<column name="video_Url" type="String"/>
 	<column name="is_Good_Enough_For_Marketing" type="boolean"/>
-	<column name="is_Good_Enough_For_Final_Story" type="boolean"/>
+	<column name="is_Good_Enough_For_Story" type="boolean"/>
 	
 	<!-- Status related fields -->
 	<column name="status" type="int" />
 	<column name="status_By_User_Id" type="long" />
 	<column name="status_By_User_Name" type="String" />
 	<column name="status_Date" type="Date" />
-
-	<!-- Order -->
+	
+	<!-- ? -->
 	<column name="company_Id" type="long" />
 	<column name="group_Id" type="long" />
-	<column name="user_Id" type="long" />
+	<column name="user_Id" type="long" /> <!-- this one needed? -->
 	
+	<!-- Order -->
 	<order by="asc">
 		<order-column name="story_Id"/>
 	</order>
 	
+	<reference package-path="com.liferay.portal" entity="User" />
+	<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
+	<reference package-path="com.liferay.portal" entity="WorkflowInstanceLink" />
 	</entity>
 	
 	<entity name="TeamLender" remote-service="true" local-service="true">

@@ -385,7 +385,7 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
 		return new PersonWrapper((Person)_person.clone());
 	}
 
-	public int compareTo(Person person) {
+	public int compareTo(org.goodreturn.model.Person person) {
 		return _person.compareTo(person);
 	}
 
@@ -394,11 +394,11 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
 		return _person.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<Person> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<org.goodreturn.model.Person> toCacheModel() {
 		return _person.toCacheModel();
 	}
 
-	public Person toEscapedModel() {
+	public org.goodreturn.model.Person toEscapedModel() {
 		return new PersonWrapper(_person.toEscapedModel());
 	}
 

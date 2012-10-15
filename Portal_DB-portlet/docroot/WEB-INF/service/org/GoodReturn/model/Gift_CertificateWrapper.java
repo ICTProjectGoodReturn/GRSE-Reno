@@ -186,7 +186,7 @@ public class Gift_CertificateWrapper implements Gift_Certificate,
 		return new Gift_CertificateWrapper((Gift_Certificate)_gift_Certificate.clone());
 	}
 
-	public int compareTo(Gift_Certificate gift_Certificate) {
+	public int compareTo(org.goodreturn.model.Gift_Certificate gift_Certificate) {
 		return _gift_Certificate.compareTo(gift_Certificate);
 	}
 
@@ -195,11 +195,11 @@ public class Gift_CertificateWrapper implements Gift_Certificate,
 		return _gift_Certificate.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<Gift_Certificate> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<org.goodreturn.model.Gift_Certificate> toCacheModel() {
 		return _gift_Certificate.toCacheModel();
 	}
 
-	public Gift_Certificate toEscapedModel() {
+	public org.goodreturn.model.Gift_Certificate toEscapedModel() {
 		return new Gift_CertificateWrapper(_gift_Certificate.toEscapedModel());
 	}
 

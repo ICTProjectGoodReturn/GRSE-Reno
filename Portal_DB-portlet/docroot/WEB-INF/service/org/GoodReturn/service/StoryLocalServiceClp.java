@@ -29,15 +29,11 @@ public class StoryLocalServiceClp implements StoryLocalService {
 
 		_methodName1 = "createStory";
 
-		_methodParameterTypes1 = new String[] {
-				"org.goodreturn.service.persistence.StoryPK"
-			};
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteStory";
 
-		_methodParameterTypes2 = new String[] {
-				"org.goodreturn.service.persistence.StoryPK"
-			};
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteStory";
 
@@ -74,15 +70,11 @@ public class StoryLocalServiceClp implements StoryLocalService {
 
 		_methodName9 = "fetchStory";
 
-		_methodParameterTypes9 = new String[] {
-				"org.goodreturn.service.persistence.StoryPK"
-			};
+		_methodParameterTypes9 = new String[] { "long" };
 
 		_methodName10 = "getStory";
 
-		_methodParameterTypes10 = new String[] {
-				"org.goodreturn.service.persistence.StoryPK"
-			};
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getPersistedModel";
 
@@ -143,14 +135,12 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		return (org.goodreturn.model.Story)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.goodreturn.model.Story createStory(
-		org.goodreturn.service.persistence.StoryPK storyPK) {
+	public org.goodreturn.model.Story createStory(long story_Id) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1,
-					new Object[] { ClpSerializer.translateInput(storyPK) });
+					_methodParameterTypes1, new Object[] { story_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -167,16 +157,14 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		return (org.goodreturn.model.Story)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.goodreturn.model.Story deleteStory(
-		org.goodreturn.service.persistence.StoryPK storyPK)
+	public org.goodreturn.model.Story deleteStory(long story_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2,
-					new Object[] { ClpSerializer.translateInput(storyPK) });
+					_methodParameterTypes2, new Object[] { story_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -387,15 +375,13 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
-	public org.goodreturn.model.Story fetchStory(
-		org.goodreturn.service.persistence.StoryPK storyPK)
+	public org.goodreturn.model.Story fetchStory(long story_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
-					new Object[] { ClpSerializer.translateInput(storyPK) });
+					_methodParameterTypes9, new Object[] { story_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -416,16 +402,14 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		return (org.goodreturn.model.Story)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.goodreturn.model.Story getStory(
-		org.goodreturn.service.persistence.StoryPK storyPK)
+	public org.goodreturn.model.Story getStory(long story_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
-					new Object[] { ClpSerializer.translateInput(storyPK) });
+					_methodParameterTypes10, new Object[] { story_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

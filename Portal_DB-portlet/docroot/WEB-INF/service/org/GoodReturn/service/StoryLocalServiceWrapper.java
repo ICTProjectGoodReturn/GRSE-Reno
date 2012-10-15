@@ -46,27 +46,25 @@ public class StoryLocalServiceWrapper implements StoryLocalService,
 	/**
 	* Creates a new story with the primary key. Does not add the story to the database.
 	*
-	* @param storyPK the primary key for the new story
+	* @param story_Id the primary key for the new story
 	* @return the new story
 	*/
-	public org.goodreturn.model.Story createStory(
-		org.goodreturn.service.persistence.StoryPK storyPK) {
-		return _storyLocalService.createStory(storyPK);
+	public org.goodreturn.model.Story createStory(long story_Id) {
+		return _storyLocalService.createStory(story_Id);
 	}
 
 	/**
 	* Deletes the story with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param storyPK the primary key of the story
+	* @param story_Id the primary key of the story
 	* @return the story that was removed
 	* @throws PortalException if a story with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.Story deleteStory(
-		org.goodreturn.service.persistence.StoryPK storyPK)
+	public org.goodreturn.model.Story deleteStory(long story_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _storyLocalService.deleteStory(storyPK);
+		return _storyLocalService.deleteStory(story_Id);
 	}
 
 	/**
@@ -157,25 +155,23 @@ public class StoryLocalServiceWrapper implements StoryLocalService,
 		return _storyLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
-	public org.goodreturn.model.Story fetchStory(
-		org.goodreturn.service.persistence.StoryPK storyPK)
+	public org.goodreturn.model.Story fetchStory(long story_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _storyLocalService.fetchStory(storyPK);
+		return _storyLocalService.fetchStory(story_Id);
 	}
 
 	/**
 	* Returns the story with the primary key.
 	*
-	* @param storyPK the primary key of the story
+	* @param story_Id the primary key of the story
 	* @return the story
 	* @throws PortalException if a story with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.Story getStory(
-		org.goodreturn.service.persistence.StoryPK storyPK)
+	public org.goodreturn.model.Story getStory(long story_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _storyLocalService.getStory(storyPK);
+		return _storyLocalService.getStory(story_Id);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(

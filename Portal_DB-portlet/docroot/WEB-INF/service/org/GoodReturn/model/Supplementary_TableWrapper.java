@@ -136,7 +136,8 @@ public class Supplementary_TableWrapper implements Supplementary_Table,
 		return new Supplementary_TableWrapper((Supplementary_Table)_supplementary_Table.clone());
 	}
 
-	public int compareTo(Supplementary_Table supplementary_Table) {
+	public int compareTo(
+		org.goodreturn.model.Supplementary_Table supplementary_Table) {
 		return _supplementary_Table.compareTo(supplementary_Table);
 	}
 
@@ -145,11 +146,11 @@ public class Supplementary_TableWrapper implements Supplementary_Table,
 		return _supplementary_Table.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<Supplementary_Table> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<org.goodreturn.model.Supplementary_Table> toCacheModel() {
 		return _supplementary_Table.toCacheModel();
 	}
 
-	public Supplementary_Table toEscapedModel() {
+	public org.goodreturn.model.Supplementary_Table toEscapedModel() {
 		return new Supplementary_TableWrapper(_supplementary_Table.toEscapedModel());
 	}
 

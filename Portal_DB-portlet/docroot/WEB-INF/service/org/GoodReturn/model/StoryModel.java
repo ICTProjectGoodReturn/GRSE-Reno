@@ -21,8 +21,6 @@ import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 
-import org.goodreturn.service.persistence.StoryPK;
-
 import java.io.Serializable;
 
 import java.util.Date;
@@ -52,14 +50,14 @@ public interface StoryModel extends BaseModel<Story> {
 	 *
 	 * @return the primary key of this story
 	 */
-	public StoryPK getPrimaryKey();
+	public long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this story.
 	 *
 	 * @param primaryKey the primary key of this story
 	 */
-	public void setPrimaryKey(StoryPK primaryKey);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Returns the uuid of this story.
@@ -105,19 +103,34 @@ public interface StoryModel extends BaseModel<Story> {
 	public void setLoan_Account_Id(long loan_Account_Id);
 
 	/**
-	 * Returns the final_ story of this story.
+	 * Returns the story_ text of this story.
 	 *
-	 * @return the final_ story of this story
+	 * @return the story_ text of this story
 	 */
 	@AutoEscape
-	public String getFinal_Story();
+	public String getStory_Text();
 
 	/**
-	 * Sets the final_ story of this story.
+	 * Sets the story_ text of this story.
 	 *
-	 * @param final_Story the final_ story of this story
+	 * @param story_Text the story_ text of this story
 	 */
-	public void setFinal_Story(String final_Story);
+	public void setStory_Text(String story_Text);
+
+	/**
+	 * Returns the video_ url of this story.
+	 *
+	 * @return the video_ url of this story
+	 */
+	@AutoEscape
+	public String getVideo_Url();
+
+	/**
+	 * Sets the video_ url of this story.
+	 *
+	 * @param video_Url the video_ url of this story
+	 */
+	public void setVideo_Url(String video_Url);
 
 	/**
 	 * Returns the is_ good_ enough_ for_ marketing of this story.
@@ -142,26 +155,25 @@ public interface StoryModel extends BaseModel<Story> {
 		boolean is_Good_Enough_For_Marketing);
 
 	/**
-	 * Returns the is_ good_ enough_ for_ final_ story of this story.
+	 * Returns the is_ good_ enough_ for_ story of this story.
 	 *
-	 * @return the is_ good_ enough_ for_ final_ story of this story
+	 * @return the is_ good_ enough_ for_ story of this story
 	 */
-	public boolean getIs_Good_Enough_For_Final_Story();
+	public boolean getIs_Good_Enough_For_Story();
 
 	/**
-	 * Returns <code>true</code> if this story is is_ good_ enough_ for_ final_ story.
+	 * Returns <code>true</code> if this story is is_ good_ enough_ for_ story.
 	 *
-	 * @return <code>true</code> if this story is is_ good_ enough_ for_ final_ story; <code>false</code> otherwise
+	 * @return <code>true</code> if this story is is_ good_ enough_ for_ story; <code>false</code> otherwise
 	 */
-	public boolean isIs_Good_Enough_For_Final_Story();
+	public boolean isIs_Good_Enough_For_Story();
 
 	/**
-	 * Sets whether this story is is_ good_ enough_ for_ final_ story.
+	 * Sets whether this story is is_ good_ enough_ for_ story.
 	 *
-	 * @param is_Good_Enough_For_Final_Story the is_ good_ enough_ for_ final_ story of this story
+	 * @param is_Good_Enough_For_Story the is_ good_ enough_ for_ story of this story
 	 */
-	public void setIs_Good_Enough_For_Final_Story(
-		boolean is_Good_Enough_For_Final_Story);
+	public void setIs_Good_Enough_For_Story(boolean is_Good_Enough_For_Story);
 
 	/**
 	 * Returns the status of this story.

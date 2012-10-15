@@ -14,8 +14,6 @@
 
 package org.goodreturn.model;
 
-import org.goodreturn.service.persistence.StoryPK;
-
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -36,9 +34,10 @@ public class StorySoap implements Serializable {
 		soapModel.setUuid(model.getUuid());
 		soapModel.setStory_Id(model.getStory_Id());
 		soapModel.setLoan_Account_Id(model.getLoan_Account_Id());
-		soapModel.setFinal_Story(model.getFinal_Story());
+		soapModel.setStory_Text(model.getStory_Text());
+		soapModel.setVideo_Url(model.getVideo_Url());
 		soapModel.setIs_Good_Enough_For_Marketing(model.getIs_Good_Enough_For_Marketing());
-		soapModel.setIs_Good_Enough_For_Final_Story(model.getIs_Good_Enough_For_Final_Story());
+		soapModel.setIs_Good_Enough_For_Story(model.getIs_Good_Enough_For_Story());
 		soapModel.setStatus(model.getStatus());
 		soapModel.setStatus_By_User_Id(model.getStatus_By_User_Id());
 		soapModel.setStatus_By_User_Name(model.getStatus_By_User_Name());
@@ -90,13 +89,12 @@ public class StorySoap implements Serializable {
 	public StorySoap() {
 	}
 
-	public StoryPK getPrimaryKey() {
-		return new StoryPK(_story_Id, _loan_Account_Id);
+	public long getPrimaryKey() {
+		return _story_Id;
 	}
 
-	public void setPrimaryKey(StoryPK pk) {
-		setStory_Id(pk.story_Id);
-		setLoan_Account_Id(pk.loan_Account_Id);
+	public void setPrimaryKey(long pk) {
+		setStory_Id(pk);
 	}
 
 	public String getUuid() {
@@ -123,12 +121,20 @@ public class StorySoap implements Serializable {
 		_loan_Account_Id = loan_Account_Id;
 	}
 
-	public String getFinal_Story() {
-		return _final_Story;
+	public String getStory_Text() {
+		return _story_Text;
 	}
 
-	public void setFinal_Story(String final_Story) {
-		_final_Story = final_Story;
+	public void setStory_Text(String story_Text) {
+		_story_Text = story_Text;
+	}
+
+	public String getVideo_Url() {
+		return _video_Url;
+	}
+
+	public void setVideo_Url(String video_Url) {
+		_video_Url = video_Url;
 	}
 
 	public boolean getIs_Good_Enough_For_Marketing() {
@@ -144,17 +150,16 @@ public class StorySoap implements Serializable {
 		_is_Good_Enough_For_Marketing = is_Good_Enough_For_Marketing;
 	}
 
-	public boolean getIs_Good_Enough_For_Final_Story() {
-		return _is_Good_Enough_For_Final_Story;
+	public boolean getIs_Good_Enough_For_Story() {
+		return _is_Good_Enough_For_Story;
 	}
 
-	public boolean isIs_Good_Enough_For_Final_Story() {
-		return _is_Good_Enough_For_Final_Story;
+	public boolean isIs_Good_Enough_For_Story() {
+		return _is_Good_Enough_For_Story;
 	}
 
-	public void setIs_Good_Enough_For_Final_Story(
-		boolean is_Good_Enough_For_Final_Story) {
-		_is_Good_Enough_For_Final_Story = is_Good_Enough_For_Final_Story;
+	public void setIs_Good_Enough_For_Story(boolean is_Good_Enough_For_Story) {
+		_is_Good_Enough_For_Story = is_Good_Enough_For_Story;
 	}
 
 	public int getStatus() {
@@ -216,9 +221,10 @@ public class StorySoap implements Serializable {
 	private String _uuid;
 	private long _story_Id;
 	private long _loan_Account_Id;
-	private String _final_Story;
+	private String _story_Text;
+	private String _video_Url;
 	private boolean _is_Good_Enough_For_Marketing;
-	private boolean _is_Good_Enough_For_Final_Story;
+	private boolean _is_Good_Enough_For_Story;
 	private int _status;
 	private long _status_By_User_Id;
 	private String _status_By_User_Name;

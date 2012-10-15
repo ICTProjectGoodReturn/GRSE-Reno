@@ -34,7 +34,7 @@ import java.util.Date;
 public class StoryCacheModel implements CacheModel<Story>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -42,12 +42,14 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 		sb.append(story_Id);
 		sb.append(", loan_Account_Id=");
 		sb.append(loan_Account_Id);
-		sb.append(", final_Story=");
-		sb.append(final_Story);
+		sb.append(", story_Text=");
+		sb.append(story_Text);
+		sb.append(", video_Url=");
+		sb.append(video_Url);
 		sb.append(", is_Good_Enough_For_Marketing=");
 		sb.append(is_Good_Enough_For_Marketing);
-		sb.append(", is_Good_Enough_For_Final_Story=");
-		sb.append(is_Good_Enough_For_Final_Story);
+		sb.append(", is_Good_Enough_For_Story=");
+		sb.append(is_Good_Enough_For_Story);
 		sb.append(", status=");
 		sb.append(status);
 		sb.append(", status_By_User_Id=");
@@ -80,15 +82,22 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 		storyImpl.setStory_Id(story_Id);
 		storyImpl.setLoan_Account_Id(loan_Account_Id);
 
-		if (final_Story == null) {
-			storyImpl.setFinal_Story(StringPool.BLANK);
+		if (story_Text == null) {
+			storyImpl.setStory_Text(StringPool.BLANK);
 		}
 		else {
-			storyImpl.setFinal_Story(final_Story);
+			storyImpl.setStory_Text(story_Text);
+		}
+
+		if (video_Url == null) {
+			storyImpl.setVideo_Url(StringPool.BLANK);
+		}
+		else {
+			storyImpl.setVideo_Url(video_Url);
 		}
 
 		storyImpl.setIs_Good_Enough_For_Marketing(is_Good_Enough_For_Marketing);
-		storyImpl.setIs_Good_Enough_For_Final_Story(is_Good_Enough_For_Final_Story);
+		storyImpl.setIs_Good_Enough_For_Story(is_Good_Enough_For_Story);
 		storyImpl.setStatus(status);
 		storyImpl.setStatus_By_User_Id(status_By_User_Id);
 
@@ -118,9 +127,10 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 	public String uuid;
 	public long story_Id;
 	public long loan_Account_Id;
-	public String final_Story;
+	public String story_Text;
+	public String video_Url;
 	public boolean is_Good_Enough_For_Marketing;
-	public boolean is_Good_Enough_For_Final_Story;
+	public boolean is_Good_Enough_For_Story;
 	public int status;
 	public long status_By_User_Id;
 	public String status_By_User_Name;

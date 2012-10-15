@@ -135,7 +135,7 @@ public class TeamLenderWrapper implements TeamLender, ModelWrapper<TeamLender> {
 		return new TeamLenderWrapper((TeamLender)_teamLender.clone());
 	}
 
-	public int compareTo(TeamLender teamLender) {
+	public int compareTo(org.goodreturn.model.TeamLender teamLender) {
 		return _teamLender.compareTo(teamLender);
 	}
 
@@ -144,11 +144,11 @@ public class TeamLenderWrapper implements TeamLender, ModelWrapper<TeamLender> {
 		return _teamLender.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<TeamLender> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<org.goodreturn.model.TeamLender> toCacheModel() {
 		return _teamLender.toCacheModel();
 	}
 
-	public TeamLender toEscapedModel() {
+	public org.goodreturn.model.TeamLender toEscapedModel() {
 		return new TeamLenderWrapper(_teamLender.toEscapedModel());
 	}
 

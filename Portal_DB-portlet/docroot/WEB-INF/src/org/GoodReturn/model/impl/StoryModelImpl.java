@@ -22,12 +22,14 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.service.ServiceContext;
+
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import org.goodreturn.model.Story;
 import org.goodreturn.model.StoryModel;
 import org.goodreturn.model.StorySoap;
-
-import org.goodreturn.service.persistence.StoryPK;
 
 import java.io.Serializable;
 
@@ -64,9 +66,10 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			{ "uuid_", Types.VARCHAR },
 			{ "story_Id", Types.BIGINT },
 			{ "loan_Account_Id", Types.BIGINT },
-			{ "final_Story", Types.VARCHAR },
+			{ "story_Text", Types.VARCHAR },
+			{ "video_Url", Types.VARCHAR },
 			{ "is_Good_Enough_For_Marketing", Types.BOOLEAN },
-			{ "is_Good_Enough_For_Final_Story", Types.BOOLEAN },
+			{ "is_Good_Enough_For_Story", Types.BOOLEAN },
 			{ "status", Types.INTEGER },
 			{ "status_By_User_Id", Types.BIGINT },
 			{ "status_By_User_Name", Types.VARCHAR },
@@ -75,9 +78,9 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			{ "group_Id", Types.BIGINT },
 			{ "user_Id", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Story (uuid_ VARCHAR(75) null,story_Id LONG not null,loan_Account_Id LONG not null,final_Story VARCHAR(75) null,is_Good_Enough_For_Marketing BOOLEAN,is_Good_Enough_For_Final_Story BOOLEAN,status INTEGER,status_By_User_Id LONG,status_By_User_Name VARCHAR(75) null,status_Date DATE null,company_Id LONG,group_Id LONG,user_Id LONG,primary key (story_Id, loan_Account_Id))";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Story (uuid_ VARCHAR(75) null,story_Id LONG not null primary key,loan_Account_Id LONG,story_Text VARCHAR(75) null,video_Url VARCHAR(75) null,is_Good_Enough_For_Marketing BOOLEAN,is_Good_Enough_For_Story BOOLEAN,status INTEGER,status_By_User_Id LONG,status_By_User_Name VARCHAR(75) null,status_Date DATE null,company_Id LONG,group_Id LONG,user_Id LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Story";
-	public static final String ORDER_BY_JPQL = " ORDER BY story.id.story_Id ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY story.story_Id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Story.story_Id ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -109,9 +112,10 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		model.setUuid(soapModel.getUuid());
 		model.setStory_Id(soapModel.getStory_Id());
 		model.setLoan_Account_Id(soapModel.getLoan_Account_Id());
-		model.setFinal_Story(soapModel.getFinal_Story());
+		model.setStory_Text(soapModel.getStory_Text());
+		model.setVideo_Url(soapModel.getVideo_Url());
 		model.setIs_Good_Enough_For_Marketing(soapModel.getIs_Good_Enough_For_Marketing());
-		model.setIs_Good_Enough_For_Final_Story(soapModel.getIs_Good_Enough_For_Final_Story());
+		model.setIs_Good_Enough_For_Story(soapModel.getIs_Good_Enough_For_Story());
 		model.setStatus(soapModel.getStatus());
 		model.setStatus_By_User_Id(soapModel.getStatus_By_User_Id());
 		model.setStatus_By_User_Name(soapModel.getStatus_By_User_Name());
@@ -149,21 +153,20 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	public StoryModelImpl() {
 	}
 
-	public StoryPK getPrimaryKey() {
-		return new StoryPK(_story_Id, _loan_Account_Id);
+	public long getPrimaryKey() {
+		return _story_Id;
 	}
 
-	public void setPrimaryKey(StoryPK primaryKey) {
-		setStory_Id(primaryKey.story_Id);
-		setLoan_Account_Id(primaryKey.loan_Account_Id);
+	public void setPrimaryKey(long primaryKey) {
+		setStory_Id(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new StoryPK(_story_Id, _loan_Account_Id);
+		return new Long(_story_Id);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey((StoryPK)primaryKeyObj);
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public Class<?> getModelClass() {
@@ -181,11 +184,11 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		attributes.put("uuid", getUuid());
 		attributes.put("story_Id", getStory_Id());
 		attributes.put("loan_Account_Id", getLoan_Account_Id());
-		attributes.put("final_Story", getFinal_Story());
+		attributes.put("story_Text", getStory_Text());
+		attributes.put("video_Url", getVideo_Url());
 		attributes.put("is_Good_Enough_For_Marketing",
 			getIs_Good_Enough_For_Marketing());
-		attributes.put("is_Good_Enough_For_Final_Story",
-			getIs_Good_Enough_For_Final_Story());
+		attributes.put("is_Good_Enough_For_Story", getIs_Good_Enough_For_Story());
 		attributes.put("status", getStatus());
 		attributes.put("status_By_User_Id", getStatus_By_User_Id());
 		attributes.put("status_By_User_Name", getStatus_By_User_Name());
@@ -217,10 +220,16 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			setLoan_Account_Id(loan_Account_Id);
 		}
 
-		String final_Story = (String)attributes.get("final_Story");
+		String story_Text = (String)attributes.get("story_Text");
 
-		if (final_Story != null) {
-			setFinal_Story(final_Story);
+		if (story_Text != null) {
+			setStory_Text(story_Text);
+		}
+
+		String video_Url = (String)attributes.get("video_Url");
+
+		if (video_Url != null) {
+			setVideo_Url(video_Url);
 		}
 
 		Boolean is_Good_Enough_For_Marketing = (Boolean)attributes.get(
@@ -230,11 +239,11 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			setIs_Good_Enough_For_Marketing(is_Good_Enough_For_Marketing);
 		}
 
-		Boolean is_Good_Enough_For_Final_Story = (Boolean)attributes.get(
-				"is_Good_Enough_For_Final_Story");
+		Boolean is_Good_Enough_For_Story = (Boolean)attributes.get(
+				"is_Good_Enough_For_Story");
 
-		if (is_Good_Enough_For_Final_Story != null) {
-			setIs_Good_Enough_For_Final_Story(is_Good_Enough_For_Final_Story);
+		if (is_Good_Enough_For_Story != null) {
+			setIs_Good_Enough_For_Story(is_Good_Enough_For_Story);
 		}
 
 		Integer status = (Integer)attributes.get("status");
@@ -324,17 +333,31 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	@JSON
-	public String getFinal_Story() {
-		if (_final_Story == null) {
+	public String getStory_Text() {
+		if (_story_Text == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _final_Story;
+			return _story_Text;
 		}
 	}
 
-	public void setFinal_Story(String final_Story) {
-		_final_Story = final_Story;
+	public void setStory_Text(String story_Text) {
+		_story_Text = story_Text;
+	}
+
+	@JSON
+	public String getVideo_Url() {
+		if (_video_Url == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _video_Url;
+		}
+	}
+
+	public void setVideo_Url(String video_Url) {
+		_video_Url = video_Url;
 	}
 
 	@JSON
@@ -352,17 +375,16 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	@JSON
-	public boolean getIs_Good_Enough_For_Final_Story() {
-		return _is_Good_Enough_For_Final_Story;
+	public boolean getIs_Good_Enough_For_Story() {
+		return _is_Good_Enough_For_Story;
 	}
 
-	public boolean isIs_Good_Enough_For_Final_Story() {
-		return _is_Good_Enough_For_Final_Story;
+	public boolean isIs_Good_Enough_For_Story() {
+		return _is_Good_Enough_For_Story;
 	}
 
-	public void setIs_Good_Enough_For_Final_Story(
-		boolean is_Good_Enough_For_Final_Story) {
-		_is_Good_Enough_For_Final_Story = is_Good_Enough_For_Final_Story;
+	public void setIs_Good_Enough_For_Story(boolean is_Good_Enough_For_Story) {
+		_is_Good_Enough_For_Story = is_Good_Enough_For_Story;
 	}
 
 	@JSON
@@ -438,6 +460,19 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+			Story.class.getName(), getPrimaryKey());
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
 	public Story toEscapedModel() {
 		if (_escapedModelProxy == null) {
 			_escapedModelProxy = (Story)ProxyUtil.newProxyInstance(_classLoader,
@@ -455,9 +490,10 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		storyImpl.setUuid(getUuid());
 		storyImpl.setStory_Id(getStory_Id());
 		storyImpl.setLoan_Account_Id(getLoan_Account_Id());
-		storyImpl.setFinal_Story(getFinal_Story());
+		storyImpl.setStory_Text(getStory_Text());
+		storyImpl.setVideo_Url(getVideo_Url());
 		storyImpl.setIs_Good_Enough_For_Marketing(getIs_Good_Enough_For_Marketing());
-		storyImpl.setIs_Good_Enough_For_Final_Story(getIs_Good_Enough_For_Final_Story());
+		storyImpl.setIs_Good_Enough_For_Story(getIs_Good_Enough_For_Story());
 		storyImpl.setStatus(getStatus());
 		storyImpl.setStatus_By_User_Id(getStatus_By_User_Id());
 		storyImpl.setStatus_By_User_Name(getStatus_By_User_Name());
@@ -506,9 +542,9 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			return false;
 		}
 
-		StoryPK primaryKey = story.getPrimaryKey();
+		long primaryKey = story.getPrimaryKey();
 
-		if (getPrimaryKey().equals(primaryKey)) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {
@@ -518,7 +554,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
@@ -546,17 +582,25 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		storyCacheModel.loan_Account_Id = getLoan_Account_Id();
 
-		storyCacheModel.final_Story = getFinal_Story();
+		storyCacheModel.story_Text = getStory_Text();
 
-		String final_Story = storyCacheModel.final_Story;
+		String story_Text = storyCacheModel.story_Text;
 
-		if ((final_Story != null) && (final_Story.length() == 0)) {
-			storyCacheModel.final_Story = null;
+		if ((story_Text != null) && (story_Text.length() == 0)) {
+			storyCacheModel.story_Text = null;
+		}
+
+		storyCacheModel.video_Url = getVideo_Url();
+
+		String video_Url = storyCacheModel.video_Url;
+
+		if ((video_Url != null) && (video_Url.length() == 0)) {
+			storyCacheModel.video_Url = null;
 		}
 
 		storyCacheModel.is_Good_Enough_For_Marketing = getIs_Good_Enough_For_Marketing();
 
-		storyCacheModel.is_Good_Enough_For_Final_Story = getIs_Good_Enough_For_Final_Story();
+		storyCacheModel.is_Good_Enough_For_Story = getIs_Good_Enough_For_Story();
 
 		storyCacheModel.status = getStatus();
 
@@ -591,7 +635,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -599,12 +643,14 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		sb.append(getStory_Id());
 		sb.append(", loan_Account_Id=");
 		sb.append(getLoan_Account_Id());
-		sb.append(", final_Story=");
-		sb.append(getFinal_Story());
+		sb.append(", story_Text=");
+		sb.append(getStory_Text());
+		sb.append(", video_Url=");
+		sb.append(getVideo_Url());
 		sb.append(", is_Good_Enough_For_Marketing=");
 		sb.append(getIs_Good_Enough_For_Marketing());
-		sb.append(", is_Good_Enough_For_Final_Story=");
-		sb.append(getIs_Good_Enough_For_Final_Story());
+		sb.append(", is_Good_Enough_For_Story=");
+		sb.append(getIs_Good_Enough_For_Story());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append(", status_By_User_Id=");
@@ -625,7 +671,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(46);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Story");
@@ -644,16 +690,20 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		sb.append(getLoan_Account_Id());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>final_Story</column-name><column-value><![CDATA[");
-		sb.append(getFinal_Story());
+			"<column><column-name>story_Text</column-name><column-value><![CDATA[");
+		sb.append(getStory_Text());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>video_Url</column-name><column-value><![CDATA[");
+		sb.append(getVideo_Url());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>is_Good_Enough_For_Marketing</column-name><column-value><![CDATA[");
 		sb.append(getIs_Good_Enough_For_Marketing());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>is_Good_Enough_For_Final_Story</column-name><column-value><![CDATA[");
-		sb.append(getIs_Good_Enough_For_Final_Story());
+			"<column><column-name>is_Good_Enough_For_Story</column-name><column-value><![CDATA[");
+		sb.append(getIs_Good_Enough_For_Story());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
@@ -697,9 +747,10 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	private String _originalUuid;
 	private long _story_Id;
 	private long _loan_Account_Id;
-	private String _final_Story;
+	private String _story_Text;
+	private String _video_Url;
 	private boolean _is_Good_Enough_For_Marketing;
-	private boolean _is_Good_Enough_For_Final_Story;
+	private boolean _is_Good_Enough_For_Story;
 	private int _status;
 	private long _status_By_User_Id;
 	private String _status_By_User_Name;

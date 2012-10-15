@@ -48,11 +48,11 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 		attributes.put("uuid", getUuid());
 		attributes.put("story_Id", getStory_Id());
 		attributes.put("loan_Account_Id", getLoan_Account_Id());
-		attributes.put("final_Story", getFinal_Story());
+		attributes.put("story_Text", getStory_Text());
+		attributes.put("video_Url", getVideo_Url());
 		attributes.put("is_Good_Enough_For_Marketing",
 			getIs_Good_Enough_For_Marketing());
-		attributes.put("is_Good_Enough_For_Final_Story",
-			getIs_Good_Enough_For_Final_Story());
+		attributes.put("is_Good_Enough_For_Story", getIs_Good_Enough_For_Story());
 		attributes.put("status", getStatus());
 		attributes.put("status_By_User_Id", getStatus_By_User_Id());
 		attributes.put("status_By_User_Name", getStatus_By_User_Name());
@@ -83,10 +83,16 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 			setLoan_Account_Id(loan_Account_Id);
 		}
 
-		String final_Story = (String)attributes.get("final_Story");
+		String story_Text = (String)attributes.get("story_Text");
 
-		if (final_Story != null) {
-			setFinal_Story(final_Story);
+		if (story_Text != null) {
+			setStory_Text(story_Text);
+		}
+
+		String video_Url = (String)attributes.get("video_Url");
+
+		if (video_Url != null) {
+			setVideo_Url(video_Url);
 		}
 
 		Boolean is_Good_Enough_For_Marketing = (Boolean)attributes.get(
@@ -96,11 +102,11 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 			setIs_Good_Enough_For_Marketing(is_Good_Enough_For_Marketing);
 		}
 
-		Boolean is_Good_Enough_For_Final_Story = (Boolean)attributes.get(
-				"is_Good_Enough_For_Final_Story");
+		Boolean is_Good_Enough_For_Story = (Boolean)attributes.get(
+				"is_Good_Enough_For_Story");
 
-		if (is_Good_Enough_For_Final_Story != null) {
-			setIs_Good_Enough_For_Final_Story(is_Good_Enough_For_Final_Story);
+		if (is_Good_Enough_For_Story != null) {
+			setIs_Good_Enough_For_Story(is_Good_Enough_For_Story);
 		}
 
 		Integer status = (Integer)attributes.get("status");
@@ -152,7 +158,7 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 	*
 	* @return the primary key of this story
 	*/
-	public org.goodreturn.service.persistence.StoryPK getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _story.getPrimaryKey();
 	}
 
@@ -161,8 +167,7 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 	*
 	* @param primaryKey the primary key of this story
 	*/
-	public void setPrimaryKey(
-		org.goodreturn.service.persistence.StoryPK primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		_story.setPrimaryKey(primaryKey);
 	}
 
@@ -221,21 +226,39 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 	}
 
 	/**
-	* Returns the final_ story of this story.
+	* Returns the story_ text of this story.
 	*
-	* @return the final_ story of this story
+	* @return the story_ text of this story
 	*/
-	public java.lang.String getFinal_Story() {
-		return _story.getFinal_Story();
+	public java.lang.String getStory_Text() {
+		return _story.getStory_Text();
 	}
 
 	/**
-	* Sets the final_ story of this story.
+	* Sets the story_ text of this story.
 	*
-	* @param final_Story the final_ story of this story
+	* @param story_Text the story_ text of this story
 	*/
-	public void setFinal_Story(java.lang.String final_Story) {
-		_story.setFinal_Story(final_Story);
+	public void setStory_Text(java.lang.String story_Text) {
+		_story.setStory_Text(story_Text);
+	}
+
+	/**
+	* Returns the video_ url of this story.
+	*
+	* @return the video_ url of this story
+	*/
+	public java.lang.String getVideo_Url() {
+		return _story.getVideo_Url();
+	}
+
+	/**
+	* Sets the video_ url of this story.
+	*
+	* @param video_Url the video_ url of this story
+	*/
+	public void setVideo_Url(java.lang.String video_Url) {
+		_story.setVideo_Url(video_Url);
 	}
 
 	/**
@@ -267,31 +290,30 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 	}
 
 	/**
-	* Returns the is_ good_ enough_ for_ final_ story of this story.
+	* Returns the is_ good_ enough_ for_ story of this story.
 	*
-	* @return the is_ good_ enough_ for_ final_ story of this story
+	* @return the is_ good_ enough_ for_ story of this story
 	*/
-	public boolean getIs_Good_Enough_For_Final_Story() {
-		return _story.getIs_Good_Enough_For_Final_Story();
+	public boolean getIs_Good_Enough_For_Story() {
+		return _story.getIs_Good_Enough_For_Story();
 	}
 
 	/**
-	* Returns <code>true</code> if this story is is_ good_ enough_ for_ final_ story.
+	* Returns <code>true</code> if this story is is_ good_ enough_ for_ story.
 	*
-	* @return <code>true</code> if this story is is_ good_ enough_ for_ final_ story; <code>false</code> otherwise
+	* @return <code>true</code> if this story is is_ good_ enough_ for_ story; <code>false</code> otherwise
 	*/
-	public boolean isIs_Good_Enough_For_Final_Story() {
-		return _story.isIs_Good_Enough_For_Final_Story();
+	public boolean isIs_Good_Enough_For_Story() {
+		return _story.isIs_Good_Enough_For_Story();
 	}
 
 	/**
-	* Sets whether this story is is_ good_ enough_ for_ final_ story.
+	* Sets whether this story is is_ good_ enough_ for_ story.
 	*
-	* @param is_Good_Enough_For_Final_Story the is_ good_ enough_ for_ final_ story of this story
+	* @param is_Good_Enough_For_Story the is_ good_ enough_ for_ story of this story
 	*/
-	public void setIs_Good_Enough_For_Final_Story(
-		boolean is_Good_Enough_For_Final_Story) {
-		_story.setIs_Good_Enough_For_Final_Story(is_Good_Enough_For_Final_Story);
+	public void setIs_Good_Enough_For_Story(boolean is_Good_Enough_For_Story) {
+		_story.setIs_Good_Enough_For_Story(is_Good_Enough_For_Story);
 	}
 
 	/**
@@ -462,7 +484,7 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 		return new StoryWrapper((Story)_story.clone());
 	}
 
-	public int compareTo(Story story) {
+	public int compareTo(org.goodreturn.model.Story story) {
 		return _story.compareTo(story);
 	}
 
@@ -471,11 +493,11 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 		return _story.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<Story> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<org.goodreturn.model.Story> toCacheModel() {
 		return _story.toCacheModel();
 	}
 
-	public Story toEscapedModel() {
+	public org.goodreturn.model.Story toEscapedModel() {
 		return new StoryWrapper(_story.toEscapedModel());
 	}
 

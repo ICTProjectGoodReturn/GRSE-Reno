@@ -42,7 +42,10 @@ import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
+import com.liferay.portal.service.persistence.WorkflowInstanceLinkPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
+
+import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
 
 import org.goodreturn.NoSuchStoryException;
 
@@ -187,14 +190,14 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	/**
 	 * Creates a new story with the primary key. Does not add the story to the database.
 	 *
-	 * @param storyPK the primary key for the new story
+	 * @param story_Id the primary key for the new story
 	 * @return the new story
 	 */
-	public Story create(StoryPK storyPK) {
+	public Story create(long story_Id) {
 		Story story = new StoryImpl();
 
 		story.setNew(true);
-		story.setPrimaryKey(storyPK);
+		story.setPrimaryKey(story_Id);
 
 		String uuid = PortalUUIDUtil.generate();
 
@@ -206,14 +209,14 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	/**
 	 * Removes the story with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param storyPK the primary key of the story
+	 * @param story_Id the primary key of the story
 	 * @return the story that was removed
 	 * @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Story remove(StoryPK storyPK)
+	public Story remove(long story_Id)
 		throws NoSuchStoryException, SystemException {
-		return remove((Serializable)storyPK);
+		return remove(Long.valueOf(story_Id));
 	}
 
 	/**
@@ -352,9 +355,10 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 		storyImpl.setUuid(story.getUuid());
 		storyImpl.setStory_Id(story.getStory_Id());
 		storyImpl.setLoan_Account_Id(story.getLoan_Account_Id());
-		storyImpl.setFinal_Story(story.getFinal_Story());
+		storyImpl.setStory_Text(story.getStory_Text());
+		storyImpl.setVideo_Url(story.getVideo_Url());
 		storyImpl.setIs_Good_Enough_For_Marketing(story.isIs_Good_Enough_For_Marketing());
-		storyImpl.setIs_Good_Enough_For_Final_Story(story.isIs_Good_Enough_For_Final_Story());
+		storyImpl.setIs_Good_Enough_For_Story(story.isIs_Good_Enough_For_Story());
 		storyImpl.setStatus(story.getStatus());
 		storyImpl.setStatus_By_User_Id(story.getStatus_By_User_Id());
 		storyImpl.setStatus_By_User_Name(story.getStatus_By_User_Name());
@@ -377,28 +381,28 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	@Override
 	public Story findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey((StoryPK)primaryKey);
+		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
 	 * Returns the story with the primary key or throws a {@link org.goodreturn.NoSuchStoryException} if it could not be found.
 	 *
-	 * @param storyPK the primary key of the story
+	 * @param story_Id the primary key of the story
 	 * @return the story
 	 * @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Story findByPrimaryKey(StoryPK storyPK)
+	public Story findByPrimaryKey(long story_Id)
 		throws NoSuchStoryException, SystemException {
-		Story story = fetchByPrimaryKey(storyPK);
+		Story story = fetchByPrimaryKey(story_Id);
 
 		if (story == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + storyPK);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + story_Id);
 			}
 
 			throw new NoSuchStoryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				storyPK);
+				story_Id);
 		}
 
 		return story;
@@ -414,19 +418,19 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	@Override
 	public Story fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey((StoryPK)primaryKey);
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
 	 * Returns the story with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param storyPK the primary key of the story
+	 * @param story_Id the primary key of the story
 	 * @return the story, or <code>null</code> if a story with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Story fetchByPrimaryKey(StoryPK storyPK) throws SystemException {
+	public Story fetchByPrimaryKey(long story_Id) throws SystemException {
 		Story story = (Story)EntityCacheUtil.getResult(StoryModelImpl.ENTITY_CACHE_ENABLED,
-				StoryImpl.class, storyPK);
+				StoryImpl.class, story_Id);
 
 		if (story == _nullStory) {
 			return null;
@@ -440,7 +444,8 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 			try {
 				session = openSession();
 
-				story = (Story)session.get(StoryImpl.class, storyPK);
+				story = (Story)session.get(StoryImpl.class,
+						Long.valueOf(story_Id));
 			}
 			catch (Exception e) {
 				hasException = true;
@@ -453,7 +458,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 				}
 				else if (!hasException) {
 					EntityCacheUtil.putResult(StoryModelImpl.ENTITY_CACHE_ENABLED,
-						StoryImpl.class, storyPK, _nullStory);
+						StoryImpl.class, story_Id, _nullStory);
 				}
 
 				closeSession(session);
@@ -708,17 +713,17 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	/**
 	 * Returns the stories before and after the current story in the ordered set where uuid = &#63;.
 	 *
-	 * @param storyPK the primary key of the current story
+	 * @param story_Id the primary key of the current story
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next story
 	 * @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Story[] findByUuid_PrevAndNext(StoryPK storyPK, String uuid,
+	public Story[] findByUuid_PrevAndNext(long story_Id, String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchStoryException, SystemException {
-		Story story = findByPrimaryKey(storyPK);
+		Story story = findByPrimaryKey(story_Id);
 
 		Session session = null;
 
@@ -1155,6 +1160,10 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	@BeanReference(type = WorkflowInstanceLinkPersistence.class)
+	protected WorkflowInstanceLinkPersistence workflowInstanceLinkPersistence;
+	@BeanReference(type = AssetEntryPersistence.class)
+	protected AssetEntryPersistence assetEntryPersistence;
 	private static final String _SQL_SELECT_STORY = "SELECT story FROM Story story";
 	private static final String _SQL_SELECT_STORY_WHERE = "SELECT story FROM Story story WHERE ";
 	private static final String _SQL_COUNT_STORY = "SELECT COUNT(story) FROM Story story";

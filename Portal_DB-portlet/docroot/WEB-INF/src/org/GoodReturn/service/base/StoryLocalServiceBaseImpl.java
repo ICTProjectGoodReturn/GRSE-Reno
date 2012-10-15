@@ -34,8 +34,14 @@ import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
+import com.liferay.portal.service.WorkflowInstanceLinkLocalService;
 import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
+import com.liferay.portal.service.persistence.WorkflowInstanceLinkPersistence;
+
+import com.liferay.portlet.asset.service.AssetEntryLocalService;
+import com.liferay.portlet.asset.service.AssetEntryService;
+import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
 
 import org.goodreturn.model.Story;
 
@@ -61,7 +67,6 @@ import org.goodreturn.service.persistence.BorrowerPersistence;
 import org.goodreturn.service.persistence.Gift_CertificatePersistence;
 import org.goodreturn.service.persistence.LenderPersistence;
 import org.goodreturn.service.persistence.PersonPersistence;
-import org.goodreturn.service.persistence.StoryPK;
 import org.goodreturn.service.persistence.StoryPersistence;
 import org.goodreturn.service.persistence.Supplementary_TablePersistence;
 import org.goodreturn.service.persistence.TeamLenderLoanPersistence;
@@ -111,25 +116,25 @@ public abstract class StoryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	/**
 	 * Creates a new story with the primary key. Does not add the story to the database.
 	 *
-	 * @param storyPK the primary key for the new story
+	 * @param story_Id the primary key for the new story
 	 * @return the new story
 	 */
-	public Story createStory(StoryPK storyPK) {
-		return storyPersistence.create(storyPK);
+	public Story createStory(long story_Id) {
+		return storyPersistence.create(story_Id);
 	}
 
 	/**
 	 * Deletes the story with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param storyPK the primary key of the story
+	 * @param story_Id the primary key of the story
 	 * @return the story that was removed
 	 * @throws PortalException if a story with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public Story deleteStory(StoryPK storyPK)
+	public Story deleteStory(long story_Id)
 		throws PortalException, SystemException {
-		return storyPersistence.remove(storyPK);
+		return storyPersistence.remove(story_Id);
 	}
 
 	/**
@@ -216,21 +221,21 @@ public abstract class StoryLocalServiceBaseImpl extends BaseLocalServiceImpl
 		return storyPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
-	public Story fetchStory(StoryPK storyPK) throws SystemException {
-		return storyPersistence.fetchByPrimaryKey(storyPK);
+	public Story fetchStory(long story_Id) throws SystemException {
+		return storyPersistence.fetchByPrimaryKey(story_Id);
 	}
 
 	/**
 	 * Returns the story with the primary key.
 	 *
-	 * @param storyPK the primary key of the story
+	 * @param story_Id the primary key of the story
 	 * @return the story
 	 * @throws PortalException if a story with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Story getStory(StoryPK storyPK)
+	public Story getStory(long story_Id)
 		throws PortalException, SystemException {
-		return storyPersistence.findByPrimaryKey(storyPK);
+		return storyPersistence.findByPrimaryKey(story_Id);
 	}
 
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
@@ -917,6 +922,100 @@ public abstract class StoryLocalServiceBaseImpl extends BaseLocalServiceImpl
 		this.userPersistence = userPersistence;
 	}
 
+	/**
+	 * Returns the workflow instance link local service.
+	 *
+	 * @return the workflow instance link local service
+	 */
+	public WorkflowInstanceLinkLocalService getWorkflowInstanceLinkLocalService() {
+		return workflowInstanceLinkLocalService;
+	}
+
+	/**
+	 * Sets the workflow instance link local service.
+	 *
+	 * @param workflowInstanceLinkLocalService the workflow instance link local service
+	 */
+	public void setWorkflowInstanceLinkLocalService(
+		WorkflowInstanceLinkLocalService workflowInstanceLinkLocalService) {
+		this.workflowInstanceLinkLocalService = workflowInstanceLinkLocalService;
+	}
+
+	/**
+	 * Returns the workflow instance link persistence.
+	 *
+	 * @return the workflow instance link persistence
+	 */
+	public WorkflowInstanceLinkPersistence getWorkflowInstanceLinkPersistence() {
+		return workflowInstanceLinkPersistence;
+	}
+
+	/**
+	 * Sets the workflow instance link persistence.
+	 *
+	 * @param workflowInstanceLinkPersistence the workflow instance link persistence
+	 */
+	public void setWorkflowInstanceLinkPersistence(
+		WorkflowInstanceLinkPersistence workflowInstanceLinkPersistence) {
+		this.workflowInstanceLinkPersistence = workflowInstanceLinkPersistence;
+	}
+
+	/**
+	 * Returns the asset entry local service.
+	 *
+	 * @return the asset entry local service
+	 */
+	public AssetEntryLocalService getAssetEntryLocalService() {
+		return assetEntryLocalService;
+	}
+
+	/**
+	 * Sets the asset entry local service.
+	 *
+	 * @param assetEntryLocalService the asset entry local service
+	 */
+	public void setAssetEntryLocalService(
+		AssetEntryLocalService assetEntryLocalService) {
+		this.assetEntryLocalService = assetEntryLocalService;
+	}
+
+	/**
+	 * Returns the asset entry remote service.
+	 *
+	 * @return the asset entry remote service
+	 */
+	public AssetEntryService getAssetEntryService() {
+		return assetEntryService;
+	}
+
+	/**
+	 * Sets the asset entry remote service.
+	 *
+	 * @param assetEntryService the asset entry remote service
+	 */
+	public void setAssetEntryService(AssetEntryService assetEntryService) {
+		this.assetEntryService = assetEntryService;
+	}
+
+	/**
+	 * Returns the asset entry persistence.
+	 *
+	 * @return the asset entry persistence
+	 */
+	public AssetEntryPersistence getAssetEntryPersistence() {
+		return assetEntryPersistence;
+	}
+
+	/**
+	 * Sets the asset entry persistence.
+	 *
+	 * @param assetEntryPersistence the asset entry persistence
+	 */
+	public void setAssetEntryPersistence(
+		AssetEntryPersistence assetEntryPersistence) {
+		this.assetEntryPersistence = assetEntryPersistence;
+	}
+
 	public void afterPropertiesSet() {
 		PersistedModelLocalServiceRegistryUtil.register("org.goodreturn.model.Story",
 			storyLocalService);
@@ -1045,6 +1144,16 @@ public abstract class StoryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	@BeanReference(type = WorkflowInstanceLinkLocalService.class)
+	protected WorkflowInstanceLinkLocalService workflowInstanceLinkLocalService;
+	@BeanReference(type = WorkflowInstanceLinkPersistence.class)
+	protected WorkflowInstanceLinkPersistence workflowInstanceLinkPersistence;
+	@BeanReference(type = AssetEntryLocalService.class)
+	protected AssetEntryLocalService assetEntryLocalService;
+	@BeanReference(type = AssetEntryService.class)
+	protected AssetEntryService assetEntryService;
+	@BeanReference(type = AssetEntryPersistence.class)
+	protected AssetEntryPersistence assetEntryPersistence;
 	private String _beanIdentifier;
 	private StoryLocalServiceClpInvoker _clpInvoker = new StoryLocalServiceClpInvoker();
 }

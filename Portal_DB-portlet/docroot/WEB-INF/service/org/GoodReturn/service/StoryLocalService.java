@@ -59,22 +59,20 @@ public interface StoryLocalService extends BaseLocalService,
 	/**
 	* Creates a new story with the primary key. Does not add the story to the database.
 	*
-	* @param storyPK the primary key for the new story
+	* @param story_Id the primary key for the new story
 	* @return the new story
 	*/
-	public org.goodreturn.model.Story createStory(
-		org.goodreturn.service.persistence.StoryPK storyPK);
+	public org.goodreturn.model.Story createStory(long story_Id);
 
 	/**
 	* Deletes the story with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param storyPK the primary key of the story
+	* @param story_Id the primary key of the story
 	* @return the story that was removed
 	* @throws PortalException if a story with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.Story deleteStory(
-		org.goodreturn.service.persistence.StoryPK storyPK)
+	public org.goodreturn.model.Story deleteStory(long story_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -154,21 +152,19 @@ public interface StoryLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.goodreturn.model.Story fetchStory(
-		org.goodreturn.service.persistence.StoryPK storyPK)
+	public org.goodreturn.model.Story fetchStory(long story_Id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the story with the primary key.
 	*
-	* @param storyPK the primary key of the story
+	* @param story_Id the primary key of the story
 	* @return the story
 	* @throws PortalException if a story with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.goodreturn.model.Story getStory(
-		org.goodreturn.service.persistence.StoryPK storyPK)
+	public org.goodreturn.model.Story getStory(long story_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

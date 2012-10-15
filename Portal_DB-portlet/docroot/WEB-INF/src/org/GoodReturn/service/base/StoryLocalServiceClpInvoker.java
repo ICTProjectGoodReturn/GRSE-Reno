@@ -29,15 +29,11 @@ public class StoryLocalServiceClpInvoker {
 
 		_methodName1 = "createStory";
 
-		_methodParameterTypes1 = new String[] {
-				"org.goodreturn.service.persistence.StoryPK"
-			};
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteStory";
 
-		_methodParameterTypes2 = new String[] {
-				"org.goodreturn.service.persistence.StoryPK"
-			};
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteStory";
 
@@ -74,15 +70,11 @@ public class StoryLocalServiceClpInvoker {
 
 		_methodName9 = "fetchStory";
 
-		_methodParameterTypes9 = new String[] {
-				"org.goodreturn.service.persistence.StoryPK"
-			};
+		_methodParameterTypes9 = new String[] { "long" };
 
 		_methodName10 = "getStory";
 
-		_methodParameterTypes10 = new String[] {
-				"org.goodreturn.service.persistence.StoryPK"
-			};
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getPersistedModel";
 
@@ -106,13 +98,13 @@ public class StoryLocalServiceClpInvoker {
 				"org.goodreturn.model.Story", "boolean"
 			};
 
-		_methodName86 = "getBeanIdentifier";
+		_methodName96 = "getBeanIdentifier";
 
-		_methodParameterTypes86 = new String[] {  };
+		_methodParameterTypes96 = new String[] {  };
 
-		_methodName87 = "setBeanIdentifier";
+		_methodName97 = "setBeanIdentifier";
 
-		_methodParameterTypes87 = new String[] { "java.lang.String" };
+		_methodParameterTypes97 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -124,12 +116,12 @@ public class StoryLocalServiceClpInvoker {
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return StoryLocalServiceUtil.createStory((org.goodreturn.service.persistence.StoryPK)arguments[0]);
+			return StoryLocalServiceUtil.createStory(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return StoryLocalServiceUtil.deleteStory((org.goodreturn.service.persistence.StoryPK)arguments[0]);
+			return StoryLocalServiceUtil.deleteStory(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName3.equals(name) &&
@@ -169,12 +161,12 @@ public class StoryLocalServiceClpInvoker {
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return StoryLocalServiceUtil.fetchStory((org.goodreturn.service.persistence.StoryPK)arguments[0]);
+			return StoryLocalServiceUtil.fetchStory(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return StoryLocalServiceUtil.getStory((org.goodreturn.service.persistence.StoryPK)arguments[0]);
+			return StoryLocalServiceUtil.getStory(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
@@ -204,13 +196,13 @@ public class StoryLocalServiceClpInvoker {
 				((Boolean)arguments[1]).booleanValue());
 		}
 
-		if (_methodName86.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
+		if (_methodName96.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes96, parameterTypes)) {
 			return StoryLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName87.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes87, parameterTypes)) {
+		if (_methodName97.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes97, parameterTypes)) {
 			StoryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
@@ -249,8 +241,8 @@ public class StoryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName86;
-	private String[] _methodParameterTypes86;
-	private String _methodName87;
-	private String[] _methodParameterTypes87;
+	private String _methodName96;
+	private String[] _methodParameterTypes96;
+	private String _methodName97;
+	private String[] _methodParameterTypes97;
 }

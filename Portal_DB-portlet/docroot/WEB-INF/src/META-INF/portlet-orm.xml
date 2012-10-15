@@ -102,16 +102,16 @@
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="org.goodreturn.model.impl.StoryModelImpl">
-		<id-class class="org.goodreturn.service.persistence.StoryPK" />
 		<attributes>
 			<id name="story_Id" />
-			<id name="loan_Account_Id" />
 			<basic name="uuid">
 				<column name="UUID_" />
 			</basic>
-			<basic name="final_Story" />
+			<basic name="loan_Account_Id" />
+			<basic name="story_Text" />
+			<basic name="video_Url" />
 			<basic name="is_Good_Enough_For_Marketing" />
-			<basic name="is_Good_Enough_For_Final_Story" />
+			<basic name="is_Good_Enough_For_Story" />
 			<basic name="status" />
 			<basic name="status_By_User_Id" />
 			<basic name="status_By_User_Name" />

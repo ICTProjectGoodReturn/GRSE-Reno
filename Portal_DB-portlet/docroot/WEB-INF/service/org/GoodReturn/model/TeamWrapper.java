@@ -185,7 +185,7 @@ public class TeamWrapper implements Team, ModelWrapper<Team> {
 		return new TeamWrapper((Team)_team.clone());
 	}
 
-	public int compareTo(Team team) {
+	public int compareTo(org.goodreturn.model.Team team) {
 		return _team.compareTo(team);
 	}
 
@@ -194,11 +194,11 @@ public class TeamWrapper implements Team, ModelWrapper<Team> {
 		return _team.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<Team> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<org.goodreturn.model.Team> toCacheModel() {
 		return _team.toCacheModel();
 	}
 
-	public Team toEscapedModel() {
+	public org.goodreturn.model.Team toEscapedModel() {
 		return new TeamWrapper(_team.toEscapedModel());
 	}
 

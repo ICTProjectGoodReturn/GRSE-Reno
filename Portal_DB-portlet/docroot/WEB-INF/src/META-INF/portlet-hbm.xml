@@ -85,14 +85,15 @@
 	</class>
 	<class name="org.goodreturn.model.impl.StoryImpl" table="GoodReturn_Story">
 		<cache usage="read-write" />
-		<composite-id name="primaryKey" class="org.goodreturn.service.persistence.StoryPK">
-			<key-property name="story_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-			<key-property name="loan_Account_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		</composite-id>
+		<id name="story_Id" type="long">
+			<generator class="assigned" />
+		</id>
 		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
-		<property name="final_Story" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="loan_Account_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="story_Text" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="video_Url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="is_Good_Enough_For_Marketing" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="is_Good_Enough_For_Final_Story" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="is_Good_Enough_For_Story" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="status_By_User_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="status_By_User_Name" type="com.liferay.portal.dao.orm.hibernate.StringType" />

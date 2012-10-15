@@ -800,7 +800,7 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 		return new LenderWrapper((Lender)_lender.clone());
 	}
 
-	public int compareTo(Lender lender) {
+	public int compareTo(org.goodreturn.model.Lender lender) {
 		return _lender.compareTo(lender);
 	}
 
@@ -809,11 +809,11 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 		return _lender.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<Lender> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<org.goodreturn.model.Lender> toCacheModel() {
 		return _lender.toCacheModel();
 	}
 
-	public Lender toEscapedModel() {
+	public org.goodreturn.model.Lender toEscapedModel() {
 		return new LenderWrapper(_lender.toEscapedModel());
 	}
 

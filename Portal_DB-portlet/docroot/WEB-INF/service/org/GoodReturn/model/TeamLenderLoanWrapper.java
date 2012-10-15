@@ -136,7 +136,7 @@ public class TeamLenderLoanWrapper implements TeamLenderLoan,
 		return new TeamLenderLoanWrapper((TeamLenderLoan)_teamLenderLoan.clone());
 	}
 
-	public int compareTo(TeamLenderLoan teamLenderLoan) {
+	public int compareTo(org.goodreturn.model.TeamLenderLoan teamLenderLoan) {
 		return _teamLenderLoan.compareTo(teamLenderLoan);
 	}
 
@@ -145,11 +145,11 @@ public class TeamLenderLoanWrapper implements TeamLenderLoan,
 		return _teamLenderLoan.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<TeamLenderLoan> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<org.goodreturn.model.TeamLenderLoan> toCacheModel() {
 		return _teamLenderLoan.toCacheModel();
 	}
 
-	public TeamLenderLoan toEscapedModel() {
+	public org.goodreturn.model.TeamLenderLoan toEscapedModel() {
 		return new TeamLenderLoanWrapper(_teamLenderLoan.toEscapedModel());
 	}
 

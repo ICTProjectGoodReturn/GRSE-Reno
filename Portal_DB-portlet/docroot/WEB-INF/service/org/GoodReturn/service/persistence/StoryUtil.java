@@ -131,25 +131,25 @@ public class StoryUtil {
 	/**
 	* Creates a new story with the primary key. Does not add the story to the database.
 	*
-	* @param storyPK the primary key for the new story
+	* @param story_Id the primary key for the new story
 	* @return the new story
 	*/
-	public static org.goodreturn.model.Story create(StoryPK storyPK) {
-		return getPersistence().create(storyPK);
+	public static org.goodreturn.model.Story create(long story_Id) {
+		return getPersistence().create(story_Id);
 	}
 
 	/**
 	* Removes the story with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param storyPK the primary key of the story
+	* @param story_Id the primary key of the story
 	* @return the story that was removed
 	* @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.goodreturn.model.Story remove(StoryPK storyPK)
+	public static org.goodreturn.model.Story remove(long story_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchStoryException {
-		return getPersistence().remove(storyPK);
+		return getPersistence().remove(story_Id);
 	}
 
 	public static org.goodreturn.model.Story updateImpl(
@@ -161,27 +161,27 @@ public class StoryUtil {
 	/**
 	* Returns the story with the primary key or throws a {@link org.goodreturn.NoSuchStoryException} if it could not be found.
 	*
-	* @param storyPK the primary key of the story
+	* @param story_Id the primary key of the story
 	* @return the story
 	* @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.goodreturn.model.Story findByPrimaryKey(StoryPK storyPK)
+	public static org.goodreturn.model.Story findByPrimaryKey(long story_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchStoryException {
-		return getPersistence().findByPrimaryKey(storyPK);
+		return getPersistence().findByPrimaryKey(story_Id);
 	}
 
 	/**
 	* Returns the story with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param storyPK the primary key of the story
+	* @param story_Id the primary key of the story
 	* @return the story, or <code>null</code> if a story with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.goodreturn.model.Story fetchByPrimaryKey(StoryPK storyPK)
+	public static org.goodreturn.model.Story fetchByPrimaryKey(long story_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(storyPK);
+		return getPersistence().fetchByPrimaryKey(story_Id);
 	}
 
 	/**
@@ -304,7 +304,7 @@ public class StoryUtil {
 	/**
 	* Returns the stories before and after the current story in the ordered set where uuid = &#63;.
 	*
-	* @param storyPK the primary key of the current story
+	* @param story_Id the primary key of the current story
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next story
@@ -312,12 +312,12 @@ public class StoryUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.Story[] findByUuid_PrevAndNext(
-		StoryPK storyPK, java.lang.String uuid,
+		long story_Id, java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchStoryException {
 		return getPersistence()
-				   .findByUuid_PrevAndNext(storyPK, uuid, orderByComparator);
+				   .findByUuid_PrevAndNext(story_Id, uuid, orderByComparator);
 	}
 
 	/**
