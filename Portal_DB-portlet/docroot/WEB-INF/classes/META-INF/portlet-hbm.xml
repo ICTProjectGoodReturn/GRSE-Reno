@@ -2,16 +2,16 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
-	<import class="org.GoodReturn.model.Borrower" />
-	<import class="org.GoodReturn.model.Gift_Certificate" />
-	<import class="org.GoodReturn.model.Lender" />
-	<import class="org.GoodReturn.model.Person" />
-	<import class="org.GoodReturn.model.Story" />
-	<import class="org.GoodReturn.model.Supplementary_Table" />
-	<import class="org.GoodReturn.model.Team" />
-	<import class="org.GoodReturn.model.TeamLender" />
-	<import class="org.GoodReturn.model.TeamLenderLoan" />
-	<class name="org.GoodReturn.model.impl.BorrowerImpl" table="GoodReturn_Borrower">
+	<import class="org.goodreturn.model.Borrower" />
+	<import class="org.goodreturn.model.Gift_Certificate" />
+	<import class="org.goodreturn.model.Lender" />
+	<import class="org.goodreturn.model.Person" />
+	<import class="org.goodreturn.model.Story" />
+	<import class="org.goodreturn.model.Supplementary_Table" />
+	<import class="org.goodreturn.model.Team" />
+	<import class="org.goodreturn.model.TeamLender" />
+	<import class="org.goodreturn.model.TeamLenderLoan" />
+	<class name="org.goodreturn.model.impl.BorrowerImpl" table="GoodReturn_Borrower">
 		<cache usage="read-write" />
 		<id name="abacus_Borrower_Id" type="long">
 			<generator class="assigned" />
@@ -29,7 +29,7 @@
 		<property name="currency" type="com.liferay.portal.dao.orm.hibernate.DoubleType" column="currency_" />
 		<property name="date_Applied" type="org.hibernate.type.TimestampType" />
 	</class>
-	<class name="org.GoodReturn.model.impl.Gift_CertificateImpl" table="GoodReturn_Gift_Certificate">
+	<class name="org.goodreturn.model.impl.Gift_CertificateImpl" table="GoodReturn_Gift_Certificate">
 		<cache usage="read-write" />
 		<id name="certificate_Id" type="long">
 			<generator class="assigned" />
@@ -37,7 +37,7 @@
 		<property name="certificate_Amount" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="certificate_Type" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="org.GoodReturn.model.impl.LenderImpl" table="GoodReturn_Lender">
+	<class name="org.goodreturn.model.impl.LenderImpl" table="GoodReturn_Lender">
 		<cache usage="read-write" />
 		<id name="lender_Id" type="long">
 			<generator class="assigned" />
@@ -67,7 +67,7 @@
 		<property name="voucher_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="is_Loan_Donation" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
-	<class name="org.GoodReturn.model.impl.PersonImpl" table="GoodReturn_Person">
+	<class name="org.goodreturn.model.impl.PersonImpl" table="GoodReturn_Person">
 		<cache usage="read-write" />
 		<id name="abacus_Person_Id" type="long">
 			<generator class="assigned" />
@@ -83,22 +83,31 @@
 		<property name="photo_URL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="occupation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="org.GoodReturn.model.impl.StoryImpl" table="GoodReturn_Story">
+	<class name="org.goodreturn.model.impl.StoryImpl" table="GoodReturn_Story">
 		<cache usage="read-write" />
-		<id name="story_Id" type="long">
-			<generator class="assigned" />
-		</id>
+		<composite-id name="primaryKey" class="org.goodreturn.service.persistence.StoryPK">
+			<key-property name="story_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="loan_Account_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
 		<property name="final_Story" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="is_Good_Enough_For_Marketing" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="is_Good_Enough_For_Final_Story" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="status_By_User_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="status_By_User_Name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="status_Date" type="org.hibernate.type.TimestampType" />
+		<property name="company_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="group_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="user_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
-	<class name="org.GoodReturn.model.impl.Supplementary_TableImpl" table="GoodReturn_Supplementary_Table">
+	<class name="org.goodreturn.model.impl.Supplementary_TableImpl" table="GoodReturn_Supplementary_Table">
 		<cache usage="read-write" />
 		<id name="table_Id" type="long">
 			<generator class="assigned" />
 		</id>
 	</class>
-	<class name="org.GoodReturn.model.impl.TeamImpl" table="GoodReturn_Team">
+	<class name="org.goodreturn.model.impl.TeamImpl" table="GoodReturn_Team">
 		<cache usage="read-write" />
 		<id name="team_Id" type="long">
 			<generator class="assigned" />
@@ -106,13 +115,13 @@
 		<property name="team_Name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="amount_Lent" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="org.GoodReturn.model.impl.TeamLenderImpl" table="GoodReturn_TeamLender">
+	<class name="org.goodreturn.model.impl.TeamLenderImpl" table="GoodReturn_TeamLender">
 		<cache usage="read-write" />
 		<id name="teamlender_Id" type="long">
 			<generator class="assigned" />
 		</id>
 	</class>
-	<class name="org.GoodReturn.model.impl.TeamLenderLoanImpl" table="GoodReturn_TeamLenderLoan">
+	<class name="org.goodreturn.model.impl.TeamLenderLoanImpl" table="GoodReturn_TeamLenderLoan">
 		<cache usage="read-write" />
 		<id name="account_Id" type="long">
 			<generator class="assigned" />

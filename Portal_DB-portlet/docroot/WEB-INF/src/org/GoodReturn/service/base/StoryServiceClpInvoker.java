@@ -12,9 +12,9 @@
  * details.
  */
 
-package org.GoodReturn.service.base;
+package org.goodreturn.service.base;
 
-import org.GoodReturn.service.StoryServiceUtil;
+import org.goodreturn.service.StoryServiceUtil;
 
 import java.util.Arrays;
 

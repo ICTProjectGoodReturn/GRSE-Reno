@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <model-hints>
-	<model name="org.GoodReturn.model.Borrower">
+	<model name="org.goodreturn.model.Borrower">
 		<field name="abacus_Borrower_Id" type="long" />
 		<field name="write_Off_Date" type="Date" />
 		<field name="phone" type="long" />
@@ -16,12 +16,12 @@
 		<field name="currency" type="double" />
 		<field name="date_Applied" type="Date" />
 	</model>
-	<model name="org.GoodReturn.model.Gift_Certificate">
+	<model name="org.goodreturn.model.Gift_Certificate">
 		<field name="certificate_Id" type="long" />
 		<field name="certificate_Amount" type="double" />
 		<field name="certificate_Type" type="String" />
 	</model>
-	<model name="org.GoodReturn.model.Lender">
+	<model name="org.goodreturn.model.Lender">
 		<field name="lender_Id" type="long" />
 		<field name="salutation" type="String" />
 		<field name="employer_Name" type="String" />
@@ -48,7 +48,7 @@
 		<field name="voucher_Id" type="long" />
 		<field name="is_Loan_Donation" type="boolean" />
 	</model>
-	<model name="org.GoodReturn.model.Person">
+	<model name="org.goodreturn.model.Person">
 		<field name="abacus_Person_Id" type="long" />
 		<field name="first_Name" type="String" />
 		<field name="last_Name" type="String" />
@@ -61,24 +61,33 @@
 		<field name="photo_URL" type="String" />
 		<field name="occupation" type="String" />
 	</model>
-	<model name="org.GoodReturn.model.Story">
+	<model name="org.goodreturn.model.Story">
+		<field name="uuid" type="String" />
 		<field name="story_Id" type="long" />
+		<field name="loan_Account_Id" type="long" />
 		<field name="final_Story" type="String" />
 		<field name="is_Good_Enough_For_Marketing" type="boolean" />
 		<field name="is_Good_Enough_For_Final_Story" type="boolean" />
+		<field name="status" type="int" />
+		<field name="status_By_User_Id" type="long" />
+		<field name="status_By_User_Name" type="String" />
+		<field name="status_Date" type="Date" />
+		<field name="company_Id" type="long" />
+		<field name="group_Id" type="long" />
+		<field name="user_Id" type="long" />
 	</model>
-	<model name="org.GoodReturn.model.Supplementary_Table">
+	<model name="org.goodreturn.model.Supplementary_Table">
 		<field name="table_Id" type="long" />
 	</model>
-	<model name="org.GoodReturn.model.Team">
+	<model name="org.goodreturn.model.Team">
 		<field name="team_Id" type="long" />
 		<field name="team_Name" type="String" />
 		<field name="amount_Lent" type="String" />
 	</model>
-	<model name="org.GoodReturn.model.TeamLender">
+	<model name="org.goodreturn.model.TeamLender">
 		<field name="teamlender_Id" type="long" />
 	</model>
-	<model name="org.GoodReturn.model.TeamLenderLoan">
+	<model name="org.goodreturn.model.TeamLenderLoan">
 		<field name="account_Id" type="long" />
 	</model>
 </model-hints>

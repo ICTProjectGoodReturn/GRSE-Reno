@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
-import org.GoodReturn.model.Supplementary_Table;
+import org.goodreturn.model.Supplementary_Table;
 
 import java.util.List;
 
@@ -119,7 +119,7 @@ public class Supplementary_TableUtil {
 	* @param supplementary_Table the supplementary_ table
 	*/
 	public static void cacheResult(
-		org.GoodReturn.model.Supplementary_Table supplementary_Table) {
+		org.goodreturn.model.Supplementary_Table supplementary_Table) {
 		getPersistence().cacheResult(supplementary_Table);
 	}
 
@@ -129,7 +129,7 @@ public class Supplementary_TableUtil {
 	* @param supplementary_Tables the supplementary_ tables
 	*/
 	public static void cacheResult(
-		java.util.List<org.GoodReturn.model.Supplementary_Table> supplementary_Tables) {
+		java.util.List<org.goodreturn.model.Supplementary_Table> supplementary_Tables) {
 		getPersistence().cacheResult(supplementary_Tables);
 	}
 
@@ -139,7 +139,7 @@ public class Supplementary_TableUtil {
 	* @param table_Id the primary key for the new supplementary_ table
 	* @return the new supplementary_ table
 	*/
-	public static org.GoodReturn.model.Supplementary_Table create(long table_Id) {
+	public static org.goodreturn.model.Supplementary_Table create(long table_Id) {
 		return getPersistence().create(table_Id);
 	}
 
@@ -148,34 +148,34 @@ public class Supplementary_TableUtil {
 	*
 	* @param table_Id the primary key of the supplementary_ table
 	* @return the supplementary_ table that was removed
-	* @throws org.GoodReturn.NoSuchSupplementary_TableException if a supplementary_ table with the primary key could not be found
+	* @throws org.goodreturn.NoSuchSupplementary_TableException if a supplementary_ table with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Supplementary_Table remove(long table_Id)
+	public static org.goodreturn.model.Supplementary_Table remove(long table_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchSupplementary_TableException {
+			org.goodreturn.NoSuchSupplementary_TableException {
 		return getPersistence().remove(table_Id);
 	}
 
-	public static org.GoodReturn.model.Supplementary_Table updateImpl(
-		org.GoodReturn.model.Supplementary_Table supplementary_Table,
+	public static org.goodreturn.model.Supplementary_Table updateImpl(
+		org.goodreturn.model.Supplementary_Table supplementary_Table,
 		boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(supplementary_Table, merge);
 	}
 
 	/**
-	* Returns the supplementary_ table with the primary key or throws a {@link org.GoodReturn.NoSuchSupplementary_TableException} if it could not be found.
+	* Returns the supplementary_ table with the primary key or throws a {@link org.goodreturn.NoSuchSupplementary_TableException} if it could not be found.
 	*
 	* @param table_Id the primary key of the supplementary_ table
 	* @return the supplementary_ table
-	* @throws org.GoodReturn.NoSuchSupplementary_TableException if a supplementary_ table with the primary key could not be found
+	* @throws org.goodreturn.NoSuchSupplementary_TableException if a supplementary_ table with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Supplementary_Table findByPrimaryKey(
+	public static org.goodreturn.model.Supplementary_Table findByPrimaryKey(
 		long table_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchSupplementary_TableException {
+			org.goodreturn.NoSuchSupplementary_TableException {
 		return getPersistence().findByPrimaryKey(table_Id);
 	}
 
@@ -186,7 +186,7 @@ public class Supplementary_TableUtil {
 	* @return the supplementary_ table, or <code>null</code> if a supplementary_ table with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Supplementary_Table fetchByPrimaryKey(
+	public static org.goodreturn.model.Supplementary_Table fetchByPrimaryKey(
 		long table_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(table_Id);
@@ -198,7 +198,7 @@ public class Supplementary_TableUtil {
 	* @return the supplementary_ tables
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Supplementary_Table> findAll()
+	public static java.util.List<org.goodreturn.model.Supplementary_Table> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
@@ -215,7 +215,7 @@ public class Supplementary_TableUtil {
 	* @return the range of supplementary_ tables
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Supplementary_Table> findAll(
+	public static java.util.List<org.goodreturn.model.Supplementary_Table> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
@@ -234,7 +234,7 @@ public class Supplementary_TableUtil {
 	* @return the ordered range of supplementary_ tables
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Supplementary_Table> findAll(
+	public static java.util.List<org.goodreturn.model.Supplementary_Table> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -264,7 +264,7 @@ public class Supplementary_TableUtil {
 
 	public static Supplementary_TablePersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (Supplementary_TablePersistence)PortletBeanLocatorUtil.locate(org.GoodReturn.service.ClpSerializer.getServletContextName(),
+			_persistence = (Supplementary_TablePersistence)PortletBeanLocatorUtil.locate(org.goodreturn.service.ClpSerializer.getServletContextName(),
 					Supplementary_TablePersistence.class.getName());
 
 			ReferenceRegistry.registerReference(Supplementary_TableUtil.class,

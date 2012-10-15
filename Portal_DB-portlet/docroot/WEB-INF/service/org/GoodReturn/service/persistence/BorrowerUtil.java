@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
-import org.GoodReturn.model.Borrower;
+import org.goodreturn.model.Borrower;
 
 import java.util.List;
 
@@ -115,7 +115,7 @@ public class BorrowerUtil {
 	*
 	* @param borrower the borrower
 	*/
-	public static void cacheResult(org.GoodReturn.model.Borrower borrower) {
+	public static void cacheResult(org.goodreturn.model.Borrower borrower) {
 		getPersistence().cacheResult(borrower);
 	}
 
@@ -125,7 +125,7 @@ public class BorrowerUtil {
 	* @param borrowers the borrowers
 	*/
 	public static void cacheResult(
-		java.util.List<org.GoodReturn.model.Borrower> borrowers) {
+		java.util.List<org.goodreturn.model.Borrower> borrowers) {
 		getPersistence().cacheResult(borrowers);
 	}
 
@@ -135,7 +135,7 @@ public class BorrowerUtil {
 	* @param abacus_Borrower_Id the primary key for the new borrower
 	* @return the new borrower
 	*/
-	public static org.GoodReturn.model.Borrower create(long abacus_Borrower_Id) {
+	public static org.goodreturn.model.Borrower create(long abacus_Borrower_Id) {
 		return getPersistence().create(abacus_Borrower_Id);
 	}
 
@@ -144,33 +144,33 @@ public class BorrowerUtil {
 	*
 	* @param abacus_Borrower_Id the primary key of the borrower
 	* @return the borrower that was removed
-	* @throws org.GoodReturn.NoSuchBorrowerException if a borrower with the primary key could not be found
+	* @throws org.goodreturn.NoSuchBorrowerException if a borrower with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Borrower remove(long abacus_Borrower_Id)
+	public static org.goodreturn.model.Borrower remove(long abacus_Borrower_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchBorrowerException {
+			org.goodreturn.NoSuchBorrowerException {
 		return getPersistence().remove(abacus_Borrower_Id);
 	}
 
-	public static org.GoodReturn.model.Borrower updateImpl(
-		org.GoodReturn.model.Borrower borrower, boolean merge)
+	public static org.goodreturn.model.Borrower updateImpl(
+		org.goodreturn.model.Borrower borrower, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(borrower, merge);
 	}
 
 	/**
-	* Returns the borrower with the primary key or throws a {@link org.GoodReturn.NoSuchBorrowerException} if it could not be found.
+	* Returns the borrower with the primary key or throws a {@link org.goodreturn.NoSuchBorrowerException} if it could not be found.
 	*
 	* @param abacus_Borrower_Id the primary key of the borrower
 	* @return the borrower
-	* @throws org.GoodReturn.NoSuchBorrowerException if a borrower with the primary key could not be found
+	* @throws org.goodreturn.NoSuchBorrowerException if a borrower with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Borrower findByPrimaryKey(
+	public static org.goodreturn.model.Borrower findByPrimaryKey(
 		long abacus_Borrower_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchBorrowerException {
+			org.goodreturn.NoSuchBorrowerException {
 		return getPersistence().findByPrimaryKey(abacus_Borrower_Id);
 	}
 
@@ -181,7 +181,7 @@ public class BorrowerUtil {
 	* @return the borrower, or <code>null</code> if a borrower with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Borrower fetchByPrimaryKey(
+	public static org.goodreturn.model.Borrower fetchByPrimaryKey(
 		long abacus_Borrower_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(abacus_Borrower_Id);
@@ -193,7 +193,7 @@ public class BorrowerUtil {
 	* @return the borrowers
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Borrower> findAll()
+	public static java.util.List<org.goodreturn.model.Borrower> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
@@ -210,7 +210,7 @@ public class BorrowerUtil {
 	* @return the range of borrowers
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Borrower> findAll(
+	public static java.util.List<org.goodreturn.model.Borrower> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
@@ -229,7 +229,7 @@ public class BorrowerUtil {
 	* @return the ordered range of borrowers
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Borrower> findAll(
+	public static java.util.List<org.goodreturn.model.Borrower> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -264,7 +264,7 @@ public class BorrowerUtil {
 	* @return the persons associated with the borrower
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Person> getPersons(
+	public static java.util.List<org.goodreturn.model.Person> getPersons(
 		long pk) throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().getPersons(pk);
 	}
@@ -282,7 +282,7 @@ public class BorrowerUtil {
 	* @return the range of persons associated with the borrower
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Person> getPersons(
+	public static java.util.List<org.goodreturn.model.Person> getPersons(
 		long pk, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().getPersons(pk, start, end);
@@ -302,7 +302,7 @@ public class BorrowerUtil {
 	* @return the ordered range of persons associated with the borrower
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Person> getPersons(
+	public static java.util.List<org.goodreturn.model.Person> getPersons(
 		long pk, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -348,7 +348,7 @@ public class BorrowerUtil {
 
 	public static BorrowerPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (BorrowerPersistence)PortletBeanLocatorUtil.locate(org.GoodReturn.service.ClpSerializer.getServletContextName(),
+			_persistence = (BorrowerPersistence)PortletBeanLocatorUtil.locate(org.goodreturn.service.ClpSerializer.getServletContextName(),
 					BorrowerPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(BorrowerUtil.class,

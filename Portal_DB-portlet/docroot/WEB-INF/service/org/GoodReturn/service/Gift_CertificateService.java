@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -31,8 +31,8 @@ import com.liferay.portal.service.InvokableService;
  *
  * @author gilaa004
  * @see Gift_CertificateServiceUtil
- * @see org.GoodReturn.service.base.Gift_CertificateServiceBaseImpl
- * @see org.GoodReturn.service.impl.Gift_CertificateServiceImpl
+ * @see org.goodreturn.service.base.Gift_CertificateServiceBaseImpl
+ * @see org.goodreturn.service.impl.Gift_CertificateServiceImpl
  * @generated
  */
 @JSONWebService
@@ -42,7 +42,7 @@ public interface Gift_CertificateService extends BaseService, InvokableService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link Gift_CertificateServiceUtil} to access the gift_ certificate remote service. Add custom service methods to {@link org.GoodReturn.service.impl.Gift_CertificateServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link Gift_CertificateServiceUtil} to access the gift_ certificate remote service. Add custom service methods to {@link org.goodreturn.service.impl.Gift_CertificateServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**

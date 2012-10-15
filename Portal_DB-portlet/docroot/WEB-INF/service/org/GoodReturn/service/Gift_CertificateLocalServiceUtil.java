@@ -12,14 +12,14 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
- * The utility for the gift_ certificate local service. This utility wraps {@link org.GoodReturn.service.impl.Gift_CertificateLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
+ * The utility for the gift_ certificate local service. This utility wraps {@link org.goodreturn.service.impl.Gift_CertificateLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
@@ -27,15 +27,15 @@ import com.liferay.portal.service.InvokableLocalService;
  *
  * @author gilaa004
  * @see Gift_CertificateLocalService
- * @see org.GoodReturn.service.base.Gift_CertificateLocalServiceBaseImpl
- * @see org.GoodReturn.service.impl.Gift_CertificateLocalServiceImpl
+ * @see org.goodreturn.service.base.Gift_CertificateLocalServiceBaseImpl
+ * @see org.goodreturn.service.impl.Gift_CertificateLocalServiceImpl
  * @generated
  */
 public class Gift_CertificateLocalServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link org.GoodReturn.service.impl.Gift_CertificateLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to {@link org.goodreturn.service.impl.Gift_CertificateLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 
 	/**
@@ -45,8 +45,8 @@ public class Gift_CertificateLocalServiceUtil {
 	* @return the gift_ certificate that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Gift_Certificate addGift_Certificate(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate)
+	public static org.goodreturn.model.Gift_Certificate addGift_Certificate(
+		org.goodreturn.model.Gift_Certificate gift_Certificate)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addGift_Certificate(gift_Certificate);
 	}
@@ -57,7 +57,7 @@ public class Gift_CertificateLocalServiceUtil {
 	* @param certificate_Id the primary key for the new gift_ certificate
 	* @return the new gift_ certificate
 	*/
-	public static org.GoodReturn.model.Gift_Certificate createGift_Certificate(
+	public static org.goodreturn.model.Gift_Certificate createGift_Certificate(
 		long certificate_Id) {
 		return getService().createGift_Certificate(certificate_Id);
 	}
@@ -70,7 +70,7 @@ public class Gift_CertificateLocalServiceUtil {
 	* @throws PortalException if a gift_ certificate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Gift_Certificate deleteGift_Certificate(
+	public static org.goodreturn.model.Gift_Certificate deleteGift_Certificate(
 		long certificate_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -84,8 +84,8 @@ public class Gift_CertificateLocalServiceUtil {
 	* @return the gift_ certificate that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Gift_Certificate deleteGift_Certificate(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate)
+	public static org.goodreturn.model.Gift_Certificate deleteGift_Certificate(
+		org.goodreturn.model.Gift_Certificate gift_Certificate)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteGift_Certificate(gift_Certificate);
 	}
@@ -165,7 +165,7 @@ public class Gift_CertificateLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
-	public static org.GoodReturn.model.Gift_Certificate fetchGift_Certificate(
+	public static org.goodreturn.model.Gift_Certificate fetchGift_Certificate(
 		long certificate_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().fetchGift_Certificate(certificate_Id);
@@ -179,7 +179,7 @@ public class Gift_CertificateLocalServiceUtil {
 	* @throws PortalException if a gift_ certificate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Gift_Certificate getGift_Certificate(
+	public static org.goodreturn.model.Gift_Certificate getGift_Certificate(
 		long certificate_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -205,7 +205,7 @@ public class Gift_CertificateLocalServiceUtil {
 	* @return the range of gift_ certificates
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Gift_Certificate> getGift_Certificates(
+	public static java.util.List<org.goodreturn.model.Gift_Certificate> getGift_Certificates(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getGift_Certificates(start, end);
@@ -229,8 +229,8 @@ public class Gift_CertificateLocalServiceUtil {
 	* @return the gift_ certificate that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Gift_Certificate updateGift_Certificate(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate)
+	public static org.goodreturn.model.Gift_Certificate updateGift_Certificate(
+		org.goodreturn.model.Gift_Certificate gift_Certificate)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateGift_Certificate(gift_Certificate);
 	}
@@ -243,8 +243,8 @@ public class Gift_CertificateLocalServiceUtil {
 	* @return the gift_ certificate that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Gift_Certificate updateGift_Certificate(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate, boolean merge)
+	public static org.goodreturn.model.Gift_Certificate updateGift_Certificate(
+		org.goodreturn.model.Gift_Certificate gift_Certificate, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateGift_Certificate(gift_Certificate, merge);
 	}

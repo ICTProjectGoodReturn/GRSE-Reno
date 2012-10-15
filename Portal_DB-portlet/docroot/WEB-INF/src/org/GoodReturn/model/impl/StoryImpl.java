@@ -12,13 +12,13 @@
  * details.
  */
 
-package org.GoodReturn.model.impl;
+package org.goodreturn.model.impl;
 
 /**
  * The extended model implementation for the Story service. Represents a row in the &quot;GoodReturn_Story&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.model.Story} interface.
+ * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.model.Story} interface.
  * </p>
  *
  * @author gilaa004
@@ -27,7 +27,7 @@ public class StoryImpl extends StoryBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this class directly. All methods that expect a story model instance should use the {@link org.GoodReturn.model.Story} interface instead.
+	 * Never reference this class directly. All methods that expect a story model instance should use the {@link org.goodreturn.model.Story} interface instead.
 	 */
 	public StoryImpl() {
 	}

@@ -12,9 +12,9 @@
  * details.
  */
 
-package org.GoodReturn.service.base;
+package org.goodreturn.service.base;
 
-import org.GoodReturn.service.TeamLocalServiceUtil;
+import org.goodreturn.service.TeamLocalServiceUtil;
 
 import java.util.Arrays;
 
@@ -25,7 +25,7 @@ public class TeamLocalServiceClpInvoker {
 	public TeamLocalServiceClpInvoker() {
 		_methodName0 = "addTeam";
 
-		_methodParameterTypes0 = new String[] { "org.GoodReturn.model.Team" };
+		_methodParameterTypes0 = new String[] { "org.goodreturn.model.Team" };
 
 		_methodName1 = "createTeam";
 
@@ -37,7 +37,7 @@ public class TeamLocalServiceClpInvoker {
 
 		_methodName3 = "deleteTeam";
 
-		_methodParameterTypes3 = new String[] { "org.GoodReturn.model.Team" };
+		_methodParameterTypes3 = new String[] { "org.goodreturn.model.Team" };
 
 		_methodName4 = "dynamicQuery";
 
@@ -90,12 +90,12 @@ public class TeamLocalServiceClpInvoker {
 
 		_methodName14 = "updateTeam";
 
-		_methodParameterTypes14 = new String[] { "org.GoodReturn.model.Team" };
+		_methodParameterTypes14 = new String[] { "org.goodreturn.model.Team" };
 
 		_methodName15 = "updateTeam";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.Team", "boolean"
+				"org.goodreturn.model.Team", "boolean"
 			};
 
 		_methodName86 = "getBeanIdentifier";
@@ -111,7 +111,7 @@ public class TeamLocalServiceClpInvoker {
 		Object[] arguments) throws Throwable {
 		if (_methodName0.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-			return TeamLocalServiceUtil.addTeam((org.GoodReturn.model.Team)arguments[0]);
+			return TeamLocalServiceUtil.addTeam((org.goodreturn.model.Team)arguments[0]);
 		}
 
 		if (_methodName1.equals(name) &&
@@ -126,7 +126,7 @@ public class TeamLocalServiceClpInvoker {
 
 		if (_methodName3.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-			return TeamLocalServiceUtil.deleteTeam((org.GoodReturn.model.Team)arguments[0]);
+			return TeamLocalServiceUtil.deleteTeam((org.goodreturn.model.Team)arguments[0]);
 		}
 
 		if (_methodName4.equals(name) &&
@@ -187,12 +187,12 @@ public class TeamLocalServiceClpInvoker {
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return TeamLocalServiceUtil.updateTeam((org.GoodReturn.model.Team)arguments[0]);
+			return TeamLocalServiceUtil.updateTeam((org.goodreturn.model.Team)arguments[0]);
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return TeamLocalServiceUtil.updateTeam((org.GoodReturn.model.Team)arguments[0],
+			return TeamLocalServiceUtil.updateTeam((org.goodreturn.model.Team)arguments[0],
 				((Boolean)arguments[1]).booleanValue());
 		}
 

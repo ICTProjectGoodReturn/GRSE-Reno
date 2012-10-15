@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -31,8 +31,8 @@ import com.liferay.portal.service.InvokableService;
  *
  * @author gilaa004
  * @see TeamLenderServiceUtil
- * @see org.GoodReturn.service.base.TeamLenderServiceBaseImpl
- * @see org.GoodReturn.service.impl.TeamLenderServiceImpl
+ * @see org.goodreturn.service.base.TeamLenderServiceBaseImpl
+ * @see org.goodreturn.service.impl.TeamLenderServiceImpl
  * @generated
  */
 @JSONWebService
@@ -42,7 +42,7 @@ public interface TeamLenderService extends BaseService, InvokableService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link TeamLenderServiceUtil} to access the team lender remote service. Add custom service methods to {@link org.GoodReturn.service.impl.TeamLenderServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link TeamLenderServiceUtil} to access the team lender remote service. Add custom service methods to {@link org.goodreturn.service.impl.TeamLenderServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**

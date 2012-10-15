@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.model;
+package org.goodreturn.model;
 
 import com.liferay.portal.model.PersistedModel;
 
@@ -21,8 +21,8 @@ import com.liferay.portal.model.PersistedModel;
  *
  * @author gilaa004
  * @see Supplementary_TableModel
- * @see org.GoodReturn.model.impl.Supplementary_TableImpl
- * @see org.GoodReturn.model.impl.Supplementary_TableModelImpl
+ * @see org.goodreturn.model.impl.Supplementary_TableImpl
+ * @see org.goodreturn.model.impl.Supplementary_TableModelImpl
  * @generated
  */
 public interface Supplementary_Table extends Supplementary_TableModel,
@@ -30,6 +30,6 @@ public interface Supplementary_Table extends Supplementary_TableModel,
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link org.GoodReturn.model.impl.Supplementary_TableImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to {@link org.goodreturn.model.impl.Supplementary_TableImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

@@ -12,28 +12,28 @@
  * details.
  */
 
-package org.GoodReturn.service.impl;
+package org.goodreturn.service.impl;
 
-import org.GoodReturn.service.base.LenderServiceBaseImpl;
+import org.goodreturn.service.base.LenderServiceBaseImpl;
 
 /**
  * The implementation of the lender remote service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.service.LenderService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.service.LenderService} interface.
  *
  * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
  * @author gilaa004
- * @see org.GoodReturn.service.base.LenderServiceBaseImpl
- * @see org.GoodReturn.service.LenderServiceUtil
+ * @see org.goodreturn.service.base.LenderServiceBaseImpl
+ * @see org.goodreturn.service.LenderServiceUtil
  */
 public class LenderServiceImpl extends LenderServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link org.GoodReturn.service.LenderServiceUtil} to access the lender remote service.
+	 * Never reference this interface directly. Always use {@link org.goodreturn.service.LenderServiceUtil} to access the lender remote service.
 	 */
 }

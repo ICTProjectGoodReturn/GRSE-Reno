@@ -12,28 +12,28 @@
  * details.
  */
 
-package org.GoodReturn.service.impl;
+package org.goodreturn.service.impl;
 
-import org.GoodReturn.service.base.StoryServiceBaseImpl;
+import org.goodreturn.service.base.StoryServiceBaseImpl;
 
 /**
  * The implementation of the story remote service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.service.StoryService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.service.StoryService} interface.
  *
  * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
  * @author gilaa004
- * @see org.GoodReturn.service.base.StoryServiceBaseImpl
- * @see org.GoodReturn.service.StoryServiceUtil
+ * @see org.goodreturn.service.base.StoryServiceBaseImpl
+ * @see org.goodreturn.service.StoryServiceUtil
  */
 public class StoryServiceImpl extends StoryServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link org.GoodReturn.service.StoryServiceUtil} to access the story remote service.
+	 * Never reference this interface directly. Always use {@link org.goodreturn.service.StoryServiceUtil} to access the story remote service.
 	 */
 }

@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -32,7 +33,10 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -40,11 +44,11 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import org.GoodReturn.NoSuchStoryException;
+import org.goodreturn.NoSuchStoryException;
 
-import org.GoodReturn.model.Story;
-import org.GoodReturn.model.impl.StoryImpl;
-import org.GoodReturn.model.impl.StoryModelImpl;
+import org.goodreturn.model.Story;
+import org.goodreturn.model.impl.StoryImpl;
+import org.goodreturn.model.impl.StoryModelImpl;
 
 import java.io.Serializable;
 
@@ -76,6 +80,24 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
+			StoryModelImpl.FINDER_CACHE_ENABLED, StoryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
+			new String[] {
+				String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
+			StoryModelImpl.FINDER_CACHE_ENABLED, StoryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
+			new String[] { String.class.getName() },
+			StoryModelImpl.UUID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
+			StoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
+			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
 			StoryModelImpl.FINDER_CACHE_ENABLED, StoryImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
@@ -165,14 +187,18 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	/**
 	 * Creates a new story with the primary key. Does not add the story to the database.
 	 *
-	 * @param story_Id the primary key for the new story
+	 * @param storyPK the primary key for the new story
 	 * @return the new story
 	 */
-	public Story create(long story_Id) {
+	public Story create(StoryPK storyPK) {
 		Story story = new StoryImpl();
 
 		story.setNew(true);
-		story.setPrimaryKey(story_Id);
+		story.setPrimaryKey(storyPK);
+
+		String uuid = PortalUUIDUtil.generate();
+
+		story.setUuid(uuid);
 
 		return story;
 	}
@@ -180,14 +206,14 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	/**
 	 * Removes the story with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param story_Id the primary key of the story
+	 * @param storyPK the primary key of the story
 	 * @return the story that was removed
-	 * @throws org.GoodReturn.NoSuchStoryException if a story with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Story remove(long story_Id)
+	public Story remove(StoryPK storyPK)
 		throws NoSuchStoryException, SystemException {
-		return remove(Long.valueOf(story_Id));
+		return remove((Serializable)storyPK);
 	}
 
 	/**
@@ -195,7 +221,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	 *
 	 * @param primaryKey the primary key of the story
 	 * @return the story that was removed
-	 * @throws org.GoodReturn.NoSuchStoryException if a story with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
@@ -254,11 +280,19 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	@Override
-	public Story updateImpl(org.GoodReturn.model.Story story, boolean merge)
+	public Story updateImpl(org.goodreturn.model.Story story, boolean merge)
 		throws SystemException {
 		story = toUnwrappedModel(story);
 
 		boolean isNew = story.isNew();
+
+		StoryModelImpl storyModelImpl = (StoryModelImpl)story;
+
+		if (Validator.isNull(story.getUuid())) {
+			String uuid = PortalUUIDUtil.generate();
+
+			story.setUuid(uuid);
+		}
 
 		Session session = null;
 
@@ -278,8 +312,25 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !StoryModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+
+		else {
+			if ((storyModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] { storyModelImpl.getOriginalUuid() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+					args);
+
+				args = new Object[] { storyModelImpl.getUuid() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+					args);
+			}
 		}
 
 		EntityCacheUtil.putResult(StoryModelImpl.ENTITY_CACHE_ENABLED,
@@ -298,10 +349,19 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 		storyImpl.setNew(story.isNew());
 		storyImpl.setPrimaryKey(story.getPrimaryKey());
 
+		storyImpl.setUuid(story.getUuid());
 		storyImpl.setStory_Id(story.getStory_Id());
+		storyImpl.setLoan_Account_Id(story.getLoan_Account_Id());
 		storyImpl.setFinal_Story(story.getFinal_Story());
 		storyImpl.setIs_Good_Enough_For_Marketing(story.isIs_Good_Enough_For_Marketing());
 		storyImpl.setIs_Good_Enough_For_Final_Story(story.isIs_Good_Enough_For_Final_Story());
+		storyImpl.setStatus(story.getStatus());
+		storyImpl.setStatus_By_User_Id(story.getStatus_By_User_Id());
+		storyImpl.setStatus_By_User_Name(story.getStatus_By_User_Name());
+		storyImpl.setStatus_Date(story.getStatus_Date());
+		storyImpl.setCompany_Id(story.getCompany_Id());
+		storyImpl.setGroup_Id(story.getGroup_Id());
+		storyImpl.setUser_Id(story.getUser_Id());
 
 		return storyImpl;
 	}
@@ -317,28 +377,28 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	@Override
 	public Story findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		return findByPrimaryKey((StoryPK)primaryKey);
 	}
 
 	/**
-	 * Returns the story with the primary key or throws a {@link org.GoodReturn.NoSuchStoryException} if it could not be found.
+	 * Returns the story with the primary key or throws a {@link org.goodreturn.NoSuchStoryException} if it could not be found.
 	 *
-	 * @param story_Id the primary key of the story
+	 * @param storyPK the primary key of the story
 	 * @return the story
-	 * @throws org.GoodReturn.NoSuchStoryException if a story with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Story findByPrimaryKey(long story_Id)
+	public Story findByPrimaryKey(StoryPK storyPK)
 		throws NoSuchStoryException, SystemException {
-		Story story = fetchByPrimaryKey(story_Id);
+		Story story = fetchByPrimaryKey(storyPK);
 
 		if (story == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + story_Id);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + storyPK);
 			}
 
 			throw new NoSuchStoryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				story_Id);
+				storyPK);
 		}
 
 		return story;
@@ -354,19 +414,19 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	@Override
 	public Story fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
+		return fetchByPrimaryKey((StoryPK)primaryKey);
 	}
 
 	/**
 	 * Returns the story with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param story_Id the primary key of the story
+	 * @param storyPK the primary key of the story
 	 * @return the story, or <code>null</code> if a story with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Story fetchByPrimaryKey(long story_Id) throws SystemException {
+	public Story fetchByPrimaryKey(StoryPK storyPK) throws SystemException {
 		Story story = (Story)EntityCacheUtil.getResult(StoryModelImpl.ENTITY_CACHE_ENABLED,
-				StoryImpl.class, story_Id);
+				StoryImpl.class, storyPK);
 
 		if (story == _nullStory) {
 			return null;
@@ -380,8 +440,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 			try {
 				session = openSession();
 
-				story = (Story)session.get(StoryImpl.class,
-						Long.valueOf(story_Id));
+				story = (Story)session.get(StoryImpl.class, storyPK);
 			}
 			catch (Exception e) {
 				hasException = true;
@@ -394,7 +453,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 				}
 				else if (!hasException) {
 					EntityCacheUtil.putResult(StoryModelImpl.ENTITY_CACHE_ENABLED,
-						StoryImpl.class, story_Id, _nullStory);
+						StoryImpl.class, storyPK, _nullStory);
 				}
 
 				closeSession(session);
@@ -402,6 +461,405 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 		}
 
 		return story;
+	}
+
+	/**
+	 * Returns all the stories where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @return the matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> findByUuid(String uuid) throws SystemException {
+		return findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the stories where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @return the range of matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> findByUuid(String uuid, int start, int end)
+		throws SystemException {
+		return findByUuid(uuid, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the stories where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> findByUuid(String uuid, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID;
+			finderArgs = new Object[] { uuid };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID;
+			finderArgs = new Object[] { uuid, start, end, orderByComparator };
+		}
+
+		List<Story> list = (List<Story>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Story story : list) {
+				if (!Validator.equals(uuid, story.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_STORY_WHERE);
+
+			if (uuid == null) {
+				query.append(_FINDER_COLUMN_UUID_UUID_1);
+			}
+			else {
+				if (uuid.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_UUID_UUID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_UUID_UUID_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(StoryModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (uuid != null) {
+					qPos.add(uuid);
+				}
+
+				list = (List<Story>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first story in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching story
+	 * @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story findByUuid_First(String uuid,
+		OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		Story story = fetchByUuid_First(uuid, orderByComparator);
+
+		if (story != null) {
+			return story;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchStoryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first story in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching story, or <code>null</code> if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story fetchByUuid_First(String uuid,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Story> list = findByUuid(uuid, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last story in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching story
+	 * @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story findByUuid_Last(String uuid,
+		OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		Story story = fetchByUuid_Last(uuid, orderByComparator);
+
+		if (story != null) {
+			return story;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchStoryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last story in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching story, or <code>null</code> if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story fetchByUuid_Last(String uuid,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByUuid(uuid);
+
+		List<Story> list = findByUuid(uuid, count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the stories before and after the current story in the ordered set where uuid = &#63;.
+	 *
+	 * @param storyPK the primary key of the current story
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next story
+	 * @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story[] findByUuid_PrevAndNext(StoryPK storyPK, String uuid,
+		OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		Story story = findByPrimaryKey(storyPK);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Story[] array = new StoryImpl[3];
+
+			array[0] = getByUuid_PrevAndNext(session, story, uuid,
+					orderByComparator, true);
+
+			array[1] = story;
+
+			array[2] = getByUuid_PrevAndNext(session, story, uuid,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Story getByUuid_PrevAndNext(Session session, Story story,
+		String uuid, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_STORY_WHERE);
+
+		if (uuid == null) {
+			query.append(_FINDER_COLUMN_UUID_UUID_1);
+		}
+		else {
+			if (uuid.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_UUID_UUID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_UUID_UUID_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(StoryModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (uuid != null) {
+			qPos.add(uuid);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(story);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Story> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
 	}
 
 	/**
@@ -519,6 +977,18 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
+	 * Removes all the stories where uuid = &#63; from the database.
+	 *
+	 * @param uuid the uuid
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByUuid(String uuid) throws SystemException {
+		for (Story story : findByUuid(uuid)) {
+			remove(story);
+		}
+	}
+
+	/**
 	 * Removes all the stories from the database.
 	 *
 	 * @throws SystemException if a system exception occurred
@@ -527,6 +997,71 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 		for (Story story : findAll()) {
 			remove(story);
 		}
+	}
+
+	/**
+	 * Returns the number of stories where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @return the number of matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByUuid(String uuid) throws SystemException {
+		Object[] finderArgs = new Object[] { uuid };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_STORY_WHERE);
+
+			if (uuid == null) {
+				query.append(_FINDER_COLUMN_UUID_UUID_1);
+			}
+			else {
+				if (uuid.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_UUID_UUID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_UUID_UUID_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (uuid != null) {
+					qPos.add(uuid);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
 	}
 
 	/**
@@ -573,7 +1108,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
-						"value.object.listener.org.GoodReturn.model.Story")));
+						"value.object.listener.org.goodreturn.model.Story")));
 
 		if (listenerClassNames.length > 0) {
 			try {
@@ -621,9 +1156,15 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_STORY = "SELECT story FROM Story story";
+	private static final String _SQL_SELECT_STORY_WHERE = "SELECT story FROM Story story WHERE ";
 	private static final String _SQL_COUNT_STORY = "SELECT COUNT(story) FROM Story story";
+	private static final String _SQL_COUNT_STORY_WHERE = "SELECT COUNT(story) FROM Story story WHERE ";
+	private static final String _FINDER_COLUMN_UUID_UUID_1 = "story.uuid IS NULL";
+	private static final String _FINDER_COLUMN_UUID_UUID_2 = "story.uuid = ?";
+	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(story.uuid IS NULL OR story.uuid = ?)";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "story.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Story exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Story exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(StoryPersistenceImpl.class);

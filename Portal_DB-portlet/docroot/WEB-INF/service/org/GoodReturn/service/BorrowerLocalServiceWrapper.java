@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.service.ServiceWrapper;
 
@@ -39,8 +39,8 @@ public class BorrowerLocalServiceWrapper implements BorrowerLocalService,
 	* @return the borrower that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Borrower addBorrower(
-		org.GoodReturn.model.Borrower borrower)
+	public org.goodreturn.model.Borrower addBorrower(
+		org.goodreturn.model.Borrower borrower)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _borrowerLocalService.addBorrower(borrower);
 	}
@@ -51,7 +51,7 @@ public class BorrowerLocalServiceWrapper implements BorrowerLocalService,
 	* @param abacus_Borrower_Id the primary key for the new borrower
 	* @return the new borrower
 	*/
-	public org.GoodReturn.model.Borrower createBorrower(long abacus_Borrower_Id) {
+	public org.goodreturn.model.Borrower createBorrower(long abacus_Borrower_Id) {
 		return _borrowerLocalService.createBorrower(abacus_Borrower_Id);
 	}
 
@@ -63,7 +63,7 @@ public class BorrowerLocalServiceWrapper implements BorrowerLocalService,
 	* @throws PortalException if a borrower with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Borrower deleteBorrower(long abacus_Borrower_Id)
+	public org.goodreturn.model.Borrower deleteBorrower(long abacus_Borrower_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _borrowerLocalService.deleteBorrower(abacus_Borrower_Id);
@@ -76,8 +76,8 @@ public class BorrowerLocalServiceWrapper implements BorrowerLocalService,
 	* @return the borrower that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Borrower deleteBorrower(
-		org.GoodReturn.model.Borrower borrower)
+	public org.goodreturn.model.Borrower deleteBorrower(
+		org.goodreturn.model.Borrower borrower)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _borrowerLocalService.deleteBorrower(borrower);
 	}
@@ -157,7 +157,7 @@ public class BorrowerLocalServiceWrapper implements BorrowerLocalService,
 		return _borrowerLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
-	public org.GoodReturn.model.Borrower fetchBorrower(long abacus_Borrower_Id)
+	public org.goodreturn.model.Borrower fetchBorrower(long abacus_Borrower_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _borrowerLocalService.fetchBorrower(abacus_Borrower_Id);
 	}
@@ -170,7 +170,7 @@ public class BorrowerLocalServiceWrapper implements BorrowerLocalService,
 	* @throws PortalException if a borrower with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Borrower getBorrower(long abacus_Borrower_Id)
+	public org.goodreturn.model.Borrower getBorrower(long abacus_Borrower_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _borrowerLocalService.getBorrower(abacus_Borrower_Id);
@@ -195,7 +195,7 @@ public class BorrowerLocalServiceWrapper implements BorrowerLocalService,
 	* @return the range of borrowers
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.Borrower> getBorrowers(
+	public java.util.List<org.goodreturn.model.Borrower> getBorrowers(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _borrowerLocalService.getBorrowers(start, end);
@@ -219,8 +219,8 @@ public class BorrowerLocalServiceWrapper implements BorrowerLocalService,
 	* @return the borrower that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Borrower updateBorrower(
-		org.GoodReturn.model.Borrower borrower)
+	public org.goodreturn.model.Borrower updateBorrower(
+		org.goodreturn.model.Borrower borrower)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _borrowerLocalService.updateBorrower(borrower);
 	}
@@ -233,8 +233,8 @@ public class BorrowerLocalServiceWrapper implements BorrowerLocalService,
 	* @return the borrower that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Borrower updateBorrower(
-		org.GoodReturn.model.Borrower borrower, boolean merge)
+	public org.goodreturn.model.Borrower updateBorrower(
+		org.goodreturn.model.Borrower borrower, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _borrowerLocalService.updateBorrower(borrower, merge);
 	}

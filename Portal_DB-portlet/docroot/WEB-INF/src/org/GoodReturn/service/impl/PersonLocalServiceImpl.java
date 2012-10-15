@@ -12,28 +12,28 @@
  * details.
  */
 
-package org.GoodReturn.service.impl;
+package org.goodreturn.service.impl;
 
-import org.GoodReturn.service.base.PersonLocalServiceBaseImpl;
+import org.goodreturn.service.base.PersonLocalServiceBaseImpl;
 
 /**
  * The implementation of the person local service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.service.PersonLocalService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.service.PersonLocalService} interface.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
  * @author gilaa004
- * @see org.GoodReturn.service.base.PersonLocalServiceBaseImpl
- * @see org.GoodReturn.service.PersonLocalServiceUtil
+ * @see org.goodreturn.service.base.PersonLocalServiceBaseImpl
+ * @see org.goodreturn.service.PersonLocalServiceUtil
  */
 public class PersonLocalServiceImpl extends PersonLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link org.GoodReturn.service.PersonLocalServiceUtil} to access the person local service.
+	 * Never reference this interface directly. Always use {@link org.goodreturn.service.PersonLocalServiceUtil} to access the person local service.
 	 */
 }

@@ -12,11 +12,11 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
-import org.GoodReturn.model.Team;
+import org.goodreturn.model.Team;
 
 /**
  * The persistence interface for the team service.
@@ -42,14 +42,14 @@ public interface TeamPersistence extends BasePersistence<Team> {
 	*
 	* @param team the team
 	*/
-	public void cacheResult(org.GoodReturn.model.Team team);
+	public void cacheResult(org.goodreturn.model.Team team);
 
 	/**
 	* Caches the teams in the entity cache if it is enabled.
 	*
 	* @param teams the teams
 	*/
-	public void cacheResult(java.util.List<org.GoodReturn.model.Team> teams);
+	public void cacheResult(java.util.List<org.goodreturn.model.Team> teams);
 
 	/**
 	* Creates a new team with the primary key. Does not add the team to the database.
@@ -57,35 +57,35 @@ public interface TeamPersistence extends BasePersistence<Team> {
 	* @param team_Id the primary key for the new team
 	* @return the new team
 	*/
-	public org.GoodReturn.model.Team create(long team_Id);
+	public org.goodreturn.model.Team create(long team_Id);
 
 	/**
 	* Removes the team with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param team_Id the primary key of the team
 	* @return the team that was removed
-	* @throws org.GoodReturn.NoSuchTeamException if a team with the primary key could not be found
+	* @throws org.goodreturn.NoSuchTeamException if a team with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Team remove(long team_Id)
+	public org.goodreturn.model.Team remove(long team_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchTeamException;
+			org.goodreturn.NoSuchTeamException;
 
-	public org.GoodReturn.model.Team updateImpl(
-		org.GoodReturn.model.Team team, boolean merge)
+	public org.goodreturn.model.Team updateImpl(
+		org.goodreturn.model.Team team, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the team with the primary key or throws a {@link org.GoodReturn.NoSuchTeamException} if it could not be found.
+	* Returns the team with the primary key or throws a {@link org.goodreturn.NoSuchTeamException} if it could not be found.
 	*
 	* @param team_Id the primary key of the team
 	* @return the team
-	* @throws org.GoodReturn.NoSuchTeamException if a team with the primary key could not be found
+	* @throws org.goodreturn.NoSuchTeamException if a team with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Team findByPrimaryKey(long team_Id)
+	public org.goodreturn.model.Team findByPrimaryKey(long team_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchTeamException;
+			org.goodreturn.NoSuchTeamException;
 
 	/**
 	* Returns the team with the primary key or returns <code>null</code> if it could not be found.
@@ -94,7 +94,7 @@ public interface TeamPersistence extends BasePersistence<Team> {
 	* @return the team, or <code>null</code> if a team with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Team fetchByPrimaryKey(long team_Id)
+	public org.goodreturn.model.Team fetchByPrimaryKey(long team_Id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -103,7 +103,7 @@ public interface TeamPersistence extends BasePersistence<Team> {
 	* @return the teams
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.Team> findAll()
+	public java.util.List<org.goodreturn.model.Team> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -118,7 +118,7 @@ public interface TeamPersistence extends BasePersistence<Team> {
 	* @return the range of teams
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.Team> findAll(int start, int end)
+	public java.util.List<org.goodreturn.model.Team> findAll(int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -134,7 +134,7 @@ public interface TeamPersistence extends BasePersistence<Team> {
 	* @return the ordered range of teams
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.Team> findAll(int start,
+	public java.util.List<org.goodreturn.model.Team> findAll(int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;

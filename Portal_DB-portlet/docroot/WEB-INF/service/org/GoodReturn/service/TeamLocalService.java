@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -32,8 +32,8 @@ import com.liferay.portal.service.PersistedModelLocalService;
  *
  * @author gilaa004
  * @see TeamLocalServiceUtil
- * @see org.GoodReturn.service.base.TeamLocalServiceBaseImpl
- * @see org.GoodReturn.service.impl.TeamLocalServiceImpl
+ * @see org.goodreturn.service.base.TeamLocalServiceBaseImpl
+ * @see org.goodreturn.service.impl.TeamLocalServiceImpl
  * @generated
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
@@ -43,7 +43,7 @@ public interface TeamLocalService extends BaseLocalService, InvokableLocalServic
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link TeamLocalServiceUtil} to access the team local service. Add custom service methods to {@link org.GoodReturn.service.impl.TeamLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link TeamLocalServiceUtil} to access the team local service. Add custom service methods to {@link org.goodreturn.service.impl.TeamLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**
@@ -53,7 +53,7 @@ public interface TeamLocalService extends BaseLocalService, InvokableLocalServic
 	* @return the team that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Team addTeam(org.GoodReturn.model.Team team)
+	public org.goodreturn.model.Team addTeam(org.goodreturn.model.Team team)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -62,7 +62,7 @@ public interface TeamLocalService extends BaseLocalService, InvokableLocalServic
 	* @param team_Id the primary key for the new team
 	* @return the new team
 	*/
-	public org.GoodReturn.model.Team createTeam(long team_Id);
+	public org.goodreturn.model.Team createTeam(long team_Id);
 
 	/**
 	* Deletes the team with the primary key from the database. Also notifies the appropriate model listeners.
@@ -72,7 +72,7 @@ public interface TeamLocalService extends BaseLocalService, InvokableLocalServic
 	* @throws PortalException if a team with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Team deleteTeam(long team_Id)
+	public org.goodreturn.model.Team deleteTeam(long team_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -83,7 +83,7 @@ public interface TeamLocalService extends BaseLocalService, InvokableLocalServic
 	* @return the team that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Team deleteTeam(org.GoodReturn.model.Team team)
+	public org.goodreturn.model.Team deleteTeam(org.goodreturn.model.Team team)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -151,7 +151,7 @@ public interface TeamLocalService extends BaseLocalService, InvokableLocalServic
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.GoodReturn.model.Team fetchTeam(long team_Id)
+	public org.goodreturn.model.Team fetchTeam(long team_Id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -163,7 +163,7 @@ public interface TeamLocalService extends BaseLocalService, InvokableLocalServic
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.GoodReturn.model.Team getTeam(long team_Id)
+	public org.goodreturn.model.Team getTeam(long team_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -186,7 +186,7 @@ public interface TeamLocalService extends BaseLocalService, InvokableLocalServic
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<org.GoodReturn.model.Team> getTeams(int start, int end)
+	public java.util.List<org.goodreturn.model.Team> getTeams(int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -206,7 +206,7 @@ public interface TeamLocalService extends BaseLocalService, InvokableLocalServic
 	* @return the team that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Team updateTeam(org.GoodReturn.model.Team team)
+	public org.goodreturn.model.Team updateTeam(org.goodreturn.model.Team team)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -217,8 +217,8 @@ public interface TeamLocalService extends BaseLocalService, InvokableLocalServic
 	* @return the team that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Team updateTeam(
-		org.GoodReturn.model.Team team, boolean merge)
+	public org.goodreturn.model.Team updateTeam(
+		org.goodreturn.model.Team team, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

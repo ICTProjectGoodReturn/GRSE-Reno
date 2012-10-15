@@ -12,13 +12,13 @@
  * details.
  */
 
-package org.GoodReturn.model.impl;
+package org.goodreturn.model.impl;
 
 import com.liferay.portal.kernel.exception.SystemException;
 
-import org.GoodReturn.model.Story;
+import org.goodreturn.model.Story;
 
-import org.GoodReturn.service.StoryLocalServiceUtil;
+import org.goodreturn.service.StoryLocalServiceUtil;
 
 /**
  * The extended model base implementation for the Story service. Represents a row in the &quot;GoodReturn_Story&quot; database table, with each column mapped to a property of this class.
@@ -29,7 +29,7 @@ import org.GoodReturn.service.StoryLocalServiceUtil;
  *
  * @author gilaa004
  * @see StoryImpl
- * @see org.GoodReturn.model.Story
+ * @see org.goodreturn.model.Story
  * @generated
  */
 public abstract class StoryBaseImpl extends StoryModelImpl implements Story {

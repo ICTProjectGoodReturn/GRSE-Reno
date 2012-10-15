@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.service.ServiceWrapper;
 
@@ -39,8 +39,8 @@ public class TeamLenderLocalServiceWrapper implements TeamLenderLocalService,
 	* @return the team lender that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.TeamLender addTeamLender(
-		org.GoodReturn.model.TeamLender teamLender)
+	public org.goodreturn.model.TeamLender addTeamLender(
+		org.goodreturn.model.TeamLender teamLender)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _teamLenderLocalService.addTeamLender(teamLender);
 	}
@@ -51,7 +51,7 @@ public class TeamLenderLocalServiceWrapper implements TeamLenderLocalService,
 	* @param teamlender_Id the primary key for the new team lender
 	* @return the new team lender
 	*/
-	public org.GoodReturn.model.TeamLender createTeamLender(long teamlender_Id) {
+	public org.goodreturn.model.TeamLender createTeamLender(long teamlender_Id) {
 		return _teamLenderLocalService.createTeamLender(teamlender_Id);
 	}
 
@@ -63,7 +63,7 @@ public class TeamLenderLocalServiceWrapper implements TeamLenderLocalService,
 	* @throws PortalException if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.TeamLender deleteTeamLender(long teamlender_Id)
+	public org.goodreturn.model.TeamLender deleteTeamLender(long teamlender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _teamLenderLocalService.deleteTeamLender(teamlender_Id);
@@ -76,8 +76,8 @@ public class TeamLenderLocalServiceWrapper implements TeamLenderLocalService,
 	* @return the team lender that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.TeamLender deleteTeamLender(
-		org.GoodReturn.model.TeamLender teamLender)
+	public org.goodreturn.model.TeamLender deleteTeamLender(
+		org.goodreturn.model.TeamLender teamLender)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _teamLenderLocalService.deleteTeamLender(teamLender);
 	}
@@ -157,7 +157,7 @@ public class TeamLenderLocalServiceWrapper implements TeamLenderLocalService,
 		return _teamLenderLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
-	public org.GoodReturn.model.TeamLender fetchTeamLender(long teamlender_Id)
+	public org.goodreturn.model.TeamLender fetchTeamLender(long teamlender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _teamLenderLocalService.fetchTeamLender(teamlender_Id);
 	}
@@ -170,7 +170,7 @@ public class TeamLenderLocalServiceWrapper implements TeamLenderLocalService,
 	* @throws PortalException if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.TeamLender getTeamLender(long teamlender_Id)
+	public org.goodreturn.model.TeamLender getTeamLender(long teamlender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _teamLenderLocalService.getTeamLender(teamlender_Id);
@@ -195,7 +195,7 @@ public class TeamLenderLocalServiceWrapper implements TeamLenderLocalService,
 	* @return the range of team lenders
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.TeamLender> getTeamLenders(
+	public java.util.List<org.goodreturn.model.TeamLender> getTeamLenders(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _teamLenderLocalService.getTeamLenders(start, end);
@@ -219,8 +219,8 @@ public class TeamLenderLocalServiceWrapper implements TeamLenderLocalService,
 	* @return the team lender that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.TeamLender updateTeamLender(
-		org.GoodReturn.model.TeamLender teamLender)
+	public org.goodreturn.model.TeamLender updateTeamLender(
+		org.goodreturn.model.TeamLender teamLender)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _teamLenderLocalService.updateTeamLender(teamLender);
 	}
@@ -233,8 +233,8 @@ public class TeamLenderLocalServiceWrapper implements TeamLenderLocalService,
 	* @return the team lender that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.TeamLender updateTeamLender(
-		org.GoodReturn.model.TeamLender teamLender, boolean merge)
+	public org.goodreturn.model.TeamLender updateTeamLender(
+		org.goodreturn.model.TeamLender teamLender, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _teamLenderLocalService.updateTeamLender(teamLender, merge);
 	}

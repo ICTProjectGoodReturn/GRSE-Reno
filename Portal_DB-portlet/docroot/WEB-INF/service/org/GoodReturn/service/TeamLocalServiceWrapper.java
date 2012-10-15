@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.service.ServiceWrapper;
 
@@ -38,7 +38,7 @@ public class TeamLocalServiceWrapper implements TeamLocalService,
 	* @return the team that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Team addTeam(org.GoodReturn.model.Team team)
+	public org.goodreturn.model.Team addTeam(org.goodreturn.model.Team team)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _teamLocalService.addTeam(team);
 	}
@@ -49,7 +49,7 @@ public class TeamLocalServiceWrapper implements TeamLocalService,
 	* @param team_Id the primary key for the new team
 	* @return the new team
 	*/
-	public org.GoodReturn.model.Team createTeam(long team_Id) {
+	public org.goodreturn.model.Team createTeam(long team_Id) {
 		return _teamLocalService.createTeam(team_Id);
 	}
 
@@ -61,7 +61,7 @@ public class TeamLocalServiceWrapper implements TeamLocalService,
 	* @throws PortalException if a team with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Team deleteTeam(long team_Id)
+	public org.goodreturn.model.Team deleteTeam(long team_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _teamLocalService.deleteTeam(team_Id);
@@ -74,7 +74,7 @@ public class TeamLocalServiceWrapper implements TeamLocalService,
 	* @return the team that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Team deleteTeam(org.GoodReturn.model.Team team)
+	public org.goodreturn.model.Team deleteTeam(org.goodreturn.model.Team team)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _teamLocalService.deleteTeam(team);
 	}
@@ -154,7 +154,7 @@ public class TeamLocalServiceWrapper implements TeamLocalService,
 		return _teamLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
-	public org.GoodReturn.model.Team fetchTeam(long team_Id)
+	public org.goodreturn.model.Team fetchTeam(long team_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _teamLocalService.fetchTeam(team_Id);
 	}
@@ -167,7 +167,7 @@ public class TeamLocalServiceWrapper implements TeamLocalService,
 	* @throws PortalException if a team with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Team getTeam(long team_Id)
+	public org.goodreturn.model.Team getTeam(long team_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _teamLocalService.getTeam(team_Id);
@@ -192,7 +192,7 @@ public class TeamLocalServiceWrapper implements TeamLocalService,
 	* @return the range of teams
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.Team> getTeams(int start, int end)
+	public java.util.List<org.goodreturn.model.Team> getTeams(int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _teamLocalService.getTeams(start, end);
 	}
@@ -215,7 +215,7 @@ public class TeamLocalServiceWrapper implements TeamLocalService,
 	* @return the team that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Team updateTeam(org.GoodReturn.model.Team team)
+	public org.goodreturn.model.Team updateTeam(org.goodreturn.model.Team team)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _teamLocalService.updateTeam(team);
 	}
@@ -228,8 +228,8 @@ public class TeamLocalServiceWrapper implements TeamLocalService,
 	* @return the team that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Team updateTeam(
-		org.GoodReturn.model.Team team, boolean merge)
+	public org.goodreturn.model.Team updateTeam(
+		org.goodreturn.model.Team team, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _teamLocalService.updateTeam(team, merge);
 	}

@@ -12,13 +12,13 @@
  * details.
  */
 
-package org.GoodReturn.model.impl;
+package org.goodreturn.model.impl;
 
 import com.liferay.portal.kernel.exception.SystemException;
 
-import org.GoodReturn.model.TeamLenderLoan;
+import org.goodreturn.model.TeamLenderLoan;
 
-import org.GoodReturn.service.TeamLenderLoanLocalServiceUtil;
+import org.goodreturn.service.TeamLenderLoanLocalServiceUtil;
 
 /**
  * The extended model base implementation for the TeamLenderLoan service. Represents a row in the &quot;GoodReturn_TeamLenderLoan&quot; database table, with each column mapped to a property of this class.
@@ -29,7 +29,7 @@ import org.GoodReturn.service.TeamLenderLoanLocalServiceUtil;
  *
  * @author gilaa004
  * @see TeamLenderLoanImpl
- * @see org.GoodReturn.model.TeamLenderLoan
+ * @see org.goodreturn.model.TeamLenderLoan
  * @generated
  */
 public abstract class TeamLenderLoanBaseImpl extends TeamLenderLoanModelImpl

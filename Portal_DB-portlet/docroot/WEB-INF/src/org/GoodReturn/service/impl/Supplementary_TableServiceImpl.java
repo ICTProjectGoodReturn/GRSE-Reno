@@ -12,29 +12,29 @@
  * details.
  */
 
-package org.GoodReturn.service.impl;
+package org.goodreturn.service.impl;
 
-import org.GoodReturn.service.base.Supplementary_TableServiceBaseImpl;
+import org.goodreturn.service.base.Supplementary_TableServiceBaseImpl;
 
 /**
  * The implementation of the supplementary_ table remote service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.service.Supplementary_TableService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.service.Supplementary_TableService} interface.
  *
  * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
  * @author gilaa004
- * @see org.GoodReturn.service.base.Supplementary_TableServiceBaseImpl
- * @see org.GoodReturn.service.Supplementary_TableServiceUtil
+ * @see org.goodreturn.service.base.Supplementary_TableServiceBaseImpl
+ * @see org.goodreturn.service.Supplementary_TableServiceUtil
  */
 public class Supplementary_TableServiceImpl
 	extends Supplementary_TableServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link org.GoodReturn.service.Supplementary_TableServiceUtil} to access the supplementary_ table remote service.
+	 * Never reference this interface directly. Always use {@link org.goodreturn.service.Supplementary_TableServiceUtil} to access the supplementary_ table remote service.
 	 */
 }

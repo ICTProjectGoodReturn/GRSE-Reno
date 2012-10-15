@@ -12,9 +12,9 @@
  * details.
  */
 
-package org.GoodReturn.service.base;
+package org.goodreturn.service.base;
 
-import org.GoodReturn.service.TeamLenderLoanLocalServiceUtil;
+import org.goodreturn.service.TeamLenderLoanLocalServiceUtil;
 
 import java.util.Arrays;
 
@@ -26,7 +26,7 @@ public class TeamLenderLoanLocalServiceClpInvoker {
 		_methodName0 = "addTeamLenderLoan";
 
 		_methodParameterTypes0 = new String[] {
-				"org.GoodReturn.model.TeamLenderLoan"
+				"org.goodreturn.model.TeamLenderLoan"
 			};
 
 		_methodName1 = "createTeamLenderLoan";
@@ -40,7 +40,7 @@ public class TeamLenderLoanLocalServiceClpInvoker {
 		_methodName3 = "deleteTeamLenderLoan";
 
 		_methodParameterTypes3 = new String[] {
-				"org.GoodReturn.model.TeamLenderLoan"
+				"org.goodreturn.model.TeamLenderLoan"
 			};
 
 		_methodName4 = "dynamicQuery";
@@ -95,13 +95,13 @@ public class TeamLenderLoanLocalServiceClpInvoker {
 		_methodName14 = "updateTeamLenderLoan";
 
 		_methodParameterTypes14 = new String[] {
-				"org.GoodReturn.model.TeamLenderLoan"
+				"org.goodreturn.model.TeamLenderLoan"
 			};
 
 		_methodName15 = "updateTeamLenderLoan";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.TeamLenderLoan", "boolean"
+				"org.goodreturn.model.TeamLenderLoan", "boolean"
 			};
 
 		_methodName86 = "getBeanIdentifier";
@@ -117,7 +117,7 @@ public class TeamLenderLoanLocalServiceClpInvoker {
 		Object[] arguments) throws Throwable {
 		if (_methodName0.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-			return TeamLenderLoanLocalServiceUtil.addTeamLenderLoan((org.GoodReturn.model.TeamLenderLoan)arguments[0]);
+			return TeamLenderLoanLocalServiceUtil.addTeamLenderLoan((org.goodreturn.model.TeamLenderLoan)arguments[0]);
 		}
 
 		if (_methodName1.equals(name) &&
@@ -132,7 +132,7 @@ public class TeamLenderLoanLocalServiceClpInvoker {
 
 		if (_methodName3.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-			return TeamLenderLoanLocalServiceUtil.deleteTeamLenderLoan((org.GoodReturn.model.TeamLenderLoan)arguments[0]);
+			return TeamLenderLoanLocalServiceUtil.deleteTeamLenderLoan((org.goodreturn.model.TeamLenderLoan)arguments[0]);
 		}
 
 		if (_methodName4.equals(name) &&
@@ -193,12 +193,12 @@ public class TeamLenderLoanLocalServiceClpInvoker {
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return TeamLenderLoanLocalServiceUtil.updateTeamLenderLoan((org.GoodReturn.model.TeamLenderLoan)arguments[0]);
+			return TeamLenderLoanLocalServiceUtil.updateTeamLenderLoan((org.goodreturn.model.TeamLenderLoan)arguments[0]);
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return TeamLenderLoanLocalServiceUtil.updateTeamLenderLoan((org.GoodReturn.model.TeamLenderLoan)arguments[0],
+			return TeamLenderLoanLocalServiceUtil.updateTeamLenderLoan((org.goodreturn.model.TeamLenderLoan)arguments[0],
 				((Boolean)arguments[1]).booleanValue());
 		}
 

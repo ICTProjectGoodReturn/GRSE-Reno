@@ -12,30 +12,30 @@
  * details.
  */
 
-package org.GoodReturn.service.messaging;
+package org.goodreturn.service.messaging;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
-import org.GoodReturn.service.BorrowerLocalServiceUtil;
-import org.GoodReturn.service.BorrowerServiceUtil;
-import org.GoodReturn.service.ClpSerializer;
-import org.GoodReturn.service.Gift_CertificateLocalServiceUtil;
-import org.GoodReturn.service.Gift_CertificateServiceUtil;
-import org.GoodReturn.service.LenderLocalServiceUtil;
-import org.GoodReturn.service.LenderServiceUtil;
-import org.GoodReturn.service.PersonLocalServiceUtil;
-import org.GoodReturn.service.PersonServiceUtil;
-import org.GoodReturn.service.StoryLocalServiceUtil;
-import org.GoodReturn.service.StoryServiceUtil;
-import org.GoodReturn.service.Supplementary_TableLocalServiceUtil;
-import org.GoodReturn.service.Supplementary_TableServiceUtil;
-import org.GoodReturn.service.TeamLenderLoanLocalServiceUtil;
-import org.GoodReturn.service.TeamLenderLoanServiceUtil;
-import org.GoodReturn.service.TeamLenderLocalServiceUtil;
-import org.GoodReturn.service.TeamLenderServiceUtil;
-import org.GoodReturn.service.TeamLocalServiceUtil;
-import org.GoodReturn.service.TeamServiceUtil;
+import org.goodreturn.service.BorrowerLocalServiceUtil;
+import org.goodreturn.service.BorrowerServiceUtil;
+import org.goodreturn.service.ClpSerializer;
+import org.goodreturn.service.Gift_CertificateLocalServiceUtil;
+import org.goodreturn.service.Gift_CertificateServiceUtil;
+import org.goodreturn.service.LenderLocalServiceUtil;
+import org.goodreturn.service.LenderServiceUtil;
+import org.goodreturn.service.PersonLocalServiceUtil;
+import org.goodreturn.service.PersonServiceUtil;
+import org.goodreturn.service.StoryLocalServiceUtil;
+import org.goodreturn.service.StoryServiceUtil;
+import org.goodreturn.service.Supplementary_TableLocalServiceUtil;
+import org.goodreturn.service.Supplementary_TableServiceUtil;
+import org.goodreturn.service.TeamLenderLoanLocalServiceUtil;
+import org.goodreturn.service.TeamLenderLoanServiceUtil;
+import org.goodreturn.service.TeamLenderLocalServiceUtil;
+import org.goodreturn.service.TeamLenderServiceUtil;
+import org.goodreturn.service.TeamLocalServiceUtil;
+import org.goodreturn.service.TeamServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan

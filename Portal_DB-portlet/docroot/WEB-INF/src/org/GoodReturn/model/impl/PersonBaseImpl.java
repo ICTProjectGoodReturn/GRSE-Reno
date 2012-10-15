@@ -12,13 +12,13 @@
  * details.
  */
 
-package org.GoodReturn.model.impl;
+package org.goodreturn.model.impl;
 
 import com.liferay.portal.kernel.exception.SystemException;
 
-import org.GoodReturn.model.Person;
+import org.goodreturn.model.Person;
 
-import org.GoodReturn.service.PersonLocalServiceUtil;
+import org.goodreturn.service.PersonLocalServiceUtil;
 
 /**
  * The extended model base implementation for the Person service. Represents a row in the &quot;GoodReturn_Person&quot; database table, with each column mapped to a property of this class.
@@ -29,7 +29,7 @@ import org.GoodReturn.service.PersonLocalServiceUtil;
  *
  * @author gilaa004
  * @see PersonImpl
- * @see org.GoodReturn.model.Person
+ * @see org.goodreturn.model.Person
  * @generated
  */
 public abstract class PersonBaseImpl extends PersonModelImpl implements Person {

@@ -12,9 +12,9 @@
  * details.
  */
 
-package org.GoodReturn.service.base;
+package org.goodreturn.service.base;
 
-import org.GoodReturn.service.Gift_CertificateServiceUtil;
+import org.goodreturn.service.Gift_CertificateServiceUtil;
 
 import java.util.Arrays;
 

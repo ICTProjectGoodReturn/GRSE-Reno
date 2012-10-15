@@ -12,28 +12,28 @@
  * details.
  */
 
-package org.GoodReturn.service.impl;
+package org.goodreturn.service.impl;
 
-import org.GoodReturn.service.base.TeamServiceBaseImpl;
+import org.goodreturn.service.base.TeamServiceBaseImpl;
 
 /**
  * The implementation of the team remote service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.service.TeamService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.service.TeamService} interface.
  *
  * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
  * @author gilaa004
- * @see org.GoodReturn.service.base.TeamServiceBaseImpl
- * @see org.GoodReturn.service.TeamServiceUtil
+ * @see org.goodreturn.service.base.TeamServiceBaseImpl
+ * @see org.goodreturn.service.TeamServiceUtil
  */
 public class TeamServiceImpl extends TeamServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link org.GoodReturn.service.TeamServiceUtil} to access the team remote service.
+	 * Never reference this interface directly. Always use {@link org.goodreturn.service.TeamServiceUtil} to access the team remote service.
 	 */
 }

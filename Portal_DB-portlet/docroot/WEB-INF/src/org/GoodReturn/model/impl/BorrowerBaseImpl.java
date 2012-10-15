@@ -12,13 +12,13 @@
  * details.
  */
 
-package org.GoodReturn.model.impl;
+package org.goodreturn.model.impl;
 
 import com.liferay.portal.kernel.exception.SystemException;
 
-import org.GoodReturn.model.Borrower;
+import org.goodreturn.model.Borrower;
 
-import org.GoodReturn.service.BorrowerLocalServiceUtil;
+import org.goodreturn.service.BorrowerLocalServiceUtil;
 
 /**
  * The extended model base implementation for the Borrower service. Represents a row in the &quot;GoodReturn_Borrower&quot; database table, with each column mapped to a property of this class.
@@ -29,7 +29,7 @@ import org.GoodReturn.service.BorrowerLocalServiceUtil;
  *
  * @author gilaa004
  * @see BorrowerImpl
- * @see org.GoodReturn.model.Borrower
+ * @see org.goodreturn.model.Borrower
  * @generated
  */
 public abstract class BorrowerBaseImpl extends BorrowerModelImpl

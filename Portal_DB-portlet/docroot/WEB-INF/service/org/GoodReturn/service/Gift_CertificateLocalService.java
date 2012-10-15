@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -32,8 +32,8 @@ import com.liferay.portal.service.PersistedModelLocalService;
  *
  * @author gilaa004
  * @see Gift_CertificateLocalServiceUtil
- * @see org.GoodReturn.service.base.Gift_CertificateLocalServiceBaseImpl
- * @see org.GoodReturn.service.impl.Gift_CertificateLocalServiceImpl
+ * @see org.goodreturn.service.base.Gift_CertificateLocalServiceBaseImpl
+ * @see org.goodreturn.service.impl.Gift_CertificateLocalServiceImpl
  * @generated
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
@@ -43,7 +43,7 @@ public interface Gift_CertificateLocalService extends BaseLocalService,
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link Gift_CertificateLocalServiceUtil} to access the gift_ certificate local service. Add custom service methods to {@link org.GoodReturn.service.impl.Gift_CertificateLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link Gift_CertificateLocalServiceUtil} to access the gift_ certificate local service. Add custom service methods to {@link org.goodreturn.service.impl.Gift_CertificateLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**
@@ -53,8 +53,8 @@ public interface Gift_CertificateLocalService extends BaseLocalService,
 	* @return the gift_ certificate that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Gift_Certificate addGift_Certificate(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate)
+	public org.goodreturn.model.Gift_Certificate addGift_Certificate(
+		org.goodreturn.model.Gift_Certificate gift_Certificate)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -63,7 +63,7 @@ public interface Gift_CertificateLocalService extends BaseLocalService,
 	* @param certificate_Id the primary key for the new gift_ certificate
 	* @return the new gift_ certificate
 	*/
-	public org.GoodReturn.model.Gift_Certificate createGift_Certificate(
+	public org.goodreturn.model.Gift_Certificate createGift_Certificate(
 		long certificate_Id);
 
 	/**
@@ -74,7 +74,7 @@ public interface Gift_CertificateLocalService extends BaseLocalService,
 	* @throws PortalException if a gift_ certificate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Gift_Certificate deleteGift_Certificate(
+	public org.goodreturn.model.Gift_Certificate deleteGift_Certificate(
 		long certificate_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -86,8 +86,8 @@ public interface Gift_CertificateLocalService extends BaseLocalService,
 	* @return the gift_ certificate that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Gift_Certificate deleteGift_Certificate(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate)
+	public org.goodreturn.model.Gift_Certificate deleteGift_Certificate(
+		org.goodreturn.model.Gift_Certificate gift_Certificate)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -155,7 +155,7 @@ public interface Gift_CertificateLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.GoodReturn.model.Gift_Certificate fetchGift_Certificate(
+	public org.goodreturn.model.Gift_Certificate fetchGift_Certificate(
 		long certificate_Id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -168,7 +168,7 @@ public interface Gift_CertificateLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.GoodReturn.model.Gift_Certificate getGift_Certificate(
+	public org.goodreturn.model.Gift_Certificate getGift_Certificate(
 		long certificate_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -192,7 +192,7 @@ public interface Gift_CertificateLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<org.GoodReturn.model.Gift_Certificate> getGift_Certificates(
+	public java.util.List<org.goodreturn.model.Gift_Certificate> getGift_Certificates(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -213,8 +213,8 @@ public interface Gift_CertificateLocalService extends BaseLocalService,
 	* @return the gift_ certificate that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Gift_Certificate updateGift_Certificate(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate)
+	public org.goodreturn.model.Gift_Certificate updateGift_Certificate(
+		org.goodreturn.model.Gift_Certificate gift_Certificate)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -225,8 +225,8 @@ public interface Gift_CertificateLocalService extends BaseLocalService,
 	* @return the gift_ certificate that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Gift_Certificate updateGift_Certificate(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate, boolean merge)
+	public org.goodreturn.model.Gift_Certificate updateGift_Certificate(
+		org.goodreturn.model.Gift_Certificate gift_Certificate, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

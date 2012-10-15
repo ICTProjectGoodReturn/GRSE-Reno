@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -28,7 +28,7 @@ public class Gift_CertificateLocalServiceClp
 		_methodName0 = "addGift_Certificate";
 
 		_methodParameterTypes0 = new String[] {
-				"org.GoodReturn.model.Gift_Certificate"
+				"org.goodreturn.model.Gift_Certificate"
 			};
 
 		_methodName1 = "createGift_Certificate";
@@ -42,7 +42,7 @@ public class Gift_CertificateLocalServiceClp
 		_methodName3 = "deleteGift_Certificate";
 
 		_methodParameterTypes3 = new String[] {
-				"org.GoodReturn.model.Gift_Certificate"
+				"org.goodreturn.model.Gift_Certificate"
 			};
 
 		_methodName4 = "dynamicQuery";
@@ -97,13 +97,13 @@ public class Gift_CertificateLocalServiceClp
 		_methodName14 = "updateGift_Certificate";
 
 		_methodParameterTypes14 = new String[] {
-				"org.GoodReturn.model.Gift_Certificate"
+				"org.goodreturn.model.Gift_Certificate"
 			};
 
 		_methodName15 = "updateGift_Certificate";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.Gift_Certificate", "boolean"
+				"org.goodreturn.model.Gift_Certificate", "boolean"
 			};
 
 		_methodName16 = "getBeanIdentifier";
@@ -115,8 +115,8 @@ public class Gift_CertificateLocalServiceClp
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 	}
 
-	public org.GoodReturn.model.Gift_Certificate addGift_Certificate(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate)
+	public org.goodreturn.model.Gift_Certificate addGift_Certificate(
+		org.goodreturn.model.Gift_Certificate gift_Certificate)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -142,10 +142,10 @@ public class Gift_CertificateLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Gift_Certificate createGift_Certificate(
+	public org.goodreturn.model.Gift_Certificate createGift_Certificate(
 		long certificate_Id) {
 		Object returnObj = null;
 
@@ -165,10 +165,10 @@ public class Gift_CertificateLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Gift_Certificate deleteGift_Certificate(
+	public org.goodreturn.model.Gift_Certificate deleteGift_Certificate(
 		long certificate_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -198,11 +198,11 @@ public class Gift_CertificateLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Gift_Certificate deleteGift_Certificate(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate)
+	public org.goodreturn.model.Gift_Certificate deleteGift_Certificate(
+		org.goodreturn.model.Gift_Certificate gift_Certificate)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -228,7 +228,7 @@ public class Gift_CertificateLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -388,7 +388,7 @@ public class Gift_CertificateLocalServiceClp
 		return ((Long)returnObj).longValue();
 	}
 
-	public org.GoodReturn.model.Gift_Certificate fetchGift_Certificate(
+	public org.goodreturn.model.Gift_Certificate fetchGift_Certificate(
 		long certificate_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -413,10 +413,10 @@ public class Gift_CertificateLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Gift_Certificate getGift_Certificate(
+	public org.goodreturn.model.Gift_Certificate getGift_Certificate(
 		long certificate_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -446,7 +446,7 @@ public class Gift_CertificateLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -483,7 +483,7 @@ public class Gift_CertificateLocalServiceClp
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<org.GoodReturn.model.Gift_Certificate> getGift_Certificates(
+	public java.util.List<org.goodreturn.model.Gift_Certificate> getGift_Certificates(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -508,7 +508,7 @@ public class Gift_CertificateLocalServiceClp
 			}
 		}
 
-		return (java.util.List<org.GoodReturn.model.Gift_Certificate>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<org.goodreturn.model.Gift_Certificate>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getGift_CertificatesCount()
@@ -538,8 +538,8 @@ public class Gift_CertificateLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
-	public org.GoodReturn.model.Gift_Certificate updateGift_Certificate(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate)
+	public org.goodreturn.model.Gift_Certificate updateGift_Certificate(
+		org.goodreturn.model.Gift_Certificate gift_Certificate)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -565,11 +565,11 @@ public class Gift_CertificateLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Gift_Certificate updateGift_Certificate(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate, boolean merge)
+	public org.goodreturn.model.Gift_Certificate updateGift_Certificate(
+		org.goodreturn.model.Gift_Certificate gift_Certificate, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -598,7 +598,7 @@ public class Gift_CertificateLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Gift_Certificate)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.lang.String getBeanIdentifier() {

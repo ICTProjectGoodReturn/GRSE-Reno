@@ -12,28 +12,28 @@
  * details.
  */
 
-package org.GoodReturn.service.impl;
+package org.goodreturn.service.impl;
 
-import org.GoodReturn.service.base.BorrowerLocalServiceBaseImpl;
+import org.goodreturn.service.base.BorrowerLocalServiceBaseImpl;
 
 /**
  * The implementation of the borrower local service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.service.BorrowerLocalService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.service.BorrowerLocalService} interface.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
  * @author gilaa004
- * @see org.GoodReturn.service.base.BorrowerLocalServiceBaseImpl
- * @see org.GoodReturn.service.BorrowerLocalServiceUtil
+ * @see org.goodreturn.service.base.BorrowerLocalServiceBaseImpl
+ * @see org.goodreturn.service.BorrowerLocalServiceUtil
  */
 public class BorrowerLocalServiceImpl extends BorrowerLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link org.GoodReturn.service.BorrowerLocalServiceUtil} to access the borrower local service.
+	 * Never reference this interface directly. Always use {@link org.goodreturn.service.BorrowerLocalServiceUtil} to access the borrower local service.
 	 */
 }

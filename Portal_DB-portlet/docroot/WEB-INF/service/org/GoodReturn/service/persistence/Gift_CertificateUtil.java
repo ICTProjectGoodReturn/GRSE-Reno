@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
-import org.GoodReturn.model.Gift_Certificate;
+import org.goodreturn.model.Gift_Certificate;
 
 import java.util.List;
 
@@ -116,7 +116,7 @@ public class Gift_CertificateUtil {
 	* @param gift_Certificate the gift_ certificate
 	*/
 	public static void cacheResult(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate) {
+		org.goodreturn.model.Gift_Certificate gift_Certificate) {
 		getPersistence().cacheResult(gift_Certificate);
 	}
 
@@ -126,7 +126,7 @@ public class Gift_CertificateUtil {
 	* @param gift_Certificates the gift_ certificates
 	*/
 	public static void cacheResult(
-		java.util.List<org.GoodReturn.model.Gift_Certificate> gift_Certificates) {
+		java.util.List<org.goodreturn.model.Gift_Certificate> gift_Certificates) {
 		getPersistence().cacheResult(gift_Certificates);
 	}
 
@@ -136,7 +136,7 @@ public class Gift_CertificateUtil {
 	* @param certificate_Id the primary key for the new gift_ certificate
 	* @return the new gift_ certificate
 	*/
-	public static org.GoodReturn.model.Gift_Certificate create(
+	public static org.goodreturn.model.Gift_Certificate create(
 		long certificate_Id) {
 		return getPersistence().create(certificate_Id);
 	}
@@ -146,34 +146,34 @@ public class Gift_CertificateUtil {
 	*
 	* @param certificate_Id the primary key of the gift_ certificate
 	* @return the gift_ certificate that was removed
-	* @throws org.GoodReturn.NoSuchGift_CertificateException if a gift_ certificate with the primary key could not be found
+	* @throws org.goodreturn.NoSuchGift_CertificateException if a gift_ certificate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Gift_Certificate remove(
+	public static org.goodreturn.model.Gift_Certificate remove(
 		long certificate_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchGift_CertificateException {
+			org.goodreturn.NoSuchGift_CertificateException {
 		return getPersistence().remove(certificate_Id);
 	}
 
-	public static org.GoodReturn.model.Gift_Certificate updateImpl(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate, boolean merge)
+	public static org.goodreturn.model.Gift_Certificate updateImpl(
+		org.goodreturn.model.Gift_Certificate gift_Certificate, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(gift_Certificate, merge);
 	}
 
 	/**
-	* Returns the gift_ certificate with the primary key or throws a {@link org.GoodReturn.NoSuchGift_CertificateException} if it could not be found.
+	* Returns the gift_ certificate with the primary key or throws a {@link org.goodreturn.NoSuchGift_CertificateException} if it could not be found.
 	*
 	* @param certificate_Id the primary key of the gift_ certificate
 	* @return the gift_ certificate
-	* @throws org.GoodReturn.NoSuchGift_CertificateException if a gift_ certificate with the primary key could not be found
+	* @throws org.goodreturn.NoSuchGift_CertificateException if a gift_ certificate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Gift_Certificate findByPrimaryKey(
+	public static org.goodreturn.model.Gift_Certificate findByPrimaryKey(
 		long certificate_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchGift_CertificateException {
+			org.goodreturn.NoSuchGift_CertificateException {
 		return getPersistence().findByPrimaryKey(certificate_Id);
 	}
 
@@ -184,7 +184,7 @@ public class Gift_CertificateUtil {
 	* @return the gift_ certificate, or <code>null</code> if a gift_ certificate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Gift_Certificate fetchByPrimaryKey(
+	public static org.goodreturn.model.Gift_Certificate fetchByPrimaryKey(
 		long certificate_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(certificate_Id);
@@ -196,7 +196,7 @@ public class Gift_CertificateUtil {
 	* @return the gift_ certificates
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Gift_Certificate> findAll()
+	public static java.util.List<org.goodreturn.model.Gift_Certificate> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
@@ -213,7 +213,7 @@ public class Gift_CertificateUtil {
 	* @return the range of gift_ certificates
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Gift_Certificate> findAll(
+	public static java.util.List<org.goodreturn.model.Gift_Certificate> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
@@ -232,7 +232,7 @@ public class Gift_CertificateUtil {
 	* @return the ordered range of gift_ certificates
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Gift_Certificate> findAll(
+	public static java.util.List<org.goodreturn.model.Gift_Certificate> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -262,7 +262,7 @@ public class Gift_CertificateUtil {
 
 	public static Gift_CertificatePersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (Gift_CertificatePersistence)PortletBeanLocatorUtil.locate(org.GoodReturn.service.ClpSerializer.getServletContextName(),
+			_persistence = (Gift_CertificatePersistence)PortletBeanLocatorUtil.locate(org.goodreturn.service.ClpSerializer.getServletContextName(),
 					Gift_CertificatePersistence.class.getName());
 
 			ReferenceRegistry.registerReference(Gift_CertificateUtil.class,

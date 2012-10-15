@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -31,8 +31,8 @@ import com.liferay.portal.service.InvokableService;
  *
  * @author gilaa004
  * @see StoryServiceUtil
- * @see org.GoodReturn.service.base.StoryServiceBaseImpl
- * @see org.GoodReturn.service.impl.StoryServiceImpl
+ * @see org.goodreturn.service.base.StoryServiceBaseImpl
+ * @see org.goodreturn.service.impl.StoryServiceImpl
  * @generated
  */
 @JSONWebService
@@ -42,7 +42,7 @@ public interface StoryService extends BaseService, InvokableService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link StoryServiceUtil} to access the story remote service. Add custom service methods to {@link org.GoodReturn.service.impl.StoryServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link StoryServiceUtil} to access the story remote service. Add custom service methods to {@link org.goodreturn.service.impl.StoryServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**

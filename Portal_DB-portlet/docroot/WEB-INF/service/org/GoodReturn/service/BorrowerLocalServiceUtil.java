@@ -12,14 +12,14 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
- * The utility for the borrower local service. This utility wraps {@link org.GoodReturn.service.impl.BorrowerLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
+ * The utility for the borrower local service. This utility wraps {@link org.goodreturn.service.impl.BorrowerLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
@@ -27,15 +27,15 @@ import com.liferay.portal.service.InvokableLocalService;
  *
  * @author gilaa004
  * @see BorrowerLocalService
- * @see org.GoodReturn.service.base.BorrowerLocalServiceBaseImpl
- * @see org.GoodReturn.service.impl.BorrowerLocalServiceImpl
+ * @see org.goodreturn.service.base.BorrowerLocalServiceBaseImpl
+ * @see org.goodreturn.service.impl.BorrowerLocalServiceImpl
  * @generated
  */
 public class BorrowerLocalServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link org.GoodReturn.service.impl.BorrowerLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to {@link org.goodreturn.service.impl.BorrowerLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 
 	/**
@@ -45,8 +45,8 @@ public class BorrowerLocalServiceUtil {
 	* @return the borrower that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Borrower addBorrower(
-		org.GoodReturn.model.Borrower borrower)
+	public static org.goodreturn.model.Borrower addBorrower(
+		org.goodreturn.model.Borrower borrower)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addBorrower(borrower);
 	}
@@ -57,7 +57,7 @@ public class BorrowerLocalServiceUtil {
 	* @param abacus_Borrower_Id the primary key for the new borrower
 	* @return the new borrower
 	*/
-	public static org.GoodReturn.model.Borrower createBorrower(
+	public static org.goodreturn.model.Borrower createBorrower(
 		long abacus_Borrower_Id) {
 		return getService().createBorrower(abacus_Borrower_Id);
 	}
@@ -70,7 +70,7 @@ public class BorrowerLocalServiceUtil {
 	* @throws PortalException if a borrower with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Borrower deleteBorrower(
+	public static org.goodreturn.model.Borrower deleteBorrower(
 		long abacus_Borrower_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -84,8 +84,8 @@ public class BorrowerLocalServiceUtil {
 	* @return the borrower that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Borrower deleteBorrower(
-		org.GoodReturn.model.Borrower borrower)
+	public static org.goodreturn.model.Borrower deleteBorrower(
+		org.goodreturn.model.Borrower borrower)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteBorrower(borrower);
 	}
@@ -165,7 +165,7 @@ public class BorrowerLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
-	public static org.GoodReturn.model.Borrower fetchBorrower(
+	public static org.goodreturn.model.Borrower fetchBorrower(
 		long abacus_Borrower_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().fetchBorrower(abacus_Borrower_Id);
@@ -179,7 +179,7 @@ public class BorrowerLocalServiceUtil {
 	* @throws PortalException if a borrower with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Borrower getBorrower(
+	public static org.goodreturn.model.Borrower getBorrower(
 		long abacus_Borrower_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -205,7 +205,7 @@ public class BorrowerLocalServiceUtil {
 	* @return the range of borrowers
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Borrower> getBorrowers(
+	public static java.util.List<org.goodreturn.model.Borrower> getBorrowers(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getBorrowers(start, end);
@@ -229,8 +229,8 @@ public class BorrowerLocalServiceUtil {
 	* @return the borrower that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Borrower updateBorrower(
-		org.GoodReturn.model.Borrower borrower)
+	public static org.goodreturn.model.Borrower updateBorrower(
+		org.goodreturn.model.Borrower borrower)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateBorrower(borrower);
 	}
@@ -243,8 +243,8 @@ public class BorrowerLocalServiceUtil {
 	* @return the borrower that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Borrower updateBorrower(
-		org.GoodReturn.model.Borrower borrower, boolean merge)
+	public static org.goodreturn.model.Borrower updateBorrower(
+		org.goodreturn.model.Borrower borrower, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateBorrower(borrower, merge);
 	}

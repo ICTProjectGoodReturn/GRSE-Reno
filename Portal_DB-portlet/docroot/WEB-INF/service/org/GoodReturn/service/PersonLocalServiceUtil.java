@@ -12,14 +12,14 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
- * The utility for the person local service. This utility wraps {@link org.GoodReturn.service.impl.PersonLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
+ * The utility for the person local service. This utility wraps {@link org.goodreturn.service.impl.PersonLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
@@ -27,15 +27,15 @@ import com.liferay.portal.service.InvokableLocalService;
  *
  * @author gilaa004
  * @see PersonLocalService
- * @see org.GoodReturn.service.base.PersonLocalServiceBaseImpl
- * @see org.GoodReturn.service.impl.PersonLocalServiceImpl
+ * @see org.goodreturn.service.base.PersonLocalServiceBaseImpl
+ * @see org.goodreturn.service.impl.PersonLocalServiceImpl
  * @generated
  */
 public class PersonLocalServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link org.GoodReturn.service.impl.PersonLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to {@link org.goodreturn.service.impl.PersonLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 
 	/**
@@ -45,8 +45,8 @@ public class PersonLocalServiceUtil {
 	* @return the person that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Person addPerson(
-		org.GoodReturn.model.Person person)
+	public static org.goodreturn.model.Person addPerson(
+		org.goodreturn.model.Person person)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addPerson(person);
 	}
@@ -57,7 +57,7 @@ public class PersonLocalServiceUtil {
 	* @param abacus_Person_Id the primary key for the new person
 	* @return the new person
 	*/
-	public static org.GoodReturn.model.Person createPerson(
+	public static org.goodreturn.model.Person createPerson(
 		long abacus_Person_Id) {
 		return getService().createPerson(abacus_Person_Id);
 	}
@@ -70,7 +70,7 @@ public class PersonLocalServiceUtil {
 	* @throws PortalException if a person with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Person deletePerson(
+	public static org.goodreturn.model.Person deletePerson(
 		long abacus_Person_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -84,8 +84,8 @@ public class PersonLocalServiceUtil {
 	* @return the person that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Person deletePerson(
-		org.GoodReturn.model.Person person)
+	public static org.goodreturn.model.Person deletePerson(
+		org.goodreturn.model.Person person)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deletePerson(person);
 	}
@@ -165,7 +165,7 @@ public class PersonLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
-	public static org.GoodReturn.model.Person fetchPerson(long abacus_Person_Id)
+	public static org.goodreturn.model.Person fetchPerson(long abacus_Person_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().fetchPerson(abacus_Person_Id);
 	}
@@ -178,7 +178,7 @@ public class PersonLocalServiceUtil {
 	* @throws PortalException if a person with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Person getPerson(long abacus_Person_Id)
+	public static org.goodreturn.model.Person getPerson(long abacus_Person_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getPerson(abacus_Person_Id);
@@ -203,7 +203,7 @@ public class PersonLocalServiceUtil {
 	* @return the range of persons
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Person> getPersons(
+	public static java.util.List<org.goodreturn.model.Person> getPersons(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getPersons(start, end);
@@ -227,8 +227,8 @@ public class PersonLocalServiceUtil {
 	* @return the person that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Person updatePerson(
-		org.GoodReturn.model.Person person)
+	public static org.goodreturn.model.Person updatePerson(
+		org.goodreturn.model.Person person)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updatePerson(person);
 	}
@@ -241,8 +241,8 @@ public class PersonLocalServiceUtil {
 	* @return the person that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Person updatePerson(
-		org.GoodReturn.model.Person person, boolean merge)
+	public static org.goodreturn.model.Person updatePerson(
+		org.goodreturn.model.Person person, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updatePerson(person, merge);
 	}

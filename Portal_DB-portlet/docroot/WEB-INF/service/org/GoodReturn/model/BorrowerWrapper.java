@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.model;
+package org.goodreturn.model;
 
 import com.liferay.portal.model.ModelWrapper;
 

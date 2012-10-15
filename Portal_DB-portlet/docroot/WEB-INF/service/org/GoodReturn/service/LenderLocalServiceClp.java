@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -25,7 +25,7 @@ public class LenderLocalServiceClp implements LenderLocalService {
 
 		_methodName0 = "addLender";
 
-		_methodParameterTypes0 = new String[] { "org.GoodReturn.model.Lender" };
+		_methodParameterTypes0 = new String[] { "org.goodreturn.model.Lender" };
 
 		_methodName1 = "createLender";
 
@@ -37,7 +37,7 @@ public class LenderLocalServiceClp implements LenderLocalService {
 
 		_methodName3 = "deleteLender";
 
-		_methodParameterTypes3 = new String[] { "org.GoodReturn.model.Lender" };
+		_methodParameterTypes3 = new String[] { "org.goodreturn.model.Lender" };
 
 		_methodName4 = "dynamicQuery";
 
@@ -90,12 +90,12 @@ public class LenderLocalServiceClp implements LenderLocalService {
 
 		_methodName14 = "updateLender";
 
-		_methodParameterTypes14 = new String[] { "org.GoodReturn.model.Lender" };
+		_methodParameterTypes14 = new String[] { "org.goodreturn.model.Lender" };
 
 		_methodName15 = "updateLender";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.Lender", "boolean"
+				"org.goodreturn.model.Lender", "boolean"
 			};
 
 		_methodName16 = "getBeanIdentifier";
@@ -107,8 +107,8 @@ public class LenderLocalServiceClp implements LenderLocalService {
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 	}
 
-	public org.GoodReturn.model.Lender addLender(
-		org.GoodReturn.model.Lender lender)
+	public org.goodreturn.model.Lender addLender(
+		org.goodreturn.model.Lender lender)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -133,10 +133,10 @@ public class LenderLocalServiceClp implements LenderLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Lender)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Lender)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Lender createLender(long lender_Id) {
+	public org.goodreturn.model.Lender createLender(long lender_Id) {
 		Object returnObj = null;
 
 		try {
@@ -155,10 +155,10 @@ public class LenderLocalServiceClp implements LenderLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Lender)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Lender)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Lender deleteLender(long lender_Id)
+	public org.goodreturn.model.Lender deleteLender(long lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -187,11 +187,11 @@ public class LenderLocalServiceClp implements LenderLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Lender)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Lender)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Lender deleteLender(
-		org.GoodReturn.model.Lender lender)
+	public org.goodreturn.model.Lender deleteLender(
+		org.goodreturn.model.Lender lender)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -216,7 +216,7 @@ public class LenderLocalServiceClp implements LenderLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Lender)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Lender)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -376,7 +376,7 @@ public class LenderLocalServiceClp implements LenderLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
-	public org.GoodReturn.model.Lender fetchLender(long lender_Id)
+	public org.goodreturn.model.Lender fetchLender(long lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -400,10 +400,10 @@ public class LenderLocalServiceClp implements LenderLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Lender)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Lender)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Lender getLender(long lender_Id)
+	public org.goodreturn.model.Lender getLender(long lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -432,7 +432,7 @@ public class LenderLocalServiceClp implements LenderLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Lender)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Lender)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -469,7 +469,7 @@ public class LenderLocalServiceClp implements LenderLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<org.GoodReturn.model.Lender> getLenders(int start,
+	public java.util.List<org.goodreturn.model.Lender> getLenders(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -493,7 +493,7 @@ public class LenderLocalServiceClp implements LenderLocalService {
 			}
 		}
 
-		return (java.util.List<org.GoodReturn.model.Lender>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<org.goodreturn.model.Lender>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getLendersCount()
@@ -523,8 +523,8 @@ public class LenderLocalServiceClp implements LenderLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public org.GoodReturn.model.Lender updateLender(
-		org.GoodReturn.model.Lender lender)
+	public org.goodreturn.model.Lender updateLender(
+		org.goodreturn.model.Lender lender)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -549,11 +549,11 @@ public class LenderLocalServiceClp implements LenderLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Lender)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Lender)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Lender updateLender(
-		org.GoodReturn.model.Lender lender, boolean merge)
+	public org.goodreturn.model.Lender updateLender(
+		org.goodreturn.model.Lender lender, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -578,7 +578,7 @@ public class LenderLocalServiceClp implements LenderLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Lender)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Lender)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.lang.String getBeanIdentifier() {

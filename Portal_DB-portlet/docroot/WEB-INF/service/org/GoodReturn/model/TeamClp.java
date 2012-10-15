@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.model;
+package org.goodreturn.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
-import org.GoodReturn.service.TeamLocalServiceUtil;
+import org.goodreturn.service.TeamLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -211,7 +211,7 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 		StringBundler sb = new StringBundler(13);
 
 		sb.append("<model><model-name>");
-		sb.append("org.GoodReturn.model.Team");
+		sb.append("org.goodreturn.model.Team");
 		sb.append("</model-name>");
 
 		sb.append(

@@ -12,28 +12,28 @@
  * details.
  */
 
-package org.GoodReturn.service.impl;
+package org.goodreturn.service.impl;
 
-import org.GoodReturn.service.base.TeamLocalServiceBaseImpl;
+import org.goodreturn.service.base.TeamLocalServiceBaseImpl;
 
 /**
  * The implementation of the team local service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.service.TeamLocalService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.service.TeamLocalService} interface.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
  * @author gilaa004
- * @see org.GoodReturn.service.base.TeamLocalServiceBaseImpl
- * @see org.GoodReturn.service.TeamLocalServiceUtil
+ * @see org.goodreturn.service.base.TeamLocalServiceBaseImpl
+ * @see org.goodreturn.service.TeamLocalServiceUtil
  */
 public class TeamLocalServiceImpl extends TeamLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link org.GoodReturn.service.TeamLocalServiceUtil} to access the team local service.
+	 * Never reference this interface directly. Always use {@link org.goodreturn.service.TeamLocalServiceUtil} to access the team local service.
 	 */
 }

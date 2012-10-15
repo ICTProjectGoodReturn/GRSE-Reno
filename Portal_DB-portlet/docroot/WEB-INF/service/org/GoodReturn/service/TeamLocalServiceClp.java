@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -25,7 +25,7 @@ public class TeamLocalServiceClp implements TeamLocalService {
 
 		_methodName0 = "addTeam";
 
-		_methodParameterTypes0 = new String[] { "org.GoodReturn.model.Team" };
+		_methodParameterTypes0 = new String[] { "org.goodreturn.model.Team" };
 
 		_methodName1 = "createTeam";
 
@@ -37,7 +37,7 @@ public class TeamLocalServiceClp implements TeamLocalService {
 
 		_methodName3 = "deleteTeam";
 
-		_methodParameterTypes3 = new String[] { "org.GoodReturn.model.Team" };
+		_methodParameterTypes3 = new String[] { "org.goodreturn.model.Team" };
 
 		_methodName4 = "dynamicQuery";
 
@@ -90,12 +90,12 @@ public class TeamLocalServiceClp implements TeamLocalService {
 
 		_methodName14 = "updateTeam";
 
-		_methodParameterTypes14 = new String[] { "org.GoodReturn.model.Team" };
+		_methodParameterTypes14 = new String[] { "org.goodreturn.model.Team" };
 
 		_methodName15 = "updateTeam";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.Team", "boolean"
+				"org.goodreturn.model.Team", "boolean"
 			};
 
 		_methodName16 = "getBeanIdentifier";
@@ -107,7 +107,7 @@ public class TeamLocalServiceClp implements TeamLocalService {
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 	}
 
-	public org.GoodReturn.model.Team addTeam(org.GoodReturn.model.Team team)
+	public org.goodreturn.model.Team addTeam(org.goodreturn.model.Team team)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -132,10 +132,10 @@ public class TeamLocalServiceClp implements TeamLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Team)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Team)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Team createTeam(long team_Id) {
+	public org.goodreturn.model.Team createTeam(long team_Id) {
 		Object returnObj = null;
 
 		try {
@@ -154,10 +154,10 @@ public class TeamLocalServiceClp implements TeamLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Team)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Team)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Team deleteTeam(long team_Id)
+	public org.goodreturn.model.Team deleteTeam(long team_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -186,10 +186,10 @@ public class TeamLocalServiceClp implements TeamLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Team)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Team)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Team deleteTeam(org.GoodReturn.model.Team team)
+	public org.goodreturn.model.Team deleteTeam(org.goodreturn.model.Team team)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -214,7 +214,7 @@ public class TeamLocalServiceClp implements TeamLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Team)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Team)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -374,7 +374,7 @@ public class TeamLocalServiceClp implements TeamLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
-	public org.GoodReturn.model.Team fetchTeam(long team_Id)
+	public org.goodreturn.model.Team fetchTeam(long team_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -398,10 +398,10 @@ public class TeamLocalServiceClp implements TeamLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Team)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Team)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Team getTeam(long team_Id)
+	public org.goodreturn.model.Team getTeam(long team_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -430,7 +430,7 @@ public class TeamLocalServiceClp implements TeamLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Team)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Team)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -467,7 +467,7 @@ public class TeamLocalServiceClp implements TeamLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<org.GoodReturn.model.Team> getTeams(int start, int end)
+	public java.util.List<org.goodreturn.model.Team> getTeams(int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -491,7 +491,7 @@ public class TeamLocalServiceClp implements TeamLocalService {
 			}
 		}
 
-		return (java.util.List<org.GoodReturn.model.Team>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<org.goodreturn.model.Team>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getTeamsCount()
@@ -521,7 +521,7 @@ public class TeamLocalServiceClp implements TeamLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public org.GoodReturn.model.Team updateTeam(org.GoodReturn.model.Team team)
+	public org.goodreturn.model.Team updateTeam(org.goodreturn.model.Team team)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -546,11 +546,11 @@ public class TeamLocalServiceClp implements TeamLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Team)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Team)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Team updateTeam(
-		org.GoodReturn.model.Team team, boolean merge)
+	public org.goodreturn.model.Team updateTeam(
+		org.goodreturn.model.Team team, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -575,7 +575,7 @@ public class TeamLocalServiceClp implements TeamLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Team)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Team)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.lang.String getBeanIdentifier() {

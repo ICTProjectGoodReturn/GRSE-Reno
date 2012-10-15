@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.model;
+package org.goodreturn.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
-import org.GoodReturn.service.BorrowerLocalServiceUtil;
+import org.goodreturn.service.BorrowerLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -400,7 +400,7 @@ public class BorrowerClp extends BaseModelImpl<Borrower> implements Borrower {
 		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
-		sb.append("org.GoodReturn.model.Borrower");
+		sb.append("org.goodreturn.model.Borrower");
 		sb.append("</model-name>");
 
 		sb.append(

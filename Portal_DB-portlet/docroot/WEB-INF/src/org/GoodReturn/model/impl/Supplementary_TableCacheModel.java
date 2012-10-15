@@ -12,12 +12,12 @@
  * details.
  */
 
-package org.GoodReturn.model.impl;
+package org.goodreturn.model.impl;
 
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.CacheModel;
 
-import org.GoodReturn.model.Supplementary_Table;
+import org.goodreturn.model.Supplementary_Table;
 
 import java.io.Serializable;
 

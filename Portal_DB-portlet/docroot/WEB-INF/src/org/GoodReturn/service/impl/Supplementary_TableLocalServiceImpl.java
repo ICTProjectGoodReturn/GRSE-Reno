@@ -12,29 +12,29 @@
  * details.
  */
 
-package org.GoodReturn.service.impl;
+package org.goodreturn.service.impl;
 
-import org.GoodReturn.service.base.Supplementary_TableLocalServiceBaseImpl;
+import org.goodreturn.service.base.Supplementary_TableLocalServiceBaseImpl;
 
 /**
  * The implementation of the supplementary_ table local service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.service.Supplementary_TableLocalService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.service.Supplementary_TableLocalService} interface.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
  * @author gilaa004
- * @see org.GoodReturn.service.base.Supplementary_TableLocalServiceBaseImpl
- * @see org.GoodReturn.service.Supplementary_TableLocalServiceUtil
+ * @see org.goodreturn.service.base.Supplementary_TableLocalServiceBaseImpl
+ * @see org.goodreturn.service.Supplementary_TableLocalServiceUtil
  */
 public class Supplementary_TableLocalServiceImpl
 	extends Supplementary_TableLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link org.GoodReturn.service.Supplementary_TableLocalServiceUtil} to access the supplementary_ table local service.
+	 * Never reference this interface directly. Always use {@link org.goodreturn.service.Supplementary_TableLocalServiceUtil} to access the supplementary_ table local service.
 	 */
 }

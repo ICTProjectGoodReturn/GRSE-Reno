@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -32,8 +32,8 @@ import com.liferay.portal.service.PersistedModelLocalService;
  *
  * @author gilaa004
  * @see LenderLocalServiceUtil
- * @see org.GoodReturn.service.base.LenderLocalServiceBaseImpl
- * @see org.GoodReturn.service.impl.LenderLocalServiceImpl
+ * @see org.goodreturn.service.base.LenderLocalServiceBaseImpl
+ * @see org.goodreturn.service.impl.LenderLocalServiceImpl
  * @generated
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
@@ -43,7 +43,7 @@ public interface LenderLocalService extends BaseLocalService,
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link LenderLocalServiceUtil} to access the lender local service. Add custom service methods to {@link org.GoodReturn.service.impl.LenderLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link LenderLocalServiceUtil} to access the lender local service. Add custom service methods to {@link org.goodreturn.service.impl.LenderLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**
@@ -53,8 +53,8 @@ public interface LenderLocalService extends BaseLocalService,
 	* @return the lender that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Lender addLender(
-		org.GoodReturn.model.Lender lender)
+	public org.goodreturn.model.Lender addLender(
+		org.goodreturn.model.Lender lender)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -63,7 +63,7 @@ public interface LenderLocalService extends BaseLocalService,
 	* @param lender_Id the primary key for the new lender
 	* @return the new lender
 	*/
-	public org.GoodReturn.model.Lender createLender(long lender_Id);
+	public org.goodreturn.model.Lender createLender(long lender_Id);
 
 	/**
 	* Deletes the lender with the primary key from the database. Also notifies the appropriate model listeners.
@@ -73,7 +73,7 @@ public interface LenderLocalService extends BaseLocalService,
 	* @throws PortalException if a lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Lender deleteLender(long lender_Id)
+	public org.goodreturn.model.Lender deleteLender(long lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -84,8 +84,8 @@ public interface LenderLocalService extends BaseLocalService,
 	* @return the lender that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Lender deleteLender(
-		org.GoodReturn.model.Lender lender)
+	public org.goodreturn.model.Lender deleteLender(
+		org.goodreturn.model.Lender lender)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -153,7 +153,7 @@ public interface LenderLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.GoodReturn.model.Lender fetchLender(long lender_Id)
+	public org.goodreturn.model.Lender fetchLender(long lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -165,7 +165,7 @@ public interface LenderLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.GoodReturn.model.Lender getLender(long lender_Id)
+	public org.goodreturn.model.Lender getLender(long lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -188,7 +188,7 @@ public interface LenderLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<org.GoodReturn.model.Lender> getLenders(int start,
+	public java.util.List<org.goodreturn.model.Lender> getLenders(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -208,8 +208,8 @@ public interface LenderLocalService extends BaseLocalService,
 	* @return the lender that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Lender updateLender(
-		org.GoodReturn.model.Lender lender)
+	public org.goodreturn.model.Lender updateLender(
+		org.goodreturn.model.Lender lender)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -220,8 +220,8 @@ public interface LenderLocalService extends BaseLocalService,
 	* @return the lender that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Lender updateLender(
-		org.GoodReturn.model.Lender lender, boolean merge)
+	public org.goodreturn.model.Lender updateLender(
+		org.goodreturn.model.Lender lender, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -12,14 +12,14 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * The utility for the gift_ certificate remote service. This utility wraps {@link org.GoodReturn.service.impl.Gift_CertificateServiceImpl} and is the primary access point for service operations in application layer code running on a remote server.
+ * The utility for the gift_ certificate remote service. This utility wraps {@link org.goodreturn.service.impl.Gift_CertificateServiceImpl} and is the primary access point for service operations in application layer code running on a remote server.
  *
  * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
@@ -27,15 +27,15 @@ import com.liferay.portal.service.InvokableService;
  *
  * @author gilaa004
  * @see Gift_CertificateService
- * @see org.GoodReturn.service.base.Gift_CertificateServiceBaseImpl
- * @see org.GoodReturn.service.impl.Gift_CertificateServiceImpl
+ * @see org.goodreturn.service.base.Gift_CertificateServiceBaseImpl
+ * @see org.goodreturn.service.impl.Gift_CertificateServiceImpl
  * @generated
  */
 public class Gift_CertificateServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link org.GoodReturn.service.impl.Gift_CertificateServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to {@link org.goodreturn.service.impl.Gift_CertificateServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 
 	/**

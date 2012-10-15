@@ -12,28 +12,28 @@
  * details.
  */
 
-package org.GoodReturn.service.impl;
+package org.goodreturn.service.impl;
 
-import org.GoodReturn.service.base.LenderLocalServiceBaseImpl;
+import org.goodreturn.service.base.LenderLocalServiceBaseImpl;
 
 /**
  * The implementation of the lender local service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.service.LenderLocalService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.service.LenderLocalService} interface.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
  * @author gilaa004
- * @see org.GoodReturn.service.base.LenderLocalServiceBaseImpl
- * @see org.GoodReturn.service.LenderLocalServiceUtil
+ * @see org.goodreturn.service.base.LenderLocalServiceBaseImpl
+ * @see org.goodreturn.service.LenderLocalServiceUtil
  */
 public class LenderLocalServiceImpl extends LenderLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link org.GoodReturn.service.LenderLocalServiceUtil} to access the lender local service.
+	 * Never reference this interface directly. Always use {@link org.goodreturn.service.LenderLocalServiceUtil} to access the lender local service.
 	 */
 }

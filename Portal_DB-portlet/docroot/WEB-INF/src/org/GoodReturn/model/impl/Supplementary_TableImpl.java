@@ -12,13 +12,13 @@
  * details.
  */
 
-package org.GoodReturn.model.impl;
+package org.goodreturn.model.impl;
 
 /**
  * The extended model implementation for the Supplementary_Table service. Represents a row in the &quot;GoodReturn_Supplementary_Table&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.model.Supplementary_Table} interface.
+ * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.model.Supplementary_Table} interface.
  * </p>
  *
  * @author gilaa004
@@ -27,7 +27,7 @@ public class Supplementary_TableImpl extends Supplementary_TableBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this class directly. All methods that expect a supplementary_ table model instance should use the {@link org.GoodReturn.model.Supplementary_Table} interface instead.
+	 * Never reference this class directly. All methods that expect a supplementary_ table model instance should use the {@link org.goodreturn.model.Supplementary_Table} interface instead.
 	 */
 	public Supplementary_TableImpl() {
 	}

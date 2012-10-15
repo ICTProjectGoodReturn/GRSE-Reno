@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.model;
+package org.goodreturn.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
-import org.GoodReturn.service.PersonLocalServiceUtil;
+import org.goodreturn.service.PersonLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -355,7 +355,7 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
-		sb.append("org.GoodReturn.model.Person");
+		sb.append("org.goodreturn.model.Person");
 		sb.append("</model-name>");
 
 		sb.append(

@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -32,8 +32,8 @@ import com.liferay.portal.service.PersistedModelLocalService;
  *
  * @author gilaa004
  * @see Supplementary_TableLocalServiceUtil
- * @see org.GoodReturn.service.base.Supplementary_TableLocalServiceBaseImpl
- * @see org.GoodReturn.service.impl.Supplementary_TableLocalServiceImpl
+ * @see org.goodreturn.service.base.Supplementary_TableLocalServiceBaseImpl
+ * @see org.goodreturn.service.impl.Supplementary_TableLocalServiceImpl
  * @generated
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
@@ -43,7 +43,7 @@ public interface Supplementary_TableLocalService extends BaseLocalService,
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link Supplementary_TableLocalServiceUtil} to access the supplementary_ table local service. Add custom service methods to {@link org.GoodReturn.service.impl.Supplementary_TableLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link Supplementary_TableLocalServiceUtil} to access the supplementary_ table local service. Add custom service methods to {@link org.goodreturn.service.impl.Supplementary_TableLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**
@@ -53,8 +53,8 @@ public interface Supplementary_TableLocalService extends BaseLocalService,
 	* @return the supplementary_ table that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Supplementary_Table addSupplementary_Table(
-		org.GoodReturn.model.Supplementary_Table supplementary_Table)
+	public org.goodreturn.model.Supplementary_Table addSupplementary_Table(
+		org.goodreturn.model.Supplementary_Table supplementary_Table)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -63,7 +63,7 @@ public interface Supplementary_TableLocalService extends BaseLocalService,
 	* @param table_Id the primary key for the new supplementary_ table
 	* @return the new supplementary_ table
 	*/
-	public org.GoodReturn.model.Supplementary_Table createSupplementary_Table(
+	public org.goodreturn.model.Supplementary_Table createSupplementary_Table(
 		long table_Id);
 
 	/**
@@ -74,7 +74,7 @@ public interface Supplementary_TableLocalService extends BaseLocalService,
 	* @throws PortalException if a supplementary_ table with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Supplementary_Table deleteSupplementary_Table(
+	public org.goodreturn.model.Supplementary_Table deleteSupplementary_Table(
 		long table_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -86,8 +86,8 @@ public interface Supplementary_TableLocalService extends BaseLocalService,
 	* @return the supplementary_ table that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Supplementary_Table deleteSupplementary_Table(
-		org.GoodReturn.model.Supplementary_Table supplementary_Table)
+	public org.goodreturn.model.Supplementary_Table deleteSupplementary_Table(
+		org.goodreturn.model.Supplementary_Table supplementary_Table)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -155,7 +155,7 @@ public interface Supplementary_TableLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.GoodReturn.model.Supplementary_Table fetchSupplementary_Table(
+	public org.goodreturn.model.Supplementary_Table fetchSupplementary_Table(
 		long table_Id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -168,7 +168,7 @@ public interface Supplementary_TableLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.GoodReturn.model.Supplementary_Table getSupplementary_Table(
+	public org.goodreturn.model.Supplementary_Table getSupplementary_Table(
 		long table_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -192,7 +192,7 @@ public interface Supplementary_TableLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<org.GoodReturn.model.Supplementary_Table> getSupplementary_Tables(
+	public java.util.List<org.goodreturn.model.Supplementary_Table> getSupplementary_Tables(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -213,8 +213,8 @@ public interface Supplementary_TableLocalService extends BaseLocalService,
 	* @return the supplementary_ table that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Supplementary_Table updateSupplementary_Table(
-		org.GoodReturn.model.Supplementary_Table supplementary_Table)
+	public org.goodreturn.model.Supplementary_Table updateSupplementary_Table(
+		org.goodreturn.model.Supplementary_Table supplementary_Table)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -225,8 +225,8 @@ public interface Supplementary_TableLocalService extends BaseLocalService,
 	* @return the supplementary_ table that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Supplementary_Table updateSupplementary_Table(
-		org.GoodReturn.model.Supplementary_Table supplementary_Table,
+	public org.goodreturn.model.Supplementary_Table updateSupplementary_Table(
+		org.goodreturn.model.Supplementary_Table supplementary_Table,
 		boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

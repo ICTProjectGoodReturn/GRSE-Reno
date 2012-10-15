@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -32,8 +32,8 @@ import com.liferay.portal.service.PersistedModelLocalService;
  *
  * @author gilaa004
  * @see PersonLocalServiceUtil
- * @see org.GoodReturn.service.base.PersonLocalServiceBaseImpl
- * @see org.GoodReturn.service.impl.PersonLocalServiceImpl
+ * @see org.goodreturn.service.base.PersonLocalServiceBaseImpl
+ * @see org.goodreturn.service.impl.PersonLocalServiceImpl
  * @generated
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
@@ -43,7 +43,7 @@ public interface PersonLocalService extends BaseLocalService,
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link PersonLocalServiceUtil} to access the person local service. Add custom service methods to {@link org.GoodReturn.service.impl.PersonLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link PersonLocalServiceUtil} to access the person local service. Add custom service methods to {@link org.goodreturn.service.impl.PersonLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**
@@ -53,8 +53,8 @@ public interface PersonLocalService extends BaseLocalService,
 	* @return the person that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Person addPerson(
-		org.GoodReturn.model.Person person)
+	public org.goodreturn.model.Person addPerson(
+		org.goodreturn.model.Person person)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -63,7 +63,7 @@ public interface PersonLocalService extends BaseLocalService,
 	* @param abacus_Person_Id the primary key for the new person
 	* @return the new person
 	*/
-	public org.GoodReturn.model.Person createPerson(long abacus_Person_Id);
+	public org.goodreturn.model.Person createPerson(long abacus_Person_Id);
 
 	/**
 	* Deletes the person with the primary key from the database. Also notifies the appropriate model listeners.
@@ -73,7 +73,7 @@ public interface PersonLocalService extends BaseLocalService,
 	* @throws PortalException if a person with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Person deletePerson(long abacus_Person_Id)
+	public org.goodreturn.model.Person deletePerson(long abacus_Person_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -84,8 +84,8 @@ public interface PersonLocalService extends BaseLocalService,
 	* @return the person that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Person deletePerson(
-		org.GoodReturn.model.Person person)
+	public org.goodreturn.model.Person deletePerson(
+		org.goodreturn.model.Person person)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -153,7 +153,7 @@ public interface PersonLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.GoodReturn.model.Person fetchPerson(long abacus_Person_Id)
+	public org.goodreturn.model.Person fetchPerson(long abacus_Person_Id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -165,7 +165,7 @@ public interface PersonLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.GoodReturn.model.Person getPerson(long abacus_Person_Id)
+	public org.goodreturn.model.Person getPerson(long abacus_Person_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -188,7 +188,7 @@ public interface PersonLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<org.GoodReturn.model.Person> getPersons(int start,
+	public java.util.List<org.goodreturn.model.Person> getPersons(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -208,8 +208,8 @@ public interface PersonLocalService extends BaseLocalService,
 	* @return the person that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Person updatePerson(
-		org.GoodReturn.model.Person person)
+	public org.goodreturn.model.Person updatePerson(
+		org.goodreturn.model.Person person)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -220,8 +220,8 @@ public interface PersonLocalService extends BaseLocalService,
 	* @return the person that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Person updatePerson(
-		org.GoodReturn.model.Person person, boolean merge)
+	public org.goodreturn.model.Person updatePerson(
+		org.goodreturn.model.Person person, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

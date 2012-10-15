@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -40,11 +40,11 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import org.GoodReturn.NoSuchPersonException;
+import org.goodreturn.NoSuchPersonException;
 
-import org.GoodReturn.model.Person;
-import org.GoodReturn.model.impl.PersonImpl;
-import org.GoodReturn.model.impl.PersonModelImpl;
+import org.goodreturn.model.Person;
+import org.goodreturn.model.impl.PersonImpl;
+import org.goodreturn.model.impl.PersonModelImpl;
 
 import java.io.Serializable;
 
@@ -183,7 +183,7 @@ public class PersonPersistenceImpl extends BasePersistenceImpl<Person>
 	 *
 	 * @param abacus_Person_Id the primary key of the person
 	 * @return the person that was removed
-	 * @throws org.GoodReturn.NoSuchPersonException if a person with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchPersonException if a person with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Person remove(long abacus_Person_Id)
@@ -196,7 +196,7 @@ public class PersonPersistenceImpl extends BasePersistenceImpl<Person>
 	 *
 	 * @param primaryKey the primary key of the person
 	 * @return the person that was removed
-	 * @throws org.GoodReturn.NoSuchPersonException if a person with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchPersonException if a person with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
@@ -255,7 +255,7 @@ public class PersonPersistenceImpl extends BasePersistenceImpl<Person>
 	}
 
 	@Override
-	public Person updateImpl(org.GoodReturn.model.Person person, boolean merge)
+	public Person updateImpl(org.goodreturn.model.Person person, boolean merge)
 		throws SystemException {
 		person = toUnwrappedModel(person);
 
@@ -329,11 +329,11 @@ public class PersonPersistenceImpl extends BasePersistenceImpl<Person>
 	}
 
 	/**
-	 * Returns the person with the primary key or throws a {@link org.GoodReturn.NoSuchPersonException} if it could not be found.
+	 * Returns the person with the primary key or throws a {@link org.goodreturn.NoSuchPersonException} if it could not be found.
 	 *
 	 * @param abacus_Person_Id the primary key of the person
 	 * @return the person
-	 * @throws org.GoodReturn.NoSuchPersonException if a person with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchPersonException if a person with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Person findByPrimaryKey(long abacus_Person_Id)
@@ -582,7 +582,7 @@ public class PersonPersistenceImpl extends BasePersistenceImpl<Person>
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
-						"value.object.listener.org.GoodReturn.model.Person")));
+						"value.object.listener.org.goodreturn.model.Person")));
 
 		if (listenerClassNames.length > 0) {
 			try {

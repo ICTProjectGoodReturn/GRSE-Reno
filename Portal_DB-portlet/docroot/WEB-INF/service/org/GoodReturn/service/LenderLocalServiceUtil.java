@@ -12,14 +12,14 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
- * The utility for the lender local service. This utility wraps {@link org.GoodReturn.service.impl.LenderLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
+ * The utility for the lender local service. This utility wraps {@link org.goodreturn.service.impl.LenderLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
@@ -27,15 +27,15 @@ import com.liferay.portal.service.InvokableLocalService;
  *
  * @author gilaa004
  * @see LenderLocalService
- * @see org.GoodReturn.service.base.LenderLocalServiceBaseImpl
- * @see org.GoodReturn.service.impl.LenderLocalServiceImpl
+ * @see org.goodreturn.service.base.LenderLocalServiceBaseImpl
+ * @see org.goodreturn.service.impl.LenderLocalServiceImpl
  * @generated
  */
 public class LenderLocalServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link org.GoodReturn.service.impl.LenderLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to {@link org.goodreturn.service.impl.LenderLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 
 	/**
@@ -45,8 +45,8 @@ public class LenderLocalServiceUtil {
 	* @return the lender that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Lender addLender(
-		org.GoodReturn.model.Lender lender)
+	public static org.goodreturn.model.Lender addLender(
+		org.goodreturn.model.Lender lender)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addLender(lender);
 	}
@@ -57,7 +57,7 @@ public class LenderLocalServiceUtil {
 	* @param lender_Id the primary key for the new lender
 	* @return the new lender
 	*/
-	public static org.GoodReturn.model.Lender createLender(long lender_Id) {
+	public static org.goodreturn.model.Lender createLender(long lender_Id) {
 		return getService().createLender(lender_Id);
 	}
 
@@ -69,7 +69,7 @@ public class LenderLocalServiceUtil {
 	* @throws PortalException if a lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Lender deleteLender(long lender_Id)
+	public static org.goodreturn.model.Lender deleteLender(long lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteLender(lender_Id);
@@ -82,8 +82,8 @@ public class LenderLocalServiceUtil {
 	* @return the lender that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Lender deleteLender(
-		org.GoodReturn.model.Lender lender)
+	public static org.goodreturn.model.Lender deleteLender(
+		org.goodreturn.model.Lender lender)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteLender(lender);
 	}
@@ -163,7 +163,7 @@ public class LenderLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
-	public static org.GoodReturn.model.Lender fetchLender(long lender_Id)
+	public static org.goodreturn.model.Lender fetchLender(long lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().fetchLender(lender_Id);
 	}
@@ -176,7 +176,7 @@ public class LenderLocalServiceUtil {
 	* @throws PortalException if a lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Lender getLender(long lender_Id)
+	public static org.goodreturn.model.Lender getLender(long lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getLender(lender_Id);
@@ -201,7 +201,7 @@ public class LenderLocalServiceUtil {
 	* @return the range of lenders
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Lender> getLenders(
+	public static java.util.List<org.goodreturn.model.Lender> getLenders(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getLenders(start, end);
@@ -225,8 +225,8 @@ public class LenderLocalServiceUtil {
 	* @return the lender that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Lender updateLender(
-		org.GoodReturn.model.Lender lender)
+	public static org.goodreturn.model.Lender updateLender(
+		org.goodreturn.model.Lender lender)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateLender(lender);
 	}
@@ -239,8 +239,8 @@ public class LenderLocalServiceUtil {
 	* @return the lender that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Lender updateLender(
-		org.GoodReturn.model.Lender lender, boolean merge)
+	public static org.goodreturn.model.Lender updateLender(
+		org.goodreturn.model.Lender lender, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateLender(lender, merge);
 	}

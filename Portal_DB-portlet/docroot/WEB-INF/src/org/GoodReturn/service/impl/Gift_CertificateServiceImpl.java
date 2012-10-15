@@ -12,28 +12,28 @@
  * details.
  */
 
-package org.GoodReturn.service.impl;
+package org.goodreturn.service.impl;
 
-import org.GoodReturn.service.base.Gift_CertificateServiceBaseImpl;
+import org.goodreturn.service.base.Gift_CertificateServiceBaseImpl;
 
 /**
  * The implementation of the gift_ certificate remote service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.service.Gift_CertificateService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.service.Gift_CertificateService} interface.
  *
  * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
  * @author gilaa004
- * @see org.GoodReturn.service.base.Gift_CertificateServiceBaseImpl
- * @see org.GoodReturn.service.Gift_CertificateServiceUtil
+ * @see org.goodreturn.service.base.Gift_CertificateServiceBaseImpl
+ * @see org.goodreturn.service.Gift_CertificateServiceUtil
  */
 public class Gift_CertificateServiceImpl extends Gift_CertificateServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link org.GoodReturn.service.Gift_CertificateServiceUtil} to access the gift_ certificate remote service.
+	 * Never reference this interface directly. Always use {@link org.goodreturn.service.Gift_CertificateServiceUtil} to access the gift_ certificate remote service.
 	 */
 }

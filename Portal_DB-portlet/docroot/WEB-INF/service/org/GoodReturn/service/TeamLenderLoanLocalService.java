@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -32,8 +32,8 @@ import com.liferay.portal.service.PersistedModelLocalService;
  *
  * @author gilaa004
  * @see TeamLenderLoanLocalServiceUtil
- * @see org.GoodReturn.service.base.TeamLenderLoanLocalServiceBaseImpl
- * @see org.GoodReturn.service.impl.TeamLenderLoanLocalServiceImpl
+ * @see org.goodreturn.service.base.TeamLenderLoanLocalServiceBaseImpl
+ * @see org.goodreturn.service.impl.TeamLenderLoanLocalServiceImpl
  * @generated
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
@@ -43,7 +43,7 @@ public interface TeamLenderLoanLocalService extends BaseLocalService,
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link TeamLenderLoanLocalServiceUtil} to access the team lender loan local service. Add custom service methods to {@link org.GoodReturn.service.impl.TeamLenderLoanLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link TeamLenderLoanLocalServiceUtil} to access the team lender loan local service. Add custom service methods to {@link org.goodreturn.service.impl.TeamLenderLoanLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**
@@ -53,8 +53,8 @@ public interface TeamLenderLoanLocalService extends BaseLocalService,
 	* @return the team lender loan that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.TeamLenderLoan addTeamLenderLoan(
-		org.GoodReturn.model.TeamLenderLoan teamLenderLoan)
+	public org.goodreturn.model.TeamLenderLoan addTeamLenderLoan(
+		org.goodreturn.model.TeamLenderLoan teamLenderLoan)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -63,7 +63,7 @@ public interface TeamLenderLoanLocalService extends BaseLocalService,
 	* @param account_Id the primary key for the new team lender loan
 	* @return the new team lender loan
 	*/
-	public org.GoodReturn.model.TeamLenderLoan createTeamLenderLoan(
+	public org.goodreturn.model.TeamLenderLoan createTeamLenderLoan(
 		long account_Id);
 
 	/**
@@ -74,7 +74,7 @@ public interface TeamLenderLoanLocalService extends BaseLocalService,
 	* @throws PortalException if a team lender loan with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.TeamLenderLoan deleteTeamLenderLoan(
+	public org.goodreturn.model.TeamLenderLoan deleteTeamLenderLoan(
 		long account_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -86,8 +86,8 @@ public interface TeamLenderLoanLocalService extends BaseLocalService,
 	* @return the team lender loan that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.TeamLenderLoan deleteTeamLenderLoan(
-		org.GoodReturn.model.TeamLenderLoan teamLenderLoan)
+	public org.goodreturn.model.TeamLenderLoan deleteTeamLenderLoan(
+		org.goodreturn.model.TeamLenderLoan teamLenderLoan)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -155,7 +155,7 @@ public interface TeamLenderLoanLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.GoodReturn.model.TeamLenderLoan fetchTeamLenderLoan(
+	public org.goodreturn.model.TeamLenderLoan fetchTeamLenderLoan(
 		long account_Id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -168,7 +168,7 @@ public interface TeamLenderLoanLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.GoodReturn.model.TeamLenderLoan getTeamLenderLoan(
+	public org.goodreturn.model.TeamLenderLoan getTeamLenderLoan(
 		long account_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -192,7 +192,7 @@ public interface TeamLenderLoanLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<org.GoodReturn.model.TeamLenderLoan> getTeamLenderLoans(
+	public java.util.List<org.goodreturn.model.TeamLenderLoan> getTeamLenderLoans(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -213,8 +213,8 @@ public interface TeamLenderLoanLocalService extends BaseLocalService,
 	* @return the team lender loan that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.TeamLenderLoan updateTeamLenderLoan(
-		org.GoodReturn.model.TeamLenderLoan teamLenderLoan)
+	public org.goodreturn.model.TeamLenderLoan updateTeamLenderLoan(
+		org.goodreturn.model.TeamLenderLoan teamLenderLoan)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -225,8 +225,8 @@ public interface TeamLenderLoanLocalService extends BaseLocalService,
 	* @return the team lender loan that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.TeamLenderLoan updateTeamLenderLoan(
-		org.GoodReturn.model.TeamLenderLoan teamLenderLoan, boolean merge)
+	public org.goodreturn.model.TeamLenderLoan updateTeamLenderLoan(
+		org.goodreturn.model.TeamLenderLoan teamLenderLoan, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

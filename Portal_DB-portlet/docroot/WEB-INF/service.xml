@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
-<service-builder package-path="org.GoodReturn">
+<service-builder package-path="org.goodreturn">
 	<author>gilaa004</author>
 	<namespace>GoodReturn</namespace>
 
@@ -151,17 +151,29 @@
 	
 	</entity>
 	
-	<entity name="Story" remote-service="true" local-service="true">
+	<entity name="Story" uuid="true" remote-service="true" local-service="true">
 	
 	<!-- PK Fields -->
 	<column name="story_Id" type="long" primary="true"/>
+	<!-- FK Fields -->
+	<!-- TODO Make FK BELOW -->
+	<column name="loan_Account_Id" type="long" primary="true"/>
 	
 	<!-- Audit Fields -->
 	<column name="final_Story" type="String"/>
 	<column name="is_Good_Enough_For_Marketing" type="boolean"/>
 	<column name="is_Good_Enough_For_Final_Story" type="boolean"/>
 	
-		<!-- Order -->
+	<!-- Status related fields -->
+	<column name="status" type="int" />
+	<column name="status_By_User_Id" type="long" />
+	<column name="status_By_User_Name" type="String" />
+	<column name="status_Date" type="Date" />
+
+	<!-- Order -->
+	<column name="company_Id" type="long" />
+	<column name="group_Id" type="long" />
+	<column name="user_Id" type="long" />
 	
 	<order by="asc">
 		<order-column name="story_Id"/>
@@ -192,6 +204,5 @@
 	</order>
 	
 	</entity>
-
 
 </service-builder>

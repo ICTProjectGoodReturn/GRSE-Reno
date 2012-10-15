@@ -12,14 +12,14 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
- * The utility for the team lender local service. This utility wraps {@link org.GoodReturn.service.impl.TeamLenderLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
+ * The utility for the team lender local service. This utility wraps {@link org.goodreturn.service.impl.TeamLenderLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
@@ -27,15 +27,15 @@ import com.liferay.portal.service.InvokableLocalService;
  *
  * @author gilaa004
  * @see TeamLenderLocalService
- * @see org.GoodReturn.service.base.TeamLenderLocalServiceBaseImpl
- * @see org.GoodReturn.service.impl.TeamLenderLocalServiceImpl
+ * @see org.goodreturn.service.base.TeamLenderLocalServiceBaseImpl
+ * @see org.goodreturn.service.impl.TeamLenderLocalServiceImpl
  * @generated
  */
 public class TeamLenderLocalServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link org.GoodReturn.service.impl.TeamLenderLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to {@link org.goodreturn.service.impl.TeamLenderLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 
 	/**
@@ -45,8 +45,8 @@ public class TeamLenderLocalServiceUtil {
 	* @return the team lender that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.TeamLender addTeamLender(
-		org.GoodReturn.model.TeamLender teamLender)
+	public static org.goodreturn.model.TeamLender addTeamLender(
+		org.goodreturn.model.TeamLender teamLender)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addTeamLender(teamLender);
 	}
@@ -57,7 +57,7 @@ public class TeamLenderLocalServiceUtil {
 	* @param teamlender_Id the primary key for the new team lender
 	* @return the new team lender
 	*/
-	public static org.GoodReturn.model.TeamLender createTeamLender(
+	public static org.goodreturn.model.TeamLender createTeamLender(
 		long teamlender_Id) {
 		return getService().createTeamLender(teamlender_Id);
 	}
@@ -70,7 +70,7 @@ public class TeamLenderLocalServiceUtil {
 	* @throws PortalException if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.TeamLender deleteTeamLender(
+	public static org.goodreturn.model.TeamLender deleteTeamLender(
 		long teamlender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -84,8 +84,8 @@ public class TeamLenderLocalServiceUtil {
 	* @return the team lender that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.TeamLender deleteTeamLender(
-		org.GoodReturn.model.TeamLender teamLender)
+	public static org.goodreturn.model.TeamLender deleteTeamLender(
+		org.goodreturn.model.TeamLender teamLender)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteTeamLender(teamLender);
 	}
@@ -165,7 +165,7 @@ public class TeamLenderLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
-	public static org.GoodReturn.model.TeamLender fetchTeamLender(
+	public static org.goodreturn.model.TeamLender fetchTeamLender(
 		long teamlender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().fetchTeamLender(teamlender_Id);
@@ -179,7 +179,7 @@ public class TeamLenderLocalServiceUtil {
 	* @throws PortalException if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.TeamLender getTeamLender(
+	public static org.goodreturn.model.TeamLender getTeamLender(
 		long teamlender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -205,7 +205,7 @@ public class TeamLenderLocalServiceUtil {
 	* @return the range of team lenders
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.TeamLender> getTeamLenders(
+	public static java.util.List<org.goodreturn.model.TeamLender> getTeamLenders(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getTeamLenders(start, end);
@@ -229,8 +229,8 @@ public class TeamLenderLocalServiceUtil {
 	* @return the team lender that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.TeamLender updateTeamLender(
-		org.GoodReturn.model.TeamLender teamLender)
+	public static org.goodreturn.model.TeamLender updateTeamLender(
+		org.goodreturn.model.TeamLender teamLender)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateTeamLender(teamLender);
 	}
@@ -243,8 +243,8 @@ public class TeamLenderLocalServiceUtil {
 	* @return the team lender that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.TeamLender updateTeamLender(
-		org.GoodReturn.model.TeamLender teamLender, boolean merge)
+	public static org.goodreturn.model.TeamLender updateTeamLender(
+		org.goodreturn.model.TeamLender teamLender, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateTeamLender(teamLender, merge);
 	}

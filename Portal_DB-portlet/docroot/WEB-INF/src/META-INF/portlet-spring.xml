@@ -1,31 +1,31 @@
 <?xml version="1.0"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-	<bean id="org.GoodReturn.service.BorrowerLocalService" class="org.GoodReturn.service.impl.BorrowerLocalServiceImpl" />
-	<bean id="org.GoodReturn.service.BorrowerService" class="org.GoodReturn.service.impl.BorrowerServiceImpl" />
-	<bean id="org.GoodReturn.service.persistence.BorrowerPersistence" class="org.GoodReturn.service.persistence.BorrowerPersistenceImpl" parent="basePersistence" />
-	<bean id="org.GoodReturn.service.Gift_CertificateLocalService" class="org.GoodReturn.service.impl.Gift_CertificateLocalServiceImpl" />
-	<bean id="org.GoodReturn.service.Gift_CertificateService" class="org.GoodReturn.service.impl.Gift_CertificateServiceImpl" />
-	<bean id="org.GoodReturn.service.persistence.Gift_CertificatePersistence" class="org.GoodReturn.service.persistence.Gift_CertificatePersistenceImpl" parent="basePersistence" />
-	<bean id="org.GoodReturn.service.LenderLocalService" class="org.GoodReturn.service.impl.LenderLocalServiceImpl" />
-	<bean id="org.GoodReturn.service.LenderService" class="org.GoodReturn.service.impl.LenderServiceImpl" />
-	<bean id="org.GoodReturn.service.persistence.LenderPersistence" class="org.GoodReturn.service.persistence.LenderPersistenceImpl" parent="basePersistence" />
-	<bean id="org.GoodReturn.service.PersonLocalService" class="org.GoodReturn.service.impl.PersonLocalServiceImpl" />
-	<bean id="org.GoodReturn.service.PersonService" class="org.GoodReturn.service.impl.PersonServiceImpl" />
-	<bean id="org.GoodReturn.service.persistence.PersonPersistence" class="org.GoodReturn.service.persistence.PersonPersistenceImpl" parent="basePersistence" />
-	<bean id="org.GoodReturn.service.StoryLocalService" class="org.GoodReturn.service.impl.StoryLocalServiceImpl" />
-	<bean id="org.GoodReturn.service.StoryService" class="org.GoodReturn.service.impl.StoryServiceImpl" />
-	<bean id="org.GoodReturn.service.persistence.StoryPersistence" class="org.GoodReturn.service.persistence.StoryPersistenceImpl" parent="basePersistence" />
-	<bean id="org.GoodReturn.service.Supplementary_TableLocalService" class="org.GoodReturn.service.impl.Supplementary_TableLocalServiceImpl" />
-	<bean id="org.GoodReturn.service.Supplementary_TableService" class="org.GoodReturn.service.impl.Supplementary_TableServiceImpl" />
-	<bean id="org.GoodReturn.service.persistence.Supplementary_TablePersistence" class="org.GoodReturn.service.persistence.Supplementary_TablePersistenceImpl" parent="basePersistence" />
-	<bean id="org.GoodReturn.service.TeamLocalService" class="org.GoodReturn.service.impl.TeamLocalServiceImpl" />
-	<bean id="org.GoodReturn.service.TeamService" class="org.GoodReturn.service.impl.TeamServiceImpl" />
-	<bean id="org.GoodReturn.service.persistence.TeamPersistence" class="org.GoodReturn.service.persistence.TeamPersistenceImpl" parent="basePersistence" />
-	<bean id="org.GoodReturn.service.TeamLenderLocalService" class="org.GoodReturn.service.impl.TeamLenderLocalServiceImpl" />
-	<bean id="org.GoodReturn.service.TeamLenderService" class="org.GoodReturn.service.impl.TeamLenderServiceImpl" />
-	<bean id="org.GoodReturn.service.persistence.TeamLenderPersistence" class="org.GoodReturn.service.persistence.TeamLenderPersistenceImpl" parent="basePersistence" />
-	<bean id="org.GoodReturn.service.TeamLenderLoanLocalService" class="org.GoodReturn.service.impl.TeamLenderLoanLocalServiceImpl" />
-	<bean id="org.GoodReturn.service.TeamLenderLoanService" class="org.GoodReturn.service.impl.TeamLenderLoanServiceImpl" />
-	<bean id="org.GoodReturn.service.persistence.TeamLenderLoanPersistence" class="org.GoodReturn.service.persistence.TeamLenderLoanPersistenceImpl" parent="basePersistence" />
+	<bean id="org.goodreturn.service.BorrowerLocalService" class="org.goodreturn.service.impl.BorrowerLocalServiceImpl" />
+	<bean id="org.goodreturn.service.BorrowerService" class="org.goodreturn.service.impl.BorrowerServiceImpl" />
+	<bean id="org.goodreturn.service.persistence.BorrowerPersistence" class="org.goodreturn.service.persistence.BorrowerPersistenceImpl" parent="basePersistence" />
+	<bean id="org.goodreturn.service.Gift_CertificateLocalService" class="org.goodreturn.service.impl.Gift_CertificateLocalServiceImpl" />
+	<bean id="org.goodreturn.service.Gift_CertificateService" class="org.goodreturn.service.impl.Gift_CertificateServiceImpl" />
+	<bean id="org.goodreturn.service.persistence.Gift_CertificatePersistence" class="org.goodreturn.service.persistence.Gift_CertificatePersistenceImpl" parent="basePersistence" />
+	<bean id="org.goodreturn.service.LenderLocalService" class="org.goodreturn.service.impl.LenderLocalServiceImpl" />
+	<bean id="org.goodreturn.service.LenderService" class="org.goodreturn.service.impl.LenderServiceImpl" />
+	<bean id="org.goodreturn.service.persistence.LenderPersistence" class="org.goodreturn.service.persistence.LenderPersistenceImpl" parent="basePersistence" />
+	<bean id="org.goodreturn.service.PersonLocalService" class="org.goodreturn.service.impl.PersonLocalServiceImpl" />
+	<bean id="org.goodreturn.service.PersonService" class="org.goodreturn.service.impl.PersonServiceImpl" />
+	<bean id="org.goodreturn.service.persistence.PersonPersistence" class="org.goodreturn.service.persistence.PersonPersistenceImpl" parent="basePersistence" />
+	<bean id="org.goodreturn.service.StoryLocalService" class="org.goodreturn.service.impl.StoryLocalServiceImpl" />
+	<bean id="org.goodreturn.service.StoryService" class="org.goodreturn.service.impl.StoryServiceImpl" />
+	<bean id="org.goodreturn.service.persistence.StoryPersistence" class="org.goodreturn.service.persistence.StoryPersistenceImpl" parent="basePersistence" />
+	<bean id="org.goodreturn.service.Supplementary_TableLocalService" class="org.goodreturn.service.impl.Supplementary_TableLocalServiceImpl" />
+	<bean id="org.goodreturn.service.Supplementary_TableService" class="org.goodreturn.service.impl.Supplementary_TableServiceImpl" />
+	<bean id="org.goodreturn.service.persistence.Supplementary_TablePersistence" class="org.goodreturn.service.persistence.Supplementary_TablePersistenceImpl" parent="basePersistence" />
+	<bean id="org.goodreturn.service.TeamLocalService" class="org.goodreturn.service.impl.TeamLocalServiceImpl" />
+	<bean id="org.goodreturn.service.TeamService" class="org.goodreturn.service.impl.TeamServiceImpl" />
+	<bean id="org.goodreturn.service.persistence.TeamPersistence" class="org.goodreturn.service.persistence.TeamPersistenceImpl" parent="basePersistence" />
+	<bean id="org.goodreturn.service.TeamLenderLocalService" class="org.goodreturn.service.impl.TeamLenderLocalServiceImpl" />
+	<bean id="org.goodreturn.service.TeamLenderService" class="org.goodreturn.service.impl.TeamLenderServiceImpl" />
+	<bean id="org.goodreturn.service.persistence.TeamLenderPersistence" class="org.goodreturn.service.persistence.TeamLenderPersistenceImpl" parent="basePersistence" />
+	<bean id="org.goodreturn.service.TeamLenderLoanLocalService" class="org.goodreturn.service.impl.TeamLenderLoanLocalServiceImpl" />
+	<bean id="org.goodreturn.service.TeamLenderLoanService" class="org.goodreturn.service.impl.TeamLenderLoanServiceImpl" />
+	<bean id="org.goodreturn.service.persistence.TeamLenderLoanPersistence" class="org.goodreturn.service.persistence.TeamLenderLoanPersistenceImpl" parent="basePersistence" />
 </beans>

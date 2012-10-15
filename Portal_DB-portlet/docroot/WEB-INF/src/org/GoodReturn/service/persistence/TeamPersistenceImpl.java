@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -40,11 +40,11 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import org.GoodReturn.NoSuchTeamException;
+import org.goodreturn.NoSuchTeamException;
 
-import org.GoodReturn.model.Team;
-import org.GoodReturn.model.impl.TeamImpl;
-import org.GoodReturn.model.impl.TeamModelImpl;
+import org.goodreturn.model.Team;
+import org.goodreturn.model.impl.TeamImpl;
+import org.goodreturn.model.impl.TeamModelImpl;
 
 import java.io.Serializable;
 
@@ -182,7 +182,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	 *
 	 * @param team_Id the primary key of the team
 	 * @return the team that was removed
-	 * @throws org.GoodReturn.NoSuchTeamException if a team with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchTeamException if a team with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Team remove(long team_Id)
@@ -195,7 +195,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	 *
 	 * @param primaryKey the primary key of the team
 	 * @return the team that was removed
-	 * @throws org.GoodReturn.NoSuchTeamException if a team with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchTeamException if a team with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
@@ -254,7 +254,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	}
 
 	@Override
-	public Team updateImpl(org.GoodReturn.model.Team team, boolean merge)
+	public Team updateImpl(org.goodreturn.model.Team team, boolean merge)
 		throws SystemException {
 		team = toUnwrappedModel(team);
 
@@ -320,11 +320,11 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	}
 
 	/**
-	 * Returns the team with the primary key or throws a {@link org.GoodReturn.NoSuchTeamException} if it could not be found.
+	 * Returns the team with the primary key or throws a {@link org.goodreturn.NoSuchTeamException} if it could not be found.
 	 *
 	 * @param team_Id the primary key of the team
 	 * @return the team
-	 * @throws org.GoodReturn.NoSuchTeamException if a team with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchTeamException if a team with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Team findByPrimaryKey(long team_Id)
@@ -571,7 +571,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
-						"value.object.listener.org.GoodReturn.model.Team")));
+						"value.object.listener.org.goodreturn.model.Team")));
 
 		if (listenerClassNames.length > 0) {
 			try {

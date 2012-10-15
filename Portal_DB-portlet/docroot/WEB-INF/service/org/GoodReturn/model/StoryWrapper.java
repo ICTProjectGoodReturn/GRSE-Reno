@@ -12,10 +12,11 @@
  * details.
  */
 
-package org.GoodReturn.model;
+package org.goodreturn.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,21 +45,42 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
+		attributes.put("uuid", getUuid());
 		attributes.put("story_Id", getStory_Id());
+		attributes.put("loan_Account_Id", getLoan_Account_Id());
 		attributes.put("final_Story", getFinal_Story());
 		attributes.put("is_Good_Enough_For_Marketing",
 			getIs_Good_Enough_For_Marketing());
 		attributes.put("is_Good_Enough_For_Final_Story",
 			getIs_Good_Enough_For_Final_Story());
+		attributes.put("status", getStatus());
+		attributes.put("status_By_User_Id", getStatus_By_User_Id());
+		attributes.put("status_By_User_Name", getStatus_By_User_Name());
+		attributes.put("status_Date", getStatus_Date());
+		attributes.put("company_Id", getCompany_Id());
+		attributes.put("group_Id", getGroup_Id());
+		attributes.put("user_Id", getUser_Id());
 
 		return attributes;
 	}
 
 	public void setModelAttributes(Map<String, Object> attributes) {
+		String uuid = (String)attributes.get("uuid");
+
+		if (uuid != null) {
+			setUuid(uuid);
+		}
+
 		Long story_Id = (Long)attributes.get("story_Id");
 
 		if (story_Id != null) {
 			setStory_Id(story_Id);
+		}
+
+		Long loan_Account_Id = (Long)attributes.get("loan_Account_Id");
+
+		if (loan_Account_Id != null) {
+			setLoan_Account_Id(loan_Account_Id);
 		}
 
 		String final_Story = (String)attributes.get("final_Story");
@@ -80,6 +102,49 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 		if (is_Good_Enough_For_Final_Story != null) {
 			setIs_Good_Enough_For_Final_Story(is_Good_Enough_For_Final_Story);
 		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
+		}
+
+		Long status_By_User_Id = (Long)attributes.get("status_By_User_Id");
+
+		if (status_By_User_Id != null) {
+			setStatus_By_User_Id(status_By_User_Id);
+		}
+
+		String status_By_User_Name = (String)attributes.get(
+				"status_By_User_Name");
+
+		if (status_By_User_Name != null) {
+			setStatus_By_User_Name(status_By_User_Name);
+		}
+
+		Date status_Date = (Date)attributes.get("status_Date");
+
+		if (status_Date != null) {
+			setStatus_Date(status_Date);
+		}
+
+		Long company_Id = (Long)attributes.get("company_Id");
+
+		if (company_Id != null) {
+			setCompany_Id(company_Id);
+		}
+
+		Long group_Id = (Long)attributes.get("group_Id");
+
+		if (group_Id != null) {
+			setGroup_Id(group_Id);
+		}
+
+		Long user_Id = (Long)attributes.get("user_Id");
+
+		if (user_Id != null) {
+			setUser_Id(user_Id);
+		}
 	}
 
 	/**
@@ -87,7 +152,7 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 	*
 	* @return the primary key of this story
 	*/
-	public long getPrimaryKey() {
+	public org.goodreturn.service.persistence.StoryPK getPrimaryKey() {
 		return _story.getPrimaryKey();
 	}
 
@@ -96,8 +161,27 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 	*
 	* @param primaryKey the primary key of this story
 	*/
-	public void setPrimaryKey(long primaryKey) {
+	public void setPrimaryKey(
+		org.goodreturn.service.persistence.StoryPK primaryKey) {
 		_story.setPrimaryKey(primaryKey);
+	}
+
+	/**
+	* Returns the uuid of this story.
+	*
+	* @return the uuid of this story
+	*/
+	public java.lang.String getUuid() {
+		return _story.getUuid();
+	}
+
+	/**
+	* Sets the uuid of this story.
+	*
+	* @param uuid the uuid of this story
+	*/
+	public void setUuid(java.lang.String uuid) {
+		_story.setUuid(uuid);
 	}
 
 	/**
@@ -116,6 +200,24 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 	*/
 	public void setStory_Id(long story_Id) {
 		_story.setStory_Id(story_Id);
+	}
+
+	/**
+	* Returns the loan_ account_ ID of this story.
+	*
+	* @return the loan_ account_ ID of this story
+	*/
+	public long getLoan_Account_Id() {
+		return _story.getLoan_Account_Id();
+	}
+
+	/**
+	* Sets the loan_ account_ ID of this story.
+	*
+	* @param loan_Account_Id the loan_ account_ ID of this story
+	*/
+	public void setLoan_Account_Id(long loan_Account_Id) {
+		_story.setLoan_Account_Id(loan_Account_Id);
 	}
 
 	/**
@@ -190,6 +292,132 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 	public void setIs_Good_Enough_For_Final_Story(
 		boolean is_Good_Enough_For_Final_Story) {
 		_story.setIs_Good_Enough_For_Final_Story(is_Good_Enough_For_Final_Story);
+	}
+
+	/**
+	* Returns the status of this story.
+	*
+	* @return the status of this story
+	*/
+	public int getStatus() {
+		return _story.getStatus();
+	}
+
+	/**
+	* Sets the status of this story.
+	*
+	* @param status the status of this story
+	*/
+	public void setStatus(int status) {
+		_story.setStatus(status);
+	}
+
+	/**
+	* Returns the status_ by_ user_ ID of this story.
+	*
+	* @return the status_ by_ user_ ID of this story
+	*/
+	public long getStatus_By_User_Id() {
+		return _story.getStatus_By_User_Id();
+	}
+
+	/**
+	* Sets the status_ by_ user_ ID of this story.
+	*
+	* @param status_By_User_Id the status_ by_ user_ ID of this story
+	*/
+	public void setStatus_By_User_Id(long status_By_User_Id) {
+		_story.setStatus_By_User_Id(status_By_User_Id);
+	}
+
+	/**
+	* Returns the status_ by_ user_ name of this story.
+	*
+	* @return the status_ by_ user_ name of this story
+	*/
+	public java.lang.String getStatus_By_User_Name() {
+		return _story.getStatus_By_User_Name();
+	}
+
+	/**
+	* Sets the status_ by_ user_ name of this story.
+	*
+	* @param status_By_User_Name the status_ by_ user_ name of this story
+	*/
+	public void setStatus_By_User_Name(java.lang.String status_By_User_Name) {
+		_story.setStatus_By_User_Name(status_By_User_Name);
+	}
+
+	/**
+	* Returns the status_ date of this story.
+	*
+	* @return the status_ date of this story
+	*/
+	public java.util.Date getStatus_Date() {
+		return _story.getStatus_Date();
+	}
+
+	/**
+	* Sets the status_ date of this story.
+	*
+	* @param status_Date the status_ date of this story
+	*/
+	public void setStatus_Date(java.util.Date status_Date) {
+		_story.setStatus_Date(status_Date);
+	}
+
+	/**
+	* Returns the company_ ID of this story.
+	*
+	* @return the company_ ID of this story
+	*/
+	public long getCompany_Id() {
+		return _story.getCompany_Id();
+	}
+
+	/**
+	* Sets the company_ ID of this story.
+	*
+	* @param company_Id the company_ ID of this story
+	*/
+	public void setCompany_Id(long company_Id) {
+		_story.setCompany_Id(company_Id);
+	}
+
+	/**
+	* Returns the group_ ID of this story.
+	*
+	* @return the group_ ID of this story
+	*/
+	public long getGroup_Id() {
+		return _story.getGroup_Id();
+	}
+
+	/**
+	* Sets the group_ ID of this story.
+	*
+	* @param group_Id the group_ ID of this story
+	*/
+	public void setGroup_Id(long group_Id) {
+		_story.setGroup_Id(group_Id);
+	}
+
+	/**
+	* Returns the user_ ID of this story.
+	*
+	* @return the user_ ID of this story
+	*/
+	public long getUser_Id() {
+		return _story.getUser_Id();
+	}
+
+	/**
+	* Sets the user_ ID of this story.
+	*
+	* @param user_Id the user_ ID of this story
+	*/
+	public void setUser_Id(long user_Id) {
+		_story.setUser_Id(user_Id);
 	}
 
 	public boolean isNew() {

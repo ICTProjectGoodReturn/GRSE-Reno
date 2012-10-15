@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -40,11 +40,11 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import org.GoodReturn.NoSuchTeamLenderLoanException;
+import org.goodreturn.NoSuchTeamLenderLoanException;
 
-import org.GoodReturn.model.TeamLenderLoan;
-import org.GoodReturn.model.impl.TeamLenderLoanImpl;
-import org.GoodReturn.model.impl.TeamLenderLoanModelImpl;
+import org.goodreturn.model.TeamLenderLoan;
+import org.goodreturn.model.impl.TeamLenderLoanImpl;
+import org.goodreturn.model.impl.TeamLenderLoanModelImpl;
 
 import java.io.Serializable;
 
@@ -186,7 +186,7 @@ public class TeamLenderLoanPersistenceImpl extends BasePersistenceImpl<TeamLende
 	 *
 	 * @param account_Id the primary key of the team lender loan
 	 * @return the team lender loan that was removed
-	 * @throws org.GoodReturn.NoSuchTeamLenderLoanException if a team lender loan with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchTeamLenderLoanException if a team lender loan with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public TeamLenderLoan remove(long account_Id)
@@ -199,7 +199,7 @@ public class TeamLenderLoanPersistenceImpl extends BasePersistenceImpl<TeamLende
 	 *
 	 * @param primaryKey the primary key of the team lender loan
 	 * @return the team lender loan that was removed
-	 * @throws org.GoodReturn.NoSuchTeamLenderLoanException if a team lender loan with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchTeamLenderLoanException if a team lender loan with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
@@ -261,7 +261,7 @@ public class TeamLenderLoanPersistenceImpl extends BasePersistenceImpl<TeamLende
 
 	@Override
 	public TeamLenderLoan updateImpl(
-		org.GoodReturn.model.TeamLenderLoan teamLenderLoan, boolean merge)
+		org.goodreturn.model.TeamLenderLoan teamLenderLoan, boolean merge)
 		throws SystemException {
 		teamLenderLoan = toUnwrappedModel(teamLenderLoan);
 
@@ -326,11 +326,11 @@ public class TeamLenderLoanPersistenceImpl extends BasePersistenceImpl<TeamLende
 	}
 
 	/**
-	 * Returns the team lender loan with the primary key or throws a {@link org.GoodReturn.NoSuchTeamLenderLoanException} if it could not be found.
+	 * Returns the team lender loan with the primary key or throws a {@link org.goodreturn.NoSuchTeamLenderLoanException} if it could not be found.
 	 *
 	 * @param account_Id the primary key of the team lender loan
 	 * @return the team lender loan
-	 * @throws org.GoodReturn.NoSuchTeamLenderLoanException if a team lender loan with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchTeamLenderLoanException if a team lender loan with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public TeamLenderLoan findByPrimaryKey(long account_Id)
@@ -581,7 +581,7 @@ public class TeamLenderLoanPersistenceImpl extends BasePersistenceImpl<TeamLende
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
-						"value.object.listener.org.GoodReturn.model.TeamLenderLoan")));
+						"value.object.listener.org.goodreturn.model.TeamLenderLoan")));
 
 		if (listenerClassNames.length > 0) {
 			try {

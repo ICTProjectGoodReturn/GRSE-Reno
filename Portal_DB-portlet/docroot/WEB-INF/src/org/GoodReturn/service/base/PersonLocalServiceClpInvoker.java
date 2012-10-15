@@ -12,9 +12,9 @@
  * details.
  */
 
-package org.GoodReturn.service.base;
+package org.goodreturn.service.base;
 
-import org.GoodReturn.service.PersonLocalServiceUtil;
+import org.goodreturn.service.PersonLocalServiceUtil;
 
 import java.util.Arrays;
 
@@ -25,7 +25,7 @@ public class PersonLocalServiceClpInvoker {
 	public PersonLocalServiceClpInvoker() {
 		_methodName0 = "addPerson";
 
-		_methodParameterTypes0 = new String[] { "org.GoodReturn.model.Person" };
+		_methodParameterTypes0 = new String[] { "org.goodreturn.model.Person" };
 
 		_methodName1 = "createPerson";
 
@@ -37,7 +37,7 @@ public class PersonLocalServiceClpInvoker {
 
 		_methodName3 = "deletePerson";
 
-		_methodParameterTypes3 = new String[] { "org.GoodReturn.model.Person" };
+		_methodParameterTypes3 = new String[] { "org.goodreturn.model.Person" };
 
 		_methodName4 = "dynamicQuery";
 
@@ -90,12 +90,12 @@ public class PersonLocalServiceClpInvoker {
 
 		_methodName14 = "updatePerson";
 
-		_methodParameterTypes14 = new String[] { "org.GoodReturn.model.Person" };
+		_methodParameterTypes14 = new String[] { "org.goodreturn.model.Person" };
 
 		_methodName15 = "updatePerson";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.Person", "boolean"
+				"org.goodreturn.model.Person", "boolean"
 			};
 
 		_methodName86 = "getBeanIdentifier";
@@ -111,7 +111,7 @@ public class PersonLocalServiceClpInvoker {
 		Object[] arguments) throws Throwable {
 		if (_methodName0.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-			return PersonLocalServiceUtil.addPerson((org.GoodReturn.model.Person)arguments[0]);
+			return PersonLocalServiceUtil.addPerson((org.goodreturn.model.Person)arguments[0]);
 		}
 
 		if (_methodName1.equals(name) &&
@@ -126,7 +126,7 @@ public class PersonLocalServiceClpInvoker {
 
 		if (_methodName3.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-			return PersonLocalServiceUtil.deletePerson((org.GoodReturn.model.Person)arguments[0]);
+			return PersonLocalServiceUtil.deletePerson((org.goodreturn.model.Person)arguments[0]);
 		}
 
 		if (_methodName4.equals(name) &&
@@ -187,12 +187,12 @@ public class PersonLocalServiceClpInvoker {
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return PersonLocalServiceUtil.updatePerson((org.GoodReturn.model.Person)arguments[0]);
+			return PersonLocalServiceUtil.updatePerson((org.goodreturn.model.Person)arguments[0]);
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return PersonLocalServiceUtil.updatePerson((org.GoodReturn.model.Person)arguments[0],
+			return PersonLocalServiceUtil.updatePerson((org.goodreturn.model.Person)arguments[0],
 				((Boolean)arguments[1]).booleanValue());
 		}
 

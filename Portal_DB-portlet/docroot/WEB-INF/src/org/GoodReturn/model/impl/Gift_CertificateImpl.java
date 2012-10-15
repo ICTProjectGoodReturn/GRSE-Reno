@@ -12,13 +12,13 @@
  * details.
  */
 
-package org.GoodReturn.model.impl;
+package org.goodreturn.model.impl;
 
 /**
  * The extended model implementation for the Gift_Certificate service. Represents a row in the &quot;GoodReturn_Gift_Certificate&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.model.Gift_Certificate} interface.
+ * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.model.Gift_Certificate} interface.
  * </p>
  *
  * @author gilaa004
@@ -27,7 +27,7 @@ public class Gift_CertificateImpl extends Gift_CertificateBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this class directly. All methods that expect a gift_ certificate model instance should use the {@link org.GoodReturn.model.Gift_Certificate} interface instead.
+	 * Never reference this class directly. All methods that expect a gift_ certificate model instance should use the {@link org.goodreturn.model.Gift_Certificate} interface instead.
 	 */
 	public Gift_CertificateImpl() {
 	}

@@ -12,12 +12,12 @@
  * details.
  */
 
-package org.GoodReturn.service.http;
+package org.goodreturn.service.http;
 
 /**
  * <p>
  * This class provides a SOAP utility for the
- * {@link org.GoodReturn.service.TeamLenderLoanServiceUtil} service utility. The
+ * {@link org.goodreturn.service.TeamLenderLoanServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -26,10 +26,10 @@ package org.GoodReturn.service.http;
  * <p>
  * ServiceBuilder follows certain rules in translating the methods. For example,
  * if the method in the service utility returns a {@link java.util.List}, that
- * is translated to an array of {@link org.GoodReturn.model.TeamLenderLoanSoap}.
+ * is translated to an array of {@link org.goodreturn.model.TeamLenderLoanSoap}.
  * If the method in the service utility returns a
- * {@link org.GoodReturn.model.TeamLenderLoan}, that is translated to a
- * {@link org.GoodReturn.model.TeamLenderLoanSoap}. Methods that SOAP cannot
+ * {@link org.goodreturn.model.TeamLenderLoan}, that is translated to a
+ * {@link org.goodreturn.model.TeamLenderLoanSoap}. Methods that SOAP cannot
  * safely wire are skipped.
  * </p>
  *
@@ -53,8 +53,8 @@ package org.GoodReturn.service.http;
  *
  * @author    gilaa004
  * @see       TeamLenderLoanServiceHttp
- * @see       org.GoodReturn.model.TeamLenderLoanSoap
- * @see       org.GoodReturn.service.TeamLenderLoanServiceUtil
+ * @see       org.goodreturn.model.TeamLenderLoanSoap
+ * @see       org.goodreturn.service.TeamLenderLoanServiceUtil
  * @generated
  */
 public class TeamLenderLoanServiceSoap {

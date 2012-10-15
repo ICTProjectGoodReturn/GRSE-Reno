@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
-import org.GoodReturn.model.Team;
+import org.goodreturn.model.Team;
 
 import java.util.List;
 
@@ -114,7 +114,7 @@ public class TeamUtil {
 	*
 	* @param team the team
 	*/
-	public static void cacheResult(org.GoodReturn.model.Team team) {
+	public static void cacheResult(org.goodreturn.model.Team team) {
 		getPersistence().cacheResult(team);
 	}
 
@@ -124,7 +124,7 @@ public class TeamUtil {
 	* @param teams the teams
 	*/
 	public static void cacheResult(
-		java.util.List<org.GoodReturn.model.Team> teams) {
+		java.util.List<org.goodreturn.model.Team> teams) {
 		getPersistence().cacheResult(teams);
 	}
 
@@ -134,7 +134,7 @@ public class TeamUtil {
 	* @param team_Id the primary key for the new team
 	* @return the new team
 	*/
-	public static org.GoodReturn.model.Team create(long team_Id) {
+	public static org.goodreturn.model.Team create(long team_Id) {
 		return getPersistence().create(team_Id);
 	}
 
@@ -143,32 +143,32 @@ public class TeamUtil {
 	*
 	* @param team_Id the primary key of the team
 	* @return the team that was removed
-	* @throws org.GoodReturn.NoSuchTeamException if a team with the primary key could not be found
+	* @throws org.goodreturn.NoSuchTeamException if a team with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Team remove(long team_Id)
+	public static org.goodreturn.model.Team remove(long team_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchTeamException {
+			org.goodreturn.NoSuchTeamException {
 		return getPersistence().remove(team_Id);
 	}
 
-	public static org.GoodReturn.model.Team updateImpl(
-		org.GoodReturn.model.Team team, boolean merge)
+	public static org.goodreturn.model.Team updateImpl(
+		org.goodreturn.model.Team team, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(team, merge);
 	}
 
 	/**
-	* Returns the team with the primary key or throws a {@link org.GoodReturn.NoSuchTeamException} if it could not be found.
+	* Returns the team with the primary key or throws a {@link org.goodreturn.NoSuchTeamException} if it could not be found.
 	*
 	* @param team_Id the primary key of the team
 	* @return the team
-	* @throws org.GoodReturn.NoSuchTeamException if a team with the primary key could not be found
+	* @throws org.goodreturn.NoSuchTeamException if a team with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Team findByPrimaryKey(long team_Id)
+	public static org.goodreturn.model.Team findByPrimaryKey(long team_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchTeamException {
+			org.goodreturn.NoSuchTeamException {
 		return getPersistence().findByPrimaryKey(team_Id);
 	}
 
@@ -179,7 +179,7 @@ public class TeamUtil {
 	* @return the team, or <code>null</code> if a team with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Team fetchByPrimaryKey(long team_Id)
+	public static org.goodreturn.model.Team fetchByPrimaryKey(long team_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(team_Id);
 	}
@@ -190,7 +190,7 @@ public class TeamUtil {
 	* @return the teams
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Team> findAll()
+	public static java.util.List<org.goodreturn.model.Team> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
@@ -207,7 +207,7 @@ public class TeamUtil {
 	* @return the range of teams
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Team> findAll(int start,
+	public static java.util.List<org.goodreturn.model.Team> findAll(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
@@ -225,7 +225,7 @@ public class TeamUtil {
 	* @return the ordered range of teams
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Team> findAll(int start,
+	public static java.util.List<org.goodreturn.model.Team> findAll(int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -255,7 +255,7 @@ public class TeamUtil {
 
 	public static TeamPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (TeamPersistence)PortletBeanLocatorUtil.locate(org.GoodReturn.service.ClpSerializer.getServletContextName(),
+			_persistence = (TeamPersistence)PortletBeanLocatorUtil.locate(org.goodreturn.service.ClpSerializer.getServletContextName(),
 					TeamPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(TeamUtil.class, "_persistence");

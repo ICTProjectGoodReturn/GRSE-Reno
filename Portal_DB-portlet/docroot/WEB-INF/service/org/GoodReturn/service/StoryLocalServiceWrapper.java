@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.service.ServiceWrapper;
 
@@ -38,7 +38,7 @@ public class StoryLocalServiceWrapper implements StoryLocalService,
 	* @return the story that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Story addStory(org.GoodReturn.model.Story story)
+	public org.goodreturn.model.Story addStory(org.goodreturn.model.Story story)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _storyLocalService.addStory(story);
 	}
@@ -46,25 +46,27 @@ public class StoryLocalServiceWrapper implements StoryLocalService,
 	/**
 	* Creates a new story with the primary key. Does not add the story to the database.
 	*
-	* @param story_Id the primary key for the new story
+	* @param storyPK the primary key for the new story
 	* @return the new story
 	*/
-	public org.GoodReturn.model.Story createStory(long story_Id) {
-		return _storyLocalService.createStory(story_Id);
+	public org.goodreturn.model.Story createStory(
+		org.goodreturn.service.persistence.StoryPK storyPK) {
+		return _storyLocalService.createStory(storyPK);
 	}
 
 	/**
 	* Deletes the story with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param story_Id the primary key of the story
+	* @param storyPK the primary key of the story
 	* @return the story that was removed
 	* @throws PortalException if a story with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Story deleteStory(long story_Id)
+	public org.goodreturn.model.Story deleteStory(
+		org.goodreturn.service.persistence.StoryPK storyPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _storyLocalService.deleteStory(story_Id);
+		return _storyLocalService.deleteStory(storyPK);
 	}
 
 	/**
@@ -74,8 +76,8 @@ public class StoryLocalServiceWrapper implements StoryLocalService,
 	* @return the story that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Story deleteStory(
-		org.GoodReturn.model.Story story)
+	public org.goodreturn.model.Story deleteStory(
+		org.goodreturn.model.Story story)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _storyLocalService.deleteStory(story);
 	}
@@ -155,23 +157,25 @@ public class StoryLocalServiceWrapper implements StoryLocalService,
 		return _storyLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
-	public org.GoodReturn.model.Story fetchStory(long story_Id)
+	public org.goodreturn.model.Story fetchStory(
+		org.goodreturn.service.persistence.StoryPK storyPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _storyLocalService.fetchStory(story_Id);
+		return _storyLocalService.fetchStory(storyPK);
 	}
 
 	/**
 	* Returns the story with the primary key.
 	*
-	* @param story_Id the primary key of the story
+	* @param storyPK the primary key of the story
 	* @return the story
 	* @throws PortalException if a story with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Story getStory(long story_Id)
+	public org.goodreturn.model.Story getStory(
+		org.goodreturn.service.persistence.StoryPK storyPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _storyLocalService.getStory(story_Id);
+		return _storyLocalService.getStory(storyPK);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -193,7 +197,7 @@ public class StoryLocalServiceWrapper implements StoryLocalService,
 	* @return the range of stories
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.Story> getStories(int start,
+	public java.util.List<org.goodreturn.model.Story> getStories(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _storyLocalService.getStories(start, end);
 	}
@@ -216,8 +220,8 @@ public class StoryLocalServiceWrapper implements StoryLocalService,
 	* @return the story that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Story updateStory(
-		org.GoodReturn.model.Story story)
+	public org.goodreturn.model.Story updateStory(
+		org.goodreturn.model.Story story)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _storyLocalService.updateStory(story);
 	}
@@ -230,8 +234,8 @@ public class StoryLocalServiceWrapper implements StoryLocalService,
 	* @return the story that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Story updateStory(
-		org.GoodReturn.model.Story story, boolean merge)
+	public org.goodreturn.model.Story updateStory(
+		org.goodreturn.model.Story story, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _storyLocalService.updateStory(story, merge);
 	}

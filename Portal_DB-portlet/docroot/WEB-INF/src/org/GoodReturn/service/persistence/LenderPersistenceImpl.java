@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -45,11 +45,11 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import org.GoodReturn.NoSuchLenderException;
+import org.goodreturn.NoSuchLenderException;
 
-import org.GoodReturn.model.Lender;
-import org.GoodReturn.model.impl.LenderImpl;
-import org.GoodReturn.model.impl.LenderModelImpl;
+import org.goodreturn.model.Lender;
+import org.goodreturn.model.impl.LenderImpl;
+import org.goodreturn.model.impl.LenderModelImpl;
 
 import java.io.Serializable;
 
@@ -188,7 +188,7 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 	 *
 	 * @param lender_Id the primary key of the lender
 	 * @return the lender that was removed
-	 * @throws org.GoodReturn.NoSuchLenderException if a lender with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchLenderException if a lender with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Lender remove(long lender_Id)
@@ -201,7 +201,7 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 	 *
 	 * @param primaryKey the primary key of the lender
 	 * @return the lender that was removed
-	 * @throws org.GoodReturn.NoSuchLenderException if a lender with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchLenderException if a lender with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
@@ -260,7 +260,7 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 	}
 
 	@Override
-	public Lender updateImpl(org.GoodReturn.model.Lender lender, boolean merge)
+	public Lender updateImpl(org.goodreturn.model.Lender lender, boolean merge)
 		throws SystemException {
 		lender = toUnwrappedModel(lender);
 
@@ -348,11 +348,11 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 	}
 
 	/**
-	 * Returns the lender with the primary key or throws a {@link org.GoodReturn.NoSuchLenderException} if it could not be found.
+	 * Returns the lender with the primary key or throws a {@link org.goodreturn.NoSuchLenderException} if it could not be found.
 	 *
 	 * @param lender_Id the primary key of the lender
 	 * @return the lender
-	 * @throws org.GoodReturn.NoSuchLenderException if a lender with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchLenderException if a lender with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Lender findByPrimaryKey(long lender_Id)
@@ -601,7 +601,7 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 	 * @return the persons associated with the lender
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<org.GoodReturn.model.Person> getPersons(long pk)
+	public List<org.goodreturn.model.Person> getPersons(long pk)
 		throws SystemException {
 		return getPersons(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
@@ -619,15 +619,15 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 	 * @return the range of persons associated with the lender
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<org.GoodReturn.model.Person> getPersons(long pk, int start,
+	public List<org.goodreturn.model.Person> getPersons(long pk, int start,
 		int end) throws SystemException {
 		return getPersons(pk, start, end, null);
 	}
 
-	public static final FinderPath FINDER_PATH_GET_PERSONS = new FinderPath(org.GoodReturn.model.impl.PersonModelImpl.ENTITY_CACHE_ENABLED,
-			org.GoodReturn.model.impl.PersonModelImpl.FINDER_CACHE_ENABLED,
-			org.GoodReturn.model.impl.PersonImpl.class,
-			org.GoodReturn.service.persistence.PersonPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+	public static final FinderPath FINDER_PATH_GET_PERSONS = new FinderPath(org.goodreturn.model.impl.PersonModelImpl.ENTITY_CACHE_ENABLED,
+			org.goodreturn.model.impl.PersonModelImpl.FINDER_CACHE_ENABLED,
+			org.goodreturn.model.impl.PersonImpl.class,
+			org.goodreturn.service.persistence.PersonPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"getPersons",
 			new String[] {
 				Long.class.getName(), "java.lang.Integer", "java.lang.Integer",
@@ -652,11 +652,11 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 	 * @return the ordered range of persons associated with the lender
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<org.GoodReturn.model.Person> getPersons(long pk, int start,
+	public List<org.goodreturn.model.Person> getPersons(long pk, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] { pk, start, end, orderByComparator };
 
-		List<org.GoodReturn.model.Person> list = (List<org.GoodReturn.model.Person>)FinderCacheUtil.getResult(FINDER_PATH_GET_PERSONS,
+		List<org.goodreturn.model.Person> list = (List<org.goodreturn.model.Person>)FinderCacheUtil.getResult(FINDER_PATH_GET_PERSONS,
 				finderArgs, this);
 
 		if (list == null) {
@@ -672,19 +672,19 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 										 .concat(orderByComparator.getOrderBy());
 				}
 				else {
-					sql = _SQL_GETPERSONS.concat(org.GoodReturn.model.impl.PersonModelImpl.ORDER_BY_SQL);
+					sql = _SQL_GETPERSONS.concat(org.goodreturn.model.impl.PersonModelImpl.ORDER_BY_SQL);
 				}
 
 				SQLQuery q = session.createSQLQuery(sql);
 
 				q.addEntity("GoodReturn_Person",
-					org.GoodReturn.model.impl.PersonImpl.class);
+					org.goodreturn.model.impl.PersonImpl.class);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				qPos.add(pk);
 
-				list = (List<org.GoodReturn.model.Person>)QueryUtil.list(q,
+				list = (List<org.goodreturn.model.Person>)QueryUtil.list(q,
 						getDialect(), start, end);
 			}
 			catch (Exception e) {
@@ -709,10 +709,10 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 		return list;
 	}
 
-	public static final FinderPath FINDER_PATH_GET_PERSONS_SIZE = new FinderPath(org.GoodReturn.model.impl.PersonModelImpl.ENTITY_CACHE_ENABLED,
-			org.GoodReturn.model.impl.PersonModelImpl.FINDER_CACHE_ENABLED,
-			org.GoodReturn.model.impl.PersonImpl.class,
-			org.GoodReturn.service.persistence.PersonPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+	public static final FinderPath FINDER_PATH_GET_PERSONS_SIZE = new FinderPath(org.goodreturn.model.impl.PersonModelImpl.ENTITY_CACHE_ENABLED,
+			org.goodreturn.model.impl.PersonModelImpl.FINDER_CACHE_ENABLED,
+			org.goodreturn.model.impl.PersonImpl.class,
+			org.goodreturn.service.persistence.PersonPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"getPersonsSize", new String[] { Long.class.getName() });
 
 	static {
@@ -767,10 +767,10 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 		return count.intValue();
 	}
 
-	public static final FinderPath FINDER_PATH_CONTAINS_PERSON = new FinderPath(org.GoodReturn.model.impl.PersonModelImpl.ENTITY_CACHE_ENABLED,
-			org.GoodReturn.model.impl.PersonModelImpl.FINDER_CACHE_ENABLED,
-			org.GoodReturn.model.impl.PersonImpl.class,
-			org.GoodReturn.service.persistence.PersonPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+	public static final FinderPath FINDER_PATH_CONTAINS_PERSON = new FinderPath(org.goodreturn.model.impl.PersonModelImpl.ENTITY_CACHE_ENABLED,
+			org.goodreturn.model.impl.PersonModelImpl.FINDER_CACHE_ENABLED,
+			org.goodreturn.model.impl.PersonImpl.class,
+			org.goodreturn.service.persistence.PersonPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"containsPerson",
 			new String[] { Long.class.getName(), Long.class.getName() });
 
@@ -831,7 +831,7 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
-						"value.object.listener.org.GoodReturn.model.Lender")));
+						"value.object.listener.org.goodreturn.model.Lender")));
 
 		if (listenerClassNames.length > 0) {
 			try {

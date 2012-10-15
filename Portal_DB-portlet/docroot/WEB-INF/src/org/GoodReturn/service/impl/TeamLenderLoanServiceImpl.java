@@ -12,28 +12,28 @@
  * details.
  */
 
-package org.GoodReturn.service.impl;
+package org.goodreturn.service.impl;
 
-import org.GoodReturn.service.base.TeamLenderLoanServiceBaseImpl;
+import org.goodreturn.service.base.TeamLenderLoanServiceBaseImpl;
 
 /**
  * The implementation of the team lender loan remote service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.service.TeamLenderLoanService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.service.TeamLenderLoanService} interface.
  *
  * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
  * @author gilaa004
- * @see org.GoodReturn.service.base.TeamLenderLoanServiceBaseImpl
- * @see org.GoodReturn.service.TeamLenderLoanServiceUtil
+ * @see org.goodreturn.service.base.TeamLenderLoanServiceBaseImpl
+ * @see org.goodreturn.service.TeamLenderLoanServiceUtil
  */
 public class TeamLenderLoanServiceImpl extends TeamLenderLoanServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link org.GoodReturn.service.TeamLenderLoanServiceUtil} to access the team lender loan remote service.
+	 * Never reference this interface directly. Always use {@link org.goodreturn.service.TeamLenderLoanServiceUtil} to access the team lender loan remote service.
 	 */
 }

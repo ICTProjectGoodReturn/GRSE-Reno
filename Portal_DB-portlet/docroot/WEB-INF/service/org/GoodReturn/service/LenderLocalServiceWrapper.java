@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.service.ServiceWrapper;
 
@@ -38,8 +38,8 @@ public class LenderLocalServiceWrapper implements LenderLocalService,
 	* @return the lender that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Lender addLender(
-		org.GoodReturn.model.Lender lender)
+	public org.goodreturn.model.Lender addLender(
+		org.goodreturn.model.Lender lender)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _lenderLocalService.addLender(lender);
 	}
@@ -50,7 +50,7 @@ public class LenderLocalServiceWrapper implements LenderLocalService,
 	* @param lender_Id the primary key for the new lender
 	* @return the new lender
 	*/
-	public org.GoodReturn.model.Lender createLender(long lender_Id) {
+	public org.goodreturn.model.Lender createLender(long lender_Id) {
 		return _lenderLocalService.createLender(lender_Id);
 	}
 
@@ -62,7 +62,7 @@ public class LenderLocalServiceWrapper implements LenderLocalService,
 	* @throws PortalException if a lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Lender deleteLender(long lender_Id)
+	public org.goodreturn.model.Lender deleteLender(long lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _lenderLocalService.deleteLender(lender_Id);
@@ -75,8 +75,8 @@ public class LenderLocalServiceWrapper implements LenderLocalService,
 	* @return the lender that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Lender deleteLender(
-		org.GoodReturn.model.Lender lender)
+	public org.goodreturn.model.Lender deleteLender(
+		org.goodreturn.model.Lender lender)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _lenderLocalService.deleteLender(lender);
 	}
@@ -156,7 +156,7 @@ public class LenderLocalServiceWrapper implements LenderLocalService,
 		return _lenderLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
-	public org.GoodReturn.model.Lender fetchLender(long lender_Id)
+	public org.goodreturn.model.Lender fetchLender(long lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _lenderLocalService.fetchLender(lender_Id);
 	}
@@ -169,7 +169,7 @@ public class LenderLocalServiceWrapper implements LenderLocalService,
 	* @throws PortalException if a lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Lender getLender(long lender_Id)
+	public org.goodreturn.model.Lender getLender(long lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _lenderLocalService.getLender(lender_Id);
@@ -194,7 +194,7 @@ public class LenderLocalServiceWrapper implements LenderLocalService,
 	* @return the range of lenders
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.Lender> getLenders(int start,
+	public java.util.List<org.goodreturn.model.Lender> getLenders(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _lenderLocalService.getLenders(start, end);
 	}
@@ -217,8 +217,8 @@ public class LenderLocalServiceWrapper implements LenderLocalService,
 	* @return the lender that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Lender updateLender(
-		org.GoodReturn.model.Lender lender)
+	public org.goodreturn.model.Lender updateLender(
+		org.goodreturn.model.Lender lender)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _lenderLocalService.updateLender(lender);
 	}
@@ -231,8 +231,8 @@ public class LenderLocalServiceWrapper implements LenderLocalService,
 	* @return the lender that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Lender updateLender(
-		org.GoodReturn.model.Lender lender, boolean merge)
+	public org.goodreturn.model.Lender updateLender(
+		org.goodreturn.model.Lender lender, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _lenderLocalService.updateLender(lender, merge);
 	}

@@ -12,13 +12,13 @@
  * details.
  */
 
-package org.GoodReturn.model.impl;
+package org.goodreturn.model.impl;
 
 import com.liferay.portal.kernel.exception.SystemException;
 
-import org.GoodReturn.model.Gift_Certificate;
+import org.goodreturn.model.Gift_Certificate;
 
-import org.GoodReturn.service.Gift_CertificateLocalServiceUtil;
+import org.goodreturn.service.Gift_CertificateLocalServiceUtil;
 
 /**
  * The extended model base implementation for the Gift_Certificate service. Represents a row in the &quot;GoodReturn_Gift_Certificate&quot; database table, with each column mapped to a property of this class.
@@ -29,7 +29,7 @@ import org.GoodReturn.service.Gift_CertificateLocalServiceUtil;
  *
  * @author gilaa004
  * @see Gift_CertificateImpl
- * @see org.GoodReturn.model.Gift_Certificate
+ * @see org.goodreturn.model.Gift_Certificate
  * @generated
  */
 public abstract class Gift_CertificateBaseImpl extends Gift_CertificateModelImpl

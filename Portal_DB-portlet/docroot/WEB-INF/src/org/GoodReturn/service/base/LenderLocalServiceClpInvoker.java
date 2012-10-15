@@ -12,9 +12,9 @@
  * details.
  */
 
-package org.GoodReturn.service.base;
+package org.goodreturn.service.base;
 
-import org.GoodReturn.service.LenderLocalServiceUtil;
+import org.goodreturn.service.LenderLocalServiceUtil;
 
 import java.util.Arrays;
 
@@ -25,7 +25,7 @@ public class LenderLocalServiceClpInvoker {
 	public LenderLocalServiceClpInvoker() {
 		_methodName0 = "addLender";
 
-		_methodParameterTypes0 = new String[] { "org.GoodReturn.model.Lender" };
+		_methodParameterTypes0 = new String[] { "org.goodreturn.model.Lender" };
 
 		_methodName1 = "createLender";
 
@@ -37,7 +37,7 @@ public class LenderLocalServiceClpInvoker {
 
 		_methodName3 = "deleteLender";
 
-		_methodParameterTypes3 = new String[] { "org.GoodReturn.model.Lender" };
+		_methodParameterTypes3 = new String[] { "org.goodreturn.model.Lender" };
 
 		_methodName4 = "dynamicQuery";
 
@@ -90,12 +90,12 @@ public class LenderLocalServiceClpInvoker {
 
 		_methodName14 = "updateLender";
 
-		_methodParameterTypes14 = new String[] { "org.GoodReturn.model.Lender" };
+		_methodParameterTypes14 = new String[] { "org.goodreturn.model.Lender" };
 
 		_methodName15 = "updateLender";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.Lender", "boolean"
+				"org.goodreturn.model.Lender", "boolean"
 			};
 
 		_methodName86 = "getBeanIdentifier";
@@ -111,7 +111,7 @@ public class LenderLocalServiceClpInvoker {
 		Object[] arguments) throws Throwable {
 		if (_methodName0.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-			return LenderLocalServiceUtil.addLender((org.GoodReturn.model.Lender)arguments[0]);
+			return LenderLocalServiceUtil.addLender((org.goodreturn.model.Lender)arguments[0]);
 		}
 
 		if (_methodName1.equals(name) &&
@@ -126,7 +126,7 @@ public class LenderLocalServiceClpInvoker {
 
 		if (_methodName3.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-			return LenderLocalServiceUtil.deleteLender((org.GoodReturn.model.Lender)arguments[0]);
+			return LenderLocalServiceUtil.deleteLender((org.goodreturn.model.Lender)arguments[0]);
 		}
 
 		if (_methodName4.equals(name) &&
@@ -187,12 +187,12 @@ public class LenderLocalServiceClpInvoker {
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return LenderLocalServiceUtil.updateLender((org.GoodReturn.model.Lender)arguments[0]);
+			return LenderLocalServiceUtil.updateLender((org.goodreturn.model.Lender)arguments[0]);
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return LenderLocalServiceUtil.updateLender((org.GoodReturn.model.Lender)arguments[0],
+			return LenderLocalServiceUtil.updateLender((org.goodreturn.model.Lender)arguments[0],
 				((Boolean)arguments[1]).booleanValue());
 		}
 

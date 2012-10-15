@@ -12,11 +12,11 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
-import org.GoodReturn.model.TeamLenderLoan;
+import org.goodreturn.model.TeamLenderLoan;
 
 /**
  * The persistence interface for the team lender loan service.
@@ -42,7 +42,7 @@ public interface TeamLenderLoanPersistence extends BasePersistence<TeamLenderLoa
 	*
 	* @param teamLenderLoan the team lender loan
 	*/
-	public void cacheResult(org.GoodReturn.model.TeamLenderLoan teamLenderLoan);
+	public void cacheResult(org.goodreturn.model.TeamLenderLoan teamLenderLoan);
 
 	/**
 	* Caches the team lender loans in the entity cache if it is enabled.
@@ -50,7 +50,7 @@ public interface TeamLenderLoanPersistence extends BasePersistence<TeamLenderLoa
 	* @param teamLenderLoans the team lender loans
 	*/
 	public void cacheResult(
-		java.util.List<org.GoodReturn.model.TeamLenderLoan> teamLenderLoans);
+		java.util.List<org.goodreturn.model.TeamLenderLoan> teamLenderLoans);
 
 	/**
 	* Creates a new team lender loan with the primary key. Does not add the team lender loan to the database.
@@ -58,35 +58,35 @@ public interface TeamLenderLoanPersistence extends BasePersistence<TeamLenderLoa
 	* @param account_Id the primary key for the new team lender loan
 	* @return the new team lender loan
 	*/
-	public org.GoodReturn.model.TeamLenderLoan create(long account_Id);
+	public org.goodreturn.model.TeamLenderLoan create(long account_Id);
 
 	/**
 	* Removes the team lender loan with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param account_Id the primary key of the team lender loan
 	* @return the team lender loan that was removed
-	* @throws org.GoodReturn.NoSuchTeamLenderLoanException if a team lender loan with the primary key could not be found
+	* @throws org.goodreturn.NoSuchTeamLenderLoanException if a team lender loan with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.TeamLenderLoan remove(long account_Id)
+	public org.goodreturn.model.TeamLenderLoan remove(long account_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchTeamLenderLoanException;
+			org.goodreturn.NoSuchTeamLenderLoanException;
 
-	public org.GoodReturn.model.TeamLenderLoan updateImpl(
-		org.GoodReturn.model.TeamLenderLoan teamLenderLoan, boolean merge)
+	public org.goodreturn.model.TeamLenderLoan updateImpl(
+		org.goodreturn.model.TeamLenderLoan teamLenderLoan, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the team lender loan with the primary key or throws a {@link org.GoodReturn.NoSuchTeamLenderLoanException} if it could not be found.
+	* Returns the team lender loan with the primary key or throws a {@link org.goodreturn.NoSuchTeamLenderLoanException} if it could not be found.
 	*
 	* @param account_Id the primary key of the team lender loan
 	* @return the team lender loan
-	* @throws org.GoodReturn.NoSuchTeamLenderLoanException if a team lender loan with the primary key could not be found
+	* @throws org.goodreturn.NoSuchTeamLenderLoanException if a team lender loan with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.TeamLenderLoan findByPrimaryKey(long account_Id)
+	public org.goodreturn.model.TeamLenderLoan findByPrimaryKey(long account_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchTeamLenderLoanException;
+			org.goodreturn.NoSuchTeamLenderLoanException;
 
 	/**
 	* Returns the team lender loan with the primary key or returns <code>null</code> if it could not be found.
@@ -95,7 +95,7 @@ public interface TeamLenderLoanPersistence extends BasePersistence<TeamLenderLoa
 	* @return the team lender loan, or <code>null</code> if a team lender loan with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.TeamLenderLoan fetchByPrimaryKey(
+	public org.goodreturn.model.TeamLenderLoan fetchByPrimaryKey(
 		long account_Id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -105,7 +105,7 @@ public interface TeamLenderLoanPersistence extends BasePersistence<TeamLenderLoa
 	* @return the team lender loans
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.TeamLenderLoan> findAll()
+	public java.util.List<org.goodreturn.model.TeamLenderLoan> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -120,7 +120,7 @@ public interface TeamLenderLoanPersistence extends BasePersistence<TeamLenderLoa
 	* @return the range of team lender loans
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.TeamLenderLoan> findAll(
+	public java.util.List<org.goodreturn.model.TeamLenderLoan> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -137,7 +137,7 @@ public interface TeamLenderLoanPersistence extends BasePersistence<TeamLenderLoa
 	* @return the ordered range of team lender loans
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.TeamLenderLoan> findAll(
+	public java.util.List<org.goodreturn.model.TeamLenderLoan> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;

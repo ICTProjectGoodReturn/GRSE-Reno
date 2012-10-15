@@ -1,0 +1,1 @@
+create index IX_71B7B40B on GoodReturn_Story (uuid_);

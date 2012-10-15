@@ -63,10 +63,20 @@ create table GoodReturn_Person (
 );
 
 create table GoodReturn_Story (
-	story_Id LONG not null primary key,
+	uuid_ VARCHAR(75) null,
+	story_Id LONG not null,
+	loan_Account_Id LONG not null,
 	final_Story VARCHAR(75) null,
 	is_Good_Enough_For_Marketing BOOLEAN,
-	is_Good_Enough_For_Final_Story BOOLEAN
+	is_Good_Enough_For_Final_Story BOOLEAN,
+	status INTEGER,
+	status_By_User_Id LONG,
+	status_By_User_Name VARCHAR(75) null,
+	status_Date DATE null,
+	company_Id LONG,
+	group_Id LONG,
+	user_Id LONG,
+	primary key (story_Id, loan_Account_Id)
 );
 
 create table GoodReturn_Supplementary_Table (

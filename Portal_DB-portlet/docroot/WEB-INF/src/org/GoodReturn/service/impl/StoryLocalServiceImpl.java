@@ -12,28 +12,28 @@
  * details.
  */
 
-package org.GoodReturn.service.impl;
+package org.goodreturn.service.impl;
 
-import org.GoodReturn.service.base.StoryLocalServiceBaseImpl;
+import org.goodreturn.service.base.StoryLocalServiceBaseImpl;
 
 /**
  * The implementation of the story local service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.service.StoryLocalService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.service.StoryLocalService} interface.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
  * @author gilaa004
- * @see org.GoodReturn.service.base.StoryLocalServiceBaseImpl
- * @see org.GoodReturn.service.StoryLocalServiceUtil
+ * @see org.goodreturn.service.base.StoryLocalServiceBaseImpl
+ * @see org.goodreturn.service.StoryLocalServiceUtil
  */
 public class StoryLocalServiceImpl extends StoryLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link org.GoodReturn.service.StoryLocalServiceUtil} to access the story local service.
+	 * Never reference this interface directly. Always use {@link org.goodreturn.service.StoryLocalServiceUtil} to access the story local service.
 	 */
 }

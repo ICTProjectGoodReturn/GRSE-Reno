@@ -12,13 +12,13 @@
  * details.
  */
 
-package org.GoodReturn.model.impl;
+package org.goodreturn.model.impl;
 
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
-import org.GoodReturn.model.Gift_Certificate;
+import org.goodreturn.model.Gift_Certificate;
 
 import java.io.Serializable;
 

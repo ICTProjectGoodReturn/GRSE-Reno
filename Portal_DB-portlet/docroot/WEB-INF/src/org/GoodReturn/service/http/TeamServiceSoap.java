@@ -12,12 +12,12 @@
  * details.
  */
 
-package org.GoodReturn.service.http;
+package org.goodreturn.service.http;
 
 /**
  * <p>
  * This class provides a SOAP utility for the
- * {@link org.GoodReturn.service.TeamServiceUtil} service utility. The
+ * {@link org.goodreturn.service.TeamServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -26,10 +26,10 @@ package org.GoodReturn.service.http;
  * <p>
  * ServiceBuilder follows certain rules in translating the methods. For example,
  * if the method in the service utility returns a {@link java.util.List}, that
- * is translated to an array of {@link org.GoodReturn.model.TeamSoap}.
+ * is translated to an array of {@link org.goodreturn.model.TeamSoap}.
  * If the method in the service utility returns a
- * {@link org.GoodReturn.model.Team}, that is translated to a
- * {@link org.GoodReturn.model.TeamSoap}. Methods that SOAP cannot
+ * {@link org.goodreturn.model.Team}, that is translated to a
+ * {@link org.goodreturn.model.TeamSoap}. Methods that SOAP cannot
  * safely wire are skipped.
  * </p>
  *
@@ -53,8 +53,8 @@ package org.GoodReturn.service.http;
  *
  * @author    gilaa004
  * @see       TeamServiceHttp
- * @see       org.GoodReturn.model.TeamSoap
- * @see       org.GoodReturn.service.TeamServiceUtil
+ * @see       org.goodreturn.model.TeamSoap
+ * @see       org.goodreturn.service.TeamServiceUtil
  * @generated
  */
 public class TeamServiceSoap {

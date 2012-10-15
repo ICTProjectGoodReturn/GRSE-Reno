@@ -12,9 +12,9 @@
  * details.
  */
 
-package org.GoodReturn.service.base;
+package org.goodreturn.service.base;
 
-import org.GoodReturn.service.TeamLenderLoanServiceUtil;
+import org.goodreturn.service.TeamLenderLoanServiceUtil;
 
 import java.util.Arrays;
 

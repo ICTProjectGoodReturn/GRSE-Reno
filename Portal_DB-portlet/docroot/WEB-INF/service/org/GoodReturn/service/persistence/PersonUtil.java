@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
-import org.GoodReturn.model.Person;
+import org.goodreturn.model.Person;
 
 import java.util.List;
 
@@ -114,7 +114,7 @@ public class PersonUtil {
 	*
 	* @param person the person
 	*/
-	public static void cacheResult(org.GoodReturn.model.Person person) {
+	public static void cacheResult(org.goodreturn.model.Person person) {
 		getPersistence().cacheResult(person);
 	}
 
@@ -124,7 +124,7 @@ public class PersonUtil {
 	* @param persons the persons
 	*/
 	public static void cacheResult(
-		java.util.List<org.GoodReturn.model.Person> persons) {
+		java.util.List<org.goodreturn.model.Person> persons) {
 		getPersistence().cacheResult(persons);
 	}
 
@@ -134,7 +134,7 @@ public class PersonUtil {
 	* @param abacus_Person_Id the primary key for the new person
 	* @return the new person
 	*/
-	public static org.GoodReturn.model.Person create(long abacus_Person_Id) {
+	public static org.goodreturn.model.Person create(long abacus_Person_Id) {
 		return getPersistence().create(abacus_Person_Id);
 	}
 
@@ -143,33 +143,33 @@ public class PersonUtil {
 	*
 	* @param abacus_Person_Id the primary key of the person
 	* @return the person that was removed
-	* @throws org.GoodReturn.NoSuchPersonException if a person with the primary key could not be found
+	* @throws org.goodreturn.NoSuchPersonException if a person with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Person remove(long abacus_Person_Id)
+	public static org.goodreturn.model.Person remove(long abacus_Person_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchPersonException {
+			org.goodreturn.NoSuchPersonException {
 		return getPersistence().remove(abacus_Person_Id);
 	}
 
-	public static org.GoodReturn.model.Person updateImpl(
-		org.GoodReturn.model.Person person, boolean merge)
+	public static org.goodreturn.model.Person updateImpl(
+		org.goodreturn.model.Person person, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(person, merge);
 	}
 
 	/**
-	* Returns the person with the primary key or throws a {@link org.GoodReturn.NoSuchPersonException} if it could not be found.
+	* Returns the person with the primary key or throws a {@link org.goodreturn.NoSuchPersonException} if it could not be found.
 	*
 	* @param abacus_Person_Id the primary key of the person
 	* @return the person
-	* @throws org.GoodReturn.NoSuchPersonException if a person with the primary key could not be found
+	* @throws org.goodreturn.NoSuchPersonException if a person with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Person findByPrimaryKey(
+	public static org.goodreturn.model.Person findByPrimaryKey(
 		long abacus_Person_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchPersonException {
+			org.goodreturn.NoSuchPersonException {
 		return getPersistence().findByPrimaryKey(abacus_Person_Id);
 	}
 
@@ -180,7 +180,7 @@ public class PersonUtil {
 	* @return the person, or <code>null</code> if a person with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Person fetchByPrimaryKey(
+	public static org.goodreturn.model.Person fetchByPrimaryKey(
 		long abacus_Person_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(abacus_Person_Id);
@@ -192,7 +192,7 @@ public class PersonUtil {
 	* @return the persons
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Person> findAll()
+	public static java.util.List<org.goodreturn.model.Person> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
@@ -209,7 +209,7 @@ public class PersonUtil {
 	* @return the range of persons
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Person> findAll(
+	public static java.util.List<org.goodreturn.model.Person> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
@@ -228,7 +228,7 @@ public class PersonUtil {
 	* @return the ordered range of persons
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Person> findAll(
+	public static java.util.List<org.goodreturn.model.Person> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -258,7 +258,7 @@ public class PersonUtil {
 
 	public static PersonPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (PersonPersistence)PortletBeanLocatorUtil.locate(org.GoodReturn.service.ClpSerializer.getServletContextName(),
+			_persistence = (PersonPersistence)PortletBeanLocatorUtil.locate(org.goodreturn.service.ClpSerializer.getServletContextName(),
 					PersonPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(PersonUtil.class, "_persistence");

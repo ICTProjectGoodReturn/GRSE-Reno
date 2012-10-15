@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -40,11 +40,11 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import org.GoodReturn.NoSuchSupplementary_TableException;
+import org.goodreturn.NoSuchSupplementary_TableException;
 
-import org.GoodReturn.model.Supplementary_Table;
-import org.GoodReturn.model.impl.Supplementary_TableImpl;
-import org.GoodReturn.model.impl.Supplementary_TableModelImpl;
+import org.goodreturn.model.Supplementary_Table;
+import org.goodreturn.model.impl.Supplementary_TableImpl;
+import org.goodreturn.model.impl.Supplementary_TableModelImpl;
 
 import java.io.Serializable;
 
@@ -188,7 +188,7 @@ public class Supplementary_TablePersistenceImpl extends BasePersistenceImpl<Supp
 	 *
 	 * @param table_Id the primary key of the supplementary_ table
 	 * @return the supplementary_ table that was removed
-	 * @throws org.GoodReturn.NoSuchSupplementary_TableException if a supplementary_ table with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchSupplementary_TableException if a supplementary_ table with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Supplementary_Table remove(long table_Id)
@@ -201,7 +201,7 @@ public class Supplementary_TablePersistenceImpl extends BasePersistenceImpl<Supp
 	 *
 	 * @param primaryKey the primary key of the supplementary_ table
 	 * @return the supplementary_ table that was removed
-	 * @throws org.GoodReturn.NoSuchSupplementary_TableException if a supplementary_ table with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchSupplementary_TableException if a supplementary_ table with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
@@ -263,7 +263,7 @@ public class Supplementary_TablePersistenceImpl extends BasePersistenceImpl<Supp
 
 	@Override
 	public Supplementary_Table updateImpl(
-		org.GoodReturn.model.Supplementary_Table supplementary_Table,
+		org.goodreturn.model.Supplementary_Table supplementary_Table,
 		boolean merge) throws SystemException {
 		supplementary_Table = toUnwrappedModel(supplementary_Table);
 
@@ -329,11 +329,11 @@ public class Supplementary_TablePersistenceImpl extends BasePersistenceImpl<Supp
 	}
 
 	/**
-	 * Returns the supplementary_ table with the primary key or throws a {@link org.GoodReturn.NoSuchSupplementary_TableException} if it could not be found.
+	 * Returns the supplementary_ table with the primary key or throws a {@link org.goodreturn.NoSuchSupplementary_TableException} if it could not be found.
 	 *
 	 * @param table_Id the primary key of the supplementary_ table
 	 * @return the supplementary_ table
-	 * @throws org.GoodReturn.NoSuchSupplementary_TableException if a supplementary_ table with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchSupplementary_TableException if a supplementary_ table with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Supplementary_Table findByPrimaryKey(long table_Id)
@@ -584,7 +584,7 @@ public class Supplementary_TablePersistenceImpl extends BasePersistenceImpl<Supp
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
-						"value.object.listener.org.GoodReturn.model.Supplementary_Table")));
+						"value.object.listener.org.goodreturn.model.Supplementary_Table")));
 
 		if (listenerClassNames.length > 0) {
 			try {

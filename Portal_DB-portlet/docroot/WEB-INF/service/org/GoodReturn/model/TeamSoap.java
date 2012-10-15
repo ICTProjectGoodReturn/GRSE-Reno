@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.model;
+package org.goodreturn.model;
 
 import java.io.Serializable;
 
@@ -20,10 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services, specifically {@link org.GoodReturn.service.http.TeamServiceSoap}.
+ * This class is used by SOAP remote services, specifically {@link org.goodreturn.service.http.TeamServiceSoap}.
  *
  * @author    gilaa004
- * @see       org.GoodReturn.service.http.TeamServiceSoap
+ * @see       org.goodreturn.service.http.TeamServiceSoap
  * @generated
  */
 public class TeamSoap implements Serializable {

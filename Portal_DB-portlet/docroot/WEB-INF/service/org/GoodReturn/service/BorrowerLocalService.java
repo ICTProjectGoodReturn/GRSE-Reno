@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -32,8 +32,8 @@ import com.liferay.portal.service.PersistedModelLocalService;
  *
  * @author gilaa004
  * @see BorrowerLocalServiceUtil
- * @see org.GoodReturn.service.base.BorrowerLocalServiceBaseImpl
- * @see org.GoodReturn.service.impl.BorrowerLocalServiceImpl
+ * @see org.goodreturn.service.base.BorrowerLocalServiceBaseImpl
+ * @see org.goodreturn.service.impl.BorrowerLocalServiceImpl
  * @generated
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
@@ -43,7 +43,7 @@ public interface BorrowerLocalService extends BaseLocalService,
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link BorrowerLocalServiceUtil} to access the borrower local service. Add custom service methods to {@link org.GoodReturn.service.impl.BorrowerLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link BorrowerLocalServiceUtil} to access the borrower local service. Add custom service methods to {@link org.goodreturn.service.impl.BorrowerLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**
@@ -53,8 +53,8 @@ public interface BorrowerLocalService extends BaseLocalService,
 	* @return the borrower that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Borrower addBorrower(
-		org.GoodReturn.model.Borrower borrower)
+	public org.goodreturn.model.Borrower addBorrower(
+		org.goodreturn.model.Borrower borrower)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -63,7 +63,7 @@ public interface BorrowerLocalService extends BaseLocalService,
 	* @param abacus_Borrower_Id the primary key for the new borrower
 	* @return the new borrower
 	*/
-	public org.GoodReturn.model.Borrower createBorrower(long abacus_Borrower_Id);
+	public org.goodreturn.model.Borrower createBorrower(long abacus_Borrower_Id);
 
 	/**
 	* Deletes the borrower with the primary key from the database. Also notifies the appropriate model listeners.
@@ -73,7 +73,7 @@ public interface BorrowerLocalService extends BaseLocalService,
 	* @throws PortalException if a borrower with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Borrower deleteBorrower(long abacus_Borrower_Id)
+	public org.goodreturn.model.Borrower deleteBorrower(long abacus_Borrower_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -84,8 +84,8 @@ public interface BorrowerLocalService extends BaseLocalService,
 	* @return the borrower that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Borrower deleteBorrower(
-		org.GoodReturn.model.Borrower borrower)
+	public org.goodreturn.model.Borrower deleteBorrower(
+		org.goodreturn.model.Borrower borrower)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -153,7 +153,7 @@ public interface BorrowerLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.GoodReturn.model.Borrower fetchBorrower(long abacus_Borrower_Id)
+	public org.goodreturn.model.Borrower fetchBorrower(long abacus_Borrower_Id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -165,7 +165,7 @@ public interface BorrowerLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.GoodReturn.model.Borrower getBorrower(long abacus_Borrower_Id)
+	public org.goodreturn.model.Borrower getBorrower(long abacus_Borrower_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -188,7 +188,7 @@ public interface BorrowerLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<org.GoodReturn.model.Borrower> getBorrowers(
+	public java.util.List<org.goodreturn.model.Borrower> getBorrowers(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -209,8 +209,8 @@ public interface BorrowerLocalService extends BaseLocalService,
 	* @return the borrower that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Borrower updateBorrower(
-		org.GoodReturn.model.Borrower borrower)
+	public org.goodreturn.model.Borrower updateBorrower(
+		org.goodreturn.model.Borrower borrower)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -221,8 +221,8 @@ public interface BorrowerLocalService extends BaseLocalService,
 	* @return the borrower that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Borrower updateBorrower(
-		org.GoodReturn.model.Borrower borrower, boolean merge)
+	public org.goodreturn.model.Borrower updateBorrower(
+		org.goodreturn.model.Borrower borrower, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

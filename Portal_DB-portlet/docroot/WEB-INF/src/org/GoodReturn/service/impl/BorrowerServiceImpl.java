@@ -12,28 +12,28 @@
  * details.
  */
 
-package org.GoodReturn.service.impl;
+package org.goodreturn.service.impl;
 
-import org.GoodReturn.service.base.BorrowerServiceBaseImpl;
+import org.goodreturn.service.base.BorrowerServiceBaseImpl;
 
 /**
  * The implementation of the borrower remote service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.service.BorrowerService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.service.BorrowerService} interface.
  *
  * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
  * @author gilaa004
- * @see org.GoodReturn.service.base.BorrowerServiceBaseImpl
- * @see org.GoodReturn.service.BorrowerServiceUtil
+ * @see org.goodreturn.service.base.BorrowerServiceBaseImpl
+ * @see org.goodreturn.service.BorrowerServiceUtil
  */
 public class BorrowerServiceImpl extends BorrowerServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link org.GoodReturn.service.BorrowerServiceUtil} to access the borrower remote service.
+	 * Never reference this interface directly. Always use {@link org.goodreturn.service.BorrowerServiceUtil} to access the borrower remote service.
 	 */
 }

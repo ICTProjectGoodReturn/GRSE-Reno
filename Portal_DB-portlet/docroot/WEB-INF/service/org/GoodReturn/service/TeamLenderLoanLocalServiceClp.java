@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -27,7 +27,7 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 		_methodName0 = "addTeamLenderLoan";
 
 		_methodParameterTypes0 = new String[] {
-				"org.GoodReturn.model.TeamLenderLoan"
+				"org.goodreturn.model.TeamLenderLoan"
 			};
 
 		_methodName1 = "createTeamLenderLoan";
@@ -41,7 +41,7 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 		_methodName3 = "deleteTeamLenderLoan";
 
 		_methodParameterTypes3 = new String[] {
-				"org.GoodReturn.model.TeamLenderLoan"
+				"org.goodreturn.model.TeamLenderLoan"
 			};
 
 		_methodName4 = "dynamicQuery";
@@ -96,13 +96,13 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 		_methodName14 = "updateTeamLenderLoan";
 
 		_methodParameterTypes14 = new String[] {
-				"org.GoodReturn.model.TeamLenderLoan"
+				"org.goodreturn.model.TeamLenderLoan"
 			};
 
 		_methodName15 = "updateTeamLenderLoan";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.TeamLenderLoan", "boolean"
+				"org.goodreturn.model.TeamLenderLoan", "boolean"
 			};
 
 		_methodName16 = "getBeanIdentifier";
@@ -114,8 +114,8 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 	}
 
-	public org.GoodReturn.model.TeamLenderLoan addTeamLenderLoan(
-		org.GoodReturn.model.TeamLenderLoan teamLenderLoan)
+	public org.goodreturn.model.TeamLenderLoan addTeamLenderLoan(
+		org.goodreturn.model.TeamLenderLoan teamLenderLoan)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -140,10 +140,10 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 			}
 		}
 
-		return (org.GoodReturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.TeamLenderLoan createTeamLenderLoan(
+	public org.goodreturn.model.TeamLenderLoan createTeamLenderLoan(
 		long account_Id) {
 		Object returnObj = null;
 
@@ -163,10 +163,10 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 			}
 		}
 
-		return (org.GoodReturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.TeamLenderLoan deleteTeamLenderLoan(
+	public org.goodreturn.model.TeamLenderLoan deleteTeamLenderLoan(
 		long account_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -196,11 +196,11 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 			}
 		}
 
-		return (org.GoodReturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.TeamLenderLoan deleteTeamLenderLoan(
-		org.GoodReturn.model.TeamLenderLoan teamLenderLoan)
+	public org.goodreturn.model.TeamLenderLoan deleteTeamLenderLoan(
+		org.goodreturn.model.TeamLenderLoan teamLenderLoan)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -225,7 +225,7 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 			}
 		}
 
-		return (org.GoodReturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -385,7 +385,7 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 		return ((Long)returnObj).longValue();
 	}
 
-	public org.GoodReturn.model.TeamLenderLoan fetchTeamLenderLoan(
+	public org.goodreturn.model.TeamLenderLoan fetchTeamLenderLoan(
 		long account_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -410,10 +410,10 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 			}
 		}
 
-		return (org.GoodReturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.TeamLenderLoan getTeamLenderLoan(
+	public org.goodreturn.model.TeamLenderLoan getTeamLenderLoan(
 		long account_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -443,7 +443,7 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 			}
 		}
 
-		return (org.GoodReturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -480,7 +480,7 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<org.GoodReturn.model.TeamLenderLoan> getTeamLenderLoans(
+	public java.util.List<org.goodreturn.model.TeamLenderLoan> getTeamLenderLoans(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -505,7 +505,7 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 			}
 		}
 
-		return (java.util.List<org.GoodReturn.model.TeamLenderLoan>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<org.goodreturn.model.TeamLenderLoan>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getTeamLenderLoansCount()
@@ -535,8 +535,8 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 		return ((Integer)returnObj).intValue();
 	}
 
-	public org.GoodReturn.model.TeamLenderLoan updateTeamLenderLoan(
-		org.GoodReturn.model.TeamLenderLoan teamLenderLoan)
+	public org.goodreturn.model.TeamLenderLoan updateTeamLenderLoan(
+		org.goodreturn.model.TeamLenderLoan teamLenderLoan)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -561,11 +561,11 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 			}
 		}
 
-		return (org.GoodReturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.TeamLenderLoan updateTeamLenderLoan(
-		org.GoodReturn.model.TeamLenderLoan teamLenderLoan, boolean merge)
+	public org.goodreturn.model.TeamLenderLoan updateTeamLenderLoan(
+		org.goodreturn.model.TeamLenderLoan teamLenderLoan, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -594,7 +594,7 @@ public class TeamLenderLoanLocalServiceClp implements TeamLenderLoanLocalService
 			}
 		}
 
-		return (org.GoodReturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.TeamLenderLoan)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.lang.String getBeanIdentifier() {

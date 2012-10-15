@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.model;
+package org.goodreturn.model;
 
 import com.liferay.portal.model.PersistedModel;
 
@@ -21,14 +21,14 @@ import com.liferay.portal.model.PersistedModel;
  *
  * @author gilaa004
  * @see TeamModel
- * @see org.GoodReturn.model.impl.TeamImpl
- * @see org.GoodReturn.model.impl.TeamModelImpl
+ * @see org.goodreturn.model.impl.TeamImpl
+ * @see org.goodreturn.model.impl.TeamModelImpl
  * @generated
  */
 public interface Team extends TeamModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link org.GoodReturn.model.impl.TeamImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to {@link org.goodreturn.model.impl.TeamImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

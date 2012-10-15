@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.model;
+package org.goodreturn.model;
 
 import com.liferay.portal.model.PersistedModel;
 
@@ -21,14 +21,14 @@ import com.liferay.portal.model.PersistedModel;
  *
  * @author gilaa004
  * @see StoryModel
- * @see org.GoodReturn.model.impl.StoryImpl
- * @see org.GoodReturn.model.impl.StoryModelImpl
+ * @see org.goodreturn.model.impl.StoryImpl
+ * @see org.goodreturn.model.impl.StoryModelImpl
  * @generated
  */
 public interface Story extends StoryModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link org.GoodReturn.model.impl.StoryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to {@link org.goodreturn.model.impl.StoryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

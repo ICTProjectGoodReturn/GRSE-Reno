@@ -1,1 +1,1 @@
-Liferay.Service.register("Liferay.Service.GoodReturn", "org.GoodReturn.service", "Portal_DB-portlet");
+Liferay.Service.register("Liferay.Service.GoodReturn", "org.goodreturn.service", "Portal_DB-portlet");

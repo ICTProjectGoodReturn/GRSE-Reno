@@ -12,11 +12,11 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
-import org.GoodReturn.model.Supplementary_Table;
+import org.goodreturn.model.Supplementary_Table;
 
 /**
  * The persistence interface for the supplementary_ table service.
@@ -43,7 +43,7 @@ public interface Supplementary_TablePersistence extends BasePersistence<Suppleme
 	* @param supplementary_Table the supplementary_ table
 	*/
 	public void cacheResult(
-		org.GoodReturn.model.Supplementary_Table supplementary_Table);
+		org.goodreturn.model.Supplementary_Table supplementary_Table);
 
 	/**
 	* Caches the supplementary_ tables in the entity cache if it is enabled.
@@ -51,7 +51,7 @@ public interface Supplementary_TablePersistence extends BasePersistence<Suppleme
 	* @param supplementary_Tables the supplementary_ tables
 	*/
 	public void cacheResult(
-		java.util.List<org.GoodReturn.model.Supplementary_Table> supplementary_Tables);
+		java.util.List<org.goodreturn.model.Supplementary_Table> supplementary_Tables);
 
 	/**
 	* Creates a new supplementary_ table with the primary key. Does not add the supplementary_ table to the database.
@@ -59,37 +59,37 @@ public interface Supplementary_TablePersistence extends BasePersistence<Suppleme
 	* @param table_Id the primary key for the new supplementary_ table
 	* @return the new supplementary_ table
 	*/
-	public org.GoodReturn.model.Supplementary_Table create(long table_Id);
+	public org.goodreturn.model.Supplementary_Table create(long table_Id);
 
 	/**
 	* Removes the supplementary_ table with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param table_Id the primary key of the supplementary_ table
 	* @return the supplementary_ table that was removed
-	* @throws org.GoodReturn.NoSuchSupplementary_TableException if a supplementary_ table with the primary key could not be found
+	* @throws org.goodreturn.NoSuchSupplementary_TableException if a supplementary_ table with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Supplementary_Table remove(long table_Id)
+	public org.goodreturn.model.Supplementary_Table remove(long table_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchSupplementary_TableException;
+			org.goodreturn.NoSuchSupplementary_TableException;
 
-	public org.GoodReturn.model.Supplementary_Table updateImpl(
-		org.GoodReturn.model.Supplementary_Table supplementary_Table,
+	public org.goodreturn.model.Supplementary_Table updateImpl(
+		org.goodreturn.model.Supplementary_Table supplementary_Table,
 		boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the supplementary_ table with the primary key or throws a {@link org.GoodReturn.NoSuchSupplementary_TableException} if it could not be found.
+	* Returns the supplementary_ table with the primary key or throws a {@link org.goodreturn.NoSuchSupplementary_TableException} if it could not be found.
 	*
 	* @param table_Id the primary key of the supplementary_ table
 	* @return the supplementary_ table
-	* @throws org.GoodReturn.NoSuchSupplementary_TableException if a supplementary_ table with the primary key could not be found
+	* @throws org.goodreturn.NoSuchSupplementary_TableException if a supplementary_ table with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Supplementary_Table findByPrimaryKey(
+	public org.goodreturn.model.Supplementary_Table findByPrimaryKey(
 		long table_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchSupplementary_TableException;
+			org.goodreturn.NoSuchSupplementary_TableException;
 
 	/**
 	* Returns the supplementary_ table with the primary key or returns <code>null</code> if it could not be found.
@@ -98,7 +98,7 @@ public interface Supplementary_TablePersistence extends BasePersistence<Suppleme
 	* @return the supplementary_ table, or <code>null</code> if a supplementary_ table with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Supplementary_Table fetchByPrimaryKey(
+	public org.goodreturn.model.Supplementary_Table fetchByPrimaryKey(
 		long table_Id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -108,7 +108,7 @@ public interface Supplementary_TablePersistence extends BasePersistence<Suppleme
 	* @return the supplementary_ tables
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.Supplementary_Table> findAll()
+	public java.util.List<org.goodreturn.model.Supplementary_Table> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -123,7 +123,7 @@ public interface Supplementary_TablePersistence extends BasePersistence<Suppleme
 	* @return the range of supplementary_ tables
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.Supplementary_Table> findAll(
+	public java.util.List<org.goodreturn.model.Supplementary_Table> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -140,7 +140,7 @@ public interface Supplementary_TablePersistence extends BasePersistence<Suppleme
 	* @return the ordered range of supplementary_ tables
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.Supplementary_Table> findAll(
+	public java.util.List<org.goodreturn.model.Supplementary_Table> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;

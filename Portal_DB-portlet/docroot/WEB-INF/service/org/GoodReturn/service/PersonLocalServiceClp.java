@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -25,7 +25,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
 
 		_methodName0 = "addPerson";
 
-		_methodParameterTypes0 = new String[] { "org.GoodReturn.model.Person" };
+		_methodParameterTypes0 = new String[] { "org.goodreturn.model.Person" };
 
 		_methodName1 = "createPerson";
 
@@ -37,7 +37,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
 
 		_methodName3 = "deletePerson";
 
-		_methodParameterTypes3 = new String[] { "org.GoodReturn.model.Person" };
+		_methodParameterTypes3 = new String[] { "org.goodreturn.model.Person" };
 
 		_methodName4 = "dynamicQuery";
 
@@ -90,12 +90,12 @@ public class PersonLocalServiceClp implements PersonLocalService {
 
 		_methodName14 = "updatePerson";
 
-		_methodParameterTypes14 = new String[] { "org.GoodReturn.model.Person" };
+		_methodParameterTypes14 = new String[] { "org.goodreturn.model.Person" };
 
 		_methodName15 = "updatePerson";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.Person", "boolean"
+				"org.goodreturn.model.Person", "boolean"
 			};
 
 		_methodName16 = "getBeanIdentifier";
@@ -107,8 +107,8 @@ public class PersonLocalServiceClp implements PersonLocalService {
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 	}
 
-	public org.GoodReturn.model.Person addPerson(
-		org.GoodReturn.model.Person person)
+	public org.goodreturn.model.Person addPerson(
+		org.goodreturn.model.Person person)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -133,10 +133,10 @@ public class PersonLocalServiceClp implements PersonLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Person)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Person)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Person createPerson(long abacus_Person_Id) {
+	public org.goodreturn.model.Person createPerson(long abacus_Person_Id) {
 		Object returnObj = null;
 
 		try {
@@ -155,10 +155,10 @@ public class PersonLocalServiceClp implements PersonLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Person)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Person)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Person deletePerson(long abacus_Person_Id)
+	public org.goodreturn.model.Person deletePerson(long abacus_Person_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -187,11 +187,11 @@ public class PersonLocalServiceClp implements PersonLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Person)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Person)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Person deletePerson(
-		org.GoodReturn.model.Person person)
+	public org.goodreturn.model.Person deletePerson(
+		org.goodreturn.model.Person person)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -216,7 +216,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Person)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Person)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -376,7 +376,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
-	public org.GoodReturn.model.Person fetchPerson(long abacus_Person_Id)
+	public org.goodreturn.model.Person fetchPerson(long abacus_Person_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -400,10 +400,10 @@ public class PersonLocalServiceClp implements PersonLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Person)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Person)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Person getPerson(long abacus_Person_Id)
+	public org.goodreturn.model.Person getPerson(long abacus_Person_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -432,7 +432,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Person)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Person)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -469,7 +469,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<org.GoodReturn.model.Person> getPersons(int start,
+	public java.util.List<org.goodreturn.model.Person> getPersons(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -493,7 +493,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
 			}
 		}
 
-		return (java.util.List<org.GoodReturn.model.Person>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<org.goodreturn.model.Person>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getPersonsCount()
@@ -523,8 +523,8 @@ public class PersonLocalServiceClp implements PersonLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public org.GoodReturn.model.Person updatePerson(
-		org.GoodReturn.model.Person person)
+	public org.goodreturn.model.Person updatePerson(
+		org.goodreturn.model.Person person)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -549,11 +549,11 @@ public class PersonLocalServiceClp implements PersonLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Person)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Person)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Person updatePerson(
-		org.GoodReturn.model.Person person, boolean merge)
+	public org.goodreturn.model.Person updatePerson(
+		org.goodreturn.model.Person person, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -578,7 +578,7 @@ public class PersonLocalServiceClp implements PersonLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Person)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Person)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.lang.String getBeanIdentifier() {

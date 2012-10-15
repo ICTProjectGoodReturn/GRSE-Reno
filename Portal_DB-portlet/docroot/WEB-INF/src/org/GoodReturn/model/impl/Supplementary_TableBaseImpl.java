@@ -12,13 +12,13 @@
  * details.
  */
 
-package org.GoodReturn.model.impl;
+package org.goodreturn.model.impl;
 
 import com.liferay.portal.kernel.exception.SystemException;
 
-import org.GoodReturn.model.Supplementary_Table;
+import org.goodreturn.model.Supplementary_Table;
 
-import org.GoodReturn.service.Supplementary_TableLocalServiceUtil;
+import org.goodreturn.service.Supplementary_TableLocalServiceUtil;
 
 /**
  * The extended model base implementation for the Supplementary_Table service. Represents a row in the &quot;GoodReturn_Supplementary_Table&quot; database table, with each column mapped to a property of this class.
@@ -29,7 +29,7 @@ import org.GoodReturn.service.Supplementary_TableLocalServiceUtil;
  *
  * @author gilaa004
  * @see Supplementary_TableImpl
- * @see org.GoodReturn.model.Supplementary_Table
+ * @see org.goodreturn.model.Supplementary_Table
  * @generated
  */
 public abstract class Supplementary_TableBaseImpl

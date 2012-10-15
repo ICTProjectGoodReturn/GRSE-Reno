@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -31,8 +31,8 @@ import com.liferay.portal.service.InvokableService;
  *
  * @author gilaa004
  * @see BorrowerServiceUtil
- * @see org.GoodReturn.service.base.BorrowerServiceBaseImpl
- * @see org.GoodReturn.service.impl.BorrowerServiceImpl
+ * @see org.goodreturn.service.base.BorrowerServiceBaseImpl
+ * @see org.goodreturn.service.impl.BorrowerServiceImpl
  * @generated
  */
 @JSONWebService
@@ -42,7 +42,7 @@ public interface BorrowerService extends BaseService, InvokableService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link BorrowerServiceUtil} to access the borrower remote service. Add custom service methods to {@link org.GoodReturn.service.impl.BorrowerServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link BorrowerServiceUtil} to access the borrower remote service. Add custom service methods to {@link org.goodreturn.service.impl.BorrowerServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**

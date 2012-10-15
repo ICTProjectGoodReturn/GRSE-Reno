@@ -12,9 +12,9 @@
  * details.
  */
 
-package org.GoodReturn.service.base;
+package org.goodreturn.service.base;
 
-import org.GoodReturn.service.BorrowerServiceUtil;
+import org.goodreturn.service.BorrowerServiceUtil;
 
 import java.util.Arrays;
 

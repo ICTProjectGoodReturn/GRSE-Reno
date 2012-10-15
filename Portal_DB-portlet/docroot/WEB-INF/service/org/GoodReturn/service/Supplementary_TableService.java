@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -31,8 +31,8 @@ import com.liferay.portal.service.InvokableService;
  *
  * @author gilaa004
  * @see Supplementary_TableServiceUtil
- * @see org.GoodReturn.service.base.Supplementary_TableServiceBaseImpl
- * @see org.GoodReturn.service.impl.Supplementary_TableServiceImpl
+ * @see org.goodreturn.service.base.Supplementary_TableServiceBaseImpl
+ * @see org.goodreturn.service.impl.Supplementary_TableServiceImpl
  * @generated
  */
 @JSONWebService
@@ -42,7 +42,7 @@ public interface Supplementary_TableService extends BaseService, InvokableServic
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link Supplementary_TableServiceUtil} to access the supplementary_ table remote service. Add custom service methods to {@link org.GoodReturn.service.impl.Supplementary_TableServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link Supplementary_TableServiceUtil} to access the supplementary_ table remote service. Add custom service methods to {@link org.goodreturn.service.impl.Supplementary_TableServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**

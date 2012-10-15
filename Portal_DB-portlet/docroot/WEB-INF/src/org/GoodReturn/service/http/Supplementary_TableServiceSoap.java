@@ -12,12 +12,12 @@
  * details.
  */
 
-package org.GoodReturn.service.http;
+package org.goodreturn.service.http;
 
 /**
  * <p>
  * This class provides a SOAP utility for the
- * {@link org.GoodReturn.service.Supplementary_TableServiceUtil} service utility. The
+ * {@link org.goodreturn.service.Supplementary_TableServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -26,10 +26,10 @@ package org.GoodReturn.service.http;
  * <p>
  * ServiceBuilder follows certain rules in translating the methods. For example,
  * if the method in the service utility returns a {@link java.util.List}, that
- * is translated to an array of {@link org.GoodReturn.model.Supplementary_TableSoap}.
+ * is translated to an array of {@link org.goodreturn.model.Supplementary_TableSoap}.
  * If the method in the service utility returns a
- * {@link org.GoodReturn.model.Supplementary_Table}, that is translated to a
- * {@link org.GoodReturn.model.Supplementary_TableSoap}. Methods that SOAP cannot
+ * {@link org.goodreturn.model.Supplementary_Table}, that is translated to a
+ * {@link org.goodreturn.model.Supplementary_TableSoap}. Methods that SOAP cannot
  * safely wire are skipped.
  * </p>
  *
@@ -53,8 +53,8 @@ package org.GoodReturn.service.http;
  *
  * @author    gilaa004
  * @see       Supplementary_TableServiceHttp
- * @see       org.GoodReturn.model.Supplementary_TableSoap
- * @see       org.GoodReturn.service.Supplementary_TableServiceUtil
+ * @see       org.goodreturn.model.Supplementary_TableSoap
+ * @see       org.goodreturn.service.Supplementary_TableServiceUtil
  * @generated
  */
 public class Supplementary_TableServiceSoap {

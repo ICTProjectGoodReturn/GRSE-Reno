@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -25,7 +25,7 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 
 		_methodName0 = "addBorrower";
 
-		_methodParameterTypes0 = new String[] { "org.GoodReturn.model.Borrower" };
+		_methodParameterTypes0 = new String[] { "org.goodreturn.model.Borrower" };
 
 		_methodName1 = "createBorrower";
 
@@ -37,7 +37,7 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 
 		_methodName3 = "deleteBorrower";
 
-		_methodParameterTypes3 = new String[] { "org.GoodReturn.model.Borrower" };
+		_methodParameterTypes3 = new String[] { "org.goodreturn.model.Borrower" };
 
 		_methodName4 = "dynamicQuery";
 
@@ -90,12 +90,12 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 
 		_methodName14 = "updateBorrower";
 
-		_methodParameterTypes14 = new String[] { "org.GoodReturn.model.Borrower" };
+		_methodParameterTypes14 = new String[] { "org.goodreturn.model.Borrower" };
 
 		_methodName15 = "updateBorrower";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.Borrower", "boolean"
+				"org.goodreturn.model.Borrower", "boolean"
 			};
 
 		_methodName16 = "getBeanIdentifier";
@@ -107,8 +107,8 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 	}
 
-	public org.GoodReturn.model.Borrower addBorrower(
-		org.GoodReturn.model.Borrower borrower)
+	public org.goodreturn.model.Borrower addBorrower(
+		org.goodreturn.model.Borrower borrower)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -133,10 +133,10 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Borrower createBorrower(long abacus_Borrower_Id) {
+	public org.goodreturn.model.Borrower createBorrower(long abacus_Borrower_Id) {
 		Object returnObj = null;
 
 		try {
@@ -155,10 +155,10 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Borrower deleteBorrower(long abacus_Borrower_Id)
+	public org.goodreturn.model.Borrower deleteBorrower(long abacus_Borrower_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -187,11 +187,11 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Borrower deleteBorrower(
-		org.GoodReturn.model.Borrower borrower)
+	public org.goodreturn.model.Borrower deleteBorrower(
+		org.goodreturn.model.Borrower borrower)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -216,7 +216,7 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -376,7 +376,7 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
-	public org.GoodReturn.model.Borrower fetchBorrower(long abacus_Borrower_Id)
+	public org.goodreturn.model.Borrower fetchBorrower(long abacus_Borrower_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -400,10 +400,10 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Borrower getBorrower(long abacus_Borrower_Id)
+	public org.goodreturn.model.Borrower getBorrower(long abacus_Borrower_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -432,7 +432,7 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -469,7 +469,7 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<org.GoodReturn.model.Borrower> getBorrowers(
+	public java.util.List<org.goodreturn.model.Borrower> getBorrowers(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -494,7 +494,7 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 			}
 		}
 
-		return (java.util.List<org.GoodReturn.model.Borrower>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<org.goodreturn.model.Borrower>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getBorrowersCount()
@@ -524,8 +524,8 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public org.GoodReturn.model.Borrower updateBorrower(
-		org.GoodReturn.model.Borrower borrower)
+	public org.goodreturn.model.Borrower updateBorrower(
+		org.goodreturn.model.Borrower borrower)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -550,11 +550,11 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Borrower updateBorrower(
-		org.GoodReturn.model.Borrower borrower, boolean merge)
+	public org.goodreturn.model.Borrower updateBorrower(
+		org.goodreturn.model.Borrower borrower, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -579,7 +579,7 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.lang.String getBeanIdentifier() {

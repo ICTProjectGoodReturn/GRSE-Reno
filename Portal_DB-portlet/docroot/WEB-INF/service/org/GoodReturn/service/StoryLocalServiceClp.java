@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -25,19 +25,23 @@ public class StoryLocalServiceClp implements StoryLocalService {
 
 		_methodName0 = "addStory";
 
-		_methodParameterTypes0 = new String[] { "org.GoodReturn.model.Story" };
+		_methodParameterTypes0 = new String[] { "org.goodreturn.model.Story" };
 
 		_methodName1 = "createStory";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes1 = new String[] {
+				"org.goodreturn.service.persistence.StoryPK"
+			};
 
 		_methodName2 = "deleteStory";
 
-		_methodParameterTypes2 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] {
+				"org.goodreturn.service.persistence.StoryPK"
+			};
 
 		_methodName3 = "deleteStory";
 
-		_methodParameterTypes3 = new String[] { "org.GoodReturn.model.Story" };
+		_methodParameterTypes3 = new String[] { "org.goodreturn.model.Story" };
 
 		_methodName4 = "dynamicQuery";
 
@@ -70,11 +74,15 @@ public class StoryLocalServiceClp implements StoryLocalService {
 
 		_methodName9 = "fetchStory";
 
-		_methodParameterTypes9 = new String[] { "long" };
+		_methodParameterTypes9 = new String[] {
+				"org.goodreturn.service.persistence.StoryPK"
+			};
 
 		_methodName10 = "getStory";
 
-		_methodParameterTypes10 = new String[] { "long" };
+		_methodParameterTypes10 = new String[] {
+				"org.goodreturn.service.persistence.StoryPK"
+			};
 
 		_methodName11 = "getPersistedModel";
 
@@ -90,12 +98,12 @@ public class StoryLocalServiceClp implements StoryLocalService {
 
 		_methodName14 = "updateStory";
 
-		_methodParameterTypes14 = new String[] { "org.GoodReturn.model.Story" };
+		_methodParameterTypes14 = new String[] { "org.goodreturn.model.Story" };
 
 		_methodName15 = "updateStory";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.Story", "boolean"
+				"org.goodreturn.model.Story", "boolean"
 			};
 
 		_methodName16 = "getBeanIdentifier";
@@ -107,7 +115,7 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 	}
 
-	public org.GoodReturn.model.Story addStory(org.GoodReturn.model.Story story)
+	public org.goodreturn.model.Story addStory(org.goodreturn.model.Story story)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -132,15 +140,17 @@ public class StoryLocalServiceClp implements StoryLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Story)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Story)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Story createStory(long story_Id) {
+	public org.goodreturn.model.Story createStory(
+		org.goodreturn.service.persistence.StoryPK storyPK) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { story_Id });
+					_methodParameterTypes1,
+					new Object[] { ClpSerializer.translateInput(storyPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -154,17 +164,19 @@ public class StoryLocalServiceClp implements StoryLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Story)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Story)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Story deleteStory(long story_Id)
+	public org.goodreturn.model.Story deleteStory(
+		org.goodreturn.service.persistence.StoryPK storyPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { story_Id });
+					_methodParameterTypes2,
+					new Object[] { ClpSerializer.translateInput(storyPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -186,11 +198,11 @@ public class StoryLocalServiceClp implements StoryLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Story)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Story)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Story deleteStory(
-		org.GoodReturn.model.Story story)
+	public org.goodreturn.model.Story deleteStory(
+		org.goodreturn.model.Story story)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -215,7 +227,7 @@ public class StoryLocalServiceClp implements StoryLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Story)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Story)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -375,13 +387,15 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
-	public org.GoodReturn.model.Story fetchStory(long story_Id)
+	public org.goodreturn.model.Story fetchStory(
+		org.goodreturn.service.persistence.StoryPK storyPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9, new Object[] { story_Id });
+					_methodParameterTypes9,
+					new Object[] { ClpSerializer.translateInput(storyPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -399,17 +413,19 @@ public class StoryLocalServiceClp implements StoryLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Story)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Story)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Story getStory(long story_Id)
+	public org.goodreturn.model.Story getStory(
+		org.goodreturn.service.persistence.StoryPK storyPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { story_Id });
+					_methodParameterTypes10,
+					new Object[] { ClpSerializer.translateInput(storyPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -431,7 +447,7 @@ public class StoryLocalServiceClp implements StoryLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Story)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Story)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -468,7 +484,7 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<org.GoodReturn.model.Story> getStories(int start,
+	public java.util.List<org.goodreturn.model.Story> getStories(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -492,7 +508,7 @@ public class StoryLocalServiceClp implements StoryLocalService {
 			}
 		}
 
-		return (java.util.List<org.GoodReturn.model.Story>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<org.goodreturn.model.Story>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getStoriesCount()
@@ -522,8 +538,8 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public org.GoodReturn.model.Story updateStory(
-		org.GoodReturn.model.Story story)
+	public org.goodreturn.model.Story updateStory(
+		org.goodreturn.model.Story story)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -548,11 +564,11 @@ public class StoryLocalServiceClp implements StoryLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Story)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Story)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Story updateStory(
-		org.GoodReturn.model.Story story, boolean merge)
+	public org.goodreturn.model.Story updateStory(
+		org.goodreturn.model.Story story, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -577,7 +593,7 @@ public class StoryLocalServiceClp implements StoryLocalService {
 			}
 		}
 
-		return (org.GoodReturn.model.Story)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Story)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.lang.String getBeanIdentifier() {

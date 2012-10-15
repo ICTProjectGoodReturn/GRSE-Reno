@@ -12,9 +12,9 @@
  * details.
  */
 
-package org.GoodReturn.service.base;
+package org.goodreturn.service.base;
 
-import org.GoodReturn.service.Supplementary_TableLocalServiceUtil;
+import org.goodreturn.service.Supplementary_TableLocalServiceUtil;
 
 import java.util.Arrays;
 
@@ -26,7 +26,7 @@ public class Supplementary_TableLocalServiceClpInvoker {
 		_methodName0 = "addSupplementary_Table";
 
 		_methodParameterTypes0 = new String[] {
-				"org.GoodReturn.model.Supplementary_Table"
+				"org.goodreturn.model.Supplementary_Table"
 			};
 
 		_methodName1 = "createSupplementary_Table";
@@ -40,7 +40,7 @@ public class Supplementary_TableLocalServiceClpInvoker {
 		_methodName3 = "deleteSupplementary_Table";
 
 		_methodParameterTypes3 = new String[] {
-				"org.GoodReturn.model.Supplementary_Table"
+				"org.goodreturn.model.Supplementary_Table"
 			};
 
 		_methodName4 = "dynamicQuery";
@@ -95,13 +95,13 @@ public class Supplementary_TableLocalServiceClpInvoker {
 		_methodName14 = "updateSupplementary_Table";
 
 		_methodParameterTypes14 = new String[] {
-				"org.GoodReturn.model.Supplementary_Table"
+				"org.goodreturn.model.Supplementary_Table"
 			};
 
 		_methodName15 = "updateSupplementary_Table";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.Supplementary_Table", "boolean"
+				"org.goodreturn.model.Supplementary_Table", "boolean"
 			};
 
 		_methodName86 = "getBeanIdentifier";
@@ -117,7 +117,7 @@ public class Supplementary_TableLocalServiceClpInvoker {
 		Object[] arguments) throws Throwable {
 		if (_methodName0.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-			return Supplementary_TableLocalServiceUtil.addSupplementary_Table((org.GoodReturn.model.Supplementary_Table)arguments[0]);
+			return Supplementary_TableLocalServiceUtil.addSupplementary_Table((org.goodreturn.model.Supplementary_Table)arguments[0]);
 		}
 
 		if (_methodName1.equals(name) &&
@@ -132,7 +132,7 @@ public class Supplementary_TableLocalServiceClpInvoker {
 
 		if (_methodName3.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-			return Supplementary_TableLocalServiceUtil.deleteSupplementary_Table((org.GoodReturn.model.Supplementary_Table)arguments[0]);
+			return Supplementary_TableLocalServiceUtil.deleteSupplementary_Table((org.goodreturn.model.Supplementary_Table)arguments[0]);
 		}
 
 		if (_methodName4.equals(name) &&
@@ -193,12 +193,12 @@ public class Supplementary_TableLocalServiceClpInvoker {
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return Supplementary_TableLocalServiceUtil.updateSupplementary_Table((org.GoodReturn.model.Supplementary_Table)arguments[0]);
+			return Supplementary_TableLocalServiceUtil.updateSupplementary_Table((org.goodreturn.model.Supplementary_Table)arguments[0]);
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return Supplementary_TableLocalServiceUtil.updateSupplementary_Table((org.GoodReturn.model.Supplementary_Table)arguments[0],
+			return Supplementary_TableLocalServiceUtil.updateSupplementary_Table((org.goodreturn.model.Supplementary_Table)arguments[0],
 				((Boolean)arguments[1]).booleanValue());
 		}
 

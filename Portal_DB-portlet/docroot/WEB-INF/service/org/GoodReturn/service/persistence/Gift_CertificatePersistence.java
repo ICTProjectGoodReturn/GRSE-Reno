@@ -12,11 +12,11 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
-import org.GoodReturn.model.Gift_Certificate;
+import org.goodreturn.model.Gift_Certificate;
 
 /**
  * The persistence interface for the gift_ certificate service.
@@ -43,7 +43,7 @@ public interface Gift_CertificatePersistence extends BasePersistence<Gift_Certif
 	* @param gift_Certificate the gift_ certificate
 	*/
 	public void cacheResult(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate);
+		org.goodreturn.model.Gift_Certificate gift_Certificate);
 
 	/**
 	* Caches the gift_ certificates in the entity cache if it is enabled.
@@ -51,7 +51,7 @@ public interface Gift_CertificatePersistence extends BasePersistence<Gift_Certif
 	* @param gift_Certificates the gift_ certificates
 	*/
 	public void cacheResult(
-		java.util.List<org.GoodReturn.model.Gift_Certificate> gift_Certificates);
+		java.util.List<org.goodreturn.model.Gift_Certificate> gift_Certificates);
 
 	/**
 	* Creates a new gift_ certificate with the primary key. Does not add the gift_ certificate to the database.
@@ -59,36 +59,36 @@ public interface Gift_CertificatePersistence extends BasePersistence<Gift_Certif
 	* @param certificate_Id the primary key for the new gift_ certificate
 	* @return the new gift_ certificate
 	*/
-	public org.GoodReturn.model.Gift_Certificate create(long certificate_Id);
+	public org.goodreturn.model.Gift_Certificate create(long certificate_Id);
 
 	/**
 	* Removes the gift_ certificate with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param certificate_Id the primary key of the gift_ certificate
 	* @return the gift_ certificate that was removed
-	* @throws org.GoodReturn.NoSuchGift_CertificateException if a gift_ certificate with the primary key could not be found
+	* @throws org.goodreturn.NoSuchGift_CertificateException if a gift_ certificate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Gift_Certificate remove(long certificate_Id)
+	public org.goodreturn.model.Gift_Certificate remove(long certificate_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchGift_CertificateException;
+			org.goodreturn.NoSuchGift_CertificateException;
 
-	public org.GoodReturn.model.Gift_Certificate updateImpl(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate, boolean merge)
+	public org.goodreturn.model.Gift_Certificate updateImpl(
+		org.goodreturn.model.Gift_Certificate gift_Certificate, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the gift_ certificate with the primary key or throws a {@link org.GoodReturn.NoSuchGift_CertificateException} if it could not be found.
+	* Returns the gift_ certificate with the primary key or throws a {@link org.goodreturn.NoSuchGift_CertificateException} if it could not be found.
 	*
 	* @param certificate_Id the primary key of the gift_ certificate
 	* @return the gift_ certificate
-	* @throws org.GoodReturn.NoSuchGift_CertificateException if a gift_ certificate with the primary key could not be found
+	* @throws org.goodreturn.NoSuchGift_CertificateException if a gift_ certificate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Gift_Certificate findByPrimaryKey(
+	public org.goodreturn.model.Gift_Certificate findByPrimaryKey(
 		long certificate_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchGift_CertificateException;
+			org.goodreturn.NoSuchGift_CertificateException;
 
 	/**
 	* Returns the gift_ certificate with the primary key or returns <code>null</code> if it could not be found.
@@ -97,7 +97,7 @@ public interface Gift_CertificatePersistence extends BasePersistence<Gift_Certif
 	* @return the gift_ certificate, or <code>null</code> if a gift_ certificate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.GoodReturn.model.Gift_Certificate fetchByPrimaryKey(
+	public org.goodreturn.model.Gift_Certificate fetchByPrimaryKey(
 		long certificate_Id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -107,7 +107,7 @@ public interface Gift_CertificatePersistence extends BasePersistence<Gift_Certif
 	* @return the gift_ certificates
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.Gift_Certificate> findAll()
+	public java.util.List<org.goodreturn.model.Gift_Certificate> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -122,7 +122,7 @@ public interface Gift_CertificatePersistence extends BasePersistence<Gift_Certif
 	* @return the range of gift_ certificates
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.Gift_Certificate> findAll(
+	public java.util.List<org.goodreturn.model.Gift_Certificate> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -139,7 +139,7 @@ public interface Gift_CertificatePersistence extends BasePersistence<Gift_Certif
 	* @return the ordered range of gift_ certificates
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.GoodReturn.model.Gift_Certificate> findAll(
+	public java.util.List<org.goodreturn.model.Gift_Certificate> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;

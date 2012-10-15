@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn;
+package org.goodreturn;
 
 import com.liferay.portal.NoSuchModelException;
 

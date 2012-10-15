@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.model;
+package org.goodreturn.model;
 
 import com.liferay.portal.model.PersistedModel;
 
@@ -21,14 +21,14 @@ import com.liferay.portal.model.PersistedModel;
  *
  * @author gilaa004
  * @see Gift_CertificateModel
- * @see org.GoodReturn.model.impl.Gift_CertificateImpl
- * @see org.GoodReturn.model.impl.Gift_CertificateModelImpl
+ * @see org.goodreturn.model.impl.Gift_CertificateImpl
+ * @see org.goodreturn.model.impl.Gift_CertificateModelImpl
  * @generated
  */
 public interface Gift_Certificate extends Gift_CertificateModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link org.GoodReturn.model.impl.Gift_CertificateImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to {@link org.goodreturn.model.impl.Gift_CertificateImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

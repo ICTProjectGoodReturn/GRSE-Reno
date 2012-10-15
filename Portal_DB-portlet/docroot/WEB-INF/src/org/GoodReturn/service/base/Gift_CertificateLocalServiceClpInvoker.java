@@ -12,9 +12,9 @@
  * details.
  */
 
-package org.GoodReturn.service.base;
+package org.goodreturn.service.base;
 
-import org.GoodReturn.service.Gift_CertificateLocalServiceUtil;
+import org.goodreturn.service.Gift_CertificateLocalServiceUtil;
 
 import java.util.Arrays;
 
@@ -26,7 +26,7 @@ public class Gift_CertificateLocalServiceClpInvoker {
 		_methodName0 = "addGift_Certificate";
 
 		_methodParameterTypes0 = new String[] {
-				"org.GoodReturn.model.Gift_Certificate"
+				"org.goodreturn.model.Gift_Certificate"
 			};
 
 		_methodName1 = "createGift_Certificate";
@@ -40,7 +40,7 @@ public class Gift_CertificateLocalServiceClpInvoker {
 		_methodName3 = "deleteGift_Certificate";
 
 		_methodParameterTypes3 = new String[] {
-				"org.GoodReturn.model.Gift_Certificate"
+				"org.goodreturn.model.Gift_Certificate"
 			};
 
 		_methodName4 = "dynamicQuery";
@@ -95,13 +95,13 @@ public class Gift_CertificateLocalServiceClpInvoker {
 		_methodName14 = "updateGift_Certificate";
 
 		_methodParameterTypes14 = new String[] {
-				"org.GoodReturn.model.Gift_Certificate"
+				"org.goodreturn.model.Gift_Certificate"
 			};
 
 		_methodName15 = "updateGift_Certificate";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.Gift_Certificate", "boolean"
+				"org.goodreturn.model.Gift_Certificate", "boolean"
 			};
 
 		_methodName86 = "getBeanIdentifier";
@@ -117,7 +117,7 @@ public class Gift_CertificateLocalServiceClpInvoker {
 		Object[] arguments) throws Throwable {
 		if (_methodName0.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-			return Gift_CertificateLocalServiceUtil.addGift_Certificate((org.GoodReturn.model.Gift_Certificate)arguments[0]);
+			return Gift_CertificateLocalServiceUtil.addGift_Certificate((org.goodreturn.model.Gift_Certificate)arguments[0]);
 		}
 
 		if (_methodName1.equals(name) &&
@@ -132,7 +132,7 @@ public class Gift_CertificateLocalServiceClpInvoker {
 
 		if (_methodName3.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-			return Gift_CertificateLocalServiceUtil.deleteGift_Certificate((org.GoodReturn.model.Gift_Certificate)arguments[0]);
+			return Gift_CertificateLocalServiceUtil.deleteGift_Certificate((org.goodreturn.model.Gift_Certificate)arguments[0]);
 		}
 
 		if (_methodName4.equals(name) &&
@@ -193,12 +193,12 @@ public class Gift_CertificateLocalServiceClpInvoker {
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return Gift_CertificateLocalServiceUtil.updateGift_Certificate((org.GoodReturn.model.Gift_Certificate)arguments[0]);
+			return Gift_CertificateLocalServiceUtil.updateGift_Certificate((org.goodreturn.model.Gift_Certificate)arguments[0]);
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return Gift_CertificateLocalServiceUtil.updateGift_Certificate((org.GoodReturn.model.Gift_Certificate)arguments[0],
+			return Gift_CertificateLocalServiceUtil.updateGift_Certificate((org.goodreturn.model.Gift_Certificate)arguments[0],
 				((Boolean)arguments[1]).booleanValue());
 		}
 

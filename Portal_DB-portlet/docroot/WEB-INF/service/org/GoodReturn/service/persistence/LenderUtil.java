@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
-import org.GoodReturn.model.Lender;
+import org.goodreturn.model.Lender;
 
 import java.util.List;
 
@@ -114,7 +114,7 @@ public class LenderUtil {
 	*
 	* @param lender the lender
 	*/
-	public static void cacheResult(org.GoodReturn.model.Lender lender) {
+	public static void cacheResult(org.goodreturn.model.Lender lender) {
 		getPersistence().cacheResult(lender);
 	}
 
@@ -124,7 +124,7 @@ public class LenderUtil {
 	* @param lenders the lenders
 	*/
 	public static void cacheResult(
-		java.util.List<org.GoodReturn.model.Lender> lenders) {
+		java.util.List<org.goodreturn.model.Lender> lenders) {
 		getPersistence().cacheResult(lenders);
 	}
 
@@ -134,7 +134,7 @@ public class LenderUtil {
 	* @param lender_Id the primary key for the new lender
 	* @return the new lender
 	*/
-	public static org.GoodReturn.model.Lender create(long lender_Id) {
+	public static org.goodreturn.model.Lender create(long lender_Id) {
 		return getPersistence().create(lender_Id);
 	}
 
@@ -143,32 +143,32 @@ public class LenderUtil {
 	*
 	* @param lender_Id the primary key of the lender
 	* @return the lender that was removed
-	* @throws org.GoodReturn.NoSuchLenderException if a lender with the primary key could not be found
+	* @throws org.goodreturn.NoSuchLenderException if a lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Lender remove(long lender_Id)
+	public static org.goodreturn.model.Lender remove(long lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchLenderException {
+			org.goodreturn.NoSuchLenderException {
 		return getPersistence().remove(lender_Id);
 	}
 
-	public static org.GoodReturn.model.Lender updateImpl(
-		org.GoodReturn.model.Lender lender, boolean merge)
+	public static org.goodreturn.model.Lender updateImpl(
+		org.goodreturn.model.Lender lender, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(lender, merge);
 	}
 
 	/**
-	* Returns the lender with the primary key or throws a {@link org.GoodReturn.NoSuchLenderException} if it could not be found.
+	* Returns the lender with the primary key or throws a {@link org.goodreturn.NoSuchLenderException} if it could not be found.
 	*
 	* @param lender_Id the primary key of the lender
 	* @return the lender
-	* @throws org.GoodReturn.NoSuchLenderException if a lender with the primary key could not be found
+	* @throws org.goodreturn.NoSuchLenderException if a lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Lender findByPrimaryKey(long lender_Id)
+	public static org.goodreturn.model.Lender findByPrimaryKey(long lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchLenderException {
+			org.goodreturn.NoSuchLenderException {
 		return getPersistence().findByPrimaryKey(lender_Id);
 	}
 
@@ -179,7 +179,7 @@ public class LenderUtil {
 	* @return the lender, or <code>null</code> if a lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Lender fetchByPrimaryKey(long lender_Id)
+	public static org.goodreturn.model.Lender fetchByPrimaryKey(long lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(lender_Id);
 	}
@@ -190,7 +190,7 @@ public class LenderUtil {
 	* @return the lenders
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Lender> findAll()
+	public static java.util.List<org.goodreturn.model.Lender> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
@@ -207,7 +207,7 @@ public class LenderUtil {
 	* @return the range of lenders
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Lender> findAll(
+	public static java.util.List<org.goodreturn.model.Lender> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
@@ -226,7 +226,7 @@ public class LenderUtil {
 	* @return the ordered range of lenders
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Lender> findAll(
+	public static java.util.List<org.goodreturn.model.Lender> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -261,7 +261,7 @@ public class LenderUtil {
 	* @return the persons associated with the lender
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Person> getPersons(
+	public static java.util.List<org.goodreturn.model.Person> getPersons(
 		long pk) throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().getPersons(pk);
 	}
@@ -279,7 +279,7 @@ public class LenderUtil {
 	* @return the range of persons associated with the lender
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Person> getPersons(
+	public static java.util.List<org.goodreturn.model.Person> getPersons(
 		long pk, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().getPersons(pk, start, end);
@@ -299,7 +299,7 @@ public class LenderUtil {
 	* @return the ordered range of persons associated with the lender
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Person> getPersons(
+	public static java.util.List<org.goodreturn.model.Person> getPersons(
 		long pk, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -345,7 +345,7 @@ public class LenderUtil {
 
 	public static LenderPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (LenderPersistence)PortletBeanLocatorUtil.locate(org.GoodReturn.service.ClpSerializer.getServletContextName(),
+			_persistence = (LenderPersistence)PortletBeanLocatorUtil.locate(org.goodreturn.service.ClpSerializer.getServletContextName(),
 					LenderPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(LenderUtil.class, "_persistence");

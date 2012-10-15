@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.model;
+package org.goodreturn.model;
 
 import com.liferay.portal.model.PersistedModel;
 
@@ -21,14 +21,14 @@ import com.liferay.portal.model.PersistedModel;
  *
  * @author gilaa004
  * @see PersonModel
- * @see org.GoodReturn.model.impl.PersonImpl
- * @see org.GoodReturn.model.impl.PersonModelImpl
+ * @see org.goodreturn.model.impl.PersonImpl
+ * @see org.goodreturn.model.impl.PersonModelImpl
  * @generated
  */
 public interface Person extends PersonModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link org.GoodReturn.model.impl.PersonImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to {@link org.goodreturn.model.impl.PersonImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

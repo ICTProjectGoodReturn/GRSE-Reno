@@ -12,14 +12,14 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
- * The utility for the team local service. This utility wraps {@link org.GoodReturn.service.impl.TeamLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
+ * The utility for the team local service. This utility wraps {@link org.goodreturn.service.impl.TeamLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
@@ -27,15 +27,15 @@ import com.liferay.portal.service.InvokableLocalService;
  *
  * @author gilaa004
  * @see TeamLocalService
- * @see org.GoodReturn.service.base.TeamLocalServiceBaseImpl
- * @see org.GoodReturn.service.impl.TeamLocalServiceImpl
+ * @see org.goodreturn.service.base.TeamLocalServiceBaseImpl
+ * @see org.goodreturn.service.impl.TeamLocalServiceImpl
  * @generated
  */
 public class TeamLocalServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link org.GoodReturn.service.impl.TeamLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to {@link org.goodreturn.service.impl.TeamLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 
 	/**
@@ -45,8 +45,8 @@ public class TeamLocalServiceUtil {
 	* @return the team that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Team addTeam(
-		org.GoodReturn.model.Team team)
+	public static org.goodreturn.model.Team addTeam(
+		org.goodreturn.model.Team team)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addTeam(team);
 	}
@@ -57,7 +57,7 @@ public class TeamLocalServiceUtil {
 	* @param team_Id the primary key for the new team
 	* @return the new team
 	*/
-	public static org.GoodReturn.model.Team createTeam(long team_Id) {
+	public static org.goodreturn.model.Team createTeam(long team_Id) {
 		return getService().createTeam(team_Id);
 	}
 
@@ -69,7 +69,7 @@ public class TeamLocalServiceUtil {
 	* @throws PortalException if a team with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Team deleteTeam(long team_Id)
+	public static org.goodreturn.model.Team deleteTeam(long team_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteTeam(team_Id);
@@ -82,8 +82,8 @@ public class TeamLocalServiceUtil {
 	* @return the team that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Team deleteTeam(
-		org.GoodReturn.model.Team team)
+	public static org.goodreturn.model.Team deleteTeam(
+		org.goodreturn.model.Team team)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteTeam(team);
 	}
@@ -163,7 +163,7 @@ public class TeamLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
-	public static org.GoodReturn.model.Team fetchTeam(long team_Id)
+	public static org.goodreturn.model.Team fetchTeam(long team_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().fetchTeam(team_Id);
 	}
@@ -176,7 +176,7 @@ public class TeamLocalServiceUtil {
 	* @throws PortalException if a team with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Team getTeam(long team_Id)
+	public static org.goodreturn.model.Team getTeam(long team_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getTeam(team_Id);
@@ -201,7 +201,7 @@ public class TeamLocalServiceUtil {
 	* @return the range of teams
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Team> getTeams(
+	public static java.util.List<org.goodreturn.model.Team> getTeams(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getTeams(start, end);
@@ -225,8 +225,8 @@ public class TeamLocalServiceUtil {
 	* @return the team that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Team updateTeam(
-		org.GoodReturn.model.Team team)
+	public static org.goodreturn.model.Team updateTeam(
+		org.goodreturn.model.Team team)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateTeam(team);
 	}
@@ -239,8 +239,8 @@ public class TeamLocalServiceUtil {
 	* @return the team that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Team updateTeam(
-		org.GoodReturn.model.Team team, boolean merge)
+	public static org.goodreturn.model.Team updateTeam(
+		org.goodreturn.model.Team team, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateTeam(team, merge);
 	}

@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
-import org.GoodReturn.model.TeamLenderLoan;
+import org.goodreturn.model.TeamLenderLoan;
 
 import java.util.List;
 
@@ -116,7 +116,7 @@ public class TeamLenderLoanUtil {
 	* @param teamLenderLoan the team lender loan
 	*/
 	public static void cacheResult(
-		org.GoodReturn.model.TeamLenderLoan teamLenderLoan) {
+		org.goodreturn.model.TeamLenderLoan teamLenderLoan) {
 		getPersistence().cacheResult(teamLenderLoan);
 	}
 
@@ -126,7 +126,7 @@ public class TeamLenderLoanUtil {
 	* @param teamLenderLoans the team lender loans
 	*/
 	public static void cacheResult(
-		java.util.List<org.GoodReturn.model.TeamLenderLoan> teamLenderLoans) {
+		java.util.List<org.goodreturn.model.TeamLenderLoan> teamLenderLoans) {
 		getPersistence().cacheResult(teamLenderLoans);
 	}
 
@@ -136,7 +136,7 @@ public class TeamLenderLoanUtil {
 	* @param account_Id the primary key for the new team lender loan
 	* @return the new team lender loan
 	*/
-	public static org.GoodReturn.model.TeamLenderLoan create(long account_Id) {
+	public static org.goodreturn.model.TeamLenderLoan create(long account_Id) {
 		return getPersistence().create(account_Id);
 	}
 
@@ -145,33 +145,33 @@ public class TeamLenderLoanUtil {
 	*
 	* @param account_Id the primary key of the team lender loan
 	* @return the team lender loan that was removed
-	* @throws org.GoodReturn.NoSuchTeamLenderLoanException if a team lender loan with the primary key could not be found
+	* @throws org.goodreturn.NoSuchTeamLenderLoanException if a team lender loan with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.TeamLenderLoan remove(long account_Id)
+	public static org.goodreturn.model.TeamLenderLoan remove(long account_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchTeamLenderLoanException {
+			org.goodreturn.NoSuchTeamLenderLoanException {
 		return getPersistence().remove(account_Id);
 	}
 
-	public static org.GoodReturn.model.TeamLenderLoan updateImpl(
-		org.GoodReturn.model.TeamLenderLoan teamLenderLoan, boolean merge)
+	public static org.goodreturn.model.TeamLenderLoan updateImpl(
+		org.goodreturn.model.TeamLenderLoan teamLenderLoan, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(teamLenderLoan, merge);
 	}
 
 	/**
-	* Returns the team lender loan with the primary key or throws a {@link org.GoodReturn.NoSuchTeamLenderLoanException} if it could not be found.
+	* Returns the team lender loan with the primary key or throws a {@link org.goodreturn.NoSuchTeamLenderLoanException} if it could not be found.
 	*
 	* @param account_Id the primary key of the team lender loan
 	* @return the team lender loan
-	* @throws org.GoodReturn.NoSuchTeamLenderLoanException if a team lender loan with the primary key could not be found
+	* @throws org.goodreturn.NoSuchTeamLenderLoanException if a team lender loan with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.TeamLenderLoan findByPrimaryKey(
+	public static org.goodreturn.model.TeamLenderLoan findByPrimaryKey(
 		long account_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchTeamLenderLoanException {
+			org.goodreturn.NoSuchTeamLenderLoanException {
 		return getPersistence().findByPrimaryKey(account_Id);
 	}
 
@@ -182,7 +182,7 @@ public class TeamLenderLoanUtil {
 	* @return the team lender loan, or <code>null</code> if a team lender loan with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.TeamLenderLoan fetchByPrimaryKey(
+	public static org.goodreturn.model.TeamLenderLoan fetchByPrimaryKey(
 		long account_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(account_Id);
@@ -194,7 +194,7 @@ public class TeamLenderLoanUtil {
 	* @return the team lender loans
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.TeamLenderLoan> findAll()
+	public static java.util.List<org.goodreturn.model.TeamLenderLoan> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
@@ -211,7 +211,7 @@ public class TeamLenderLoanUtil {
 	* @return the range of team lender loans
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.TeamLenderLoan> findAll(
+	public static java.util.List<org.goodreturn.model.TeamLenderLoan> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
@@ -230,7 +230,7 @@ public class TeamLenderLoanUtil {
 	* @return the ordered range of team lender loans
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.TeamLenderLoan> findAll(
+	public static java.util.List<org.goodreturn.model.TeamLenderLoan> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -260,7 +260,7 @@ public class TeamLenderLoanUtil {
 
 	public static TeamLenderLoanPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (TeamLenderLoanPersistence)PortletBeanLocatorUtil.locate(org.GoodReturn.service.ClpSerializer.getServletContextName(),
+			_persistence = (TeamLenderLoanPersistence)PortletBeanLocatorUtil.locate(org.goodreturn.service.ClpSerializer.getServletContextName(),
 					TeamLenderLoanPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(TeamLenderLoanUtil.class,

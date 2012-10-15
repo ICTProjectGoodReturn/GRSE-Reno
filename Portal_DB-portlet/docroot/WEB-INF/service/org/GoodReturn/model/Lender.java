@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.model;
+package org.goodreturn.model;
 
 import com.liferay.portal.model.PersistedModel;
 
@@ -21,14 +21,14 @@ import com.liferay.portal.model.PersistedModel;
  *
  * @author gilaa004
  * @see LenderModel
- * @see org.GoodReturn.model.impl.LenderImpl
- * @see org.GoodReturn.model.impl.LenderModelImpl
+ * @see org.goodreturn.model.impl.LenderImpl
+ * @see org.goodreturn.model.impl.LenderModelImpl
  * @generated
  */
 public interface Lender extends LenderModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link org.GoodReturn.model.impl.LenderImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to {@link org.goodreturn.model.impl.LenderImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

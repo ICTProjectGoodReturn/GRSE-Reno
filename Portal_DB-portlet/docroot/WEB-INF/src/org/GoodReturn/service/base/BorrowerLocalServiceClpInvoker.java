@@ -12,9 +12,9 @@
  * details.
  */
 
-package org.GoodReturn.service.base;
+package org.goodreturn.service.base;
 
-import org.GoodReturn.service.BorrowerLocalServiceUtil;
+import org.goodreturn.service.BorrowerLocalServiceUtil;
 
 import java.util.Arrays;
 
@@ -25,7 +25,7 @@ public class BorrowerLocalServiceClpInvoker {
 	public BorrowerLocalServiceClpInvoker() {
 		_methodName0 = "addBorrower";
 
-		_methodParameterTypes0 = new String[] { "org.GoodReturn.model.Borrower" };
+		_methodParameterTypes0 = new String[] { "org.goodreturn.model.Borrower" };
 
 		_methodName1 = "createBorrower";
 
@@ -37,7 +37,7 @@ public class BorrowerLocalServiceClpInvoker {
 
 		_methodName3 = "deleteBorrower";
 
-		_methodParameterTypes3 = new String[] { "org.GoodReturn.model.Borrower" };
+		_methodParameterTypes3 = new String[] { "org.goodreturn.model.Borrower" };
 
 		_methodName4 = "dynamicQuery";
 
@@ -90,12 +90,12 @@ public class BorrowerLocalServiceClpInvoker {
 
 		_methodName14 = "updateBorrower";
 
-		_methodParameterTypes14 = new String[] { "org.GoodReturn.model.Borrower" };
+		_methodParameterTypes14 = new String[] { "org.goodreturn.model.Borrower" };
 
 		_methodName15 = "updateBorrower";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.Borrower", "boolean"
+				"org.goodreturn.model.Borrower", "boolean"
 			};
 
 		_methodName86 = "getBeanIdentifier";
@@ -111,7 +111,7 @@ public class BorrowerLocalServiceClpInvoker {
 		Object[] arguments) throws Throwable {
 		if (_methodName0.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-			return BorrowerLocalServiceUtil.addBorrower((org.GoodReturn.model.Borrower)arguments[0]);
+			return BorrowerLocalServiceUtil.addBorrower((org.goodreturn.model.Borrower)arguments[0]);
 		}
 
 		if (_methodName1.equals(name) &&
@@ -126,7 +126,7 @@ public class BorrowerLocalServiceClpInvoker {
 
 		if (_methodName3.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-			return BorrowerLocalServiceUtil.deleteBorrower((org.GoodReturn.model.Borrower)arguments[0]);
+			return BorrowerLocalServiceUtil.deleteBorrower((org.goodreturn.model.Borrower)arguments[0]);
 		}
 
 		if (_methodName4.equals(name) &&
@@ -187,12 +187,12 @@ public class BorrowerLocalServiceClpInvoker {
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return BorrowerLocalServiceUtil.updateBorrower((org.GoodReturn.model.Borrower)arguments[0]);
+			return BorrowerLocalServiceUtil.updateBorrower((org.goodreturn.model.Borrower)arguments[0]);
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return BorrowerLocalServiceUtil.updateBorrower((org.GoodReturn.model.Borrower)arguments[0],
+			return BorrowerLocalServiceUtil.updateBorrower((org.goodreturn.model.Borrower)arguments[0],
 				((Boolean)arguments[1]).booleanValue());
 		}
 

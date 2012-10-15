@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -40,11 +40,11 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import org.GoodReturn.NoSuchGift_CertificateException;
+import org.goodreturn.NoSuchGift_CertificateException;
 
-import org.GoodReturn.model.Gift_Certificate;
-import org.GoodReturn.model.impl.Gift_CertificateImpl;
-import org.GoodReturn.model.impl.Gift_CertificateModelImpl;
+import org.goodreturn.model.Gift_Certificate;
+import org.goodreturn.model.impl.Gift_CertificateImpl;
+import org.goodreturn.model.impl.Gift_CertificateModelImpl;
 
 import java.io.Serializable;
 
@@ -187,7 +187,7 @@ public class Gift_CertificatePersistenceImpl extends BasePersistenceImpl<Gift_Ce
 	 *
 	 * @param certificate_Id the primary key of the gift_ certificate
 	 * @return the gift_ certificate that was removed
-	 * @throws org.GoodReturn.NoSuchGift_CertificateException if a gift_ certificate with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchGift_CertificateException if a gift_ certificate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Gift_Certificate remove(long certificate_Id)
@@ -200,7 +200,7 @@ public class Gift_CertificatePersistenceImpl extends BasePersistenceImpl<Gift_Ce
 	 *
 	 * @param primaryKey the primary key of the gift_ certificate
 	 * @return the gift_ certificate that was removed
-	 * @throws org.GoodReturn.NoSuchGift_CertificateException if a gift_ certificate with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchGift_CertificateException if a gift_ certificate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
@@ -262,7 +262,7 @@ public class Gift_CertificatePersistenceImpl extends BasePersistenceImpl<Gift_Ce
 
 	@Override
 	public Gift_Certificate updateImpl(
-		org.GoodReturn.model.Gift_Certificate gift_Certificate, boolean merge)
+		org.goodreturn.model.Gift_Certificate gift_Certificate, boolean merge)
 		throws SystemException {
 		gift_Certificate = toUnwrappedModel(gift_Certificate);
 
@@ -330,11 +330,11 @@ public class Gift_CertificatePersistenceImpl extends BasePersistenceImpl<Gift_Ce
 	}
 
 	/**
-	 * Returns the gift_ certificate with the primary key or throws a {@link org.GoodReturn.NoSuchGift_CertificateException} if it could not be found.
+	 * Returns the gift_ certificate with the primary key or throws a {@link org.goodreturn.NoSuchGift_CertificateException} if it could not be found.
 	 *
 	 * @param certificate_Id the primary key of the gift_ certificate
 	 * @return the gift_ certificate
-	 * @throws org.GoodReturn.NoSuchGift_CertificateException if a gift_ certificate with the primary key could not be found
+	 * @throws org.goodreturn.NoSuchGift_CertificateException if a gift_ certificate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Gift_Certificate findByPrimaryKey(long certificate_Id)
@@ -585,7 +585,7 @@ public class Gift_CertificatePersistenceImpl extends BasePersistenceImpl<Gift_Ce
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
-						"value.object.listener.org.GoodReturn.model.Gift_Certificate")));
+						"value.object.listener.org.goodreturn.model.Gift_Certificate")));
 
 		if (listenerClassNames.length > 0) {
 			try {

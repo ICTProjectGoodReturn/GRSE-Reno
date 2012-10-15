@@ -12,13 +12,13 @@
  * details.
  */
 
-package org.GoodReturn.model.impl;
+package org.goodreturn.model.impl;
 
 import com.liferay.portal.kernel.exception.SystemException;
 
-import org.GoodReturn.model.Team;
+import org.goodreturn.model.Team;
 
-import org.GoodReturn.service.TeamLocalServiceUtil;
+import org.goodreturn.service.TeamLocalServiceUtil;
 
 /**
  * The extended model base implementation for the Team service. Represents a row in the &quot;GoodReturn_Team&quot; database table, with each column mapped to a property of this class.
@@ -29,7 +29,7 @@ import org.GoodReturn.service.TeamLocalServiceUtil;
  *
  * @author gilaa004
  * @see TeamImpl
- * @see org.GoodReturn.model.Team
+ * @see org.goodreturn.model.Team
  * @generated
  */
 public abstract class TeamBaseImpl extends TeamModelImpl implements Team {

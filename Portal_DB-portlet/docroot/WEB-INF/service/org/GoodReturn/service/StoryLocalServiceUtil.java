@@ -12,14 +12,14 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
- * The utility for the story local service. This utility wraps {@link org.GoodReturn.service.impl.StoryLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
+ * The utility for the story local service. This utility wraps {@link org.goodreturn.service.impl.StoryLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
@@ -27,15 +27,15 @@ import com.liferay.portal.service.InvokableLocalService;
  *
  * @author gilaa004
  * @see StoryLocalService
- * @see org.GoodReturn.service.base.StoryLocalServiceBaseImpl
- * @see org.GoodReturn.service.impl.StoryLocalServiceImpl
+ * @see org.goodreturn.service.base.StoryLocalServiceBaseImpl
+ * @see org.goodreturn.service.impl.StoryLocalServiceImpl
  * @generated
  */
 public class StoryLocalServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link org.GoodReturn.service.impl.StoryLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to {@link org.goodreturn.service.impl.StoryLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 
 	/**
@@ -45,8 +45,8 @@ public class StoryLocalServiceUtil {
 	* @return the story that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Story addStory(
-		org.GoodReturn.model.Story story)
+	public static org.goodreturn.model.Story addStory(
+		org.goodreturn.model.Story story)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addStory(story);
 	}
@@ -54,25 +54,27 @@ public class StoryLocalServiceUtil {
 	/**
 	* Creates a new story with the primary key. Does not add the story to the database.
 	*
-	* @param story_Id the primary key for the new story
+	* @param storyPK the primary key for the new story
 	* @return the new story
 	*/
-	public static org.GoodReturn.model.Story createStory(long story_Id) {
-		return getService().createStory(story_Id);
+	public static org.goodreturn.model.Story createStory(
+		org.goodreturn.service.persistence.StoryPK storyPK) {
+		return getService().createStory(storyPK);
 	}
 
 	/**
 	* Deletes the story with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param story_Id the primary key of the story
+	* @param storyPK the primary key of the story
 	* @return the story that was removed
 	* @throws PortalException if a story with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Story deleteStory(long story_Id)
+	public static org.goodreturn.model.Story deleteStory(
+		org.goodreturn.service.persistence.StoryPK storyPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().deleteStory(story_Id);
+		return getService().deleteStory(storyPK);
 	}
 
 	/**
@@ -82,8 +84,8 @@ public class StoryLocalServiceUtil {
 	* @return the story that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Story deleteStory(
-		org.GoodReturn.model.Story story)
+	public static org.goodreturn.model.Story deleteStory(
+		org.goodreturn.model.Story story)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteStory(story);
 	}
@@ -163,23 +165,25 @@ public class StoryLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
-	public static org.GoodReturn.model.Story fetchStory(long story_Id)
+	public static org.goodreturn.model.Story fetchStory(
+		org.goodreturn.service.persistence.StoryPK storyPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchStory(story_Id);
+		return getService().fetchStory(storyPK);
 	}
 
 	/**
 	* Returns the story with the primary key.
 	*
-	* @param story_Id the primary key of the story
+	* @param storyPK the primary key of the story
 	* @return the story
 	* @throws PortalException if a story with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Story getStory(long story_Id)
+	public static org.goodreturn.model.Story getStory(
+		org.goodreturn.service.persistence.StoryPK storyPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getStory(story_Id);
+		return getService().getStory(storyPK);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -201,7 +205,7 @@ public class StoryLocalServiceUtil {
 	* @return the range of stories
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Story> getStories(
+	public static java.util.List<org.goodreturn.model.Story> getStories(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getStories(start, end);
@@ -225,8 +229,8 @@ public class StoryLocalServiceUtil {
 	* @return the story that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Story updateStory(
-		org.GoodReturn.model.Story story)
+	public static org.goodreturn.model.Story updateStory(
+		org.goodreturn.model.Story story)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateStory(story);
 	}
@@ -239,8 +243,8 @@ public class StoryLocalServiceUtil {
 	* @return the story that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Story updateStory(
-		org.GoodReturn.model.Story story, boolean merge)
+	public static org.goodreturn.model.Story updateStory(
+		org.goodreturn.model.Story story, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateStory(story, merge);
 	}

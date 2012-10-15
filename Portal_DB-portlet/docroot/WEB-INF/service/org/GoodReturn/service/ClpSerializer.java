@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -25,15 +25,15 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
-import org.GoodReturn.model.BorrowerClp;
-import org.GoodReturn.model.Gift_CertificateClp;
-import org.GoodReturn.model.LenderClp;
-import org.GoodReturn.model.PersonClp;
-import org.GoodReturn.model.StoryClp;
-import org.GoodReturn.model.Supplementary_TableClp;
-import org.GoodReturn.model.TeamClp;
-import org.GoodReturn.model.TeamLenderClp;
-import org.GoodReturn.model.TeamLenderLoanClp;
+import org.goodreturn.model.BorrowerClp;
+import org.goodreturn.model.Gift_CertificateClp;
+import org.goodreturn.model.LenderClp;
+import org.goodreturn.model.PersonClp;
+import org.goodreturn.model.StoryClp;
+import org.goodreturn.model.Supplementary_TableClp;
+import org.goodreturn.model.TeamClp;
+import org.goodreturn.model.TeamLenderClp;
+import org.goodreturn.model.TeamLenderLoanClp;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -269,42 +269,42 @@ public class ClpSerializer {
 
 		String oldModelClassName = oldModelClass.getName();
 
-		if (oldModelClassName.equals("org.GoodReturn.model.impl.BorrowerImpl")) {
+		if (oldModelClassName.equals("org.goodreturn.model.impl.BorrowerImpl")) {
 			return translateOutputBorrower(oldModel);
 		}
 
 		if (oldModelClassName.equals(
-					"org.GoodReturn.model.impl.Gift_CertificateImpl")) {
+					"org.goodreturn.model.impl.Gift_CertificateImpl")) {
 			return translateOutputGift_Certificate(oldModel);
 		}
 
-		if (oldModelClassName.equals("org.GoodReturn.model.impl.LenderImpl")) {
+		if (oldModelClassName.equals("org.goodreturn.model.impl.LenderImpl")) {
 			return translateOutputLender(oldModel);
 		}
 
-		if (oldModelClassName.equals("org.GoodReturn.model.impl.PersonImpl")) {
+		if (oldModelClassName.equals("org.goodreturn.model.impl.PersonImpl")) {
 			return translateOutputPerson(oldModel);
 		}
 
-		if (oldModelClassName.equals("org.GoodReturn.model.impl.StoryImpl")) {
+		if (oldModelClassName.equals("org.goodreturn.model.impl.StoryImpl")) {
 			return translateOutputStory(oldModel);
 		}
 
 		if (oldModelClassName.equals(
-					"org.GoodReturn.model.impl.Supplementary_TableImpl")) {
+					"org.goodreturn.model.impl.Supplementary_TableImpl")) {
 			return translateOutputSupplementary_Table(oldModel);
 		}
 
-		if (oldModelClassName.equals("org.GoodReturn.model.impl.TeamImpl")) {
+		if (oldModelClassName.equals("org.goodreturn.model.impl.TeamImpl")) {
 			return translateOutputTeam(oldModel);
 		}
 
-		if (oldModelClassName.equals("org.GoodReturn.model.impl.TeamLenderImpl")) {
+		if (oldModelClassName.equals("org.goodreturn.model.impl.TeamLenderImpl")) {
 			return translateOutputTeamLender(oldModel);
 		}
 
 		if (oldModelClassName.equals(
-					"org.GoodReturn.model.impl.TeamLenderLoanImpl")) {
+					"org.goodreturn.model.impl.TeamLenderLoanImpl")) {
 			return translateOutputTeamLenderLoan(oldModel);
 		}
 
@@ -388,41 +388,41 @@ public class ClpSerializer {
 			return new SystemException();
 		}
 
-		if (className.equals("org.GoodReturn.NoSuchBorrowerException")) {
-			return new org.GoodReturn.NoSuchBorrowerException();
+		if (className.equals("org.goodreturn.NoSuchBorrowerException")) {
+			return new org.goodreturn.NoSuchBorrowerException();
 		}
 
-		if (className.equals("org.GoodReturn.NoSuchGift_CertificateException")) {
-			return new org.GoodReturn.NoSuchGift_CertificateException();
+		if (className.equals("org.goodreturn.NoSuchGift_CertificateException")) {
+			return new org.goodreturn.NoSuchGift_CertificateException();
 		}
 
-		if (className.equals("org.GoodReturn.NoSuchLenderException")) {
-			return new org.GoodReturn.NoSuchLenderException();
+		if (className.equals("org.goodreturn.NoSuchLenderException")) {
+			return new org.goodreturn.NoSuchLenderException();
 		}
 
-		if (className.equals("org.GoodReturn.NoSuchPersonException")) {
-			return new org.GoodReturn.NoSuchPersonException();
+		if (className.equals("org.goodreturn.NoSuchPersonException")) {
+			return new org.goodreturn.NoSuchPersonException();
 		}
 
-		if (className.equals("org.GoodReturn.NoSuchStoryException")) {
-			return new org.GoodReturn.NoSuchStoryException();
+		if (className.equals("org.goodreturn.NoSuchStoryException")) {
+			return new org.goodreturn.NoSuchStoryException();
 		}
 
 		if (className.equals(
-					"org.GoodReturn.NoSuchSupplementary_TableException")) {
-			return new org.GoodReturn.NoSuchSupplementary_TableException();
+					"org.goodreturn.NoSuchSupplementary_TableException")) {
+			return new org.goodreturn.NoSuchSupplementary_TableException();
 		}
 
-		if (className.equals("org.GoodReturn.NoSuchTeamException")) {
-			return new org.GoodReturn.NoSuchTeamException();
+		if (className.equals("org.goodreturn.NoSuchTeamException")) {
+			return new org.goodreturn.NoSuchTeamException();
 		}
 
-		if (className.equals("org.GoodReturn.NoSuchTeamLenderException")) {
-			return new org.GoodReturn.NoSuchTeamLenderException();
+		if (className.equals("org.goodreturn.NoSuchTeamLenderException")) {
+			return new org.goodreturn.NoSuchTeamLenderException();
 		}
 
-		if (className.equals("org.GoodReturn.NoSuchTeamLenderLoanException")) {
-			return new org.GoodReturn.NoSuchTeamLenderLoanException();
+		if (className.equals("org.goodreturn.NoSuchTeamLenderLoanException")) {
+			return new org.goodreturn.NoSuchTeamLenderLoanException();
 		}
 
 		return throwable;

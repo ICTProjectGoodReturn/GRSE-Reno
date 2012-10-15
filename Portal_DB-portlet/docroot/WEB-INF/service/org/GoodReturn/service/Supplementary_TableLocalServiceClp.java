@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service;
+package org.goodreturn.service;
 
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -28,7 +28,7 @@ public class Supplementary_TableLocalServiceClp
 		_methodName0 = "addSupplementary_Table";
 
 		_methodParameterTypes0 = new String[] {
-				"org.GoodReturn.model.Supplementary_Table"
+				"org.goodreturn.model.Supplementary_Table"
 			};
 
 		_methodName1 = "createSupplementary_Table";
@@ -42,7 +42,7 @@ public class Supplementary_TableLocalServiceClp
 		_methodName3 = "deleteSupplementary_Table";
 
 		_methodParameterTypes3 = new String[] {
-				"org.GoodReturn.model.Supplementary_Table"
+				"org.goodreturn.model.Supplementary_Table"
 			};
 
 		_methodName4 = "dynamicQuery";
@@ -97,13 +97,13 @@ public class Supplementary_TableLocalServiceClp
 		_methodName14 = "updateSupplementary_Table";
 
 		_methodParameterTypes14 = new String[] {
-				"org.GoodReturn.model.Supplementary_Table"
+				"org.goodreturn.model.Supplementary_Table"
 			};
 
 		_methodName15 = "updateSupplementary_Table";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.Supplementary_Table", "boolean"
+				"org.goodreturn.model.Supplementary_Table", "boolean"
 			};
 
 		_methodName16 = "getBeanIdentifier";
@@ -115,8 +115,8 @@ public class Supplementary_TableLocalServiceClp
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 	}
 
-	public org.GoodReturn.model.Supplementary_Table addSupplementary_Table(
-		org.GoodReturn.model.Supplementary_Table supplementary_Table)
+	public org.goodreturn.model.Supplementary_Table addSupplementary_Table(
+		org.goodreturn.model.Supplementary_Table supplementary_Table)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -143,10 +143,10 @@ public class Supplementary_TableLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Supplementary_Table createSupplementary_Table(
+	public org.goodreturn.model.Supplementary_Table createSupplementary_Table(
 		long table_Id) {
 		Object returnObj = null;
 
@@ -166,10 +166,10 @@ public class Supplementary_TableLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Supplementary_Table deleteSupplementary_Table(
+	public org.goodreturn.model.Supplementary_Table deleteSupplementary_Table(
 		long table_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -199,11 +199,11 @@ public class Supplementary_TableLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Supplementary_Table deleteSupplementary_Table(
-		org.GoodReturn.model.Supplementary_Table supplementary_Table)
+	public org.goodreturn.model.Supplementary_Table deleteSupplementary_Table(
+		org.goodreturn.model.Supplementary_Table supplementary_Table)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -230,7 +230,7 @@ public class Supplementary_TableLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -390,7 +390,7 @@ public class Supplementary_TableLocalServiceClp
 		return ((Long)returnObj).longValue();
 	}
 
-	public org.GoodReturn.model.Supplementary_Table fetchSupplementary_Table(
+	public org.goodreturn.model.Supplementary_Table fetchSupplementary_Table(
 		long table_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -415,10 +415,10 @@ public class Supplementary_TableLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Supplementary_Table getSupplementary_Table(
+	public org.goodreturn.model.Supplementary_Table getSupplementary_Table(
 		long table_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -448,7 +448,7 @@ public class Supplementary_TableLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -485,7 +485,7 @@ public class Supplementary_TableLocalServiceClp
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<org.GoodReturn.model.Supplementary_Table> getSupplementary_Tables(
+	public java.util.List<org.goodreturn.model.Supplementary_Table> getSupplementary_Tables(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -510,7 +510,7 @@ public class Supplementary_TableLocalServiceClp
 			}
 		}
 
-		return (java.util.List<org.GoodReturn.model.Supplementary_Table>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<org.goodreturn.model.Supplementary_Table>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getSupplementary_TablesCount()
@@ -540,8 +540,8 @@ public class Supplementary_TableLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
-	public org.GoodReturn.model.Supplementary_Table updateSupplementary_Table(
-		org.GoodReturn.model.Supplementary_Table supplementary_Table)
+	public org.goodreturn.model.Supplementary_Table updateSupplementary_Table(
+		org.goodreturn.model.Supplementary_Table supplementary_Table)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -568,11 +568,11 @@ public class Supplementary_TableLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.GoodReturn.model.Supplementary_Table updateSupplementary_Table(
-		org.GoodReturn.model.Supplementary_Table supplementary_Table,
+	public org.goodreturn.model.Supplementary_Table updateSupplementary_Table(
+		org.goodreturn.model.Supplementary_Table supplementary_Table,
 		boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -602,7 +602,7 @@ public class Supplementary_TableLocalServiceClp
 			}
 		}
 
-		return (org.GoodReturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
+		return (org.goodreturn.model.Supplementary_Table)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.lang.String getBeanIdentifier() {

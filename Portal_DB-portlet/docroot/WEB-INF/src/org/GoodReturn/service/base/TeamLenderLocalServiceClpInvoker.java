@@ -12,9 +12,9 @@
  * details.
  */
 
-package org.GoodReturn.service.base;
+package org.goodreturn.service.base;
 
-import org.GoodReturn.service.TeamLenderLocalServiceUtil;
+import org.goodreturn.service.TeamLenderLocalServiceUtil;
 
 import java.util.Arrays;
 
@@ -25,7 +25,7 @@ public class TeamLenderLocalServiceClpInvoker {
 	public TeamLenderLocalServiceClpInvoker() {
 		_methodName0 = "addTeamLender";
 
-		_methodParameterTypes0 = new String[] { "org.GoodReturn.model.TeamLender" };
+		_methodParameterTypes0 = new String[] { "org.goodreturn.model.TeamLender" };
 
 		_methodName1 = "createTeamLender";
 
@@ -37,7 +37,7 @@ public class TeamLenderLocalServiceClpInvoker {
 
 		_methodName3 = "deleteTeamLender";
 
-		_methodParameterTypes3 = new String[] { "org.GoodReturn.model.TeamLender" };
+		_methodParameterTypes3 = new String[] { "org.goodreturn.model.TeamLender" };
 
 		_methodName4 = "dynamicQuery";
 
@@ -90,12 +90,12 @@ public class TeamLenderLocalServiceClpInvoker {
 
 		_methodName14 = "updateTeamLender";
 
-		_methodParameterTypes14 = new String[] { "org.GoodReturn.model.TeamLender" };
+		_methodParameterTypes14 = new String[] { "org.goodreturn.model.TeamLender" };
 
 		_methodName15 = "updateTeamLender";
 
 		_methodParameterTypes15 = new String[] {
-				"org.GoodReturn.model.TeamLender", "boolean"
+				"org.goodreturn.model.TeamLender", "boolean"
 			};
 
 		_methodName86 = "getBeanIdentifier";
@@ -111,7 +111,7 @@ public class TeamLenderLocalServiceClpInvoker {
 		Object[] arguments) throws Throwable {
 		if (_methodName0.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-			return TeamLenderLocalServiceUtil.addTeamLender((org.GoodReturn.model.TeamLender)arguments[0]);
+			return TeamLenderLocalServiceUtil.addTeamLender((org.goodreturn.model.TeamLender)arguments[0]);
 		}
 
 		if (_methodName1.equals(name) &&
@@ -126,7 +126,7 @@ public class TeamLenderLocalServiceClpInvoker {
 
 		if (_methodName3.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-			return TeamLenderLocalServiceUtil.deleteTeamLender((org.GoodReturn.model.TeamLender)arguments[0]);
+			return TeamLenderLocalServiceUtil.deleteTeamLender((org.goodreturn.model.TeamLender)arguments[0]);
 		}
 
 		if (_methodName4.equals(name) &&
@@ -187,12 +187,12 @@ public class TeamLenderLocalServiceClpInvoker {
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return TeamLenderLocalServiceUtil.updateTeamLender((org.GoodReturn.model.TeamLender)arguments[0]);
+			return TeamLenderLocalServiceUtil.updateTeamLender((org.goodreturn.model.TeamLender)arguments[0]);
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return TeamLenderLocalServiceUtil.updateTeamLender((org.GoodReturn.model.TeamLender)arguments[0],
+			return TeamLenderLocalServiceUtil.updateTeamLender((org.goodreturn.model.TeamLender)arguments[0],
 				((Boolean)arguments[1]).booleanValue());
 		}
 

@@ -12,7 +12,7 @@
  * details.
  */
 
-package org.GoodReturn.service.persistence;
+package org.goodreturn.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
-import org.GoodReturn.model.Story;
+import org.goodreturn.model.Story;
 
 import java.util.List;
 
@@ -114,7 +114,7 @@ public class StoryUtil {
 	*
 	* @param story the story
 	*/
-	public static void cacheResult(org.GoodReturn.model.Story story) {
+	public static void cacheResult(org.goodreturn.model.Story story) {
 		getPersistence().cacheResult(story);
 	}
 
@@ -124,64 +124,200 @@ public class StoryUtil {
 	* @param stories the stories
 	*/
 	public static void cacheResult(
-		java.util.List<org.GoodReturn.model.Story> stories) {
+		java.util.List<org.goodreturn.model.Story> stories) {
 		getPersistence().cacheResult(stories);
 	}
 
 	/**
 	* Creates a new story with the primary key. Does not add the story to the database.
 	*
-	* @param story_Id the primary key for the new story
+	* @param storyPK the primary key for the new story
 	* @return the new story
 	*/
-	public static org.GoodReturn.model.Story create(long story_Id) {
-		return getPersistence().create(story_Id);
+	public static org.goodreturn.model.Story create(StoryPK storyPK) {
+		return getPersistence().create(storyPK);
 	}
 
 	/**
 	* Removes the story with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param story_Id the primary key of the story
+	* @param storyPK the primary key of the story
 	* @return the story that was removed
-	* @throws org.GoodReturn.NoSuchStoryException if a story with the primary key could not be found
+	* @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Story remove(long story_Id)
+	public static org.goodreturn.model.Story remove(StoryPK storyPK)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchStoryException {
-		return getPersistence().remove(story_Id);
+			org.goodreturn.NoSuchStoryException {
+		return getPersistence().remove(storyPK);
 	}
 
-	public static org.GoodReturn.model.Story updateImpl(
-		org.GoodReturn.model.Story story, boolean merge)
+	public static org.goodreturn.model.Story updateImpl(
+		org.goodreturn.model.Story story, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(story, merge);
 	}
 
 	/**
-	* Returns the story with the primary key or throws a {@link org.GoodReturn.NoSuchStoryException} if it could not be found.
+	* Returns the story with the primary key or throws a {@link org.goodreturn.NoSuchStoryException} if it could not be found.
 	*
-	* @param story_Id the primary key of the story
+	* @param storyPK the primary key of the story
 	* @return the story
-	* @throws org.GoodReturn.NoSuchStoryException if a story with the primary key could not be found
+	* @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Story findByPrimaryKey(long story_Id)
+	public static org.goodreturn.model.Story findByPrimaryKey(StoryPK storyPK)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			org.GoodReturn.NoSuchStoryException {
-		return getPersistence().findByPrimaryKey(story_Id);
+			org.goodreturn.NoSuchStoryException {
+		return getPersistence().findByPrimaryKey(storyPK);
 	}
 
 	/**
 	* Returns the story with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param story_Id the primary key of the story
+	* @param storyPK the primary key of the story
 	* @return the story, or <code>null</code> if a story with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.GoodReturn.model.Story fetchByPrimaryKey(long story_Id)
+	public static org.goodreturn.model.Story fetchByPrimaryKey(StoryPK storyPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(story_Id);
+		return getPersistence().fetchByPrimaryKey(storyPK);
+	}
+
+	/**
+	* Returns all the stories where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @return the matching stories
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<org.goodreturn.model.Story> findByUuid(
+		java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByUuid(uuid);
+	}
+
+	/**
+	* Returns a range of all the stories where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param uuid the uuid
+	* @param start the lower bound of the range of stories
+	* @param end the upper bound of the range of stories (not inclusive)
+	* @return the range of matching stories
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<org.goodreturn.model.Story> findByUuid(
+		java.lang.String uuid, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByUuid(uuid, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the stories where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param uuid the uuid
+	* @param start the lower bound of the range of stories
+	* @param end the upper bound of the range of stories (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching stories
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<org.goodreturn.model.Story> findByUuid(
+		java.lang.String uuid, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first story in the ordered set where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching story
+	* @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static org.goodreturn.model.Story findByUuid_First(
+		java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			org.goodreturn.NoSuchStoryException {
+		return getPersistence().findByUuid_First(uuid, orderByComparator);
+	}
+
+	/**
+	* Returns the first story in the ordered set where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching story, or <code>null</code> if a matching story could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static org.goodreturn.model.Story fetchByUuid_First(
+		java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
+	}
+
+	/**
+	* Returns the last story in the ordered set where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching story
+	* @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static org.goodreturn.model.Story findByUuid_Last(
+		java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			org.goodreturn.NoSuchStoryException {
+		return getPersistence().findByUuid_Last(uuid, orderByComparator);
+	}
+
+	/**
+	* Returns the last story in the ordered set where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching story, or <code>null</code> if a matching story could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static org.goodreturn.model.Story fetchByUuid_Last(
+		java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
+	}
+
+	/**
+	* Returns the stories before and after the current story in the ordered set where uuid = &#63;.
+	*
+	* @param storyPK the primary key of the current story
+	* @param uuid the uuid
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next story
+	* @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static org.goodreturn.model.Story[] findByUuid_PrevAndNext(
+		StoryPK storyPK, java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			org.goodreturn.NoSuchStoryException {
+		return getPersistence()
+				   .findByUuid_PrevAndNext(storyPK, uuid, orderByComparator);
 	}
 
 	/**
@@ -190,7 +326,7 @@ public class StoryUtil {
 	* @return the stories
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Story> findAll()
+	public static java.util.List<org.goodreturn.model.Story> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
@@ -207,7 +343,7 @@ public class StoryUtil {
 	* @return the range of stories
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Story> findAll(
+	public static java.util.List<org.goodreturn.model.Story> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
@@ -226,11 +362,22 @@ public class StoryUtil {
 	* @return the ordered range of stories
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<org.GoodReturn.model.Story> findAll(
+	public static java.util.List<org.goodreturn.model.Story> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end, orderByComparator);
+	}
+
+	/**
+	* Removes all the stories where uuid = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUuid(uuid);
 	}
 
 	/**
@@ -241,6 +388,18 @@ public class StoryUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
+	}
+
+	/**
+	* Returns the number of stories where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @return the number of matching stories
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUuid(uuid);
 	}
 
 	/**
@@ -256,7 +415,7 @@ public class StoryUtil {
 
 	public static StoryPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (StoryPersistence)PortletBeanLocatorUtil.locate(org.GoodReturn.service.ClpSerializer.getServletContextName(),
+			_persistence = (StoryPersistence)PortletBeanLocatorUtil.locate(org.goodreturn.service.ClpSerializer.getServletContextName(),
 					StoryPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(StoryUtil.class, "_persistence");

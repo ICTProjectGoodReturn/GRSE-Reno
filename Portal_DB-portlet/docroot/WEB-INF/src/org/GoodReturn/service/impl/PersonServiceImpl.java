@@ -12,28 +12,28 @@
  * details.
  */
 
-package org.GoodReturn.service.impl;
+package org.goodreturn.service.impl;
 
-import org.GoodReturn.service.base.PersonServiceBaseImpl;
+import org.goodreturn.service.base.PersonServiceBaseImpl;
 
 /**
  * The implementation of the person remote service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.GoodReturn.service.PersonService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link org.goodreturn.service.PersonService} interface.
  *
  * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
  * @author gilaa004
- * @see org.GoodReturn.service.base.PersonServiceBaseImpl
- * @see org.GoodReturn.service.PersonServiceUtil
+ * @see org.goodreturn.service.base.PersonServiceBaseImpl
+ * @see org.goodreturn.service.PersonServiceUtil
  */
 public class PersonServiceImpl extends PersonServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link org.GoodReturn.service.PersonServiceUtil} to access the person remote service.
+	 * Never reference this interface directly. Always use {@link org.goodreturn.service.PersonServiceUtil} to access the person remote service.
 	 */
 }

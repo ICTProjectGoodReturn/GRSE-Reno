@@ -12,12 +12,12 @@
  * details.
  */
 
-package org.GoodReturn.service.http;
+package org.goodreturn.service.http;
 
 /**
  * <p>
  * This class provides a SOAP utility for the
- * {@link org.GoodReturn.service.PersonServiceUtil} service utility. The
+ * {@link org.goodreturn.service.PersonServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -26,10 +26,10 @@ package org.GoodReturn.service.http;
  * <p>
  * ServiceBuilder follows certain rules in translating the methods. For example,
  * if the method in the service utility returns a {@link java.util.List}, that
- * is translated to an array of {@link org.GoodReturn.model.PersonSoap}.
+ * is translated to an array of {@link org.goodreturn.model.PersonSoap}.
  * If the method in the service utility returns a
- * {@link org.GoodReturn.model.Person}, that is translated to a
- * {@link org.GoodReturn.model.PersonSoap}. Methods that SOAP cannot
+ * {@link org.goodreturn.model.Person}, that is translated to a
+ * {@link org.goodreturn.model.PersonSoap}. Methods that SOAP cannot
  * safely wire are skipped.
  * </p>
  *
@@ -53,8 +53,8 @@ package org.GoodReturn.service.http;
  *
  * @author    gilaa004
  * @see       PersonServiceHttp
- * @see       org.GoodReturn.model.PersonSoap
- * @see       org.GoodReturn.service.PersonServiceUtil
+ * @see       org.goodreturn.model.PersonSoap
+ * @see       org.goodreturn.service.PersonServiceUtil
  * @generated
  */
 public class PersonServiceSoap {
