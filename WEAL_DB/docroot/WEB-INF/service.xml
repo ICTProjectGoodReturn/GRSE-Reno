@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+<service-builder package-path="org.GoodReturn">
+	<author>gilaa004</author>
+	<namespace>WEAL</namespace>
+
+		<entity name="Person" remote-service="true" local-service="true">
+    
+    	<!-- PK fields -->
+		<column name="abacus_Person_Id" type="long" primary="true"/>
+
+		
+		<!-- Audit Fields -->
+		<column name="first_Name" type="String"/>
+		<column name="last_Name" type="String"/>
+		<column name="email" type="String"/>
+		<column name="address" type="String"/>
+		<column name="address_Type" type="String"/>
+		<column name="country" type="String"/>
+		<column name="gender" type="String"/>
+		<column name="status" type="String"/>
+		<column name="photo_URL" type="String"/>
+		<column name="occupation" type="String"/>
+		
+	<!-- Order -->
+	
+	<order by="asc">
+		<order-column name="last_Name"/>
+	</order>
+	
+		
+		</entity>
+	
+	<entity name="Lender" local-service="true" remote-service="true">
+	
+	<column name="lender_Id" type="long" primary="true"/>
+	
+	<!-- Audit Fields -->
+	
+	
+	<!-- Other Fields -->
+	<column name="salutation" type="String"/>
+	<column name="employer_Name" type="String"/>
+	<column name="comment" type="String"/>
+	<column name="heard_Of_Us" type="String"/>
+	<column name="region" type="String"/>
+	<column name="display_Name" type="String"/>
+	<column name="date_Of_Birth" type="Date"/>
+	<column name="reason_For_Lending" type="String"/>
+	<column name="about_Themselves" type="String"/>
+	<column name="automatic_Re_lend" type="boolean"/>
+	<column name="monthly_Repayments" type="double"/>
+	<column name="is_Public_Profile" type="boolean"/>
+	<column name="bank_Details" type="String"/>
+	<column name="recieve_Emails" type="boolean"/>
+	<column name="recieve_GoodReturn_Info" type="boolean"/>
+	<column name="is_Anonymous" type="boolean"/>
+	<column name="is_Validated" type="boolean"/>
+	<column name="current_Balance" type="double"/>
+	<column name="paypal_Email" type="String"/>
+	<column name="password" type="String"/>
+	<column name="last_Login_Date" type="Date"/>
+	<column name="featured_Lender" type="String"/>
+	<column name="voucher_Id" type="long"/>
+	<column name="is_Loan_Donation" type="boolean"/>
+	
+	<!-- Order -->
+	
+	<order by="asc">
+		<order-column name="display_Name"/>
+	</order>
+	
+	
+	
+	</entity>
+	
+
+			
+	<entity name="Borrower" remote-service="true" local-service="true">
+	
+	<!-- PK Fields -->
+	<column name="abacus_Borrower_Id" type="long" primary="true"/>
+	
+	<!-- Audit Fields -->
+	<column name="write_Off_Date" type="Date"/>
+	<column name="phone" type="long"/>
+	<column name="wait_Time" type="long"/>
+	<column name="country" type="String"/>
+	<column name="amount_Needed" type="double"/>
+	<column name="amount_Needed_AUD" type="double"/>
+	<column name="type_Of_Person" type="String"/>
+	<column name="village" type="String"/>
+	<column name="district" type="String"/>
+	<column name="pdf_Link" type="String"/>
+	<column name="currency" type="double"/>
+	<column name="date_Applied" type="Date"/>
+	
+	<!-- Order -->
+	<order by="asc">
+		<order-column name="amount_Needed"/>
+	</order>
+
+	</entity>
+
+	<entity name="Team" remote-service="true" local-service="true">
+	
+	<!-- PK Fields -->
+	<column name="team_Id" type="long" primary="true"/>
+	
+	<!-- Audit Fields -->
+	<column name="team_Name" type="String"/>
+	<column name="amount_Lent" type="String"/>
+	
+	<!-- Order -->
+	
+	<order by="asc">
+		<order-column name="team_Name"/>
+	</order>
+	
+	
+	</entity>
+	
+	<entity name="Gift_Certificate" remote-service="true" local-service="true">
+	
+	<!-- PK Fields -->
+	<column name="certificate_Id" type="long" primary="true"/>
+	
+	<!-- Audit Fields -->
+	<column name="certificate_Amount" type="double"/>
+	<column name="certificate_Type" type="String"/>
+	
+	<!-- Order -->
+	
+	<order by="asc">
+		<order-column name="certificate_Id"/>
+	</order>
+	
+	</entity>
+	
+	<entity name="Supplementary_Table" remote-service="true" local-service="true">
+	
+	<!-- PK Fields -->
+	<column name="table_Id" type="long" primary="true"/>
+	
+		<!-- Order -->
+	
+	<order by="asc">
+		<order-column name="table_Id"/>
+	</order>
+	
+	</entity>
+	
+	<entity name="Story" remote-service="true" local-service="true">
+	
+	<!-- PK Fields -->
+	<column name="story_Id" type="long" primary="true"/>
+	
+	<!-- Audit Fields -->
+	<column name="final_Story" type="String"/>
+	<column name="is_Good_Enough_For_Marketing" type="boolean"/>
+	<column name="is_Good_Enough_For_Final_Story" type="boolean"/>
+	
+		<!-- Order -->
+	
+	<order by="asc">
+		<order-column name="story_Id"/>
+	</order>
+	
+	</entity>
+	
+	<entity name="TeamLender" remote-service="true" local-service="true">
+	
+	<!-- FK Fields -->
+	<column name="teamlender_Id" type="long" primary="true"/>
+
+	<!-- Order -->
+	
+	<order by="asc">
+		<order-column name="teamlender_Id"/>
+	</order>
+	</entity>
+	
+	<entity name="TeamLenderLoan" remote-service="true" local-service="true">
+	
+	<!-- PK Fields -->
+	<column name="account_Id" type="long" primary="true"/>
+	
+	<!-- Order -->
+	<order by="asc">
+		<order-column name="account_Id"/>
+	</order>
+	
+	</entity>
+	
+	
+	
+</service-builder>
