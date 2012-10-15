@@ -1,0 +1,1 @@
+Liferay.Service.register("Liferay.Service.WEAL", "org.GoodReturn.service", "WEAL_DB");
