@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.test.model.impl.BorrowerModelImpl">
+		<attributes>
+			<id name="abacus_Borrower_Id" />
+			<basic name="write_Off_Date">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="phone" />
+			<basic name="wait_Time" />
+			<basic name="country" />
+			<basic name="amount_Needed" />
+			<basic name="amount_Needed_AUD" />
+			<basic name="type_Of_Person" />
+			<basic name="village" />
+			<basic name="district" />
+			<basic name="pdf_Link" />
+			<basic name="currency">
+				<column name="CURRENCY_" />
+			</basic>
+			<basic name="date_Applied">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.test.model.impl.Gift_CertificateModelImpl">
+		<attributes>
+			<id name="certificate_Id" />
+			<basic name="certificate_Amount" />
+			<basic name="certificate_Type" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.test.model.impl.LenderModelImpl">
+		<attributes>
+			<id name="lender_Id" />
+			<basic name="salutation" />
+			<basic name="employer_Name" />
+			<basic name="comment">
+				<column name="COMMENT_" />
+			</basic>
+			<basic name="heard_Of_Us" />
+			<basic name="region" />
+			<basic name="display_Name" />
+			<basic name="date_Of_Birth">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="reason_For_Lending" />
+			<basic name="about_Themselves" />
+			<basic name="automatic_Re_lend" />
+			<basic name="monthly_Repayments" />
+			<basic name="is_Public_Profile" />
+			<basic name="bank_Details" />
+			<basic name="recieve_Emails" />
+			<basic name="recieve_GoodReturn_Info" />
+			<basic name="is_Anonymous" />
+			<basic name="is_Validated" />
+			<basic name="current_Balance" />
+			<basic name="paypal_Email" />
+			<basic name="password">
+				<column name="PASSWORD_" />
+			</basic>
+			<basic name="last_Login_Date">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="featured_Lender" />
+			<basic name="voucher_Id" />
+			<basic name="is_Loan_Donation" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.test.model.impl.PersonModelImpl">
+		<attributes>
+			<id name="abacus_Person_Id" />
+			<basic name="first_Name" />
+			<basic name="last_Name" />
+			<basic name="email" />
+			<basic name="address" />
+			<basic name="address_Type" />
+			<basic name="country" />
+			<basic name="gender" />
+			<basic name="status" />
+			<basic name="photo_URL" />
+			<basic name="occupation" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.test.model.impl.StoryModelImpl">
+		<attributes>
+			<id name="story_Id" />
+			<basic name="final_Story" />
+			<basic name="is_Good_Enough_For_Marketing" />
+			<basic name="is_Good_Enough_For_Final_Story" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.test.model.impl.Supplementary_TableModelImpl">
+		<attributes>
+			<id name="table_Id" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.test.model.impl.TeamModelImpl">
+		<attributes>
+			<id name="team_Id" />
+			<basic name="team_Name" />
+			<basic name="amount_Lent" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.test.model.impl.TeamLenderModelImpl">
+		<attributes>
+			<id name="teamlender_Id" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.test.model.impl.TeamLenderLoanModelImpl">
+		<attributes>
+			<id name="account_Id" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.test.model.impl.BorrowerImpl" name="Borrower">
+		<table name="KYLE_Borrower" />
+		<attributes />
+	</entity>
+	<entity class="com.test.model.impl.Gift_CertificateImpl" name="Gift_Certificate">
+		<table name="KYLE_Gift_Certificate" />
+		<attributes />
+	</entity>
+	<entity class="com.test.model.impl.LenderImpl" name="Lender">
+		<table name="KYLE_Lender" />
+		<attributes />
+	</entity>
+	<entity class="com.test.model.impl.PersonImpl" name="Person">
+		<table name="KYLE_Person" />
+		<attributes />
+	</entity>
+	<entity class="com.test.model.impl.StoryImpl" name="Story">
+		<table name="KYLE_Story" />
+		<attributes />
+	</entity>
+	<entity class="com.test.model.impl.Supplementary_TableImpl" name="Supplementary_Table">
+		<table name="KYLE_Supplementary_Table" />
+		<attributes />
+	</entity>
+	<entity class="com.test.model.impl.TeamImpl" name="Team">
+		<table name="KYLE_Team" />
+		<attributes />
+	</entity>
+	<entity class="com.test.model.impl.TeamLenderImpl" name="TeamLender">
+		<table name="KYLE_TeamLender" />
+		<attributes />
+	</entity>
+	<entity class="com.test.model.impl.TeamLenderLoanImpl" name="TeamLenderLoan">
+		<table name="KYLE_TeamLenderLoan" />
+		<attributes />
+	</entity>
+</entity-mappings>

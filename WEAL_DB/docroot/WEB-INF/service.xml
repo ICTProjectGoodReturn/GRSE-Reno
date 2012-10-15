@@ -29,14 +29,14 @@
 	</order>
 	
 		
-		</entity>
+	</entity>
 	
 	<entity name="Lender" local-service="true" remote-service="true">
 	
 	<column name="lender_Id" type="long" primary="true"/>
 	
-	<!-- Audit Fields -->
-	
+	<!-- Foreign Key Fields -->
+	<column name="person_Id" type="Collection" entity="Person" mapping-key="abacus_Person_Id"/>
 	
 	<!-- Other Fields -->
 	<column name="salutation" type="String"/>
@@ -80,6 +80,9 @@
 	
 	<!-- PK Fields -->
 	<column name="abacus_Borrower_Id" type="long" primary="true"/>
+	
+	<!-- FK Fields -->
+	<column name="person_Id" type="Collection" entity="Person" mapping-key="abacus_Person_Id"/>
 	
 	<!-- Audit Fields -->
 	<column name="write_Off_Date" type="Date"/>

@@ -1,0 +1,1 @@
+Liferay.Service.register("Liferay.Service.KYLE", "com.test.service", "KYLE-portlet");

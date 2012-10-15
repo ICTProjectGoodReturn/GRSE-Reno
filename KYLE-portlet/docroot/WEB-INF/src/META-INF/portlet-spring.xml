@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.test.service.BorrowerLocalService" class="com.test.service.impl.BorrowerLocalServiceImpl" />
+	<bean id="com.test.service.BorrowerService" class="com.test.service.impl.BorrowerServiceImpl" />
+	<bean id="com.test.service.persistence.BorrowerPersistence" class="com.test.service.persistence.BorrowerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.test.service.Gift_CertificateLocalService" class="com.test.service.impl.Gift_CertificateLocalServiceImpl" />
+	<bean id="com.test.service.Gift_CertificateService" class="com.test.service.impl.Gift_CertificateServiceImpl" />
+	<bean id="com.test.service.persistence.Gift_CertificatePersistence" class="com.test.service.persistence.Gift_CertificatePersistenceImpl" parent="basePersistence" />
+	<bean id="com.test.service.LenderLocalService" class="com.test.service.impl.LenderLocalServiceImpl" />
+	<bean id="com.test.service.LenderService" class="com.test.service.impl.LenderServiceImpl" />
+	<bean id="com.test.service.persistence.LenderPersistence" class="com.test.service.persistence.LenderPersistenceImpl" parent="basePersistence" />
+	<bean id="com.test.service.PersonLocalService" class="com.test.service.impl.PersonLocalServiceImpl" />
+	<bean id="com.test.service.PersonService" class="com.test.service.impl.PersonServiceImpl" />
+	<bean id="com.test.service.persistence.PersonPersistence" class="com.test.service.persistence.PersonPersistenceImpl" parent="basePersistence" />
+	<bean id="com.test.service.StoryLocalService" class="com.test.service.impl.StoryLocalServiceImpl" />
+	<bean id="com.test.service.StoryService" class="com.test.service.impl.StoryServiceImpl" />
+	<bean id="com.test.service.persistence.StoryPersistence" class="com.test.service.persistence.StoryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.test.service.Supplementary_TableLocalService" class="com.test.service.impl.Supplementary_TableLocalServiceImpl" />
+	<bean id="com.test.service.Supplementary_TableService" class="com.test.service.impl.Supplementary_TableServiceImpl" />
+	<bean id="com.test.service.persistence.Supplementary_TablePersistence" class="com.test.service.persistence.Supplementary_TablePersistenceImpl" parent="basePersistence" />
+	<bean id="com.test.service.TeamLocalService" class="com.test.service.impl.TeamLocalServiceImpl" />
+	<bean id="com.test.service.TeamService" class="com.test.service.impl.TeamServiceImpl" />
+	<bean id="com.test.service.persistence.TeamPersistence" class="com.test.service.persistence.TeamPersistenceImpl" parent="basePersistence" />
+	<bean id="com.test.service.TeamLenderLocalService" class="com.test.service.impl.TeamLenderLocalServiceImpl" />
+	<bean id="com.test.service.TeamLenderService" class="com.test.service.impl.TeamLenderServiceImpl" />
+	<bean id="com.test.service.persistence.TeamLenderPersistence" class="com.test.service.persistence.TeamLenderPersistenceImpl" parent="basePersistence" />
+	<bean id="com.test.service.TeamLenderLoanLocalService" class="com.test.service.impl.TeamLenderLoanLocalServiceImpl" />
+	<bean id="com.test.service.TeamLenderLoanService" class="com.test.service.impl.TeamLenderLoanServiceImpl" />
+	<bean id="com.test.service.persistence.TeamLenderLoanPersistence" class="com.test.service.persistence.TeamLenderLoanPersistenceImpl" parent="basePersistence" />
+</beans>
