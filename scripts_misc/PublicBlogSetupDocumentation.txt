@@ -1,0 +1,44 @@
+Note: The following instructions describe how to set up the public blog for goodreturn.org on the liferay system (V6.1.1 CE GA2).
+These configuration steps must be performed while logged in as a user who has administrative access rights.
+
+
+Steps to add public blog to page
+1.	Go to page which you would like to add the public blog on.
+2.	On the top bar click Add -> More -> Collaboration
+3.	Click and drag 'blogs' to desired location on page.
+
+
+Steps to configure for posting permissions
+1.	While still logged in and on page with the blog.
+2.	Click Permissions.
+3.	Check "Add Entry" for WEAL Marketing user role.
+4.	Click Save button to confirm settings.
+
+
+Steps to further configure blogs
+1.	While on page of the location of the blog portlet.
+2.	On the blog, click on Options icon -> Configuration of blog.
+3.	On the Blogs - Configuration page click Display Settings.
+4.	Untick 'Enable Flags', 'Enable Related Assets', 'Enable Ratings' and 'Enable Comment Ratings' options then click Save.
+5.	Customised email notifications may be enabled and setup here under the headings 'Email From' and 'Entry Added Email'.
+
+
+Steps to install new workflow definitions
+1.	Go to the control panel.
+2.	Below Portal on the navigation sidebar click Workflow.
+3.	Click Add.
+4.	Input a title which will be displayed when applying workflows.
+5.	For file click 'Browse..'.
+6.	Browse your local files to find the desired workflow definition xml file and select it.
+7.	Click Save.
+8.	The new definition should now be available for selection.
+
+
+Steps to select desired workflow for blogs
+1.	Go to the control panel.
+2.	While the site goodreturn is selected, click on WorkFlow Configuration.
+3.	Find Resource Blogs Entry Change 'Default: No workflow' to desired workflow definition.
+4.	Click Save.
+
+
+

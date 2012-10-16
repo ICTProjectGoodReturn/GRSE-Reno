@@ -89,24 +89,6 @@ public class CreateAccountAction extends OldCreateAccountAction {
 		boolean appearAnonymous = ParamUtil.getBoolean(actionRequest, "appearAnonymous");
 		boolean termsAgreed = ParamUtil.getBoolean(actionRequest, "termsAgreed");
 
-		//TEST Printout TODO REMOVE
-		System.out.println("************************** Printing fields *************************");
-		System.out.println("title " + title);
-		System.out.println("addressType " + addressType);
-		System.out.println("address1 " + address1);
-		System.out.println("address2 " + address2);
-		System.out.println("suburbCity " + suburbCity);
-		System.out.println("stateRegion " + stateRegion);
-		System.out.println("country " + country);
-		System.out.println("postcodeZip " + postcodeZip);
-		System.out.println("heardAboutUs " + heardAboutUs);
-		System.out.println("heardAboutUsOther " + heardAboutUsOther);
-		System.out.println("recieveRepaymentEmails " + recieveRepaymentEmails);
-		System.out.println("recieveInfoEmails " + recieveInfoEmails);
-		System.out.println("appearAnonymous " + appearAnonymous);
-		System.out.println("termsAgreed " + termsAgreed);
-		System.out.println("************************** Printing fields *************************");
-
 		// Checks custom fields, throws exceptions if invalid.
 		//Title
 		if (!title.equals("Mr") && !title.equals("Mrs") && !title.equals("Ms")) {
@@ -153,10 +135,10 @@ public class CreateAccountAction extends OldCreateAccountAction {
 		//HttpSession session = request.getSession();
 		Company company = ((ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY)).getCompany();
 		
-		//Adds the 'Public Lender' role to the user.
-		User user = UserLocalServiceUtil.getUserByEmailAddress(company.getCompanyId(), emailAddress);
-		Role publicLenderRole = RoleLocalServiceUtil.getRole(company.getCompanyId(), "Public Lender");
-		RoleLocalServiceUtil.addUserRoles(user.getPrimaryKey(), new long[]{publicLenderRole.getRoleId()});
+		//Adds the 'Public Lender' role to the user. TODO MOVE CODE TO Public Lender Util service.
+		//User user = UserLocalServiceUtil.getUserByEmailAddress(company.getCompanyId(), emailAddress);
+		//Role publicLenderRole = RoleLocalServiceUtil.getRole(company.getCompanyId(), "Public Lender");
+		//RoleLocalServiceUtil.addUserRoles(user.getPrimaryKey(), new long[]{publicLenderRole.getRoleId()});
 
 		//Add the secondary data to the user tables.
 		//TODO
