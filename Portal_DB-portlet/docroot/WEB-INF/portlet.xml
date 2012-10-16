@@ -32,24 +32,22 @@
 		</security-role-ref>
 	</portlet>
 	<portlet>
-		<portlet-name>storyportlet</portlet-name>
-		<display-name>Story Portlet</display-name>
-		<portlet-class>
-			org.goodreturn.story.portlet.StoryPortlet
-		</portlet-class>
+		<portlet-name>borrowersportlet</portlet-name>
+		<display-name>Borrowers Portlet</display-name>
+		<portlet-class>org.goodreturn.borrowers.portlet.BorrowersPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
-			<value>/html/storyportlet/view.jsp</value>
+			<value>/html/borrowersportlet/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
 			<portlet-mode>view</portlet-mode>
 		</supports>
-		<resource-bundle>org.goodreturn.story.messages</resource-bundle>
+		<resource-bundle>org.goodreturn.borrowers.messages</resource-bundle>
 		<portlet-info>
-			<title>Story Portlet</title>
-			<short-title>Story Portlet</short-title>
+			<title>Borrowers Portlet</title>
+			<short-title>Borrowers Portlet</short-title>
 			<keywords></keywords>
 		</portlet-info>
 		<security-role-ref>

@@ -1,4 +1,4 @@
-package org.goodreturn.story.portlet;
+package org.goodreturn.borrowers.portlet;
 
 import java.util.List;
 

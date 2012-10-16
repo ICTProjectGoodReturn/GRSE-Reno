@@ -1,4 +1,4 @@
-package org.goodreturn.story.asset;
+package org.goodreturn.story;
 
 import org.goodreturn.model.Story;
 import org.goodreturn.service.StoryLocalServiceUtil;

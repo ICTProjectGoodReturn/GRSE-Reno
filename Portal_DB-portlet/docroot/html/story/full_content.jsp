@@ -1,0 +1,1 @@
+<%@include file="/html/story/view_story.jsp"%>

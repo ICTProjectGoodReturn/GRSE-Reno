@@ -1,4 +1,4 @@
-package org.goodreturn.story.asset;
+package org.goodreturn.story;
 
 import java.util.Locale;
 
@@ -56,7 +56,7 @@ public class StoryAssetRenderer extends BaseAssetRenderer {
 	public String render(RenderRequest renderRequest, RenderResponse renderResponse, String template) throws Exception {
 		if (template.equals(TEMPLATE_FULL_CONTENT)) {
 	        renderRequest.setAttribute("storyObject", story);
-	        return "/html/" + template + ".jsp";
+	        return "/html/story/" + template + ".jsp";
 		} else {
 			return null;
 		}

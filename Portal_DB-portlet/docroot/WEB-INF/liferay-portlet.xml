@@ -11,16 +11,16 @@
 		<css-class-wrapper>Portal_DB-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
-		<portlet-name>storyportlet</portlet-name>
+		<portlet-name>borrowersportlet</portlet-name>
 		<icon>/icon.png</icon>
-		<asset-renderer-factory>org.goodreturn.story.asset.StoryAssetRendererFactory</asset-renderer-factory>
-		<workflow-handler>org.goodreturn.story.workflow.StoryWorkflowHandler</workflow-handler>
+		<asset-renderer-factory>org.goodreturn.story.StoryAssetRendererFactory</asset-renderer-factory>
+		<workflow-handler>org.goodreturn.story.StoryWorkflowHandler</workflow-handler>
 		<instanceable>false</instanceable>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>
 			/js/main.js
 		</footer-portlet-javascript>
-		<css-class-wrapper>storyportlet-portlet</css-class-wrapper>
+		<css-class-wrapper>borrowersportlet-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

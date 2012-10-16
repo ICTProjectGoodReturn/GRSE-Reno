@@ -1,8 +1,6 @@
 <%--
 /**
 * TODO
-*
-*
 */
 --%>
 <%@include file="/html/init.jsp"%>
@@ -10,23 +8,24 @@
 
 <!-- Link Definitions -->
 <portlet:renderURL var="addEditFinalStoryUrl">
-	<portlet:param name="jspPage" value="/html/finalstoryportlet/add.jsp" />
+	<portlet:param name="jspPage" value="/html/storyportlet/edit.jsp" />
 </portlet:renderURL>
 
 <!-- Data Definitions -->
 <%
-	Story story = (Story) request.getAttribute("StoryObject");
+	Story story = (Story) request.getAttribute("storyObject");
 	String actionButtonText = (story== null?"add-new-final-story":"edit-final-story");
 	String storyTypeText = "Unknown Story Type";
-	
-	/*switch (story.getStory_Type()) {
+	/*
+	switch (story.getStory_Type()) {
 	case 'f':
 		storyTypeText = "final-story";
 		break;
 	case 'i':
 		storyTypeText = "initial-story";
 		break;
-	}*/
+	}
+	*/
 %>
 
 <c:if test="<%=story != null%>">

@@ -4,6 +4,6 @@
 <display>
 	<category name="Good Return">
 		<portlet id="Portal_DB" />
-		<portlet id="storyportlet" />
+		<portlet id="borrowersportlet" />
 	</category>
 </display>

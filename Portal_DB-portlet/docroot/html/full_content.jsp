@@ -1,1 +1,0 @@
-<%@include file="/html/view_finalstory.jsp"%>

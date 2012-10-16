@@ -1,4 +1,4 @@
-package org.goodreturn.story.workflow;
+package org.goodreturn.story;
 
 import java.io.Serializable;
 import java.util.Locale;

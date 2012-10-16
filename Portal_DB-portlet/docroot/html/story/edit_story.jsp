@@ -1,26 +1,44 @@
+<%--
+/**
+* TODO
+*/
+--%>
 <%@include file="/html/init.jsp"%>
+
 <!-- Data Definitions -->
 <%
-Story story = (Story)request.getAttribute("storyObject");
+Story story = (Story) request.getAttribute("storyObject");
 String redirect = ParamUtil.getString(request, "redirect");
 
 //long resourcePrimKey = BeanParamUtil.getLong(slogan, request, "sloganId");
 //int status = BeanParamUtil.getInteger(slogan, request, "status", WorkflowConstants.STATUS_DRAFT);
+
+String storyTypeText = "Unknown Story Type";
+	/*
+	switch (story.getStory_Type()) {
+	case 'f':
+		storyTypeText = "final-story";
+		break;
+	case 'i':
+		storyTypeText = "initial-story";
+		break;
+	}
+	*/
 %>
 
 <!-- Link Definitions -->
 <portlet:renderURL windowState="normal" var="backUrl">
-	<portlet:param name="jspPage" value="/html/finalstoryportlet/view.jsp" />
+	<portlet:param name="jspPage" value="/html/storyportlet/view.jsp" />
 </portlet:renderURL>
 <portlet:actionURL name="updateStory" var="updateStoryUrl">
 	<portlet:param name="redirect" value="<%= redirect %>" />
 </portlet:actionURL>
 <portlet:renderURL var="cancelUrl">
-	<portlet:param name="jspPage" value="/html/finalstoryportlet/view.jsp" />
+	<portlet:param name="jspPage" value="/html/storyportlet/view.jsp" />
 </portlet:renderURL>
 
 <liferay-ui:header backURL="<%= backUrl %>"
-	title='<%= (story == null) ? "new-final-story" : "final story for loan " + story.getLoan_Account_Id()%>'
+	title='<%= (story == null) ? "New " + storyTypeText : storyTypeText + " for loan " + story.getLoan_Account_Id()%>'
 />
 
 <aui:form action="<%=updateStoryUrl %>" method="post">
@@ -35,8 +53,8 @@ String redirect = ParamUtil.getString(request, "redirect");
 		<aui:column>
 			
 			<liferay-ui:error key="fields-required" message="fields-required" />
-			<liferay-ui:success key=story-saved-successfully" message="story-saved-successfully" />
-			<liferay-ui:error key="storyFieldsRequired" message="story-fields-required" />
+			<liferay-ui:success key="story-saved-successfully" message="story-saved-successfully" />
+			<liferay-ui:error key="story-fields-required" message="story-fields-required" />
 			
 			<!-- TODO Borrower information?? -->
 			
@@ -53,7 +71,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 		</aui:column>
 		
 		<aui:column>
-			<aui:field-wrapper label="Final Story Text">
+			<aui:field-wrapper label='<%=storyTypeText + " Text"%>'>
 				<liferay-ui:input-editor name="story_Text" toolbarSet="liferay-article" initMethod="initEditor" width="200"  />
 				<!--
 				<script type="text/javascript">
