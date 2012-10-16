@@ -6,7 +6,7 @@ import org.goodreturn.model.Story;
 
 public class StoryValidator {
 	
-	public static boolean validateStory(Story finalStory, List errors) {
+	public static boolean validateStory(Story story, List errors) {
 		return false;
 	}
 
