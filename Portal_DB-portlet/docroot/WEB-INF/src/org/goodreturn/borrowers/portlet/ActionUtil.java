@@ -265,8 +265,7 @@ public class ActionUtil {
 		story.setVideo_Url(ParamUtil.getString(request, "video_Url"));
 		story.setIs_Good_Enough_For_Marketing(ParamUtil.getBoolean(request, "is_Good_Enough_For_Marketing"));
 		story.setIs_Good_Enough_For_Story(ParamUtil.getBoolean(request, "is_Good_Enough_For_Story"));
-		//TODO Add Story Type
-		//story.set(ParamUtil.getString(request, ""));
+		story.setStory_Type(ParamUtil.getString(request, "story_Type"));
 		
 		//Portal Identifying info
 		story.setCompany_Id(themeDisplay.getCompanyId());

@@ -103,6 +103,21 @@ public interface StoryModel extends BaseModel<Story> {
 	public void setLoan_Account_Id(long loan_Account_Id);
 
 	/**
+	 * Returns the story_ type of this story.
+	 *
+	 * @return the story_ type of this story
+	 */
+	@AutoEscape
+	public String getStory_Type();
+
+	/**
+	 * Sets the story_ type of this story.
+	 *
+	 * @param story_Type the story_ type of this story
+	 */
+	public void setStory_Type(String story_Type);
+
+	/**
 	 * Returns the story_ text of this story.
 	 *
 	 * @return the story_ text of this story

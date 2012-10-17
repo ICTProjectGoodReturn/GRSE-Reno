@@ -108,6 +108,7 @@
 				<column name="UUID_" />
 			</basic>
 			<basic name="loan_Account_Id" />
+			<basic name="story_Type" />
 			<basic name="story_Text" />
 			<basic name="video_Url" />
 			<basic name="is_Good_Enough_For_Marketing" />

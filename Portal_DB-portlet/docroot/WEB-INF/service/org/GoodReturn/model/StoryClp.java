@@ -68,6 +68,7 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		attributes.put("uuid", getUuid());
 		attributes.put("story_Id", getStory_Id());
 		attributes.put("loan_Account_Id", getLoan_Account_Id());
+		attributes.put("story_Type", getStory_Type());
 		attributes.put("story_Text", getStory_Text());
 		attributes.put("video_Url", getVideo_Url());
 		attributes.put("is_Good_Enough_For_Marketing",
@@ -102,6 +103,12 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 
 		if (loan_Account_Id != null) {
 			setLoan_Account_Id(loan_Account_Id);
+		}
+
+		String story_Type = (String)attributes.get("story_Type");
+
+		if (story_Type != null) {
+			setStory_Type(story_Type);
 		}
 
 		String story_Text = (String)attributes.get("story_Text");
@@ -196,6 +203,14 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 
 	public void setLoan_Account_Id(long loan_Account_Id) {
 		_loan_Account_Id = loan_Account_Id;
+	}
+
+	public String getStory_Type() {
+		return _story_Type;
+	}
+
+	public void setStory_Type(String story_Type) {
+		_story_Type = story_Type;
 	}
 
 	public String getStory_Text() {
@@ -325,6 +340,7 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		clone.setUuid(getUuid());
 		clone.setStory_Id(getStory_Id());
 		clone.setLoan_Account_Id(getLoan_Account_Id());
+		clone.setStory_Type(getStory_Type());
 		clone.setStory_Text(getStory_Text());
 		clone.setVideo_Url(getVideo_Url());
 		clone.setIs_Good_Enough_For_Marketing(getIs_Good_Enough_For_Marketing());
@@ -392,7 +408,7 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -400,6 +416,8 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		sb.append(getStory_Id());
 		sb.append(", loan_Account_Id=");
 		sb.append(getLoan_Account_Id());
+		sb.append(", story_Type=");
+		sb.append(getStory_Type());
 		sb.append(", story_Text=");
 		sb.append(getStory_Text());
 		sb.append(", video_Url=");
@@ -428,7 +446,7 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Story");
@@ -445,6 +463,10 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		sb.append(
 			"<column><column-name>loan_Account_Id</column-name><column-value><![CDATA[");
 		sb.append(getLoan_Account_Id());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>story_Type</column-name><column-value><![CDATA[");
+		sb.append(getStory_Type());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>story_Text</column-name><column-value><![CDATA[");
@@ -499,6 +521,7 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 	private String _uuid;
 	private long _story_Id;
 	private long _loan_Account_Id;
+	private String _story_Type;
 	private String _story_Text;
 	private String _video_Url;
 	private boolean _is_Good_Enough_For_Marketing;

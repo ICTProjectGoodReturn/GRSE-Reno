@@ -48,6 +48,7 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 		attributes.put("uuid", getUuid());
 		attributes.put("story_Id", getStory_Id());
 		attributes.put("loan_Account_Id", getLoan_Account_Id());
+		attributes.put("story_Type", getStory_Type());
 		attributes.put("story_Text", getStory_Text());
 		attributes.put("video_Url", getVideo_Url());
 		attributes.put("is_Good_Enough_For_Marketing",
@@ -81,6 +82,12 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 
 		if (loan_Account_Id != null) {
 			setLoan_Account_Id(loan_Account_Id);
+		}
+
+		String story_Type = (String)attributes.get("story_Type");
+
+		if (story_Type != null) {
+			setStory_Type(story_Type);
 		}
 
 		String story_Text = (String)attributes.get("story_Text");
@@ -223,6 +230,24 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 	*/
 	public void setLoan_Account_Id(long loan_Account_Id) {
 		_story.setLoan_Account_Id(loan_Account_Id);
+	}
+
+	/**
+	* Returns the story_ type of this story.
+	*
+	* @return the story_ type of this story
+	*/
+	public java.lang.String getStory_Type() {
+		return _story.getStory_Type();
+	}
+
+	/**
+	* Sets the story_ type of this story.
+	*
+	* @param story_Type the story_ type of this story
+	*/
+	public void setStory_Type(java.lang.String story_Type) {
+		_story.setStory_Type(story_Type);
 	}
 
 	/**

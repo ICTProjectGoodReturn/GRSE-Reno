@@ -20,6 +20,8 @@
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.UnicodeFormatter" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %>
 
 <%@ page import="org.goodreturn.model.Story" %>
 

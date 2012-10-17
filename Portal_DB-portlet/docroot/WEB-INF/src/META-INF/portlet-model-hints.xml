@@ -65,6 +65,7 @@
 		<field name="uuid" type="String" />
 		<field name="story_Id" type="long" />
 		<field name="loan_Account_Id" type="long" />
+		<field name="story_Type" type="String" />
 		<field name="story_Text" type="String" />
 		<field name="video_Url" type="String" />
 		<field name="is_Good_Enough_For_Marketing" type="boolean" />

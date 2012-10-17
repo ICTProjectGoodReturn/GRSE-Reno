@@ -160,6 +160,7 @@
 	<column name="loan_Account_Id" type="long"/>
 	
 	<!-- Audit Fields -->
+	<column name="story_Type" type="String" />
 	<column name="story_Text" type="String"/>
 	<column name="video_Url" type="String"/>
 	<column name="is_Good_Enough_For_Marketing" type="boolean"/>

@@ -66,6 +66,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			{ "uuid_", Types.VARCHAR },
 			{ "story_Id", Types.BIGINT },
 			{ "loan_Account_Id", Types.BIGINT },
+			{ "story_Type", Types.VARCHAR },
 			{ "story_Text", Types.VARCHAR },
 			{ "video_Url", Types.VARCHAR },
 			{ "is_Good_Enough_For_Marketing", Types.BOOLEAN },
@@ -78,7 +79,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			{ "group_Id", Types.BIGINT },
 			{ "user_Id", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Story (uuid_ VARCHAR(75) null,story_Id LONG not null primary key,loan_Account_Id LONG,story_Text VARCHAR(75) null,video_Url VARCHAR(75) null,is_Good_Enough_For_Marketing BOOLEAN,is_Good_Enough_For_Story BOOLEAN,status INTEGER,status_By_User_Id LONG,status_By_User_Name VARCHAR(75) null,status_Date DATE null,company_Id LONG,group_Id LONG,user_Id LONG)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Story (uuid_ VARCHAR(75) null,story_Id LONG not null primary key,loan_Account_Id LONG,story_Type VARCHAR(75) null,story_Text VARCHAR(75) null,video_Url VARCHAR(75) null,is_Good_Enough_For_Marketing BOOLEAN,is_Good_Enough_For_Story BOOLEAN,status INTEGER,status_By_User_Id LONG,status_By_User_Name VARCHAR(75) null,status_Date DATE null,company_Id LONG,group_Id LONG,user_Id LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Story";
 	public static final String ORDER_BY_JPQL = " ORDER BY story.story_Id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Story.story_Id ASC";
@@ -112,6 +113,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		model.setUuid(soapModel.getUuid());
 		model.setStory_Id(soapModel.getStory_Id());
 		model.setLoan_Account_Id(soapModel.getLoan_Account_Id());
+		model.setStory_Type(soapModel.getStory_Type());
 		model.setStory_Text(soapModel.getStory_Text());
 		model.setVideo_Url(soapModel.getVideo_Url());
 		model.setIs_Good_Enough_For_Marketing(soapModel.getIs_Good_Enough_For_Marketing());
@@ -184,6 +186,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		attributes.put("uuid", getUuid());
 		attributes.put("story_Id", getStory_Id());
 		attributes.put("loan_Account_Id", getLoan_Account_Id());
+		attributes.put("story_Type", getStory_Type());
 		attributes.put("story_Text", getStory_Text());
 		attributes.put("video_Url", getVideo_Url());
 		attributes.put("is_Good_Enough_For_Marketing",
@@ -218,6 +221,12 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		if (loan_Account_Id != null) {
 			setLoan_Account_Id(loan_Account_Id);
+		}
+
+		String story_Type = (String)attributes.get("story_Type");
+
+		if (story_Type != null) {
+			setStory_Type(story_Type);
 		}
 
 		String story_Text = (String)attributes.get("story_Text");
@@ -330,6 +339,20 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 	public void setLoan_Account_Id(long loan_Account_Id) {
 		_loan_Account_Id = loan_Account_Id;
+	}
+
+	@JSON
+	public String getStory_Type() {
+		if (_story_Type == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _story_Type;
+		}
+	}
+
+	public void setStory_Type(String story_Type) {
+		_story_Type = story_Type;
 	}
 
 	@JSON
@@ -490,6 +513,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		storyImpl.setUuid(getUuid());
 		storyImpl.setStory_Id(getStory_Id());
 		storyImpl.setLoan_Account_Id(getLoan_Account_Id());
+		storyImpl.setStory_Type(getStory_Type());
 		storyImpl.setStory_Text(getStory_Text());
 		storyImpl.setVideo_Url(getVideo_Url());
 		storyImpl.setIs_Good_Enough_For_Marketing(getIs_Good_Enough_For_Marketing());
@@ -582,6 +606,14 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		storyCacheModel.loan_Account_Id = getLoan_Account_Id();
 
+		storyCacheModel.story_Type = getStory_Type();
+
+		String story_Type = storyCacheModel.story_Type;
+
+		if ((story_Type != null) && (story_Type.length() == 0)) {
+			storyCacheModel.story_Type = null;
+		}
+
 		storyCacheModel.story_Text = getStory_Text();
 
 		String story_Text = storyCacheModel.story_Text;
@@ -635,7 +667,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -643,6 +675,8 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		sb.append(getStory_Id());
 		sb.append(", loan_Account_Id=");
 		sb.append(getLoan_Account_Id());
+		sb.append(", story_Type=");
+		sb.append(getStory_Type());
 		sb.append(", story_Text=");
 		sb.append(getStory_Text());
 		sb.append(", video_Url=");
@@ -671,7 +705,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Story");
@@ -688,6 +722,10 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		sb.append(
 			"<column><column-name>loan_Account_Id</column-name><column-value><![CDATA[");
 		sb.append(getLoan_Account_Id());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>story_Type</column-name><column-value><![CDATA[");
+		sb.append(getStory_Type());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>story_Text</column-name><column-value><![CDATA[");
@@ -747,6 +785,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	private String _originalUuid;
 	private long _story_Id;
 	private long _loan_Account_Id;
+	private String _story_Type;
 	private String _story_Text;
 	private String _video_Url;
 	private boolean _is_Good_Enough_For_Marketing;

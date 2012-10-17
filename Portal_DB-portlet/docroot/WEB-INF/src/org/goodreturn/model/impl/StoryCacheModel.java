@@ -34,7 +34,7 @@ import java.util.Date;
 public class StoryCacheModel implements CacheModel<Story>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -42,6 +42,8 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 		sb.append(story_Id);
 		sb.append(", loan_Account_Id=");
 		sb.append(loan_Account_Id);
+		sb.append(", story_Type=");
+		sb.append(story_Type);
 		sb.append(", story_Text=");
 		sb.append(story_Text);
 		sb.append(", video_Url=");
@@ -81,6 +83,13 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 
 		storyImpl.setStory_Id(story_Id);
 		storyImpl.setLoan_Account_Id(loan_Account_Id);
+
+		if (story_Type == null) {
+			storyImpl.setStory_Type(StringPool.BLANK);
+		}
+		else {
+			storyImpl.setStory_Type(story_Type);
+		}
 
 		if (story_Text == null) {
 			storyImpl.setStory_Text(StringPool.BLANK);
@@ -127,6 +136,7 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 	public String uuid;
 	public long story_Id;
 	public long loan_Account_Id;
+	public String story_Type;
 	public String story_Text;
 	public String video_Url;
 	public boolean is_Good_Enough_For_Marketing;

@@ -355,6 +355,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 		storyImpl.setUuid(story.getUuid());
 		storyImpl.setStory_Id(story.getStory_Id());
 		storyImpl.setLoan_Account_Id(story.getLoan_Account_Id());
+		storyImpl.setStory_Type(story.getStory_Type());
 		storyImpl.setStory_Text(story.getStory_Text());
 		storyImpl.setVideo_Url(story.getVideo_Url());
 		storyImpl.setIs_Good_Enough_For_Marketing(story.isIs_Good_Enough_For_Marketing());

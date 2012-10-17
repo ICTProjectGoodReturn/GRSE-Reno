@@ -90,6 +90,7 @@
 		</id>
 		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
 		<property name="loan_Account_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="story_Type" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="story_Text" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="video_Url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="is_Good_Enough_For_Marketing" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />

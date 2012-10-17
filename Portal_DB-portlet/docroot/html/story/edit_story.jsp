@@ -10,20 +10,19 @@
 Story story = (Story) request.getAttribute("storyObject");
 String redirect = ParamUtil.getString(request, "redirect");
 
-//long resourcePrimKey = BeanParamUtil.getLong(slogan, request, "sloganId");
-//int status = BeanParamUtil.getInteger(slogan, request, "status", WorkflowConstants.STATUS_DRAFT);
+long resourcePrimKey = BeanParamUtil.getLong(story, request, "story_Id");
+int status = BeanParamUtil.getInteger(story, request, "status", WorkflowConstants.STATUS_DRAFT);
 
-String storyTypeText = "Unknown Story Type";
-	/*
-	switch (story.getStory_Type()) {
-	case 'f':
-		storyTypeText = "final-story";
-		break;
-	case 'i':
-		storyTypeText = "initial-story";
-		break;
-	}
-	*/
+//Retrieves story type text and attribute.
+String storyTypeText;
+String storyType;
+if (story==null) {
+	storyType = ParamUtil.getString(request, "story_Type");
+	storyTypeText = storyType + "-story";
+} else {
+	storyType = story.getStory_Type();
+	storyTypeText = storyType + "-story";
+}
 %>
 
 <!-- Link Definitions -->
@@ -61,6 +60,8 @@ String storyTypeText = "Unknown Story Type";
 			<aui:input name="story_Id" type="hidden" />
 			
 			<aui:input name="loan_Account_Id" type="hidden" />
+			
+			<aui:input name="story_Type" value="<%=storyType%>" type="hidden" />
 			
 			<aui:input label="Good enough for marketing?" name="is_Good_Enough_For_Marketing" first="true" autoFocus="true" />
 			

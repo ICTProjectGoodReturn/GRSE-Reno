@@ -5,32 +5,29 @@
 --%>
 <%@include file="/html/init.jsp"%>
 
-
-<!-- Link Definitions -->
-<portlet:renderURL var="addEditFinalStoryUrl">
-	<portlet:param name="jspPage" value="/html/storyportlet/edit.jsp" />
-</portlet:renderURL>
-
 <!-- Data Definitions -->
 <%
 	Story story = (Story) request.getAttribute("storyObject");
-	String actionButtonText = (story== null?"add-new-final-story":"edit-final-story");
+
+	//Retrieves story type text and attribute.
 	String storyTypeText = "Unknown Story Type";
-	/*
-	switch (story.getStory_Type()) {
-	case 'f':
-		storyTypeText = "final-story";
-		break;
-	case 'i':
-		storyTypeText = "initial-story";
-		break;
+	String storyType;
+	if (story!=null) {
+		storyType = story.getStory_Type();
+		storyTypeText = storyType + "-story";
 	}
-	*/
+
+	String actionButtonText = (story== null?"add-new-"+storyType:"edit-"+storyType);
 %>
 
+<!-- Link Definitions -->
+<portlet:renderURL var="addEditFinalStoryUrl">
+	<portlet:param name="jspPage" value="/html/story/edit_story.jsp" />
+</portlet:renderURL>
+
+<!-- Structure Definition -->
 <c:if test="<%=story != null%>">
-	<!-- TODO REPLACE story id with loan id for now -->
-	<h1><%="Final Story for loan " + story.getLoan_Account_Id()%></h1>
+	<h1><%=" for loan " + story.getLoan_Account_Id()%></h1>
 	
 	<aui:panel label="Story Text" >
 		<aui:panel>
