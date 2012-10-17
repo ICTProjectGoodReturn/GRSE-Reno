@@ -167,10 +167,12 @@ public class StoryLocalServiceWrapper implements StoryLocalService,
 	* @return the story
 	* @throws PortalException if a story with the primary key could not be found
 	* @throws SystemException if a system exception occurred
+	* @throws org.goodreturn.NoSuchStoryException
 	*/
 	public org.goodreturn.model.Story getStory(long story_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+			com.liferay.portal.kernel.exception.SystemException,
+			org.goodreturn.NoSuchStoryException {
 		return _storyLocalService.getStory(story_Id);
 	}
 
@@ -258,6 +260,41 @@ public class StoryLocalServiceWrapper implements StoryLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return _storyLocalService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Creates a new Story and stores it in the database and returns the new Story object.
+	* The new story object is based on the 'newStory' Story object.
+	*
+	* @param newStory - the Story object which the new story will be stored in db.
+	* @param userId - the user which this object is associated with.
+	* @param serviceContext
+	* @return a new Story object based on newStory which is now within the database.
+	*/
+	public org.goodreturn.model.Story addStory(
+		org.goodreturn.model.Story newStory, long userId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _storyLocalService.addStory(newStory, userId, serviceContext);
+	}
+
+	/**
+	* @param userId
+	* @param resourcePrimKey
+	* @param status
+	* @param serviceContext
+	* @return
+	* @throws PortalException
+	* @throws SystemException
+	*/
+	public org.goodreturn.model.Story updateStatus(long userId,
+		long resourcePrimKey, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _storyLocalService.updateStatus(userId, resourcePrimKey, status,
+			serviceContext);
 	}
 
 	/**

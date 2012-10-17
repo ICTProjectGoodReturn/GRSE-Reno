@@ -232,9 +232,11 @@ public abstract class StoryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the story
 	 * @throws PortalException if a story with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
+	 * @throws org.goodreturn.NoSuchStoryException
 	 */
 	public Story getStory(long story_Id)
-		throws PortalException, SystemException {
+		throws PortalException, SystemException,
+			org.goodreturn.NoSuchStoryException {
 		return storyPersistence.findByPrimaryKey(story_Id);
 	}
 

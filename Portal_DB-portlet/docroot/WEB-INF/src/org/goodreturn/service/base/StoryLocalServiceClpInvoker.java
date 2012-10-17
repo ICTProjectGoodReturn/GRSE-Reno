@@ -105,6 +105,32 @@ public class StoryLocalServiceClpInvoker {
 		_methodName97 = "setBeanIdentifier";
 
 		_methodParameterTypes97 = new String[] { "java.lang.String" };
+
+		_methodName102 = "addStory";
+
+		_methodParameterTypes102 = new String[] {
+				"org.goodreturn.model.Story", "long",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName103 = "deleteStory";
+
+		_methodParameterTypes103 = new String[] { "long" };
+
+		_methodName104 = "deleteStory";
+
+		_methodParameterTypes104 = new String[] { "org.goodreturn.model.Story" };
+
+		_methodName105 = "getStory";
+
+		_methodParameterTypes105 = new String[] { "long" };
+
+		_methodName106 = "updateStatus";
+
+		_methodParameterTypes106 = new String[] {
+				"long", "long", "int",
+				"com.liferay.portal.service.ServiceContext"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -206,6 +232,36 @@ public class StoryLocalServiceClpInvoker {
 			StoryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
+		if (_methodName102.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes102, parameterTypes)) {
+			return StoryLocalServiceUtil.addStory((org.goodreturn.model.Story)arguments[0],
+				((Long)arguments[1]).longValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[2]);
+		}
+
+		if (_methodName103.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes103, parameterTypes)) {
+			return StoryLocalServiceUtil.deleteStory(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName104.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes104, parameterTypes)) {
+			return StoryLocalServiceUtil.deleteStory((org.goodreturn.model.Story)arguments[0]);
+		}
+
+		if (_methodName105.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes105, parameterTypes)) {
+			return StoryLocalServiceUtil.getStory(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName106.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes106, parameterTypes)) {
+			return StoryLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[3]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -245,4 +301,14 @@ public class StoryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes96;
 	private String _methodName97;
 	private String[] _methodParameterTypes97;
+	private String _methodName102;
+	private String[] _methodParameterTypes102;
+	private String _methodName103;
+	private String[] _methodParameterTypes103;
+	private String _methodName104;
+	private String[] _methodParameterTypes104;
+	private String _methodName105;
+	private String[] _methodParameterTypes105;
+	private String _methodName106;
+	private String[] _methodParameterTypes106;
 }

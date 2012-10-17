@@ -14,7 +14,17 @@
 
 package org.goodreturn.service.impl;
 
+import org.goodreturn.NoSuchStoryException;
+import org.goodreturn.model.Story;
 import org.goodreturn.service.base.StoryLocalServiceBaseImpl;
+
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
+import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.ServiceContext;
 
 /**
  * The implementation of the story local service.
@@ -36,4 +46,122 @@ public class StoryLocalServiceImpl extends StoryLocalServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link org.goodreturn.service.StoryLocalServiceUtil} to access the story local service.
 	 */
+	
+	/**
+	 * Creates a new Story and stores it in the database and returns the new Story object.
+	 * The new story object is based on the 'newStory' Story object.
+	 * 
+	 * @param newStory - the Story object which the new story will be stored in db.
+	 * @param userId - the user which this object is associated with.
+	 * @param serviceContext
+	 * @return a new Story object based on newStory which is now within the database. 
+	 */
+	public Story addStory(Story newStory, long userId, ServiceContext serviceContext)          
+			throws SystemException, PortalException {
+		
+		//Creates the FinalStory and sets all variables.
+		Story story = storyPersistence.create(counterLocalService.increment(Story.class.getName()));
+		story.setLoan_Account_Id(newStory.getLoan_Account_Id());
+
+		story.setStory_Type(newStory.getStory_Type());
+		story.setStory_Text(newStory.getStory_Text());
+		story.setVideo_Url(newStory.getVideo_Url());
+		story.setIs_Good_Enough_For_Marketing(newStory.getIs_Good_Enough_For_Marketing());
+		story.setIs_Good_Enough_For_Story(newStory.getIs_Good_Enough_For_Story());
+
+		story.setCompany_Id(newStory.getCompany_Id());
+		story.setGroup_Id(newStory.getGroup_Id());
+		story.setUser_Id(userId);
+		
+		story.setStatus(WorkflowConstants.STATUS_DRAFT);
+
+		//Updates it in the database.
+		storyPersistence.update(story, false);
+
+
+		resourceLocalService.addResources(
+				newStory.getCompany_Id(), newStory.getGroup_Id(), userId,
+				Story.class.getName(), story.getPrimaryKey(), false, 
+				true, true);
+
+		assetEntryLocalService.updateEntry(              
+				userId, story.getGroup_Id(), Story.class.getName(),
+				story.getStory_Id(), serviceContext.getAssetCategoryIds(),
+				serviceContext.getAssetTagNames());
+		
+		WorkflowHandlerRegistryUtil.startWorkflowInstance(story.getCompany_Id(),
+				userId, Story.class.getName(), story.getPrimaryKey(),
+				story, serviceContext);
+
+		return story;
+	}
+	
+	
+	public Story deleteStory(long storyId) throws PortalException, SystemException {
+		Story story = getStory(storyId);
+		
+		return deleteStory(story);
+	}
+
+	
+	public Story deleteStory(Story story) throws SystemException {
+		long companyId = story.getCompany_Id();
+		
+		//Updates resource and asset status.
+		try {
+			resourceLocalService.deleteResource(
+					companyId, Story.class.getName(),
+					ResourceConstants.SCOPE_INDIVIDUAL, story.getPrimaryKey());
+
+			assetEntryLocalService.deleteEntry(Story.class.getName(), story.getStory_Id());
+		} catch (PortalException e) {
+			// Throws exception based on portal exception.
+			throw new SystemException(e);
+		}
+
+		return storyPersistence.remove(story);
+	}
+
+	
+	public Story getStory(long PK) throws NoSuchStoryException, SystemException {
+		return storyPersistence.findByPrimaryKey(PK);
+	}
+	
+	
+	/**
+	 * Updates the status of the Story object.
+	 * 
+	 * @param userId - Id of the user updating the object resource.
+	 * @param resourcePrimKey - Id of the Story object to be updated.
+	 * @param status - status of the object to be updated.
+	 * @param serviceContext
+	 * @return returns the Story object which status is being updated. 
+	 * @throws PortalException
+	 * @throws SystemException
+	 */
+	public Story updateStatus(long userId, long resourcePrimKey,
+			int status, ServiceContext serviceContext)
+	    throws PortalException, SystemException {
+		//Retrieves user and story.
+	    User user = userLocalService.getUser(userId);
+	    Story story = getStory(resourcePrimKey);
+	    
+	    //Sets workflow fields.
+	    story.setStatus(status);                
+	    story.setStatus_By_User_Id(userId);
+	    story.setStatus_By_User_Name(user.getFullName());
+	    story.setStatus_Date(serviceContext.getModifiedDate());
+	    storyPersistence.update(story, false);
+	    
+	    //Updates visibility of asset.
+	    if (status == WorkflowConstants.STATUS_APPROVED) { 
+	        assetEntryLocalService.updateVisible(
+	            Story.class.getName(), resourcePrimKey, true);
+	    } else {
+	        assetEntryLocalService.updateVisible(
+	            Story.class.getName(), resourcePrimKey, false);
+	    }
+	    
+	    return story;		
+	}
 }

@@ -213,6 +213,133 @@ public interface StoryPersistence extends BasePersistence<Story> {
 			org.goodreturn.NoSuchStoryException;
 
 	/**
+	* Returns all the stories where loan_Account_Id = &#63; and story_Type = &#63;.
+	*
+	* @param loan_Account_Id the loan_ account_ ID
+	* @param story_Type the story_ type
+	* @return the matching stories
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<org.goodreturn.model.Story> findByL_S(
+		long loan_Account_Id, java.lang.String story_Type)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the stories where loan_Account_Id = &#63; and story_Type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param loan_Account_Id the loan_ account_ ID
+	* @param story_Type the story_ type
+	* @param start the lower bound of the range of stories
+	* @param end the upper bound of the range of stories (not inclusive)
+	* @return the range of matching stories
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<org.goodreturn.model.Story> findByL_S(
+		long loan_Account_Id, java.lang.String story_Type, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the stories where loan_Account_Id = &#63; and story_Type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param loan_Account_Id the loan_ account_ ID
+	* @param story_Type the story_ type
+	* @param start the lower bound of the range of stories
+	* @param end the upper bound of the range of stories (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching stories
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<org.goodreturn.model.Story> findByL_S(
+		long loan_Account_Id, java.lang.String story_Type, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the first story in the ordered set where loan_Account_Id = &#63; and story_Type = &#63;.
+	*
+	* @param loan_Account_Id the loan_ account_ ID
+	* @param story_Type the story_ type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching story
+	* @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public org.goodreturn.model.Story findByL_S_First(long loan_Account_Id,
+		java.lang.String story_Type,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			org.goodreturn.NoSuchStoryException;
+
+	/**
+	* Returns the first story in the ordered set where loan_Account_Id = &#63; and story_Type = &#63;.
+	*
+	* @param loan_Account_Id the loan_ account_ ID
+	* @param story_Type the story_ type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching story, or <code>null</code> if a matching story could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public org.goodreturn.model.Story fetchByL_S_First(long loan_Account_Id,
+		java.lang.String story_Type,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last story in the ordered set where loan_Account_Id = &#63; and story_Type = &#63;.
+	*
+	* @param loan_Account_Id the loan_ account_ ID
+	* @param story_Type the story_ type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching story
+	* @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public org.goodreturn.model.Story findByL_S_Last(long loan_Account_Id,
+		java.lang.String story_Type,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			org.goodreturn.NoSuchStoryException;
+
+	/**
+	* Returns the last story in the ordered set where loan_Account_Id = &#63; and story_Type = &#63;.
+	*
+	* @param loan_Account_Id the loan_ account_ ID
+	* @param story_Type the story_ type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching story, or <code>null</code> if a matching story could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public org.goodreturn.model.Story fetchByL_S_Last(long loan_Account_Id,
+		java.lang.String story_Type,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the stories before and after the current story in the ordered set where loan_Account_Id = &#63; and story_Type = &#63;.
+	*
+	* @param story_Id the primary key of the current story
+	* @param loan_Account_Id the loan_ account_ ID
+	* @param story_Type the story_ type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next story
+	* @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public org.goodreturn.model.Story[] findByL_S_PrevAndNext(long story_Id,
+		long loan_Account_Id, java.lang.String story_Type,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			org.goodreturn.NoSuchStoryException;
+
+	/**
 	* Returns all the stories.
 	*
 	* @return the stories
@@ -264,6 +391,16 @@ public interface StoryPersistence extends BasePersistence<Story> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the stories where loan_Account_Id = &#63; and story_Type = &#63; from the database.
+	*
+	* @param loan_Account_Id the loan_ account_ ID
+	* @param story_Type the story_ type
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByL_S(long loan_Account_Id, java.lang.String story_Type)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Removes all the stories from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -279,6 +416,17 @@ public interface StoryPersistence extends BasePersistence<Story> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public int countByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of stories where loan_Account_Id = &#63; and story_Type = &#63;.
+	*
+	* @param loan_Account_Id the loan_ account_ ID
+	* @param story_Type the story_ type
+	* @return the number of matching stories
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByL_S(long loan_Account_Id, java.lang.String story_Type)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

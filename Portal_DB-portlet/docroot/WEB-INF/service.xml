@@ -182,9 +182,17 @@
 		<order-column name="story_Id"/>
 	</order>
 	
+	<!-- Finder Values -->
+	<finder name="L_S" return-type="Collection">
+      <finder-column name="loan_Account_Id" />
+      <finder-column name="story_Type" />
+    </finder>
+	
+	<!-- Reference -->
 	<reference package-path="com.liferay.portal" entity="User" />
 	<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
 	<reference package-path="com.liferay.portal" entity="WorkflowInstanceLink" />
+	
 	</entity>
 	
 	<entity name="TeamLender" remote-service="true" local-service="true">

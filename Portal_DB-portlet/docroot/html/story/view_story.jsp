@@ -1,23 +1,26 @@
 <%--
 /**
-* TODO
+* View for final and initial Story objects which is apart of
+* for LoanAccount objects. Should be used in conjunction with
+* BorrowersPortlet.viewInitialStory() and BorrowersPortlet.viewFinalStory(). 
 */
 --%>
 <%@include file="/html/init.jsp"%>
 
 <!-- Data Definitions -->
 <%
-	Story story = (Story) request.getAttribute("storyObject");
+	Story story = (Story) request.getAttribute(WebKeys.STORY_OBJECT);
 
 	//Retrieves story type text and attribute.
 	String storyTypeText = "Unknown Story Type";
-	String storyType;
-	if (story!=null) {
+	String storyType = "";
+	if (story != null) {
 		storyType = story.getStory_Type();
 		storyTypeText = storyType + "-story";
 	}
 
-	String actionButtonText = (story== null?"add-new-"+storyType:"edit-"+storyType);
+	String actionButtonText = (story == null ? "add-new-" + storyType
+			: "edit-" + storyType);
 %>
 
 <!-- Link Definitions -->
@@ -26,8 +29,10 @@
 </portlet:renderURL>
 
 <!-- Structure Definition -->
-<c:if test="<%=story != null%>">
-	<h1><%=" for loan " + story.getLoan_Account_Id()%></h1>
+<liferay-ui:error key="" message="" />
+<c:if test="<%=story!=null%>">
+	<liferay-ui:header title='<%=storyType + " Story for loan " + story.getLoan_Account_Id()%>'
+	backLabel="TODO" backURL="" />
 	
 	<aui:panel label="Story Text" >
 		<aui:panel>
@@ -37,11 +42,11 @@
 			Video URL: <%=!(story.getVideo_Url() == null || ""
 								.equals(story.getVideo_Url())) ? "<a href="
 								+ story.getVideo_Url() + ">video link</a>"
-								: "none"%>		
+								: "none"%>
 		</aui:panel>
 		<aui:panel>
 			<h2>Story Text:</h2>
-			<%=story.getStory_Text()%>
+			<p><%=story.getStory_Text()%></p>
 		</aui:panel>
 	</aui:panel>
 </c:if>

@@ -101,6 +101,25 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 			StoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
 			new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_L_S = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
+			StoryModelImpl.FINDER_CACHE_ENABLED, StoryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByL_S",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_L_S = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
+			StoryModelImpl.FINDER_CACHE_ENABLED, StoryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByL_S",
+			new String[] { Long.class.getName(), String.class.getName() },
+			StoryModelImpl.LOAN_ACCOUNT_ID_COLUMN_BITMASK |
+			StoryModelImpl.STORY_TYPE_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_L_S = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
+			StoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByL_S",
+			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
 			StoryModelImpl.FINDER_CACHE_ENABLED, StoryImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
@@ -332,6 +351,29 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+					args);
+			}
+
+			if ((storyModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_L_S.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(storyModelImpl.getOriginalLoan_Account_Id()),
+						
+						storyModelImpl.getOriginalStory_Type()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_L_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_L_S,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(storyModelImpl.getLoan_Account_Id()),
+						
+						storyModelImpl.getStory_Type()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_L_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_L_S,
 					args);
 			}
 		}
@@ -869,6 +911,440 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
+	 * Returns all the stories where loan_Account_Id = &#63; and story_Type = &#63;.
+	 *
+	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param story_Type the story_ type
+	 * @return the matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> findByL_S(long loan_Account_Id, String story_Type)
+		throws SystemException {
+		return findByL_S(loan_Account_Id, story_Type, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the stories where loan_Account_Id = &#63; and story_Type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param story_Type the story_ type
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @return the range of matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> findByL_S(long loan_Account_Id, String story_Type,
+		int start, int end) throws SystemException {
+		return findByL_S(loan_Account_Id, story_Type, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the stories where loan_Account_Id = &#63; and story_Type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param story_Type the story_ type
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> findByL_S(long loan_Account_Id, String story_Type,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_L_S;
+			finderArgs = new Object[] { loan_Account_Id, story_Type };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_L_S;
+			finderArgs = new Object[] {
+					loan_Account_Id, story_Type,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<Story> list = (List<Story>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Story story : list) {
+				if ((loan_Account_Id != story.getLoan_Account_Id()) ||
+						!Validator.equals(story_Type, story.getStory_Type())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_STORY_WHERE);
+
+			query.append(_FINDER_COLUMN_L_S_LOAN_ACCOUNT_ID_2);
+
+			if (story_Type == null) {
+				query.append(_FINDER_COLUMN_L_S_STORY_TYPE_1);
+			}
+			else {
+				if (story_Type.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_L_S_STORY_TYPE_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_L_S_STORY_TYPE_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(StoryModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(loan_Account_Id);
+
+				if (story_Type != null) {
+					qPos.add(story_Type);
+				}
+
+				list = (List<Story>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first story in the ordered set where loan_Account_Id = &#63; and story_Type = &#63;.
+	 *
+	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param story_Type the story_ type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching story
+	 * @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story findByL_S_First(long loan_Account_Id, String story_Type,
+		OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		Story story = fetchByL_S_First(loan_Account_Id, story_Type,
+				orderByComparator);
+
+		if (story != null) {
+			return story;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("loan_Account_Id=");
+		msg.append(loan_Account_Id);
+
+		msg.append(", story_Type=");
+		msg.append(story_Type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchStoryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first story in the ordered set where loan_Account_Id = &#63; and story_Type = &#63;.
+	 *
+	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param story_Type the story_ type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching story, or <code>null</code> if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story fetchByL_S_First(long loan_Account_Id, String story_Type,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Story> list = findByL_S(loan_Account_Id, story_Type, 0, 1,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last story in the ordered set where loan_Account_Id = &#63; and story_Type = &#63;.
+	 *
+	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param story_Type the story_ type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching story
+	 * @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story findByL_S_Last(long loan_Account_Id, String story_Type,
+		OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		Story story = fetchByL_S_Last(loan_Account_Id, story_Type,
+				orderByComparator);
+
+		if (story != null) {
+			return story;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("loan_Account_Id=");
+		msg.append(loan_Account_Id);
+
+		msg.append(", story_Type=");
+		msg.append(story_Type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchStoryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last story in the ordered set where loan_Account_Id = &#63; and story_Type = &#63;.
+	 *
+	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param story_Type the story_ type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching story, or <code>null</code> if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story fetchByL_S_Last(long loan_Account_Id, String story_Type,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByL_S(loan_Account_Id, story_Type);
+
+		List<Story> list = findByL_S(loan_Account_Id, story_Type, count - 1,
+				count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the stories before and after the current story in the ordered set where loan_Account_Id = &#63; and story_Type = &#63;.
+	 *
+	 * @param story_Id the primary key of the current story
+	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param story_Type the story_ type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next story
+	 * @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story[] findByL_S_PrevAndNext(long story_Id, long loan_Account_Id,
+		String story_Type, OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		Story story = findByPrimaryKey(story_Id);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Story[] array = new StoryImpl[3];
+
+			array[0] = getByL_S_PrevAndNext(session, story, loan_Account_Id,
+					story_Type, orderByComparator, true);
+
+			array[1] = story;
+
+			array[2] = getByL_S_PrevAndNext(session, story, loan_Account_Id,
+					story_Type, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Story getByL_S_PrevAndNext(Session session, Story story,
+		long loan_Account_Id, String story_Type,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_STORY_WHERE);
+
+		query.append(_FINDER_COLUMN_L_S_LOAN_ACCOUNT_ID_2);
+
+		if (story_Type == null) {
+			query.append(_FINDER_COLUMN_L_S_STORY_TYPE_1);
+		}
+		else {
+			if (story_Type.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_L_S_STORY_TYPE_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_L_S_STORY_TYPE_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(StoryModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(loan_Account_Id);
+
+		if (story_Type != null) {
+			qPos.add(story_Type);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(story);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Story> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Returns all the stories.
 	 *
 	 * @return the stories
@@ -995,6 +1471,20 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
+	 * Removes all the stories where loan_Account_Id = &#63; and story_Type = &#63; from the database.
+	 *
+	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param story_Type the story_ type
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByL_S(long loan_Account_Id, String story_Type)
+		throws SystemException {
+		for (Story story : findByL_S(loan_Account_Id, story_Type)) {
+			remove(story);
+		}
+	}
+
+	/**
 	 * Removes all the stories from the database.
 	 *
 	 * @throws SystemException if a system exception occurred
@@ -1062,6 +1552,77 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID,
 					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of stories where loan_Account_Id = &#63; and story_Type = &#63;.
+	 *
+	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param story_Type the story_ type
+	 * @return the number of matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByL_S(long loan_Account_Id, String story_Type)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { loan_Account_Id, story_Type };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_L_S,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_STORY_WHERE);
+
+			query.append(_FINDER_COLUMN_L_S_LOAN_ACCOUNT_ID_2);
+
+			if (story_Type == null) {
+				query.append(_FINDER_COLUMN_L_S_STORY_TYPE_1);
+			}
+			else {
+				if (story_Type.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_L_S_STORY_TYPE_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_L_S_STORY_TYPE_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(loan_Account_Id);
+
+				if (story_Type != null) {
+					qPos.add(story_Type);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_L_S, finderArgs,
+					count);
 
 				closeSession(session);
 			}
@@ -1172,6 +1733,10 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	private static final String _FINDER_COLUMN_UUID_UUID_1 = "story.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "story.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(story.uuid IS NULL OR story.uuid = ?)";
+	private static final String _FINDER_COLUMN_L_S_LOAN_ACCOUNT_ID_2 = "story.loan_Account_Id = ? AND ";
+	private static final String _FINDER_COLUMN_L_S_STORY_TYPE_1 = "story.story_Type IS NULL";
+	private static final String _FINDER_COLUMN_L_S_STORY_TYPE_2 = "story.story_Type = ?";
+	private static final String _FINDER_COLUMN_L_S_STORY_TYPE_3 = "(story.story_Type IS NULL OR story.story_Type = ?)";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "story.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Story exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Story exists with the key {";

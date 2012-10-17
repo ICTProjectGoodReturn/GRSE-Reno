@@ -95,7 +95,9 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.org.goodreturn.model.Story"),
 			true);
-	public static long UUID_COLUMN_BITMASK = 1L;
+	public static long LOAN_ACCOUNT_ID_COLUMN_BITMASK = 1L;
+	public static long STORY_TYPE_COLUMN_BITMASK = 2L;
+	public static long UUID_COLUMN_BITMASK = 4L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -338,7 +340,19 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	public void setLoan_Account_Id(long loan_Account_Id) {
+		_columnBitmask |= LOAN_ACCOUNT_ID_COLUMN_BITMASK;
+
+		if (!_setOriginalLoan_Account_Id) {
+			_setOriginalLoan_Account_Id = true;
+
+			_originalLoan_Account_Id = _loan_Account_Id;
+		}
+
 		_loan_Account_Id = loan_Account_Id;
+	}
+
+	public long getOriginalLoan_Account_Id() {
+		return _originalLoan_Account_Id;
 	}
 
 	@JSON
@@ -352,7 +366,17 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	public void setStory_Type(String story_Type) {
+		_columnBitmask |= STORY_TYPE_COLUMN_BITMASK;
+
+		if (_originalStory_Type == null) {
+			_originalStory_Type = _story_Type;
+		}
+
 		_story_Type = story_Type;
+	}
+
+	public String getOriginalStory_Type() {
+		return GetterUtil.getString(_originalStory_Type);
 	}
 
 	@JSON
@@ -587,6 +611,12 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		storyModelImpl._originalUuid = storyModelImpl._uuid;
 
+		storyModelImpl._originalLoan_Account_Id = storyModelImpl._loan_Account_Id;
+
+		storyModelImpl._setOriginalLoan_Account_Id = false;
+
+		storyModelImpl._originalStory_Type = storyModelImpl._story_Type;
+
 		storyModelImpl._columnBitmask = 0;
 	}
 
@@ -785,7 +815,10 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	private String _originalUuid;
 	private long _story_Id;
 	private long _loan_Account_Id;
+	private long _originalLoan_Account_Id;
+	private boolean _setOriginalLoan_Account_Id;
 	private String _story_Type;
+	private String _originalStory_Type;
 	private String _story_Text;
 	private String _video_Url;
 	private boolean _is_Good_Enough_For_Marketing;

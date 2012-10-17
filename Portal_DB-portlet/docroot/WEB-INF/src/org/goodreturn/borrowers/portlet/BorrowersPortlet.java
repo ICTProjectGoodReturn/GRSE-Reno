@@ -10,6 +10,7 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
 import org.goodreturn.NoSuchStoryException;
+import org.goodreturn.borrowers.util.ActionUtil;
 import org.goodreturn.model.Story;
 import org.goodreturn.model.impl.StoryImpl;
 import org.goodreturn.service.StoryLocalServiceUtil;
@@ -32,10 +33,10 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
  */
 public class BorrowersPortlet extends MVCPortlet {
 
-	@Override
-	public void processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
 
-	}
+	/* ****************************************
+	 * Action methods for performing operations.
+	 * ****************************************/
 
 	/*
 	NOTE commented out as will not likely be used.
@@ -86,13 +87,11 @@ public class BorrowersPortlet extends MVCPortlet {
 			else {
 				// Adding
 				try {
-					//TODO FIX!!
-					//StoryLocalServiceUtil.addStory(story, story.getStory_Id(), serviceContext);
-					StoryLocalServiceUtil.addStory(story);
+					StoryLocalServiceUtil.addStory(story, story.getStory_Id(), serviceContext);
 					SessionMessages.add(request, "story-add-success");
 					throw new PortalException();
 				} catch (SystemException e) {
-					errors.add("story-failed-to-add");
+					errors.add("story-add-error");
 				} catch (PortalException e) {
 					errors.add("story-add-error");
 				}
@@ -146,5 +145,111 @@ public class BorrowersPortlet extends MVCPortlet {
 			}
 		}
 		super.render(renderRequest, renderResponse);
+	}
+	
+	
+	/* ****************************************
+	 * Helper methods for display content.
+	 * ****************************************/
+	
+	@Override
+	public void processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
+		//TODO first page's content - if needed.
+	}
+	
+	/**
+	 * Gets specified borrower based on borrower_Id and puts it in the request.
+	 * 
+	 * @param actionRequest
+	 * @param actionResponse
+	 * @throws IOException
+	 * @throws PortletException
+	 */
+	public void viewBorrower(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
+		//TODO
+	}
+
+	/**
+	 * Gets all the borrowers for specific MFI group ID and puts it in the request.
+	 * 
+	 * @param actionRequest
+	 * @param actionResponse
+	 * @throws IOException
+	 * @throws PortletException
+	 */
+	public void viewAllBorrowers(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
+		//TODO
+	}
+
+	/**
+	 * Gets specified LoanAccount based on loan_Account_Id and puts it in the request.
+	 * 
+	 * @param actionRequest
+	 * @param actionResponse
+	 * @throws IOException
+	 * @throws PortletException
+	 */
+	public void viewLoanAccount(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
+		//TODO
+	}
+
+	/**
+	 * Gets all LoanAccounts for specified borrower_Id and puts it in the request.
+	 * 
+	 * @param actionRequest
+	 * @param actionResponse
+	 * @throws IOException
+	 * @throws PortletException
+	 */
+	public void viewAllLoanAccounts(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
+		//TODO
+	}
+
+	/**
+	 * Gets specified Loan based on loan_Id, and puts it in the request.
+	 * 
+	 * @param actionRequest
+	 * @param actionResponse
+	 * @throws IOException
+	 * @throws PortletException
+	 */
+	public void viewLoan(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
+		//TODO
+	}
+
+	/**
+	 * Gets all Loans for specified loan_Account_Id and puts it in the request.
+	 * 
+	 * @param actionRequest
+	 * @param actionResponse
+	 * @throws IOException
+	 * @throws PortletException
+	 */
+	public void viewAllLoans(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
+		//TODO
+	}
+
+	/**
+	 * Gets specific Initial Story for specified LoanAccount based on loan_Account_Id and puts in the request.
+	 * 
+	 * @param actionRequest
+	 * @param actionResponse
+	 * @throws IOException
+	 * @throws PortletException
+	 */
+	public void viewInitialStory(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
+		//TODO
+	}
+
+	/**
+	 * Gets specific Final Story for specified LoanAccount based on loan_Account_Id and puts in the request.
+	 * 
+	 * @param actionRequest
+	 * @param actionResponse
+	 * @throws IOException
+	 * @throws PortletException
+	 */
+	public void viewFinalStory(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
+		//TODO
 	}
 }

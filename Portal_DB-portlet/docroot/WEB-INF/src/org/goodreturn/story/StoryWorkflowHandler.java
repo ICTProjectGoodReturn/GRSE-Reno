@@ -39,7 +39,6 @@ public class StoryWorkflowHandler extends BaseWorkflowHandler {
 	    
 	    ServiceContext serviceContext = (ServiceContext) workflowContext.get("serviceContext");
 	                               
-	    //return StoryLocalServiceUtil.updateStatus(userId, resourcePrimKey, status, serviceContext);
-	    return null;
+	    return StoryLocalServiceUtil.updateStatus(userId, resourcePrimKey, status, serviceContext);
 	}
 }

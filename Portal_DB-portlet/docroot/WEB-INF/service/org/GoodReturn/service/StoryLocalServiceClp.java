@@ -105,6 +105,20 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		_methodName17 = "setBeanIdentifier";
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
+
+		_methodName19 = "addStory";
+
+		_methodParameterTypes19 = new String[] {
+				"org.goodreturn.model.Story", "long",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName20 = "updateStatus";
+
+		_methodParameterTypes20 = new String[] {
+				"long", "long", "int",
+				"com.liferay.portal.service.ServiceContext"
+			};
 	}
 
 	public org.goodreturn.model.Story addStory(org.goodreturn.model.Story story)
@@ -404,7 +418,8 @@ public class StoryLocalServiceClp implements StoryLocalService {
 
 	public org.goodreturn.model.Story getStory(long story_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+			com.liferay.portal.kernel.exception.SystemException,
+			org.goodreturn.NoSuchStoryException {
 		Object returnObj = null;
 
 		try {
@@ -420,6 +435,10 @@ public class StoryLocalServiceClp implements StoryLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof org.goodreturn.NoSuchStoryException) {
+				throw (org.goodreturn.NoSuchStoryException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -627,6 +646,90 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		throw new UnsupportedOperationException();
 	}
 
+	public org.goodreturn.model.Story addStory(
+		org.goodreturn.model.Story newStory, long userId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
+					new Object[] {
+						ClpSerializer.translateInput(newStory),
+						
+					userId,
+						
+					ClpSerializer.translateInput(serviceContext)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (org.goodreturn.model.Story)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public org.goodreturn.model.Story updateStatus(long userId,
+		long resourcePrimKey, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
+					new Object[] {
+						userId,
+						
+					resourcePrimKey,
+						
+					status,
+						
+					ClpSerializer.translateInput(serviceContext)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (org.goodreturn.model.Story)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -664,4 +767,8 @@ public class StoryLocalServiceClp implements StoryLocalService {
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
 }

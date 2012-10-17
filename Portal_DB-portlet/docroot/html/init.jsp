@@ -16,7 +16,6 @@
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 
-<%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.UnicodeFormatter" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
@@ -24,5 +23,6 @@
 <%@ page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %>
 
 <%@ page import="org.goodreturn.model.Story" %>
+<%@ page import="org.goodreturn.borrowers.util.WebKeys" %>
 
 <portlet:defineObjects />
