@@ -14,6 +14,8 @@
 
 package org.goodreturn.service.impl;
 
+import java.util.List;
+
 import org.goodreturn.NoSuchStoryException;
 import org.goodreturn.model.Story;
 import org.goodreturn.service.base.StoryLocalServiceBaseImpl;
@@ -127,6 +129,18 @@ public class StoryLocalServiceImpl extends StoryLocalServiceBaseImpl {
 		return storyPersistence.findByPrimaryKey(PK);
 	}
 	
+	/**
+	 * Retrieves all loans which have borrower_Loan_Id and story_Type.
+	 * 
+	 * @param borrowerLoanId - Primary key field which is associated with borrower which contains specific
+	 * @param storyType
+	 * @return
+	 * @throws SystemException
+	 */
+	public List<Story> getStoryByL_S(long borrowerLoanId, String storyType) throws SystemException {
+		return storyPersistence.findByL_S(borrowerLoanId, storyType);
+	}
+	
 	
 	/**
 	 * Updates the status of the Story object.
@@ -164,4 +178,7 @@ public class StoryLocalServiceImpl extends StoryLocalServiceBaseImpl {
 	    
 	    return story;		
 	}
+	
+	
+	
 }

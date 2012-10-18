@@ -151,7 +151,6 @@ public class BorrowersPortlet extends MVCPortlet {
 	/* ****************************************
 	 * Helper methods for display content.
 	 * ****************************************/
-	
 	@Override
 	public void processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
 		//TODO first page's content - if needed.

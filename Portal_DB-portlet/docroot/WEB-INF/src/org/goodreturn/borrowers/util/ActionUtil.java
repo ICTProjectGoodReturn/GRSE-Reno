@@ -12,6 +12,7 @@ import org.goodreturn.model.Supplementary_Table;
 import org.goodreturn.model.impl.BorrowerImpl;
 import org.goodreturn.model.impl.StoryImpl;
 import org.goodreturn.service.BorrowerLocalServiceUtil;
+import org.goodreturn.service.StoryLocalServiceUtil;
 
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -28,15 +29,15 @@ import com.liferay.portal.theme.ThemeDisplay;
  */
 public class ActionUtil {
 	//
-	//	Render Phase Methods (called from rendering phase)
+	//	Render Phase (like) Data Retrieval Methods
 	//
 	/**
-	 * Retrieves all borrowers for specific MFI. Designed to be called from rendering phase. 
+	 * Retrieves all borrowers for specific MFI. Designed to be called from action phase. 
 	 * 
-	 * @param request Render requested which has access from the render phase.
+	 * @param request - action requested which has access from the action phase.
 	 * @return List of Borrower objects for specific MFI.
 	 */
-	public static List<Borrower> getBorrowers(RenderRequest request) {
+	public static List<Borrower> getBorrowers(ActionRequest request) {
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
 
@@ -51,73 +52,110 @@ public class ActionUtil {
 		}
 
 		return tempResults;
-
 	}
 	
 	/**
-	 * Retrieves all Supplementary_Table loans for specific Borrower. Designed to be called from rendering phase. 
+	 * Retrieves single specific borrower based on borrower_Id. Designed to be called from action phase. 
 	 * 
-	 * @param request Render request which has access from the render phase.
-	 * @return List of Supplementary_Table objects for specific Borrower
+	 * @param request - action requested which has access from the action phase.
+	 * @return Specific Borrower object for specific borrower_Id.
 	 */
-	//TODO FIX Supplementary_Table to Loan and narrowed down from Borrower
-	public static List<Supplementary_Table> getSupplementary_Tables(RenderRequest request) {
+	public static Borrower getBorrower(ActionRequest request) {
+		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
+		long groupId = themeDisplay.getScopeGroupId();
+
+		Borrower tempResult;
+
+		try {
+			//TODO uncomment/fix and remove throw.
+			//tempResults = BorrowerLocalServiceUtil.getAllBorrowers(groupId);
+			throw new SystemException("not implemented");
+		} catch (SystemException ex) {
+			tempResult = null;
+		}
+
+		return tempResult;
+	}
+	
+	/**
+	 * Retrieves all BorrowerLoans for specific borrower_Id. Designed to be called from action phase. 
+	 * 
+	 * @param request Render request which has access from the action phase.
+	 * @return List of BorrowerLoan objects for specific Borrower
+	 */
+	//TODO FIX class type
+	public static List<String> getBorrowerLoans(ActionRequest request) {
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
 		
-		List<Supplementary_Table> tempResults;
+		List<String> tempResults;
 
 		try {
 			//TODO uncomment/fix and remove throw.
 			//tempResults = Supplementary_TableLocalServiceUtil.getAllSupplementary_Tables(groupId);
 			throw new SystemException("not implemented");
-		}
-
-		catch (SystemException se) {
+		} catch (SystemException se) {
 			tempResults = Collections.EMPTY_LIST;
 		}
 
 		return tempResults;
 	}
 	
-	//TODO need to think more about this one as data would be accubus based data
-	//TODO NOT SURE IF IT WILL BE CALLED MoneyLent
-	/* *
-	 * Retrieves all MoneyLent for specific Loan. Designed to be called from rendering phase. 
+	/**
+	 * Retrieves specific BorrowerLoan for specific borrower_Loan_Id. Designed to be called from action phase. 
 	 * 
-	 * @param request Render request which has access from the render phase.
-	 * @return List of MoneyLent objects for specific Loan.
+	 * @param request Render request which has access from the action phase.
+	 * @return specific BorrowerLoan object for specific borrower_Loan_Id
 	 */
-	//TODO uncomment and fix for accubus access.
-	/*
-	public static List<MoneyLent> getMoneyLent(RenderRequest request) {
+	//TODO FIX class type
+	public static String getBorrowerLoan(ActionRequest request) {
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
 		
-		List<MoneyLent> tempResults;
+		String tempResult;
 
 		try {
 			//TODO uncomment/fix and remove throw.
-			//tempResults = DonationLocalServiceUtil.getAllSupplementary_Tables(groupId);
+			//tempResults = Supplementary_TableLocalServiceUtil.getAllSupplementary_Tables(groupId);
 			throw new SystemException("not implemented");
+		} catch (SystemException se) {
+			tempResult = null;
 		}
 
-		catch (SystemException se) {
-			tempResults = Collections.EMPTY_LIST;
-		}
-
-		return tempResults;
+		return tempResult;
 	}
-	*/
 	
 	/**
-	 * Retrieves InitialStory for specific Borrower. Designed to be called from rendering phase. 
+	 * Retrieves all LenderContribution for specific Loan. Designed to be called from action phase. 
 	 * 
-	 * @param request Render request which has access from the render phase.
+	 * @param request Render request which has access from the action phase.
+	 * @return List of LenderContribution objects for specific Loan - based on loan_Id.
+	 */
+	//TODO fix class and for accubus access.
+	public static List<String> getLenderContributions(ActionRequest request) {
+		//TODO
+		return null;
+	}
+
+	/**
+	 * Retrieves specific LenderContribution for specific lender_Contribution_Id. Designed to be called from action phase. 
+	 * 
+	 * @param request Render request which has access from the action phase.
+	 * @return specific LenderContribution object.
+	 */
+	//TODO fix class type and for accubus access.
+	public static String getLenderContribution(ActionRequest request) {
+		//TODO
+		return null;
+	}
+	
+	/**
+	 * Retrieves InitialStory for specific Borrower. Designed to be called from action phase. 
+	 * 
+	 * @param request Render request which has access from the action phase.
 	 * @return Story object which represents the InitialStory for specific Loan. Returns null if not existent.
 	 */
-	public static Story getInitialStory(RenderRequest request) {
-		//TODO FIX
+	public static Story getInitialStory(ActionRequest request) {
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
 		
@@ -135,12 +173,12 @@ public class ActionUtil {
 	}
 	
 	/**
-	 * Retrieves FinalStory for specific Borrower. Designed to be called from rendering phase. 
+	 * Retrieves FinalStory for specific Borrower. Designed to be called from action phase. 
 	 * 
-	 * @param request Render request which has access from the render phase.
+	 * @param request Render request which has access from the action phase.
 	 * @return Story object which represents the FinalStory for specific Loan. Returns null if not existent.
 	 */
-	public static Story getFinalStory(RenderRequest request) {
+	public static Story getFinalStory(ActionRequest request) {
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
 		
@@ -158,7 +196,7 @@ public class ActionUtil {
 	}
 
 	//
-	//	Action Phase Methods (called from action phase)
+	//	Action Phase Processing Methods
 	//
 	/**
 	 * Creates a Borrower from a sent actionRequest object.
