@@ -7,19 +7,22 @@ public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 	//Object Keys
 	public static final String BORROWERS_LIST = "BORROWERS_LIST";
 	public static final String BORROWER_OBJECT = "BORROWER_OBJECT";
-	public static final String LOAN_ACCOUNTS_LIST = "LOAN_ACCOUNTS_LIST";
-	public static final String LOAN_ACCOUNT_OBJECT = "LOAN_ACCOUNT_OBJECT";
-	public static final String LOAN_LIST = "LOAN_LIST";
-	public static final String LOAN_OBJECT = "LOAN_OBJECT";
+	
+	public static final String BORROWER_LOANS_LIST = "BORROWER_LOANS_LIST";
+	public static final String BORROWER_LOAN_OBJECT = "BORROWER_LOAN_OBJECT";
+	
+	public static final String LENDER_CONTRIBUTIONS_LIST = "LENDER_CONTRIBUTIONS_LIST";
+	public static final String LENDER_CONTRIBUTION_OBJECT = "LENDER_CONTRIBUTION_OBJECT";
+	
 	public static final String STORY_OBJECT = "STORY_OBJECT";
 	public static final String FINAL_STORY_OBJECT = "FINAL_STORY_OBJECT";
 	public static final String INITIAL_STORY_OBJECT = "INITIAL_STORY_OBJECT";
 
 	//ID Keys
-	public static final String MFI_ID = "MFI_ID";
-	public static final String BORROWER_ID = "BORROWER_ID";
-	public static final String LOAN_ACCOUNT_ID = "LOAN_ACCOUNT_ID";
-	public static final String LOAN_ID = "LOAN_ID";
-	public static final String STORY_ID = "STORY_ID";
-	public static final String STORY_TYPE = "STORY_TYPE";
+	public static final String MFI_ID = "mfi_Id";
+	public static final String BORROWER_ID = "borrower_Id";
+	public static final String BORROWER_LOAN_ID = "loan_Account_Id";
+	public static final String LENDER_CONTRIBUTION_ID = "lender_Contribution_Id";
+	public static final String STORY_ID = "story_Id";
+	public static final String STORY_TYPE = "story_Type";
 }

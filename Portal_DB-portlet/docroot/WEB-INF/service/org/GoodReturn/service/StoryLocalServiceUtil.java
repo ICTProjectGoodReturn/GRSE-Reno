@@ -289,11 +289,13 @@ public class StoryLocalServiceUtil {
 	}
 
 	/**
-	* @param userId
-	* @param resourcePrimKey
-	* @param status
+	* Updates the status of the Story object.
+	*
+	* @param userId - Id of the user updating the object resource.
+	* @param resourcePrimKey - Id of the Story object to be updated.
+	* @param status - status of the object to be updated.
 	* @param serviceContext
-	* @return
+	* @return returns the Story object which status is being updated.
 	* @throws PortalException
 	* @throws SystemException
 	*/
