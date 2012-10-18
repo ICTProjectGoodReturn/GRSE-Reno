@@ -105,6 +105,30 @@ public class ActionUtil {
 	 * Retrieves specific BorrowerLoan for specific borrower_Loan_Id. Designed to be called from action phase. 
 	 * 
 	 * @param request Render request which has access from the action phase.
+	 * @return List of BorrowerLoan objects for specific Borrower
+	 */
+	//TODO FIX class type
+	public static String getBorrowerLoan(ActionRequest request) {
+		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
+		long groupId = themeDisplay.getScopeGroupId();
+		
+		String tempResult;
+
+		try {
+			//TODO uncomment/fix and remove throw.
+			//tempResults = Supplementary_TableLocalServiceUtil.getAllSupplementary_Tables(groupId);
+			throw new SystemException("not implemented");
+		} catch (SystemException se) {
+			tempResult = null;
+		}
+
+		return tempResult;
+	}
+	
+	/**
+	 * Retrieves specific BorrowerLoan for specific borrower_Loan_Id. Designed to be called from action phase. 
+	 * 
+	 * @param request Render request which has access from the action phase.
 	 * @return specific BorrowerLoan object for specific borrower_Loan_Id
 	 */
 	//TODO FIX class type
@@ -142,11 +166,28 @@ public class ActionUtil {
 	 * 
 	 * @param request Render request which has access from the action phase.
 	 * @return specific LenderContribution object.
+	 * 
+	 * @param request Render request which has access from the action phase.
+	 * @return List of MoneyLent objects for specific Loan.
 	 */
 	//TODO fix class type and for accubus access.
 	public static String getLenderContribution(ActionRequest request) {
 		//TODO
 		return null;
+	}
+		String tempResult;
+
+		try {
+			//TODO uncomment/fix and remove throw.
+			//tempResults = DonationLocalServiceUtil.getAllSupplementary_Tables(groupId);
+			throw new SystemException("not implemented");
+		}
+
+		catch (SystemException se) {
+			tempResult = null;
+		}
+
+		return tempResult;
 	}
 	
 	/**
