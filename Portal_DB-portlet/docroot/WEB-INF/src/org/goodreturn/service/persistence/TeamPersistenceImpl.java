@@ -598,6 +598,8 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 
 	@BeanReference(type = BorrowerPersistence.class)
 	protected BorrowerPersistence borrowerPersistence;
+	@BeanReference(type = BorrowerLoanPersistence.class)
+	protected BorrowerLoanPersistence borrowerLoanPersistence;
 	@BeanReference(type = Gift_CertificatePersistence.class)
 	protected Gift_CertificatePersistence gift_CertificatePersistence;
 	@BeanReference(type = LenderPersistence.class)
@@ -606,8 +608,6 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	protected PersonPersistence personPersistence;
 	@BeanReference(type = StoryPersistence.class)
 	protected StoryPersistence storyPersistence;
-	@BeanReference(type = Supplementary_TablePersistence.class)
-	protected Supplementary_TablePersistence supplementary_TablePersistence;
 	@BeanReference(type = TeamPersistence.class)
 	protected TeamPersistence teamPersistence;
 	@BeanReference(type = TeamLenderPersistence.class)

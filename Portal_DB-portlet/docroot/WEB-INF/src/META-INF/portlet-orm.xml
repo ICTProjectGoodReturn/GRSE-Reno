@@ -33,6 +33,15 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="org.goodreturn.model.impl.BorrowerLoanModelImpl">
+		<attributes>
+			<id name="borrower_Loan_Id" />
+			<basic name="borrower_Id" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="org.goodreturn.model.impl.Gift_CertificateModelImpl">
 		<attributes>
 			<id name="certificate_Id" />
@@ -107,7 +116,7 @@
 			<basic name="uuid">
 				<column name="UUID_" />
 			</basic>
-			<basic name="loan_Account_Id" />
+			<basic name="borrower_Loan_Id" />
 			<basic name="story_Type" />
 			<basic name="story_Text" />
 			<basic name="video_Url" />
@@ -122,14 +131,6 @@
 			<basic name="company_Id" />
 			<basic name="group_Id" />
 			<basic name="user_Id" />
-			<transient name="modelAttributes" />
-			<transient name="primaryKey" />
-			<transient name="primaryKeyObj" />
-		</attributes>
-	</mapped-superclass>
-	<mapped-superclass class="org.goodreturn.model.impl.Supplementary_TableModelImpl">
-		<attributes>
-			<id name="table_Id" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -165,6 +166,10 @@
 		<table name="GoodReturn_Borrower" />
 		<attributes />
 	</entity>
+	<entity class="org.goodreturn.model.impl.BorrowerLoanImpl" name="BorrowerLoan">
+		<table name="GoodReturn_BorrowerLoan" />
+		<attributes />
+	</entity>
 	<entity class="org.goodreturn.model.impl.Gift_CertificateImpl" name="Gift_Certificate">
 		<table name="GoodReturn_Gift_Certificate" />
 		<attributes />
@@ -179,10 +184,6 @@
 	</entity>
 	<entity class="org.goodreturn.model.impl.StoryImpl" name="Story">
 		<table name="GoodReturn_Story" />
-		<attributes />
-	</entity>
-	<entity class="org.goodreturn.model.impl.Supplementary_TableImpl" name="Supplementary_Table">
-		<table name="GoodReturn_Supplementary_Table" />
 		<attributes />
 	</entity>
 	<entity class="org.goodreturn.model.impl.TeamImpl" name="Team">

@@ -16,6 +16,10 @@
 		<field name="currency" type="double" />
 		<field name="date_Applied" type="Date" />
 	</model>
+	<model name="org.goodreturn.model.BorrowerLoan">
+		<field name="borrower_Loan_Id" type="long" />
+		<field name="borrower_Id" type="long" />
+	</model>
 	<model name="org.goodreturn.model.Gift_Certificate">
 		<field name="certificate_Id" type="long" />
 		<field name="certificate_Amount" type="double" />
@@ -64,7 +68,7 @@
 	<model name="org.goodreturn.model.Story">
 		<field name="uuid" type="String" />
 		<field name="story_Id" type="long" />
-		<field name="loan_Account_Id" type="long" />
+		<field name="borrower_Loan_Id" type="long" />
 		<field name="story_Type" type="String" />
 		<field name="story_Text" type="String" />
 		<field name="video_Url" type="String" />
@@ -77,9 +81,6 @@
 		<field name="company_Id" type="long" />
 		<field name="group_Id" type="long" />
 		<field name="user_Id" type="long" />
-	</model>
-	<model name="org.goodreturn.model.Supplementary_Table">
-		<field name="table_Id" type="long" />
 	</model>
 	<model name="org.goodreturn.model.Team">
 		<field name="team_Id" type="long" />

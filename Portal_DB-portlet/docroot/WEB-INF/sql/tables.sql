@@ -14,6 +14,11 @@ create table GoodReturn_Borrower (
 	date_Applied DATE null
 );
 
+create table GoodReturn_BorrowerLoan (
+	borrower_Loan_Id LONG not null primary key,
+	borrower_Id LONG
+);
+
 create table GoodReturn_Gift_Certificate (
 	certificate_Id LONG not null primary key,
 	certificate_Amount DOUBLE,
@@ -65,7 +70,7 @@ create table GoodReturn_Person (
 create table GoodReturn_Story (
 	uuid_ VARCHAR(75) null,
 	story_Id LONG not null primary key,
-	loan_Account_Id LONG,
+	borrower_Loan_Id LONG,
 	story_Type VARCHAR(75) null,
 	story_Text VARCHAR(75) null,
 	video_Url VARCHAR(75) null,

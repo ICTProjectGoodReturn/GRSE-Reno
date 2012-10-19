@@ -114,7 +114,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 			StoryModelImpl.FINDER_CACHE_ENABLED, StoryImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByL_S",
 			new String[] { Long.class.getName(), String.class.getName() },
-			StoryModelImpl.LOAN_ACCOUNT_ID_COLUMN_BITMASK |
+			StoryModelImpl.BORROWER_LOAN_ID_COLUMN_BITMASK |
 			StoryModelImpl.STORY_TYPE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_L_S = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
 			StoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
@@ -357,7 +357,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 			if ((storyModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_L_S.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(storyModelImpl.getOriginalLoan_Account_Id()),
+						Long.valueOf(storyModelImpl.getOriginalBorrower_Loan_Id()),
 						
 						storyModelImpl.getOriginalStory_Type()
 					};
@@ -367,7 +367,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 					args);
 
 				args = new Object[] {
-						Long.valueOf(storyModelImpl.getLoan_Account_Id()),
+						Long.valueOf(storyModelImpl.getBorrower_Loan_Id()),
 						
 						storyModelImpl.getStory_Type()
 					};
@@ -396,7 +396,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 		storyImpl.setUuid(story.getUuid());
 		storyImpl.setStory_Id(story.getStory_Id());
-		storyImpl.setLoan_Account_Id(story.getLoan_Account_Id());
+		storyImpl.setBorrower_Loan_Id(story.getBorrower_Loan_Id());
 		storyImpl.setStory_Type(story.getStory_Type());
 		storyImpl.setStory_Text(story.getStory_Text());
 		storyImpl.setVideo_Url(story.getVideo_Url());
@@ -911,46 +911,46 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
-	 * Returns all the stories where loan_Account_Id = &#63; and story_Type = &#63;.
+	 * Returns all the stories where borrower_Loan_Id = &#63; and story_Type = &#63;.
 	 *
-	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param borrower_Loan_Id the borrower_ loan_ ID
 	 * @param story_Type the story_ type
 	 * @return the matching stories
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Story> findByL_S(long loan_Account_Id, String story_Type)
+	public List<Story> findByL_S(long borrower_Loan_Id, String story_Type)
 		throws SystemException {
-		return findByL_S(loan_Account_Id, story_Type, QueryUtil.ALL_POS,
+		return findByL_S(borrower_Loan_Id, story_Type, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns a range of all the stories where loan_Account_Id = &#63; and story_Type = &#63;.
+	 * Returns a range of all the stories where borrower_Loan_Id = &#63; and story_Type = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param borrower_Loan_Id the borrower_ loan_ ID
 	 * @param story_Type the story_ type
 	 * @param start the lower bound of the range of stories
 	 * @param end the upper bound of the range of stories (not inclusive)
 	 * @return the range of matching stories
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Story> findByL_S(long loan_Account_Id, String story_Type,
+	public List<Story> findByL_S(long borrower_Loan_Id, String story_Type,
 		int start, int end) throws SystemException {
-		return findByL_S(loan_Account_Id, story_Type, start, end, null);
+		return findByL_S(borrower_Loan_Id, story_Type, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the stories where loan_Account_Id = &#63; and story_Type = &#63;.
+	 * Returns an ordered range of all the stories where borrower_Loan_Id = &#63; and story_Type = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param borrower_Loan_Id the borrower_ loan_ ID
 	 * @param story_Type the story_ type
 	 * @param start the lower bound of the range of stories
 	 * @param end the upper bound of the range of stories (not inclusive)
@@ -958,7 +958,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	 * @return the ordered range of matching stories
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Story> findByL_S(long loan_Account_Id, String story_Type,
+	public List<Story> findByL_S(long borrower_Loan_Id, String story_Type,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		FinderPath finderPath = null;
@@ -967,12 +967,12 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_L_S;
-			finderArgs = new Object[] { loan_Account_Id, story_Type };
+			finderArgs = new Object[] { borrower_Loan_Id, story_Type };
 		}
 		else {
 			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_L_S;
 			finderArgs = new Object[] {
-					loan_Account_Id, story_Type,
+					borrower_Loan_Id, story_Type,
 					
 					start, end, orderByComparator
 				};
@@ -983,7 +983,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 		if ((list != null) && !list.isEmpty()) {
 			for (Story story : list) {
-				if ((loan_Account_Id != story.getLoan_Account_Id()) ||
+				if ((borrower_Loan_Id != story.getBorrower_Loan_Id()) ||
 						!Validator.equals(story_Type, story.getStory_Type())) {
 					list = null;
 
@@ -1005,7 +1005,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 			query.append(_SQL_SELECT_STORY_WHERE);
 
-			query.append(_FINDER_COLUMN_L_S_LOAN_ACCOUNT_ID_2);
+			query.append(_FINDER_COLUMN_L_S_BORROWER_LOAN_ID_2);
 
 			if (story_Type == null) {
 				query.append(_FINDER_COLUMN_L_S_STORY_TYPE_1);
@@ -1039,7 +1039,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(loan_Account_Id);
+				qPos.add(borrower_Loan_Id);
 
 				if (story_Type != null) {
 					qPos.add(story_Type);
@@ -1068,19 +1068,19 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
-	 * Returns the first story in the ordered set where loan_Account_Id = &#63; and story_Type = &#63;.
+	 * Returns the first story in the ordered set where borrower_Loan_Id = &#63; and story_Type = &#63;.
 	 *
-	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param borrower_Loan_Id the borrower_ loan_ ID
 	 * @param story_Type the story_ type
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching story
 	 * @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Story findByL_S_First(long loan_Account_Id, String story_Type,
+	public Story findByL_S_First(long borrower_Loan_Id, String story_Type,
 		OrderByComparator orderByComparator)
 		throws NoSuchStoryException, SystemException {
-		Story story = fetchByL_S_First(loan_Account_Id, story_Type,
+		Story story = fetchByL_S_First(borrower_Loan_Id, story_Type,
 				orderByComparator);
 
 		if (story != null) {
@@ -1091,8 +1091,8 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("loan_Account_Id=");
-		msg.append(loan_Account_Id);
+		msg.append("borrower_Loan_Id=");
+		msg.append(borrower_Loan_Id);
 
 		msg.append(", story_Type=");
 		msg.append(story_Type);
@@ -1103,17 +1103,17 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
-	 * Returns the first story in the ordered set where loan_Account_Id = &#63; and story_Type = &#63;.
+	 * Returns the first story in the ordered set where borrower_Loan_Id = &#63; and story_Type = &#63;.
 	 *
-	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param borrower_Loan_Id the borrower_ loan_ ID
 	 * @param story_Type the story_ type
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching story, or <code>null</code> if a matching story could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Story fetchByL_S_First(long loan_Account_Id, String story_Type,
+	public Story fetchByL_S_First(long borrower_Loan_Id, String story_Type,
 		OrderByComparator orderByComparator) throws SystemException {
-		List<Story> list = findByL_S(loan_Account_Id, story_Type, 0, 1,
+		List<Story> list = findByL_S(borrower_Loan_Id, story_Type, 0, 1,
 				orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1124,19 +1124,19 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
-	 * Returns the last story in the ordered set where loan_Account_Id = &#63; and story_Type = &#63;.
+	 * Returns the last story in the ordered set where borrower_Loan_Id = &#63; and story_Type = &#63;.
 	 *
-	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param borrower_Loan_Id the borrower_ loan_ ID
 	 * @param story_Type the story_ type
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching story
 	 * @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Story findByL_S_Last(long loan_Account_Id, String story_Type,
+	public Story findByL_S_Last(long borrower_Loan_Id, String story_Type,
 		OrderByComparator orderByComparator)
 		throws NoSuchStoryException, SystemException {
-		Story story = fetchByL_S_Last(loan_Account_Id, story_Type,
+		Story story = fetchByL_S_Last(borrower_Loan_Id, story_Type,
 				orderByComparator);
 
 		if (story != null) {
@@ -1147,8 +1147,8 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("loan_Account_Id=");
-		msg.append(loan_Account_Id);
+		msg.append("borrower_Loan_Id=");
+		msg.append(borrower_Loan_Id);
 
 		msg.append(", story_Type=");
 		msg.append(story_Type);
@@ -1159,19 +1159,19 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
-	 * Returns the last story in the ordered set where loan_Account_Id = &#63; and story_Type = &#63;.
+	 * Returns the last story in the ordered set where borrower_Loan_Id = &#63; and story_Type = &#63;.
 	 *
-	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param borrower_Loan_Id the borrower_ loan_ ID
 	 * @param story_Type the story_ type
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching story, or <code>null</code> if a matching story could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Story fetchByL_S_Last(long loan_Account_Id, String story_Type,
+	public Story fetchByL_S_Last(long borrower_Loan_Id, String story_Type,
 		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByL_S(loan_Account_Id, story_Type);
+		int count = countByL_S(borrower_Loan_Id, story_Type);
 
-		List<Story> list = findByL_S(loan_Account_Id, story_Type, count - 1,
+		List<Story> list = findByL_S(borrower_Loan_Id, story_Type, count - 1,
 				count, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1182,17 +1182,17 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
-	 * Returns the stories before and after the current story in the ordered set where loan_Account_Id = &#63; and story_Type = &#63;.
+	 * Returns the stories before and after the current story in the ordered set where borrower_Loan_Id = &#63; and story_Type = &#63;.
 	 *
 	 * @param story_Id the primary key of the current story
-	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param borrower_Loan_Id the borrower_ loan_ ID
 	 * @param story_Type the story_ type
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next story
 	 * @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Story[] findByL_S_PrevAndNext(long story_Id, long loan_Account_Id,
+	public Story[] findByL_S_PrevAndNext(long story_Id, long borrower_Loan_Id,
 		String story_Type, OrderByComparator orderByComparator)
 		throws NoSuchStoryException, SystemException {
 		Story story = findByPrimaryKey(story_Id);
@@ -1204,12 +1204,12 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 			Story[] array = new StoryImpl[3];
 
-			array[0] = getByL_S_PrevAndNext(session, story, loan_Account_Id,
+			array[0] = getByL_S_PrevAndNext(session, story, borrower_Loan_Id,
 					story_Type, orderByComparator, true);
 
 			array[1] = story;
 
-			array[2] = getByL_S_PrevAndNext(session, story, loan_Account_Id,
+			array[2] = getByL_S_PrevAndNext(session, story, borrower_Loan_Id,
 					story_Type, orderByComparator, false);
 
 			return array;
@@ -1223,7 +1223,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	protected Story getByL_S_PrevAndNext(Session session, Story story,
-		long loan_Account_Id, String story_Type,
+		long borrower_Loan_Id, String story_Type,
 		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
@@ -1237,7 +1237,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 		query.append(_SQL_SELECT_STORY_WHERE);
 
-		query.append(_FINDER_COLUMN_L_S_LOAN_ACCOUNT_ID_2);
+		query.append(_FINDER_COLUMN_L_S_BORROWER_LOAN_ID_2);
 
 		if (story_Type == null) {
 			query.append(_FINDER_COLUMN_L_S_STORY_TYPE_1);
@@ -1320,7 +1320,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		qPos.add(loan_Account_Id);
+		qPos.add(borrower_Loan_Id);
 
 		if (story_Type != null) {
 			qPos.add(story_Type);
@@ -1471,15 +1471,15 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
-	 * Removes all the stories where loan_Account_Id = &#63; and story_Type = &#63; from the database.
+	 * Removes all the stories where borrower_Loan_Id = &#63; and story_Type = &#63; from the database.
 	 *
-	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param borrower_Loan_Id the borrower_ loan_ ID
 	 * @param story_Type the story_ type
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByL_S(long loan_Account_Id, String story_Type)
+	public void removeByL_S(long borrower_Loan_Id, String story_Type)
 		throws SystemException {
-		for (Story story : findByL_S(loan_Account_Id, story_Type)) {
+		for (Story story : findByL_S(borrower_Loan_Id, story_Type)) {
 			remove(story);
 		}
 	}
@@ -1561,16 +1561,16 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
-	 * Returns the number of stories where loan_Account_Id = &#63; and story_Type = &#63;.
+	 * Returns the number of stories where borrower_Loan_Id = &#63; and story_Type = &#63;.
 	 *
-	 * @param loan_Account_Id the loan_ account_ ID
+	 * @param borrower_Loan_Id the borrower_ loan_ ID
 	 * @param story_Type the story_ type
 	 * @return the number of matching stories
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByL_S(long loan_Account_Id, String story_Type)
+	public int countByL_S(long borrower_Loan_Id, String story_Type)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { loan_Account_Id, story_Type };
+		Object[] finderArgs = new Object[] { borrower_Loan_Id, story_Type };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_L_S,
 				finderArgs, this);
@@ -1580,7 +1580,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 			query.append(_SQL_COUNT_STORY_WHERE);
 
-			query.append(_FINDER_COLUMN_L_S_LOAN_ACCOUNT_ID_2);
+			query.append(_FINDER_COLUMN_L_S_BORROWER_LOAN_ID_2);
 
 			if (story_Type == null) {
 				query.append(_FINDER_COLUMN_L_S_STORY_TYPE_1);
@@ -1605,7 +1605,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(loan_Account_Id);
+				qPos.add(borrower_Loan_Id);
 
 				if (story_Type != null) {
 					qPos.add(story_Type);
@@ -1702,6 +1702,8 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 	@BeanReference(type = BorrowerPersistence.class)
 	protected BorrowerPersistence borrowerPersistence;
+	@BeanReference(type = BorrowerLoanPersistence.class)
+	protected BorrowerLoanPersistence borrowerLoanPersistence;
 	@BeanReference(type = Gift_CertificatePersistence.class)
 	protected Gift_CertificatePersistence gift_CertificatePersistence;
 	@BeanReference(type = LenderPersistence.class)
@@ -1710,8 +1712,6 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	protected PersonPersistence personPersistence;
 	@BeanReference(type = StoryPersistence.class)
 	protected StoryPersistence storyPersistence;
-	@BeanReference(type = Supplementary_TablePersistence.class)
-	protected Supplementary_TablePersistence supplementary_TablePersistence;
 	@BeanReference(type = TeamPersistence.class)
 	protected TeamPersistence teamPersistence;
 	@BeanReference(type = TeamLenderPersistence.class)
@@ -1733,7 +1733,7 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	private static final String _FINDER_COLUMN_UUID_UUID_1 = "story.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "story.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(story.uuid IS NULL OR story.uuid = ?)";
-	private static final String _FINDER_COLUMN_L_S_LOAN_ACCOUNT_ID_2 = "story.loan_Account_Id = ? AND ";
+	private static final String _FINDER_COLUMN_L_S_BORROWER_LOAN_ID_2 = "story.borrower_Loan_Id = ? AND ";
 	private static final String _FINDER_COLUMN_L_S_STORY_TYPE_1 = "story.story_Type IS NULL";
 	private static final String _FINDER_COLUMN_L_S_STORY_TYPE_2 = "story.story_Type = ?";
 	private static final String _FINDER_COLUMN_L_S_STORY_TYPE_3 = "(story.story_Type IS NULL OR story.story_Type = ?)";

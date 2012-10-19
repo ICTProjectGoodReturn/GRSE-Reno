@@ -4,6 +4,9 @@
 	<bean id="org.goodreturn.service.BorrowerLocalService" class="org.goodreturn.service.impl.BorrowerLocalServiceImpl" />
 	<bean id="org.goodreturn.service.BorrowerService" class="org.goodreturn.service.impl.BorrowerServiceImpl" />
 	<bean id="org.goodreturn.service.persistence.BorrowerPersistence" class="org.goodreturn.service.persistence.BorrowerPersistenceImpl" parent="basePersistence" />
+	<bean id="org.goodreturn.service.BorrowerLoanLocalService" class="org.goodreturn.service.impl.BorrowerLoanLocalServiceImpl" />
+	<bean id="org.goodreturn.service.BorrowerLoanService" class="org.goodreturn.service.impl.BorrowerLoanServiceImpl" />
+	<bean id="org.goodreturn.service.persistence.BorrowerLoanPersistence" class="org.goodreturn.service.persistence.BorrowerLoanPersistenceImpl" parent="basePersistence" />
 	<bean id="org.goodreturn.service.Gift_CertificateLocalService" class="org.goodreturn.service.impl.Gift_CertificateLocalServiceImpl" />
 	<bean id="org.goodreturn.service.Gift_CertificateService" class="org.goodreturn.service.impl.Gift_CertificateServiceImpl" />
 	<bean id="org.goodreturn.service.persistence.Gift_CertificatePersistence" class="org.goodreturn.service.persistence.Gift_CertificatePersistenceImpl" parent="basePersistence" />
@@ -16,9 +19,6 @@
 	<bean id="org.goodreturn.service.StoryLocalService" class="org.goodreturn.service.impl.StoryLocalServiceImpl" />
 	<bean id="org.goodreturn.service.StoryService" class="org.goodreturn.service.impl.StoryServiceImpl" />
 	<bean id="org.goodreturn.service.persistence.StoryPersistence" class="org.goodreturn.service.persistence.StoryPersistenceImpl" parent="basePersistence" />
-	<bean id="org.goodreturn.service.Supplementary_TableLocalService" class="org.goodreturn.service.impl.Supplementary_TableLocalServiceImpl" />
-	<bean id="org.goodreturn.service.Supplementary_TableService" class="org.goodreturn.service.impl.Supplementary_TableServiceImpl" />
-	<bean id="org.goodreturn.service.persistence.Supplementary_TablePersistence" class="org.goodreturn.service.persistence.Supplementary_TablePersistenceImpl" parent="basePersistence" />
 	<bean id="org.goodreturn.service.TeamLocalService" class="org.goodreturn.service.impl.TeamLocalServiceImpl" />
 	<bean id="org.goodreturn.service.TeamService" class="org.goodreturn.service.impl.TeamServiceImpl" />
 	<bean id="org.goodreturn.service.persistence.TeamPersistence" class="org.goodreturn.service.persistence.TeamPersistenceImpl" parent="basePersistence" />

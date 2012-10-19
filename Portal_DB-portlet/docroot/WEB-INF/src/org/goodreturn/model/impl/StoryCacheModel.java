@@ -40,8 +40,8 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 		sb.append(uuid);
 		sb.append(", story_Id=");
 		sb.append(story_Id);
-		sb.append(", loan_Account_Id=");
-		sb.append(loan_Account_Id);
+		sb.append(", borrower_Loan_Id=");
+		sb.append(borrower_Loan_Id);
 		sb.append(", story_Type=");
 		sb.append(story_Type);
 		sb.append(", story_Text=");
@@ -82,7 +82,7 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 		}
 
 		storyImpl.setStory_Id(story_Id);
-		storyImpl.setLoan_Account_Id(loan_Account_Id);
+		storyImpl.setBorrower_Loan_Id(borrower_Loan_Id);
 
 		if (story_Type == null) {
 			storyImpl.setStory_Type(StringPool.BLANK);
@@ -135,7 +135,7 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 
 	public String uuid;
 	public long story_Id;
-	public long loan_Account_Id;
+	public long borrower_Loan_Id;
 	public String story_Type;
 	public String story_Text;
 	public String video_Url;

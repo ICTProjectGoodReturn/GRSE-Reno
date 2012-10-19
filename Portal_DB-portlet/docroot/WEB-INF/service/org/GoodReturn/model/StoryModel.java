@@ -89,18 +89,18 @@ public interface StoryModel extends BaseModel<Story> {
 	public void setStory_Id(long story_Id);
 
 	/**
-	 * Returns the loan_ account_ ID of this story.
+	 * Returns the borrower_ loan_ ID of this story.
 	 *
-	 * @return the loan_ account_ ID of this story
+	 * @return the borrower_ loan_ ID of this story
 	 */
-	public long getLoan_Account_Id();
+	public long getBorrower_Loan_Id();
 
 	/**
-	 * Sets the loan_ account_ ID of this story.
+	 * Sets the borrower_ loan_ ID of this story.
 	 *
-	 * @param loan_Account_Id the loan_ account_ ID of this story
+	 * @param borrower_Loan_Id the borrower_ loan_ ID of this story
 	 */
-	public void setLoan_Account_Id(long loan_Account_Id);
+	public void setBorrower_Loan_Id(long borrower_Loan_Id);
 
 	/**
 	 * Returns the story_ type of this story.

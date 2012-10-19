@@ -17,6 +17,8 @@ package org.goodreturn.service.messaging;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
+import org.goodreturn.service.BorrowerLoanLocalServiceUtil;
+import org.goodreturn.service.BorrowerLoanServiceUtil;
 import org.goodreturn.service.BorrowerLocalServiceUtil;
 import org.goodreturn.service.BorrowerServiceUtil;
 import org.goodreturn.service.ClpSerializer;
@@ -28,8 +30,6 @@ import org.goodreturn.service.PersonLocalServiceUtil;
 import org.goodreturn.service.PersonServiceUtil;
 import org.goodreturn.service.StoryLocalServiceUtil;
 import org.goodreturn.service.StoryServiceUtil;
-import org.goodreturn.service.Supplementary_TableLocalServiceUtil;
-import org.goodreturn.service.Supplementary_TableServiceUtil;
 import org.goodreturn.service.TeamLenderLoanLocalServiceUtil;
 import org.goodreturn.service.TeamLenderLoanServiceUtil;
 import org.goodreturn.service.TeamLenderLocalServiceUtil;
@@ -55,6 +55,9 @@ public class ClpMessageListener extends BaseMessageListener {
 			BorrowerLocalServiceUtil.clearService();
 
 			BorrowerServiceUtil.clearService();
+			BorrowerLoanLocalServiceUtil.clearService();
+
+			BorrowerLoanServiceUtil.clearService();
 			Gift_CertificateLocalServiceUtil.clearService();
 
 			Gift_CertificateServiceUtil.clearService();
@@ -67,9 +70,6 @@ public class ClpMessageListener extends BaseMessageListener {
 			StoryLocalServiceUtil.clearService();
 
 			StoryServiceUtil.clearService();
-			Supplementary_TableLocalServiceUtil.clearService();
-
-			Supplementary_TableServiceUtil.clearService();
 			TeamLocalServiceUtil.clearService();
 
 			TeamServiceUtil.clearService();

@@ -47,7 +47,7 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 
 		attributes.put("uuid", getUuid());
 		attributes.put("story_Id", getStory_Id());
-		attributes.put("loan_Account_Id", getLoan_Account_Id());
+		attributes.put("borrower_Loan_Id", getBorrower_Loan_Id());
 		attributes.put("story_Type", getStory_Type());
 		attributes.put("story_Text", getStory_Text());
 		attributes.put("video_Url", getVideo_Url());
@@ -78,10 +78,10 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 			setStory_Id(story_Id);
 		}
 
-		Long loan_Account_Id = (Long)attributes.get("loan_Account_Id");
+		Long borrower_Loan_Id = (Long)attributes.get("borrower_Loan_Id");
 
-		if (loan_Account_Id != null) {
-			setLoan_Account_Id(loan_Account_Id);
+		if (borrower_Loan_Id != null) {
+			setBorrower_Loan_Id(borrower_Loan_Id);
 		}
 
 		String story_Type = (String)attributes.get("story_Type");
@@ -215,21 +215,21 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 	}
 
 	/**
-	* Returns the loan_ account_ ID of this story.
+	* Returns the borrower_ loan_ ID of this story.
 	*
-	* @return the loan_ account_ ID of this story
+	* @return the borrower_ loan_ ID of this story
 	*/
-	public long getLoan_Account_Id() {
-		return _story.getLoan_Account_Id();
+	public long getBorrower_Loan_Id() {
+		return _story.getBorrower_Loan_Id();
 	}
 
 	/**
-	* Sets the loan_ account_ ID of this story.
+	* Sets the borrower_ loan_ ID of this story.
 	*
-	* @param loan_Account_Id the loan_ account_ ID of this story
+	* @param borrower_Loan_Id the borrower_ loan_ ID of this story
 	*/
-	public void setLoan_Account_Id(long loan_Account_Id) {
-		_story.setLoan_Account_Id(loan_Account_Id);
+	public void setBorrower_Loan_Id(long borrower_Loan_Id) {
+		_story.setBorrower_Loan_Id(borrower_Loan_Id);
 	}
 
 	/**

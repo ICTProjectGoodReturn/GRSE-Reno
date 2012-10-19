@@ -113,9 +113,13 @@ public class StoryLocalServiceClp implements StoryLocalService {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName20 = "updateStatus";
+		_methodName20 = "getStoryByL_S";
 
-		_methodParameterTypes20 = new String[] {
+		_methodParameterTypes20 = new String[] { "long", "java.lang.String" };
+
+		_methodName21 = "updateStatus";
+
+		_methodParameterTypes21 = new String[] {
 				"long", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -687,6 +691,39 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		return (org.goodreturn.model.Story)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.util.List<org.goodreturn.model.Story> getStoryByL_S(
+		long borrowerLoanId, java.lang.String storyType)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
+					new Object[] {
+						borrowerLoanId,
+						
+					ClpSerializer.translateInput(storyType)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<org.goodreturn.model.Story>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public org.goodreturn.model.Story updateStatus(long userId,
 		long resourcePrimKey, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -695,8 +732,8 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20,
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
 					new Object[] {
 						userId,
 						
@@ -771,4 +808,6 @@ public class StoryLocalServiceClp implements StoryLocalService {
 	private String[] _methodParameterTypes19;
 	private String _methodName20;
 	private String[] _methodParameterTypes20;
+	private String _methodName21;
+	private String[] _methodParameterTypes21;
 }

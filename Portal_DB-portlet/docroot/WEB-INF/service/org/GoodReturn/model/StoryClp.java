@@ -67,7 +67,7 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 
 		attributes.put("uuid", getUuid());
 		attributes.put("story_Id", getStory_Id());
-		attributes.put("loan_Account_Id", getLoan_Account_Id());
+		attributes.put("borrower_Loan_Id", getBorrower_Loan_Id());
 		attributes.put("story_Type", getStory_Type());
 		attributes.put("story_Text", getStory_Text());
 		attributes.put("video_Url", getVideo_Url());
@@ -99,10 +99,10 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 			setStory_Id(story_Id);
 		}
 
-		Long loan_Account_Id = (Long)attributes.get("loan_Account_Id");
+		Long borrower_Loan_Id = (Long)attributes.get("borrower_Loan_Id");
 
-		if (loan_Account_Id != null) {
-			setLoan_Account_Id(loan_Account_Id);
+		if (borrower_Loan_Id != null) {
+			setBorrower_Loan_Id(borrower_Loan_Id);
 		}
 
 		String story_Type = (String)attributes.get("story_Type");
@@ -197,12 +197,12 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		_story_Id = story_Id;
 	}
 
-	public long getLoan_Account_Id() {
-		return _loan_Account_Id;
+	public long getBorrower_Loan_Id() {
+		return _borrower_Loan_Id;
 	}
 
-	public void setLoan_Account_Id(long loan_Account_Id) {
-		_loan_Account_Id = loan_Account_Id;
+	public void setBorrower_Loan_Id(long borrower_Loan_Id) {
+		_borrower_Loan_Id = borrower_Loan_Id;
 	}
 
 	public String getStory_Type() {
@@ -339,7 +339,7 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 
 		clone.setUuid(getUuid());
 		clone.setStory_Id(getStory_Id());
-		clone.setLoan_Account_Id(getLoan_Account_Id());
+		clone.setBorrower_Loan_Id(getBorrower_Loan_Id());
 		clone.setStory_Type(getStory_Type());
 		clone.setStory_Text(getStory_Text());
 		clone.setVideo_Url(getVideo_Url());
@@ -414,8 +414,8 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		sb.append(getUuid());
 		sb.append(", story_Id=");
 		sb.append(getStory_Id());
-		sb.append(", loan_Account_Id=");
-		sb.append(getLoan_Account_Id());
+		sb.append(", borrower_Loan_Id=");
+		sb.append(getBorrower_Loan_Id());
 		sb.append(", story_Type=");
 		sb.append(getStory_Type());
 		sb.append(", story_Text=");
@@ -461,8 +461,8 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		sb.append(getStory_Id());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>loan_Account_Id</column-name><column-value><![CDATA[");
-		sb.append(getLoan_Account_Id());
+			"<column><column-name>borrower_Loan_Id</column-name><column-value><![CDATA[");
+		sb.append(getBorrower_Loan_Id());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>story_Type</column-name><column-value><![CDATA[");
@@ -520,7 +520,7 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 
 	private String _uuid;
 	private long _story_Id;
-	private long _loan_Account_Id;
+	private long _borrower_Loan_Id;
 	private String _story_Type;
 	private String _story_Text;
 	private String _video_Url;

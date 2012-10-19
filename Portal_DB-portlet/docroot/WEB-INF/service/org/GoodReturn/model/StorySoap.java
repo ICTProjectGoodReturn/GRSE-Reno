@@ -33,7 +33,7 @@ public class StorySoap implements Serializable {
 
 		soapModel.setUuid(model.getUuid());
 		soapModel.setStory_Id(model.getStory_Id());
-		soapModel.setLoan_Account_Id(model.getLoan_Account_Id());
+		soapModel.setBorrower_Loan_Id(model.getBorrower_Loan_Id());
 		soapModel.setStory_Type(model.getStory_Type());
 		soapModel.setStory_Text(model.getStory_Text());
 		soapModel.setVideo_Url(model.getVideo_Url());
@@ -114,12 +114,12 @@ public class StorySoap implements Serializable {
 		_story_Id = story_Id;
 	}
 
-	public long getLoan_Account_Id() {
-		return _loan_Account_Id;
+	public long getBorrower_Loan_Id() {
+		return _borrower_Loan_Id;
 	}
 
-	public void setLoan_Account_Id(long loan_Account_Id) {
-		_loan_Account_Id = loan_Account_Id;
+	public void setBorrower_Loan_Id(long borrower_Loan_Id) {
+		_borrower_Loan_Id = borrower_Loan_Id;
 	}
 
 	public String getStory_Type() {
@@ -229,7 +229,7 @@ public class StorySoap implements Serializable {
 
 	private String _uuid;
 	private long _story_Id;
-	private long _loan_Account_Id;
+	private long _borrower_Loan_Id;
 	private String _story_Type;
 	private String _story_Text;
 	private String _video_Url;

@@ -26,11 +26,11 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
 import org.goodreturn.model.BorrowerClp;
+import org.goodreturn.model.BorrowerLoanClp;
 import org.goodreturn.model.Gift_CertificateClp;
 import org.goodreturn.model.LenderClp;
 import org.goodreturn.model.PersonClp;
 import org.goodreturn.model.StoryClp;
-import org.goodreturn.model.Supplementary_TableClp;
 import org.goodreturn.model.TeamClp;
 import org.goodreturn.model.TeamLenderClp;
 import org.goodreturn.model.TeamLenderLoanClp;
@@ -114,6 +114,10 @@ public class ClpSerializer {
 			return translateInputBorrower(oldModel);
 		}
 
+		if (oldModelClassName.equals(BorrowerLoanClp.class.getName())) {
+			return translateInputBorrowerLoan(oldModel);
+		}
+
 		if (oldModelClassName.equals(Gift_CertificateClp.class.getName())) {
 			return translateInputGift_Certificate(oldModel);
 		}
@@ -128,10 +132,6 @@ public class ClpSerializer {
 
 		if (oldModelClassName.equals(StoryClp.class.getName())) {
 			return translateInputStory(oldModel);
-		}
-
-		if (oldModelClassName.equals(Supplementary_TableClp.class.getName())) {
-			return translateInputSupplementary_Table(oldModel);
 		}
 
 		if (oldModelClassName.equals(TeamClp.class.getName())) {
@@ -165,6 +165,16 @@ public class ClpSerializer {
 		BorrowerClp oldClpModel = (BorrowerClp)oldModel;
 
 		BaseModel<?> newModel = oldClpModel.getBorrowerRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
+	public static Object translateInputBorrowerLoan(BaseModel<?> oldModel) {
+		BorrowerLoanClp oldClpModel = (BorrowerLoanClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getBorrowerLoanRemoteModel();
 
 		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -205,17 +215,6 @@ public class ClpSerializer {
 		StoryClp oldClpModel = (StoryClp)oldModel;
 
 		BaseModel<?> newModel = oldClpModel.getStoryRemoteModel();
-
-		newModel.setModelAttributes(oldClpModel.getModelAttributes());
-
-		return newModel;
-	}
-
-	public static Object translateInputSupplementary_Table(
-		BaseModel<?> oldModel) {
-		Supplementary_TableClp oldClpModel = (Supplementary_TableClp)oldModel;
-
-		BaseModel<?> newModel = oldClpModel.getSupplementary_TableRemoteModel();
 
 		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -274,6 +273,11 @@ public class ClpSerializer {
 		}
 
 		if (oldModelClassName.equals(
+					"org.goodreturn.model.impl.BorrowerLoanImpl")) {
+			return translateOutputBorrowerLoan(oldModel);
+		}
+
+		if (oldModelClassName.equals(
 					"org.goodreturn.model.impl.Gift_CertificateImpl")) {
 			return translateOutputGift_Certificate(oldModel);
 		}
@@ -288,11 +292,6 @@ public class ClpSerializer {
 
 		if (oldModelClassName.equals("org.goodreturn.model.impl.StoryImpl")) {
 			return translateOutputStory(oldModel);
-		}
-
-		if (oldModelClassName.equals(
-					"org.goodreturn.model.impl.Supplementary_TableImpl")) {
-			return translateOutputSupplementary_Table(oldModel);
 		}
 
 		if (oldModelClassName.equals("org.goodreturn.model.impl.TeamImpl")) {
@@ -392,6 +391,10 @@ public class ClpSerializer {
 			return new org.goodreturn.NoSuchBorrowerException();
 		}
 
+		if (className.equals("org.goodreturn.NoSuchBorrowerLoanException")) {
+			return new org.goodreturn.NoSuchBorrowerLoanException();
+		}
+
 		if (className.equals("org.goodreturn.NoSuchGift_CertificateException")) {
 			return new org.goodreturn.NoSuchGift_CertificateException();
 		}
@@ -406,11 +409,6 @@ public class ClpSerializer {
 
 		if (className.equals("org.goodreturn.NoSuchStoryException")) {
 			return new org.goodreturn.NoSuchStoryException();
-		}
-
-		if (className.equals(
-					"org.goodreturn.NoSuchSupplementary_TableException")) {
-			return new org.goodreturn.NoSuchSupplementary_TableException();
 		}
 
 		if (className.equals("org.goodreturn.NoSuchTeamException")) {
@@ -434,6 +432,16 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setBorrowerRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputBorrowerLoan(BaseModel<?> oldModel) {
+		BorrowerLoanClp newModel = new BorrowerLoanClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setBorrowerLoanRemoteModel(oldModel);
 
 		return newModel;
 	}
@@ -474,17 +482,6 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setStoryRemoteModel(oldModel);
-
-		return newModel;
-	}
-
-	public static Object translateOutputSupplementary_Table(
-		BaseModel<?> oldModel) {
-		Supplementary_TableClp newModel = new Supplementary_TableClp();
-
-		newModel.setModelAttributes(oldModel.getModelAttributes());
-
-		newModel.setSupplementary_TableRemoteModel(oldModel);
 
 		return newModel;
 	}

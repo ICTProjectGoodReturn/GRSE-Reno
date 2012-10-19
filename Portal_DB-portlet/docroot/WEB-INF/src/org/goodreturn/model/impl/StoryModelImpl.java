@@ -65,7 +65,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "uuid_", Types.VARCHAR },
 			{ "story_Id", Types.BIGINT },
-			{ "loan_Account_Id", Types.BIGINT },
+			{ "borrower_Loan_Id", Types.BIGINT },
 			{ "story_Type", Types.VARCHAR },
 			{ "story_Text", Types.VARCHAR },
 			{ "video_Url", Types.VARCHAR },
@@ -79,7 +79,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			{ "group_Id", Types.BIGINT },
 			{ "user_Id", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Story (uuid_ VARCHAR(75) null,story_Id LONG not null primary key,loan_Account_Id LONG,story_Type VARCHAR(75) null,story_Text VARCHAR(75) null,video_Url VARCHAR(75) null,is_Good_Enough_For_Marketing BOOLEAN,is_Good_Enough_For_Story BOOLEAN,status INTEGER,status_By_User_Id LONG,status_By_User_Name VARCHAR(75) null,status_Date DATE null,company_Id LONG,group_Id LONG,user_Id LONG)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Story (uuid_ VARCHAR(75) null,story_Id LONG not null primary key,borrower_Loan_Id LONG,story_Type VARCHAR(75) null,story_Text VARCHAR(75) null,video_Url VARCHAR(75) null,is_Good_Enough_For_Marketing BOOLEAN,is_Good_Enough_For_Story BOOLEAN,status INTEGER,status_By_User_Id LONG,status_By_User_Name VARCHAR(75) null,status_Date DATE null,company_Id LONG,group_Id LONG,user_Id LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Story";
 	public static final String ORDER_BY_JPQL = " ORDER BY story.story_Id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Story.story_Id ASC";
@@ -95,7 +95,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.org.goodreturn.model.Story"),
 			true);
-	public static long LOAN_ACCOUNT_ID_COLUMN_BITMASK = 1L;
+	public static long BORROWER_LOAN_ID_COLUMN_BITMASK = 1L;
 	public static long STORY_TYPE_COLUMN_BITMASK = 2L;
 	public static long UUID_COLUMN_BITMASK = 4L;
 
@@ -114,7 +114,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		model.setUuid(soapModel.getUuid());
 		model.setStory_Id(soapModel.getStory_Id());
-		model.setLoan_Account_Id(soapModel.getLoan_Account_Id());
+		model.setBorrower_Loan_Id(soapModel.getBorrower_Loan_Id());
 		model.setStory_Type(soapModel.getStory_Type());
 		model.setStory_Text(soapModel.getStory_Text());
 		model.setVideo_Url(soapModel.getVideo_Url());
@@ -187,7 +187,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		attributes.put("uuid", getUuid());
 		attributes.put("story_Id", getStory_Id());
-		attributes.put("loan_Account_Id", getLoan_Account_Id());
+		attributes.put("borrower_Loan_Id", getBorrower_Loan_Id());
 		attributes.put("story_Type", getStory_Type());
 		attributes.put("story_Text", getStory_Text());
 		attributes.put("video_Url", getVideo_Url());
@@ -219,10 +219,10 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			setStory_Id(story_Id);
 		}
 
-		Long loan_Account_Id = (Long)attributes.get("loan_Account_Id");
+		Long borrower_Loan_Id = (Long)attributes.get("borrower_Loan_Id");
 
-		if (loan_Account_Id != null) {
-			setLoan_Account_Id(loan_Account_Id);
+		if (borrower_Loan_Id != null) {
+			setBorrower_Loan_Id(borrower_Loan_Id);
 		}
 
 		String story_Type = (String)attributes.get("story_Type");
@@ -335,24 +335,24 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	@JSON
-	public long getLoan_Account_Id() {
-		return _loan_Account_Id;
+	public long getBorrower_Loan_Id() {
+		return _borrower_Loan_Id;
 	}
 
-	public void setLoan_Account_Id(long loan_Account_Id) {
-		_columnBitmask |= LOAN_ACCOUNT_ID_COLUMN_BITMASK;
+	public void setBorrower_Loan_Id(long borrower_Loan_Id) {
+		_columnBitmask |= BORROWER_LOAN_ID_COLUMN_BITMASK;
 
-		if (!_setOriginalLoan_Account_Id) {
-			_setOriginalLoan_Account_Id = true;
+		if (!_setOriginalBorrower_Loan_Id) {
+			_setOriginalBorrower_Loan_Id = true;
 
-			_originalLoan_Account_Id = _loan_Account_Id;
+			_originalBorrower_Loan_Id = _borrower_Loan_Id;
 		}
 
-		_loan_Account_Id = loan_Account_Id;
+		_borrower_Loan_Id = borrower_Loan_Id;
 	}
 
-	public long getOriginalLoan_Account_Id() {
-		return _originalLoan_Account_Id;
+	public long getOriginalBorrower_Loan_Id() {
+		return _originalBorrower_Loan_Id;
 	}
 
 	@JSON
@@ -536,7 +536,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		storyImpl.setUuid(getUuid());
 		storyImpl.setStory_Id(getStory_Id());
-		storyImpl.setLoan_Account_Id(getLoan_Account_Id());
+		storyImpl.setBorrower_Loan_Id(getBorrower_Loan_Id());
 		storyImpl.setStory_Type(getStory_Type());
 		storyImpl.setStory_Text(getStory_Text());
 		storyImpl.setVideo_Url(getVideo_Url());
@@ -611,9 +611,9 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		storyModelImpl._originalUuid = storyModelImpl._uuid;
 
-		storyModelImpl._originalLoan_Account_Id = storyModelImpl._loan_Account_Id;
+		storyModelImpl._originalBorrower_Loan_Id = storyModelImpl._borrower_Loan_Id;
 
-		storyModelImpl._setOriginalLoan_Account_Id = false;
+		storyModelImpl._setOriginalBorrower_Loan_Id = false;
 
 		storyModelImpl._originalStory_Type = storyModelImpl._story_Type;
 
@@ -634,7 +634,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		storyCacheModel.story_Id = getStory_Id();
 
-		storyCacheModel.loan_Account_Id = getLoan_Account_Id();
+		storyCacheModel.borrower_Loan_Id = getBorrower_Loan_Id();
 
 		storyCacheModel.story_Type = getStory_Type();
 
@@ -703,8 +703,8 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		sb.append(getUuid());
 		sb.append(", story_Id=");
 		sb.append(getStory_Id());
-		sb.append(", loan_Account_Id=");
-		sb.append(getLoan_Account_Id());
+		sb.append(", borrower_Loan_Id=");
+		sb.append(getBorrower_Loan_Id());
 		sb.append(", story_Type=");
 		sb.append(getStory_Type());
 		sb.append(", story_Text=");
@@ -750,8 +750,8 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		sb.append(getStory_Id());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>loan_Account_Id</column-name><column-value><![CDATA[");
-		sb.append(getLoan_Account_Id());
+			"<column><column-name>borrower_Loan_Id</column-name><column-value><![CDATA[");
+		sb.append(getBorrower_Loan_Id());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>story_Type</column-name><column-value><![CDATA[");
@@ -814,9 +814,9 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	private String _uuid;
 	private String _originalUuid;
 	private long _story_Id;
-	private long _loan_Account_Id;
-	private long _originalLoan_Account_Id;
-	private boolean _setOriginalLoan_Account_Id;
+	private long _borrower_Loan_Id;
+	private long _originalBorrower_Loan_Id;
+	private boolean _setOriginalBorrower_Loan_Id;
 	private String _story_Type;
 	private String _originalStory_Type;
 	private String _story_Text;

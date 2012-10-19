@@ -39,6 +39,8 @@ import com.liferay.portal.service.persistence.UserPersistence;
 
 import org.goodreturn.model.Gift_Certificate;
 
+import org.goodreturn.service.BorrowerLoanLocalService;
+import org.goodreturn.service.BorrowerLoanService;
 import org.goodreturn.service.BorrowerLocalService;
 import org.goodreturn.service.BorrowerService;
 import org.goodreturn.service.Gift_CertificateLocalService;
@@ -49,20 +51,18 @@ import org.goodreturn.service.PersonLocalService;
 import org.goodreturn.service.PersonService;
 import org.goodreturn.service.StoryLocalService;
 import org.goodreturn.service.StoryService;
-import org.goodreturn.service.Supplementary_TableLocalService;
-import org.goodreturn.service.Supplementary_TableService;
 import org.goodreturn.service.TeamLenderLoanLocalService;
 import org.goodreturn.service.TeamLenderLoanService;
 import org.goodreturn.service.TeamLenderLocalService;
 import org.goodreturn.service.TeamLenderService;
 import org.goodreturn.service.TeamLocalService;
 import org.goodreturn.service.TeamService;
+import org.goodreturn.service.persistence.BorrowerLoanPersistence;
 import org.goodreturn.service.persistence.BorrowerPersistence;
 import org.goodreturn.service.persistence.Gift_CertificatePersistence;
 import org.goodreturn.service.persistence.LenderPersistence;
 import org.goodreturn.service.persistence.PersonPersistence;
 import org.goodreturn.service.persistence.StoryPersistence;
-import org.goodreturn.service.persistence.Supplementary_TablePersistence;
 import org.goodreturn.service.persistence.TeamLenderLoanPersistence;
 import org.goodreturn.service.persistence.TeamLenderPersistence;
 import org.goodreturn.service.persistence.TeamPersistence;
@@ -355,6 +355,62 @@ public abstract class Gift_CertificateLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the borrower loan local service.
+	 *
+	 * @return the borrower loan local service
+	 */
+	public BorrowerLoanLocalService getBorrowerLoanLocalService() {
+		return borrowerLoanLocalService;
+	}
+
+	/**
+	 * Sets the borrower loan local service.
+	 *
+	 * @param borrowerLoanLocalService the borrower loan local service
+	 */
+	public void setBorrowerLoanLocalService(
+		BorrowerLoanLocalService borrowerLoanLocalService) {
+		this.borrowerLoanLocalService = borrowerLoanLocalService;
+	}
+
+	/**
+	 * Returns the borrower loan remote service.
+	 *
+	 * @return the borrower loan remote service
+	 */
+	public BorrowerLoanService getBorrowerLoanService() {
+		return borrowerLoanService;
+	}
+
+	/**
+	 * Sets the borrower loan remote service.
+	 *
+	 * @param borrowerLoanService the borrower loan remote service
+	 */
+	public void setBorrowerLoanService(BorrowerLoanService borrowerLoanService) {
+		this.borrowerLoanService = borrowerLoanService;
+	}
+
+	/**
+	 * Returns the borrower loan persistence.
+	 *
+	 * @return the borrower loan persistence
+	 */
+	public BorrowerLoanPersistence getBorrowerLoanPersistence() {
+		return borrowerLoanPersistence;
+	}
+
+	/**
+	 * Sets the borrower loan persistence.
+	 *
+	 * @param borrowerLoanPersistence the borrower loan persistence
+	 */
+	public void setBorrowerLoanPersistence(
+		BorrowerLoanPersistence borrowerLoanPersistence) {
+		this.borrowerLoanPersistence = borrowerLoanPersistence;
+	}
+
+	/**
 	 * Returns the gift_ certificate local service.
 	 *
 	 * @return the gift_ certificate local service
@@ -571,63 +627,6 @@ public abstract class Gift_CertificateLocalServiceBaseImpl
 	 */
 	public void setStoryPersistence(StoryPersistence storyPersistence) {
 		this.storyPersistence = storyPersistence;
-	}
-
-	/**
-	 * Returns the supplementary_ table local service.
-	 *
-	 * @return the supplementary_ table local service
-	 */
-	public Supplementary_TableLocalService getSupplementary_TableLocalService() {
-		return supplementary_TableLocalService;
-	}
-
-	/**
-	 * Sets the supplementary_ table local service.
-	 *
-	 * @param supplementary_TableLocalService the supplementary_ table local service
-	 */
-	public void setSupplementary_TableLocalService(
-		Supplementary_TableLocalService supplementary_TableLocalService) {
-		this.supplementary_TableLocalService = supplementary_TableLocalService;
-	}
-
-	/**
-	 * Returns the supplementary_ table remote service.
-	 *
-	 * @return the supplementary_ table remote service
-	 */
-	public Supplementary_TableService getSupplementary_TableService() {
-		return supplementary_TableService;
-	}
-
-	/**
-	 * Sets the supplementary_ table remote service.
-	 *
-	 * @param supplementary_TableService the supplementary_ table remote service
-	 */
-	public void setSupplementary_TableService(
-		Supplementary_TableService supplementary_TableService) {
-		this.supplementary_TableService = supplementary_TableService;
-	}
-
-	/**
-	 * Returns the supplementary_ table persistence.
-	 *
-	 * @return the supplementary_ table persistence
-	 */
-	public Supplementary_TablePersistence getSupplementary_TablePersistence() {
-		return supplementary_TablePersistence;
-	}
-
-	/**
-	 * Sets the supplementary_ table persistence.
-	 *
-	 * @param supplementary_TablePersistence the supplementary_ table persistence
-	 */
-	public void setSupplementary_TablePersistence(
-		Supplementary_TablePersistence supplementary_TablePersistence) {
-		this.supplementary_TablePersistence = supplementary_TablePersistence;
 	}
 
 	/**
@@ -990,6 +989,12 @@ public abstract class Gift_CertificateLocalServiceBaseImpl
 	protected BorrowerService borrowerService;
 	@BeanReference(type = BorrowerPersistence.class)
 	protected BorrowerPersistence borrowerPersistence;
+	@BeanReference(type = BorrowerLoanLocalService.class)
+	protected BorrowerLoanLocalService borrowerLoanLocalService;
+	@BeanReference(type = BorrowerLoanService.class)
+	protected BorrowerLoanService borrowerLoanService;
+	@BeanReference(type = BorrowerLoanPersistence.class)
+	protected BorrowerLoanPersistence borrowerLoanPersistence;
 	@BeanReference(type = Gift_CertificateLocalService.class)
 	protected Gift_CertificateLocalService gift_CertificateLocalService;
 	@BeanReference(type = Gift_CertificateService.class)
@@ -1014,12 +1019,6 @@ public abstract class Gift_CertificateLocalServiceBaseImpl
 	protected StoryService storyService;
 	@BeanReference(type = StoryPersistence.class)
 	protected StoryPersistence storyPersistence;
-	@BeanReference(type = Supplementary_TableLocalService.class)
-	protected Supplementary_TableLocalService supplementary_TableLocalService;
-	@BeanReference(type = Supplementary_TableService.class)
-	protected Supplementary_TableService supplementary_TableService;
-	@BeanReference(type = Supplementary_TablePersistence.class)
-	protected Supplementary_TablePersistence supplementary_TablePersistence;
 	@BeanReference(type = TeamLocalService.class)
 	protected TeamLocalService teamLocalService;
 	@BeanReference(type = TeamService.class)

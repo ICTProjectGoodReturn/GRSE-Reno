@@ -3,11 +3,11 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="org.goodreturn.model.Borrower" />
+	<import class="org.goodreturn.model.BorrowerLoan" />
 	<import class="org.goodreturn.model.Gift_Certificate" />
 	<import class="org.goodreturn.model.Lender" />
 	<import class="org.goodreturn.model.Person" />
 	<import class="org.goodreturn.model.Story" />
-	<import class="org.goodreturn.model.Supplementary_Table" />
 	<import class="org.goodreturn.model.Team" />
 	<import class="org.goodreturn.model.TeamLender" />
 	<import class="org.goodreturn.model.TeamLenderLoan" />
@@ -28,6 +28,13 @@
 		<property name="pdf_Link" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="currency" type="com.liferay.portal.dao.orm.hibernate.DoubleType" column="currency_" />
 		<property name="date_Applied" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="org.goodreturn.model.impl.BorrowerLoanImpl" table="GoodReturn_BorrowerLoan">
+		<cache usage="read-write" />
+		<id name="borrower_Loan_Id" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="borrower_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="org.goodreturn.model.impl.Gift_CertificateImpl" table="GoodReturn_Gift_Certificate">
 		<cache usage="read-write" />
@@ -89,7 +96,7 @@
 			<generator class="assigned" />
 		</id>
 		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
-		<property name="loan_Account_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="borrower_Loan_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="story_Type" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="story_Text" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="video_Url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -102,12 +109,6 @@
 		<property name="company_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="group_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="user_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-	</class>
-	<class name="org.goodreturn.model.impl.Supplementary_TableImpl" table="GoodReturn_Supplementary_Table">
-		<cache usage="read-write" />
-		<id name="table_Id" type="long">
-			<generator class="assigned" />
-		</id>
 	</class>
 	<class name="org.goodreturn.model.impl.TeamImpl" table="GoodReturn_Team">
 		<cache usage="read-write" />

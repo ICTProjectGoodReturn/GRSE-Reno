@@ -289,6 +289,20 @@ public class StoryLocalServiceUtil {
 	}
 
 	/**
+	* Retrieves all loans which have borrower_Loan_Id and story_Type.
+	*
+	* @param borrowerLoanId - Primary key field which is associated with borrower which contains specific
+	* @param storyType
+	* @return
+	* @throws SystemException
+	*/
+	public static java.util.List<org.goodreturn.model.Story> getStoryByL_S(
+		long borrowerLoanId, java.lang.String storyType)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getStoryByL_S(borrowerLoanId, storyType);
+	}
+
+	/**
 	* Updates the status of the Story object.
 	*
 	* @param userId - Id of the user updating the object resource.

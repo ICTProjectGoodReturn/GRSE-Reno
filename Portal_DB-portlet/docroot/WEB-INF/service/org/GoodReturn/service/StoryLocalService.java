@@ -259,6 +259,19 @@ public interface StoryLocalService extends BaseLocalService,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Retrieves all loans which have borrower_Loan_Id and story_Type.
+	*
+	* @param borrowerLoanId - Primary key field which is associated with borrower which contains specific
+	* @param storyType
+	* @return
+	* @throws SystemException
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<org.goodreturn.model.Story> getStoryByL_S(
+		long borrowerLoanId, java.lang.String storyType)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Updates the status of the Story object.
 	*
 	* @param userId - Id of the user updating the object resource.

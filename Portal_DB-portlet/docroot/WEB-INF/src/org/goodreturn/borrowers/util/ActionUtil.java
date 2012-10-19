@@ -4,19 +4,21 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
-import javax.portlet.RenderRequest;
 
 import org.goodreturn.model.Borrower;
+import org.goodreturn.model.BorrowerLoan;
 import org.goodreturn.model.Story;
-import org.goodreturn.model.Supplementary_Table;
 import org.goodreturn.model.impl.BorrowerImpl;
 import org.goodreturn.model.impl.StoryImpl;
+import org.goodreturn.service.BorrowerLoanLocalServiceUtil;
+import org.goodreturn.service.BorrowerLoanServiceUtil;
 import org.goodreturn.service.BorrowerLocalServiceUtil;
 import org.goodreturn.service.StoryLocalServiceUtil;
+import org.goodreturn.borrowers.util.WebKeys;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 
 /**
@@ -58,17 +60,17 @@ public class ActionUtil {
 	 * Retrieves single specific borrower based on borrower_Id. Designed to be called from action phase. 
 	 * 
 	 * @param request - action requested which has access from the action phase.
-	 * @return Specific Borrower object for specific borrower_Id.
+	 * @return Specific Borrower object for specific borrower_Id. null if not found.
 	 */
 	public static Borrower getBorrower(ActionRequest request) {
-		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		long groupId = themeDisplay.getScopeGroupId();
-
+		//Values to retrieve data.
+		long borrowerId = ParamUtil.getLong(request, WebKeys.BORROWER_ID);
 		Borrower tempResult;
 
+		//Returns borrower if possible, else null.
 		try {
 			//TODO uncomment/fix and remove throw.
-			//tempResults = BorrowerLocalServiceUtil.getAllBorrowers(groupId);
+			//tempResult = BorrowerLocalServiceUtil.getBorrower(borrowerId);
 			throw new SystemException("not implemented");
 		} catch (SystemException ex) {
 			tempResult = null;
@@ -81,18 +83,19 @@ public class ActionUtil {
 	 * Retrieves all BorrowerLoans for specific borrower_Id. Designed to be called from action phase. 
 	 * 
 	 * @param request Render request which has access from the action phase.
-	 * @return List of BorrowerLoan objects for specific Borrower
+	 * @return List of BorrowerLoan objects for specific Borrower.
 	 */
-	//TODO FIX class type
-	public static List<String> getBorrowerLoans(ActionRequest request) {
+	public static List<BorrowerLoan> getBorrowerLoans(ActionRequest request) {
+		//Retrieves values needed for request.
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
 		
-		List<String> tempResults;
+		long borrowerId = ParamUtil.getLong(request, WebKeys.BORROWER_ID);
+		List<BorrowerLoan> tempResults;
 
 		try {
-			//TODO uncomment/fix and remove throw.
-			//tempResults = Supplementary_TableLocalServiceUtil.getAllSupplementary_Tables(groupId);
+			//TODO FIX
+			//tempResults = BorrowerLoanLocalServiceUtil.getAllBorrowerLoans(groupId, borrowerId);
 			throw new SystemException("not implemented");
 		} catch (SystemException se) {
 			tempResults = Collections.EMPTY_LIST;
@@ -105,42 +108,19 @@ public class ActionUtil {
 	 * Retrieves specific BorrowerLoan for specific borrower_Loan_Id. Designed to be called from action phase. 
 	 * 
 	 * @param request Render request which has access from the action phase.
-	 * @return List of BorrowerLoan objects for specific Borrower
+	 * @return specific BorrowerLoan object for specific borrower_Loan_Id.
 	 */
-	//TODO FIX class type
-	public static String getBorrowerLoan(ActionRequest request) {
+	public static BorrowerLoan getBorrowerLoan(ActionRequest request) {
+		//Retrieves values needed for request.
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
 		
-		String tempResult;
+		long borrowerLoanId = ParamUtil.getLong(request, WebKeys.BORROWER_LOAN_ID);
+		BorrowerLoan tempResult;
 
 		try {
 			//TODO uncomment/fix and remove throw.
-			//tempResults = Supplementary_TableLocalServiceUtil.getAllSupplementary_Tables(groupId);
-			throw new SystemException("not implemented");
-		} catch (SystemException se) {
-			tempResult = null;
-		}
-
-		return tempResult;
-	}
-	
-	/**
-	 * Retrieves specific BorrowerLoan for specific borrower_Loan_Id. Designed to be called from action phase. 
-	 * 
-	 * @param request Render request which has access from the action phase.
-	 * @return specific BorrowerLoan object for specific borrower_Loan_Id
-	 */
-	//TODO FIX class type
-	public static String getBorrowerLoan(ActionRequest request) {
-		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		long groupId = themeDisplay.getScopeGroupId();
-		
-		String tempResult;
-
-		try {
-			//TODO uncomment/fix and remove throw.
-			//tempResults = Supplementary_TableLocalServiceUtil.getAllSupplementary_Tables(groupId);
+			//tempResult = BorrowerLoanServiceUtil.getBorrowerLoan(groupId, borrowerLoanId);
 			throw new SystemException("not implemented");
 		} catch (SystemException se) {
 			tempResult = null;
@@ -155,9 +135,8 @@ public class ActionUtil {
 	 * @param request Render request which has access from the action phase.
 	 * @return List of LenderContribution objects for specific Loan - based on loan_Id.
 	 */
-	//TODO fix class and for accubus access.
+	//TODO fix class type and retrieve from accubus.
 	public static List<String> getLenderContributions(ActionRequest request) {
-		//TODO
 		return null;
 	}
 
@@ -166,28 +145,10 @@ public class ActionUtil {
 	 * 
 	 * @param request Render request which has access from the action phase.
 	 * @return specific LenderContribution object.
-	 * 
-	 * @param request Render request which has access from the action phase.
-	 * @return List of MoneyLent objects for specific Loan.
 	 */
-	//TODO fix class type and for accubus access.
+	//TODO fix class type and retrieve from accubus.
 	public static String getLenderContribution(ActionRequest request) {
-		//TODO
 		return null;
-	}
-		String tempResult;
-
-		try {
-			//TODO uncomment/fix and remove throw.
-			//tempResults = DonationLocalServiceUtil.getAllSupplementary_Tables(groupId);
-			throw new SystemException("not implemented");
-		}
-
-		catch (SystemException se) {
-			tempResult = null;
-		}
-
-		return tempResult;
 	}
 	
 	/**
@@ -197,20 +158,7 @@ public class ActionUtil {
 	 * @return Story object which represents the InitialStory for specific Loan. Returns null if not existent.
 	 */
 	public static Story getInitialStory(ActionRequest request) {
-		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		long groupId = themeDisplay.getScopeGroupId();
-		
-		Story tempResult;
-
-		try {
-			//TODO uncomment/fix and remove throw.
-			//tempResult = StoryLocalServiceUtil.getInitialStory(loanId);
-			throw new SystemException("not implemented");
-		} catch (SystemException se) {
-			tempResult = null;
-		}
-
-		return tempResult;
+		return getStoryByType(request, "initial");
 	}
 	
 	/**
@@ -220,16 +168,21 @@ public class ActionUtil {
 	 * @return Story object which represents the FinalStory for specific Loan. Returns null if not existent.
 	 */
 	public static Story getFinalStory(ActionRequest request) {
+		return getStoryByType(request, "final");
+	}
+	
+	private static Story getStoryByType(ActionRequest request, String storyType) {
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
 		
+		long borrowerLoanId = ParamUtil.getLong(request, WebKeys.BORROWER_LOAN_ID);
 		Story tempResult;
 
 		try {
-			//TODO uncomment/fix and remove throw.
-			//tempResults = StoryLocalServiceUtil.getFinalStory(loanId);
-			throw new SystemException("not implemented");
+			tempResult = StoryLocalServiceUtil.getStoryByL_S(borrowerLoanId, storyType).get(0);
 		} catch (SystemException se) {
+			tempResult = null;
+		} catch (IndexOutOfBoundsException e) {
 			tempResult = null;
 		}
 
@@ -335,9 +288,9 @@ public class ActionUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		Story story = new StoryImpl();
 		
-		//FK data
-		story.setLoan_Account_Id(ParamUtil.getLong(request, "loan_Account_Id"));
+		//PK/FK data
 		story.setStory_Id(ParamUtil.getLong(request, "Story_Id"));
+		story.setBorrower_Loan_Id(ParamUtil.getLong(request, "borrower_Loan_Id"));
 		
 		//Data
 		story.setStory_Text(ParamUtil.getString(request, "story_Text"));
@@ -353,8 +306,4 @@ public class ActionUtil {
 
 		return story;
 	}
-	
-	
-	
-	
 }
