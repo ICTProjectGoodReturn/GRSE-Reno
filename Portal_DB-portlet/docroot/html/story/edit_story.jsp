@@ -1,13 +1,15 @@
 <%--
 /**
-* TODO
+* Edit for final and initial Story objects which is apart of
+* for BorrowerLoan objects. Should be used in conjunction.
 */
 --%>
+<%@page import="org.goodreturn.service.StoryLocalServiceUtil"%>
 <%@include file="/html/init.jsp"%>
 
 <!-- Data Definitions -->
 <%
-Story story = (Story) request.getAttribute("storyObject");
+Story story = (Story) request.getAttribute(WebKeys.STORY_ENTRY);
 String redirect = ParamUtil.getString(request, "redirect");
 
 long resourcePrimKey = BeanParamUtil.getLong(story, request, "story_Id");
@@ -37,7 +39,8 @@ if (story==null) {
 </portlet:renderURL>
 
 <liferay-ui:header backURL="<%= backUrl %>"
-	title='<%= (story == null) ? "New " + storyTypeText : storyTypeText + " for loan " + story.getLoan_Account_Id()%>'
+	title='<%= (story.getStory_Id() == 0) ? "New " + storyTypeText :
+		storyTypeText + " for loan " + story.getBorrower_Loan_Id()%>'
 />
 
 <aui:form action="<%=updateStoryUrl %>" method="post">
@@ -52,14 +55,14 @@ if (story==null) {
 		<aui:column>
 			
 			<liferay-ui:error key="fields-required" message="fields-required" />
-			<liferay-ui:success key="story-saved-successfully" message="story-saved-successfully" />
 			<liferay-ui:error key="story-fields-required" message="story-fields-required" />
+			<liferay-ui:success key="story-saved-successfully" message="story-saved-successfully" />
 			
 			<!-- TODO Borrower information?? -->
 			
 			<aui:input name="story_Id" type="hidden" />
 			
-			<aui:input name="loan_Account_Id" type="hidden" />
+			<aui:input name="borrower_Loan_Id" type="hidden" />
 			
 			<aui:input name="story_Type" value="<%=storyType%>" type="hidden" />
 			
@@ -84,7 +87,7 @@ if (story==null) {
 		
 		<aui:button-row>
 			<aui:button type="submit" />
-			<aui:button type="cancel" value="Cancel" onClick="<%=cancelUrl %>" />
+			<aui:button type="cancel" value="Cancel" onClick="<%=backUrl %>" />
 		</aui:button-row>
 		
 	</aui:fieldset>

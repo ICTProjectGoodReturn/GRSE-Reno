@@ -146,10 +146,10 @@
 
 		<!-- PK Fields -->
 		<column name="borrower_Loan_Id" type="long" primary="true" />
-
-		<!-- Order -->
+		<!-- TODO FK -->
 		<column name="borrower_Id" type="long" />
-
+		
+		<!-- Order -->
 		<order by="asc">
 			<order-column name="borrower_Loan_Id" />
 		</order>
