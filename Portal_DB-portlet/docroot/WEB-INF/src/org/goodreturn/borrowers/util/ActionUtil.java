@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
+import javax.portlet.RenderRequest;
 
 import org.goodreturn.model.Borrower;
 import org.goodreturn.model.BorrowerLoan;
@@ -30,13 +31,19 @@ public class ActionUtil {
 	//
 	//	Render Phase (like) Data Retrieval Methods
 	//
+	
+	private long getMfiId(ActionRequest request) {
+		//TODO HERE AND EVERWHERE ELSE.
+		return 0;
+	}
+	
 	/**
-	 * Retrieves all borrowers for specific MFI. Designed to be called from action phase. 
+	 * Retrieves all borrowers for specific MFI. Designed to be called from render phase. 
 	 * 
-	 * @param request - action requested which has access from the action phase.
+	 * @param request - action requested which has access from the render phase.
 	 * @return List of Borrower objects for specific MFI.
 	 */
-	public static List<Borrower> getBorrowers(ActionRequest request) {
+	public static List<Borrower> getBorrowers(RenderRequest request) {
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
 
@@ -54,12 +61,12 @@ public class ActionUtil {
 	}
 	
 	/**
-	 * Retrieves single specific borrower based on borrower_Id. Designed to be called from action phase. 
+	 * Retrieves single specific borrower based on borrower_Id. Designed to be called from render phase. 
 	 * 
-	 * @param request - action requested which has access from the action phase.
+	 * @param request - action requested which has access from the render phase.
 	 * @return Specific Borrower object for specific borrower_Id. null if not found.
 	 */
-	public static Borrower getBorrower(ActionRequest request) {
+	public static Borrower getBorrower(RenderRequest request) {
 		//Values to retrieve data.
 		long borrowerId = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_ID);
 		Borrower tempResult;
@@ -76,10 +83,12 @@ public class ActionUtil {
 		return tempResult;
 	}
 	
-	public static Borrower getEditableBorrower(ActionRequest request) {
+	public static Borrower getEditableBorrower(RenderRequest request) {
 		Borrower borrower = ActionUtil.getBorrower(request);
 		
 		if (borrower == null) {
+			//TODO
+			
 			borrower = new BorrowerImpl();
 		}
 		
@@ -89,12 +98,12 @@ public class ActionUtil {
 	
 	
 	/**
-	 * Retrieves all BorrowerLoans for specific borrower_Id. Designed to be called from action phase. 
+	 * Retrieves all BorrowerLoans for specific borrower_Id. Designed to be called from render phase. 
 	 * 
-	 * @param request Render request which has access from the action phase.
+	 * @param request Render request which has access from the render phase.
 	 * @return List of BorrowerLoan objects for specific Borrower.
 	 */
-	public static List<BorrowerLoan> getBorrowerLoans(ActionRequest request) {
+	public static List<BorrowerLoan> getBorrowerLoans(RenderRequest request) {
 		//Retrieves values needed for request.
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
@@ -114,12 +123,12 @@ public class ActionUtil {
 	}
 	
 	/**
-	 * Retrieves specific BorrowerLoan for specific borrower_Loan_Id. Designed to be called from action phase. 
+	 * Retrieves specific BorrowerLoan for specific borrower_Loan_Id. Designed to be called from render phase. 
 	 * 
-	 * @param request Render request which has access from the action phase.
+	 * @param request Render request which has access from the render phase.
 	 * @return specific BorrowerLoan object for specific borrower_Loan_Id.
 	 */
-	public static BorrowerLoan getBorrowerLoan(ActionRequest request) {
+	public static BorrowerLoan getBorrowerLoan(RenderRequest request) {
 		//Retrieves values needed for request.
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
@@ -138,49 +147,64 @@ public class ActionUtil {
 		return tempResult;
 	}
 	
+	public static BorrowerLoan getEditableBorrowerLoan(RenderRequest request) {
+
+		BorrowerLoan borrowerLoan = ActionUtil.getBorrowerLoan(request);
+		
+		if (borrowerLoan == null) {
+			//TODO
+			
+			borrowerLoan = new BorrowerLoanImpl();
+		}
+
+		return borrowerLoan;
+	}
+	
 	/**
-	 * Retrieves all LenderContribution for specific Loan. Designed to be called from action phase. 
+	 * Retrieves all LenderContribution for specific Loan. Designed to be called from render phase. 
 	 * 
-	 * @param request Render request which has access from the action phase.
+	 * @param request Render request which has access from the render phase.
 	 * @return List of LenderContribution objects for specific Loan - based on loan_Id.
 	 */
-	public static List<String> getLenderContributions(ActionRequest request) {
+	public static List<String> getLenderContributions(RenderRequest request) {
 		//TODO fix class return type and retrieve from accubus.
 		return null;
 	}
 
 	/**
-	 * Retrieves specific LenderContribution for specific lender_Contribution_Id. Designed to be called from action phase. 
+	 * Retrieves specific LenderContribution for specific lender_Contribution_Id. Designed to be called from render phase. 
 	 * 
-	 * @param request Render request which has access from the action phase.
+	 * @param request Render request which has access from the render phase.
 	 * @return specific LenderContribution object.
 	 */
-	public static String getLenderContribution(ActionRequest request) {
+	public static String getLenderContribution(RenderRequest request) {
 		//TODO fix class return type and retrieve from accubus.
 		return null;
 	}
 	
 	/**
-	 * Retrieves InitialStory for specific Borrower. Designed to be called from action phase. 
+	 * Retrieves Story based on type specified in request. Designed to be called from render phase. 
 	 * 
-	 * @param request Render request which has access from the action phase.
-	 * @return Story object which represents the InitialStory for specific Loan. Returns null if not existent.
+	 * @param request Render request which has access from the render phase.
+	 * @return Story object which represents the InitialStory for specific Loan. Returns new Story for editing if not existent.
 	 */
-	public static Story getInitialStory(ActionRequest request) {
-		return getStoryByType(request, "initial");
+	public static Story getEditableStory(RenderRequest request) {
+		String storyType = ParamUtil.getString(request, WebKeys.ATTR_STORY_TYPE);
+		Story story = ActionUtil.getStoryByType(request, storyType);
+		
+		if (story == null) {
+			//Sets id FK data.
+			long borrower_Loan_Id = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_LOAN_ID);
+			
+			story = new StoryImpl();
+			story.setBorrower_Loan_Id(borrower_Loan_Id);
+			story.setStory_Type(storyType);
+		}
+		
+		return story;
 	}
 	
-	/**
-	 * Retrieves FinalStory for specific Borrower. Designed to be called from action phase. 
-	 * 
-	 * @param request Render request which has access from the action phase.
-	 * @return Story object which represents the FinalStory for specific Loan. Returns null if not existent.
-	 */
-	public static Story getFinalStory(ActionRequest request) {
-		return getStoryByType(request, "final");
-	}
-	
-	private static Story getStoryByType(ActionRequest request, String storyType) {
+	private static Story getStoryByType(RenderRequest request, String storyType) {
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
 		
@@ -202,7 +226,7 @@ public class ActionUtil {
 	//	Action Phase Processing Methods
 	//
 	/**
-	 * Creates a Borrower from a sent actionRequest object.
+	 * Creates a Borrower from a sent RenderRequest object.
 	 * 
 	 * @param request - The request which contains relevant data to build Borrower object.
 	 * @return - Borrower object which has been built from the request object.
@@ -268,7 +292,7 @@ public class ActionUtil {
 	}
 
 	
-	/* *
+	/**
 	 * Creates a LenderContribution from a sent actionRequest object.
 	 * 
 	 * @param request - The request which contains relevant data to build LenderContribution object.

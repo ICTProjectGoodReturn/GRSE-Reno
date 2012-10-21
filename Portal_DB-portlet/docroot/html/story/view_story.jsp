@@ -23,15 +23,18 @@
 %>
 
 <!-- Link Definitions -->
-<portlet:renderURL var="addEditFinalStoryUrl">
+<portlet:renderURL var="addEditStoryUrl">
 	<portlet:param name="jspPage" value="/html/story/edit_story.jsp" />
 </portlet:renderURL>
 <portlet:actionURL name="updateStory" var="updateStoryUrl">
 	<portlet:param name="redirect" value="<%= redirect %>" />
 </portlet:actionURL>
+<portlet:renderURL windowState="normal" var="backURL">
+	<portlet:param name="jspPage" value="/html/view.jsp" />
+</portlet:renderURL>
 
 <!-- Structure Definition -->
-<liferay-ui:header title="Story Entry" backLabel="TODO" backURL="" />
+<liferay-ui:header title="Story Entry" backLabel="TODO" backURL="<%=backURL %>" />
 <!-- TODO ERRORS/MESSAGES -->
 <liferay-ui:error key="" message="" />
 

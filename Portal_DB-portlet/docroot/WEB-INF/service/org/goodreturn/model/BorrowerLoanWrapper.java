@@ -161,7 +161,7 @@ public class BorrowerLoanWrapper implements BorrowerLoan,
 		return new BorrowerLoanWrapper((BorrowerLoan)_borrowerLoan.clone());
 	}
 
-	public int compareTo(BorrowerLoan borrowerLoan) {
+	public int compareTo(org.goodreturn.model.BorrowerLoan borrowerLoan) {
 		return _borrowerLoan.compareTo(borrowerLoan);
 	}
 
@@ -170,11 +170,11 @@ public class BorrowerLoanWrapper implements BorrowerLoan,
 		return _borrowerLoan.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<BorrowerLoan> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<org.goodreturn.model.BorrowerLoan> toCacheModel() {
 		return _borrowerLoan.toCacheModel();
 	}
 
-	public BorrowerLoan toEscapedModel() {
+	public org.goodreturn.model.BorrowerLoan toEscapedModel() {
 		return new BorrowerLoanWrapper(_borrowerLoan.toEscapedModel());
 	}
 

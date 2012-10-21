@@ -24,5 +24,7 @@
 
 <%@ page import="org.goodreturn.model.Story" %>
 <%@ page import="org.goodreturn.borrowers.util.WebKeys" %>
+<%@ page import="org.goodreturn.borrowers.util.ActionUtil" %>
 
 <portlet:defineObjects />
+<liferay-theme:defineObjects />

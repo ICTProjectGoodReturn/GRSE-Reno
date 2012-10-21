@@ -163,11 +163,21 @@ public class BorrowersPortlet extends MVCPortlet {
 	}
 	
 
-	public void updateStory(ActionRequest request, ActionResponse response) throws PortalException, SystemException {
+	public void updateStory(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
+		System.out.println("SUCCESS!!!!");
 		//Retrieves data for processing request.
-		Story story = ActionUtil.storyFromRequest(request);
+		Story story = ActionUtil.storyFromRequest(actionRequest);
 		ArrayList<String> errors = new ArrayList<String>();
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(Story.class.getName(), request);
+		ServiceContext serviceContext = null;
+		try {
+			serviceContext = ServiceContextFactory.getInstance(Story.class.getName(), actionRequest);
+		} catch (PortalException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SystemException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		//Updates or adds story to database if valid.
 		boolean operationFailed = true;
@@ -180,7 +190,7 @@ public class BorrowersPortlet extends MVCPortlet {
 					if (fromDB != null && (story.getStory_Id() == fromDB.getStory_Id())) {
 
 						fromDB = StoryLocalServiceUtil.updateStory(story, false);
-						SessionMessages.add(request, "story-update-success");
+						SessionMessages.add(actionRequest, "story-update-success");
 						operationFailed = false;
 					}
 				//Story could not be updated.
@@ -193,7 +203,7 @@ public class BorrowersPortlet extends MVCPortlet {
 				// Adding
 				try {
 					StoryLocalServiceUtil.addStory(story, story.getStory_Id(), serviceContext);
-					SessionMessages.add(request, "story-add-success");
+					SessionMessages.add(actionRequest, "story-add-success");
 					operationFailed = false;
 				//Story could not be added.
 				} catch (SystemException e) {
@@ -209,15 +219,15 @@ public class BorrowersPortlet extends MVCPortlet {
 		//Add/Update failed, adds all errors for user display.
 		if (operationFailed) {
 			for (String error : errors) {
-				SessionErrors.add(request, error);
+				SessionErrors.add(actionRequest, error);
 			}
 			
 			// Sets render page with data.
-			request.setAttribute(WebKeys.STORY_ENTRY, story);
-			response.setRenderParameter("jspPage", "/html/story/edit_story.jsp");
+			actionRequest.setAttribute(WebKeys.STORY_ENTRY, story);
+			actionResponse.setRenderParameter("jspPage", "/html/story/edit_story.jsp");
 		} else {
 			//Redirect to new page.
-			response.setRenderParameter("jspPage",request.getParameter("jspPage"));
+			actionResponse.setRenderParameter("jspPage",actionRequest.getParameter("jspPage"));
 		}
 	}
 
@@ -226,7 +236,7 @@ public class BorrowersPortlet extends MVCPortlet {
 	 *
 	 * @param request - request object to initiate the deletion, should contain the resourcePrimKey for story.
 	 * @param response - response object.
-	 */
+	 
 	public void deleteStory(ActionRequest request, ActionResponse response) throws Exception {
 
 		long storyKey = ParamUtil.getLong(request, WebKeys.ATTR_STORY_ID);
@@ -237,8 +247,8 @@ public class BorrowersPortlet extends MVCPortlet {
 		} else {
 			SessionErrors.add(request, "story-delete-error");
 		}
-		redirect(request, response);
-	}
+		response.setRenderParameter("jspPage",request.getParameter("jspPage"));
+	}*/
 	
 	/* ****************************************
 	 * Helper methods for obtaining and display content.
@@ -246,123 +256,7 @@ public class BorrowersPortlet extends MVCPortlet {
 	@Override
 	public void processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
 		//TODO first page's content - if needed?
-	}
-	
-	
-	//
-	// Borrowers
-	//
-	
-	public void getViewBorrower(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
-		Borrower borrower = ActionUtil.getBorrower(actionRequest);
-		actionRequest.setAttribute(WebKeys.BORROWER_ENTRY, borrower);
-		redirect(actionRequest, actionResponse);
-	}
-	
-	
-	public void getEditBorrower(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
-		Borrower borrower = ActionUtil.getBorrower(actionRequest);
 		
-		if (borrower == null) {
-			borrower = new BorrowerImpl();
-		}
-		
-		actionRequest.setAttribute(WebKeys.BORROWER_ENTRY, borrower);
-		redirect(actionRequest, actionResponse);
-	}
-
-	
-	public void getAllBorrowers(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
-		List<Borrower> borrowers = ActionUtil.getBorrowers(actionRequest);
-		actionRequest.setAttribute(WebKeys.BORROWER_ENTRIES, borrowers);
-		redirect(actionRequest, actionResponse);
-	}
-
-	
-	//
-	// BorrowerLoans
-	//
-	
-	public void getViewBorrowerLoan(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
-		BorrowerLoan borrowerLoan = ActionUtil.getBorrowerLoan(actionRequest);
-		actionRequest.setAttribute(WebKeys.BORROWER_LOAN_ENTRY, borrowerLoan);
-		redirect(actionRequest, actionResponse);
-	}
-
-	
-	public void getEditBorrowerLoan(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
-		BorrowerLoan borrowerLoan = ActionUtil.getBorrowerLoan(actionRequest);
-		
-		if (borrowerLoan == null) {
-			borrowerLoan = new BorrowerLoanImpl();
-		}
-		
-		actionRequest.setAttribute(WebKeys.BORROWER_LOAN_ENTRY, borrowerLoan);
-		redirect(actionRequest, actionResponse);
-	}
-
-	
-	public void getAllBorrowerLoans(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
-		List<BorrowerLoan> borrowerLoans = ActionUtil.getBorrowerLoans(actionRequest);
-		actionRequest.setAttribute(WebKeys.BORROWER_LOAN_ENTRIES, borrowerLoans);
-		redirect(actionRequest, actionResponse);
-	}
-
-	
-	//
-	// Lender Contributions
-	//
-	
-	public void getViewLenderContribution(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
-		//TODO abacus call for getting LenderContribution
-		redirect(actionRequest, actionResponse);
-	}
-
-	
-	public void getAllLenderContributions(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
-		//TODO abacus call for getting LenderContributions
-		redirect(actionRequest, actionResponse);
-	}
-
-	
-	//
-	// Stories
-	//
-	
-	public void getViewStory(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
-		Story story = ActionUtil.getInitialStory(actionRequest);
-		actionRequest.setAttribute(WebKeys.STORY_ENTRY, story);
-		redirect(actionRequest, actionResponse);
-	}
-
-	
-	public void getEditInitialStory(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
-		Story story = ActionUtil.getInitialStory(actionRequest);
-		
-		if (story == null) {
-			story = new StoryImpl();
-			story.setStory_Type("initial");
-		}
-		
-		actionRequest.setAttribute(WebKeys.STORY_ENTRY, story);
-		redirect(actionRequest, actionResponse);
-	}
-	
-	
-	public void getEditFinalStory(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
-		Story story = ActionUtil.getFinalStory(actionRequest);
-		
-		if (story == null) {
-			story = new StoryImpl();
-			story.setStory_Type("final");
-		}
-		
-		actionRequest.setAttribute(WebKeys.STORY_ENTRY, story);
-		redirect(actionRequest, actionResponse);
-	}
-	
-	private void redirect(ActionRequest request, ActionResponse response) throws IOException, PortletException {
-		//Sets render to new page.
-		response.setRenderParameter("jspPage",request.getParameter("jspPage"));
+		System.out.println("FAIL!!!");
 	}
 }
