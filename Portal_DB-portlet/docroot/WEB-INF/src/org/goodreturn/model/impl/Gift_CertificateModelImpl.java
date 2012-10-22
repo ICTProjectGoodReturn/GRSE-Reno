@@ -65,9 +65,11 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "certificate_Id", Types.BIGINT },
 			{ "certificate_Amount", Types.DOUBLE },
-			{ "certificate_Type", Types.VARCHAR }
+			{ "certificate_Type", Types.VARCHAR },
+			{ "changed_By", Types.VARCHAR },
+			{ "changed_Time", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Gift_Certificate (certificate_Id LONG not null primary key,certificate_Amount DOUBLE,certificate_Type VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Gift_Certificate (certificate_Id LONG not null primary key,certificate_Amount DOUBLE,certificate_Type VARCHAR(75) null,changed_By VARCHAR(75) null,changed_Time LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Gift_Certificate";
 	public static final String ORDER_BY_JPQL = " ORDER BY gift_Certificate.certificate_Id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Gift_Certificate.certificate_Id ASC";
@@ -98,6 +100,8 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 		model.setCertificate_Id(soapModel.getCertificate_Id());
 		model.setCertificate_Amount(soapModel.getCertificate_Amount());
 		model.setCertificate_Type(soapModel.getCertificate_Type());
+		model.setChanged_By(soapModel.getChanged_By());
+		model.setChanged_Time(soapModel.getChanged_Time());
 
 		return model;
 	}
@@ -160,6 +164,8 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 		attributes.put("certificate_Id", getCertificate_Id());
 		attributes.put("certificate_Amount", getCertificate_Amount());
 		attributes.put("certificate_Type", getCertificate_Type());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 
 		return attributes;
 	}
@@ -182,6 +188,18 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 
 		if (certificate_Type != null) {
 			setCertificate_Type(certificate_Type);
+		}
+
+		String changed_By = (String)attributes.get("changed_By");
+
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		Long changed_Time = (Long)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
 		}
 	}
 
@@ -217,6 +235,29 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 		_certificate_Type = certificate_Type;
 	}
 
+	@JSON
+	public String getChanged_By() {
+		if (_changed_By == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _changed_By;
+		}
+	}
+
+	public void setChanged_By(String changed_By) {
+		_changed_By = changed_By;
+	}
+
+	@JSON
+	public long getChanged_Time() {
+		return _changed_Time;
+	}
+
+	public void setChanged_Time(long changed_Time) {
+		_changed_Time = changed_Time;
+	}
+
 	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
@@ -248,6 +289,8 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 		gift_CertificateImpl.setCertificate_Id(getCertificate_Id());
 		gift_CertificateImpl.setCertificate_Amount(getCertificate_Amount());
 		gift_CertificateImpl.setCertificate_Type(getCertificate_Type());
+		gift_CertificateImpl.setChanged_By(getChanged_By());
+		gift_CertificateImpl.setChanged_Time(getChanged_Time());
 
 		gift_CertificateImpl.resetOriginalValues();
 
@@ -324,12 +367,22 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 			gift_CertificateCacheModel.certificate_Type = null;
 		}
 
+		gift_CertificateCacheModel.changed_By = getChanged_By();
+
+		String changed_By = gift_CertificateCacheModel.changed_By;
+
+		if ((changed_By != null) && (changed_By.length() == 0)) {
+			gift_CertificateCacheModel.changed_By = null;
+		}
+
+		gift_CertificateCacheModel.changed_Time = getChanged_Time();
+
 		return gift_CertificateCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{certificate_Id=");
 		sb.append(getCertificate_Id());
@@ -337,13 +390,17 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 		sb.append(getCertificate_Amount());
 		sb.append(", certificate_Type=");
 		sb.append(getCertificate_Type());
+		sb.append(", changed_By=");
+		sb.append(getChanged_By());
+		sb.append(", changed_Time=");
+		sb.append(getChanged_Time());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Gift_Certificate");
@@ -361,6 +418,14 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 			"<column><column-name>certificate_Type</column-name><column-value><![CDATA[");
 		sb.append(getCertificate_Type());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>changed_By</column-name><column-value><![CDATA[");
+		sb.append(getChanged_By());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
+		sb.append(getChanged_Time());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -374,5 +439,7 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 	private long _certificate_Id;
 	private double _certificate_Amount;
 	private String _certificate_Type;
+	private String _changed_By;
+	private long _changed_Time;
 	private Gift_Certificate _escapedModelProxy;
 }

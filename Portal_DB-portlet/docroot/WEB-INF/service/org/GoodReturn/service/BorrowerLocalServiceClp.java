@@ -136,12 +136,12 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 		return (org.goodreturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.goodreturn.model.Borrower createBorrower(long abacus_Borrower_Id) {
+	public org.goodreturn.model.Borrower createBorrower(long borrower_Id) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { abacus_Borrower_Id });
+					_methodParameterTypes1, new Object[] { borrower_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -158,14 +158,14 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 		return (org.goodreturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.goodreturn.model.Borrower deleteBorrower(long abacus_Borrower_Id)
+	public org.goodreturn.model.Borrower deleteBorrower(long borrower_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { abacus_Borrower_Id });
+					_methodParameterTypes2, new Object[] { borrower_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -376,13 +376,13 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
-	public org.goodreturn.model.Borrower fetchBorrower(long abacus_Borrower_Id)
+	public org.goodreturn.model.Borrower fetchBorrower(long borrower_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9, new Object[] { abacus_Borrower_Id });
+					_methodParameterTypes9, new Object[] { borrower_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -403,14 +403,14 @@ public class BorrowerLocalServiceClp implements BorrowerLocalService {
 		return (org.goodreturn.model.Borrower)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.goodreturn.model.Borrower getBorrower(long abacus_Borrower_Id)
+	public org.goodreturn.model.Borrower getBorrower(long borrower_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { abacus_Borrower_Id });
+					_methodParameterTypes10, new Object[] { borrower_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

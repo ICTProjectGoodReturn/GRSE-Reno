@@ -33,6 +33,8 @@ public class Gift_CertificateSoap implements Serializable {
 		soapModel.setCertificate_Id(model.getCertificate_Id());
 		soapModel.setCertificate_Amount(model.getCertificate_Amount());
 		soapModel.setCertificate_Type(model.getCertificate_Type());
+		soapModel.setChanged_By(model.getChanged_By());
+		soapModel.setChanged_Time(model.getChanged_Time());
 
 		return soapModel;
 	}
@@ -111,7 +113,25 @@ public class Gift_CertificateSoap implements Serializable {
 		_certificate_Type = certificate_Type;
 	}
 
+	public String getChanged_By() {
+		return _changed_By;
+	}
+
+	public void setChanged_By(String changed_By) {
+		_changed_By = changed_By;
+	}
+
+	public long getChanged_Time() {
+		return _changed_Time;
+	}
+
+	public void setChanged_Time(long changed_Time) {
+		_changed_Time = changed_Time;
+	}
+
 	private long _certificate_Id;
 	private double _certificate_Amount;
 	private String _certificate_Type;
+	private String _changed_By;
+	private long _changed_Time;
 }

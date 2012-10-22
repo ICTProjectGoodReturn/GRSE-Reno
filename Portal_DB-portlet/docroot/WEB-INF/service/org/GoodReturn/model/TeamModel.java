@@ -87,19 +87,33 @@ public interface TeamModel extends BaseModel<Team> {
 	public void setTeam_Name(String team_Name);
 
 	/**
-	 * Returns the amount_ lent of this team.
+	 * Returns the change_ by of this team.
 	 *
-	 * @return the amount_ lent of this team
+	 * @return the change_ by of this team
 	 */
 	@AutoEscape
-	public String getAmount_Lent();
+	public String getChange_By();
 
 	/**
-	 * Sets the amount_ lent of this team.
+	 * Sets the change_ by of this team.
 	 *
-	 * @param amount_Lent the amount_ lent of this team
+	 * @param change_By the change_ by of this team
 	 */
-	public void setAmount_Lent(String amount_Lent);
+	public void setChange_By(String change_By);
+
+	/**
+	 * Returns the change_ time of this team.
+	 *
+	 * @return the change_ time of this team
+	 */
+	public long getChange_Time();
+
+	/**
+	 * Sets the change_ time of this team.
+	 *
+	 * @param change_Time the change_ time of this team
+	 */
+	public void setChange_Time(long change_Time);
 
 	public boolean isNew();
 

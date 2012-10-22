@@ -160,4 +160,81 @@ public interface Gift_CertificatePersistence extends BasePersistence<Gift_Certif
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns all the lenders associated with the gift_ certificate.
+	*
+	* @param pk the primary key of the gift_ certificate
+	* @return the lenders associated with the gift_ certificate
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<org.goodreturn.model.Lender> getLenders(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the lenders associated with the gift_ certificate.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param pk the primary key of the gift_ certificate
+	* @param start the lower bound of the range of gift_ certificates
+	* @param end the upper bound of the range of gift_ certificates (not inclusive)
+	* @return the range of lenders associated with the gift_ certificate
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<org.goodreturn.model.Lender> getLenders(long pk,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the lenders associated with the gift_ certificate.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param pk the primary key of the gift_ certificate
+	* @param start the lower bound of the range of gift_ certificates
+	* @param end the upper bound of the range of gift_ certificates (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of lenders associated with the gift_ certificate
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<org.goodreturn.model.Lender> getLenders(long pk,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of lenders associated with the gift_ certificate.
+	*
+	* @param pk the primary key of the gift_ certificate
+	* @return the number of lenders associated with the gift_ certificate
+	* @throws SystemException if a system exception occurred
+	*/
+	public int getLendersSize(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns <code>true</code> if the lender is associated with the gift_ certificate.
+	*
+	* @param pk the primary key of the gift_ certificate
+	* @param lenderPK the primary key of the lender
+	* @return <code>true</code> if the lender is associated with the gift_ certificate; <code>false</code> otherwise
+	* @throws SystemException if a system exception occurred
+	*/
+	public boolean containsLender(long pk, long lenderPK)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns <code>true</code> if the gift_ certificate has any lenders associated with it.
+	*
+	* @param pk the primary key of the gift_ certificate to check for associations with lenders
+	* @return <code>true</code> if the gift_ certificate has any lenders associated with it; <code>false</code> otherwise
+	* @throws SystemException if a system exception occurred
+	*/
+	public boolean containsLenders(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

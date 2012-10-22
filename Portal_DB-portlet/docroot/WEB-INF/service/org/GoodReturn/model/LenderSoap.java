@@ -32,30 +32,27 @@ public class LenderSoap implements Serializable {
 		LenderSoap soapModel = new LenderSoap();
 
 		soapModel.setLender_Id(model.getLender_Id());
-		soapModel.setSalutation(model.getSalutation());
+		soapModel.setAbacus_Person_Id(model.getAbacus_Person_Id());
+		soapModel.setCertificate_Id(model.getCertificate_Id());
 		soapModel.setEmployer_Name(model.getEmployer_Name());
 		soapModel.setComment(model.getComment());
 		soapModel.setHeard_Of_Us(model.getHeard_Of_Us());
-		soapModel.setRegion(model.getRegion());
 		soapModel.setDisplay_Name(model.getDisplay_Name());
 		soapModel.setDate_Of_Birth(model.getDate_Of_Birth());
 		soapModel.setReason_For_Lending(model.getReason_For_Lending());
 		soapModel.setAbout_Themselves(model.getAbout_Themselves());
-		soapModel.setAutomatic_Re_lend(model.getAutomatic_Re_lend());
-		soapModel.setMonthly_Repayments(model.getMonthly_Repayments());
+		soapModel.setPersonal_Link(model.getPersonal_Link());
 		soapModel.setIs_Public_Profile(model.getIs_Public_Profile());
-		soapModel.setBank_Details(model.getBank_Details());
 		soapModel.setRecieve_Emails(model.getRecieve_Emails());
 		soapModel.setRecieve_GoodReturn_Info(model.getRecieve_GoodReturn_Info());
 		soapModel.setIs_Anonymous(model.getIs_Anonymous());
 		soapModel.setIs_Validated(model.getIs_Validated());
-		soapModel.setCurrent_Balance(model.getCurrent_Balance());
-		soapModel.setPaypal_Email(model.getPaypal_Email());
 		soapModel.setPassword(model.getPassword());
 		soapModel.setLast_Login_Date(model.getLast_Login_Date());
 		soapModel.setFeatured_Lender(model.getFeatured_Lender());
-		soapModel.setVoucher_Id(model.getVoucher_Id());
 		soapModel.setIs_Loan_Donation(model.getIs_Loan_Donation());
+		soapModel.setChanged_By(model.getChanged_By());
+		soapModel.setChanged_Time(model.getChanged_Time());
 
 		return soapModel;
 	}
@@ -116,12 +113,20 @@ public class LenderSoap implements Serializable {
 		_lender_Id = lender_Id;
 	}
 
-	public String getSalutation() {
-		return _salutation;
+	public long getAbacus_Person_Id() {
+		return _abacus_Person_Id;
 	}
 
-	public void setSalutation(String salutation) {
-		_salutation = salutation;
+	public void setAbacus_Person_Id(long abacus_Person_Id) {
+		_abacus_Person_Id = abacus_Person_Id;
+	}
+
+	public long getCertificate_Id() {
+		return _certificate_Id;
+	}
+
+	public void setCertificate_Id(long certificate_Id) {
+		_certificate_Id = certificate_Id;
 	}
 
 	public String getEmployer_Name() {
@@ -146,14 +151,6 @@ public class LenderSoap implements Serializable {
 
 	public void setHeard_Of_Us(String heard_Of_Us) {
 		_heard_Of_Us = heard_Of_Us;
-	}
-
-	public String getRegion() {
-		return _region;
-	}
-
-	public void setRegion(String region) {
-		_region = region;
 	}
 
 	public String getDisplay_Name() {
@@ -188,24 +185,12 @@ public class LenderSoap implements Serializable {
 		_about_Themselves = about_Themselves;
 	}
 
-	public boolean getAutomatic_Re_lend() {
-		return _automatic_Re_lend;
+	public String getPersonal_Link() {
+		return _personal_Link;
 	}
 
-	public boolean isAutomatic_Re_lend() {
-		return _automatic_Re_lend;
-	}
-
-	public void setAutomatic_Re_lend(boolean automatic_Re_lend) {
-		_automatic_Re_lend = automatic_Re_lend;
-	}
-
-	public double getMonthly_Repayments() {
-		return _monthly_Repayments;
-	}
-
-	public void setMonthly_Repayments(double monthly_Repayments) {
-		_monthly_Repayments = monthly_Repayments;
+	public void setPersonal_Link(String personal_Link) {
+		_personal_Link = personal_Link;
 	}
 
 	public boolean getIs_Public_Profile() {
@@ -218,14 +203,6 @@ public class LenderSoap implements Serializable {
 
 	public void setIs_Public_Profile(boolean is_Public_Profile) {
 		_is_Public_Profile = is_Public_Profile;
-	}
-
-	public String getBank_Details() {
-		return _bank_Details;
-	}
-
-	public void setBank_Details(String bank_Details) {
-		_bank_Details = bank_Details;
 	}
 
 	public boolean getRecieve_Emails() {
@@ -276,22 +253,6 @@ public class LenderSoap implements Serializable {
 		_is_Validated = is_Validated;
 	}
 
-	public double getCurrent_Balance() {
-		return _current_Balance;
-	}
-
-	public void setCurrent_Balance(double current_Balance) {
-		_current_Balance = current_Balance;
-	}
-
-	public String getPaypal_Email() {
-		return _paypal_Email;
-	}
-
-	public void setPaypal_Email(String paypal_Email) {
-		_paypal_Email = paypal_Email;
-	}
-
 	public String getPassword() {
 		return _password;
 	}
@@ -316,14 +277,6 @@ public class LenderSoap implements Serializable {
 		_featured_Lender = featured_Lender;
 	}
 
-	public long getVoucher_Id() {
-		return _voucher_Id;
-	}
-
-	public void setVoucher_Id(long voucher_Id) {
-		_voucher_Id = voucher_Id;
-	}
-
 	public boolean getIs_Loan_Donation() {
 		return _is_Loan_Donation;
 	}
@@ -336,29 +289,42 @@ public class LenderSoap implements Serializable {
 		_is_Loan_Donation = is_Loan_Donation;
 	}
 
+	public String getChanged_By() {
+		return _changed_By;
+	}
+
+	public void setChanged_By(String changed_By) {
+		_changed_By = changed_By;
+	}
+
+	public long getChanged_Time() {
+		return _changed_Time;
+	}
+
+	public void setChanged_Time(long changed_Time) {
+		_changed_Time = changed_Time;
+	}
+
 	private long _lender_Id;
-	private String _salutation;
+	private long _abacus_Person_Id;
+	private long _certificate_Id;
 	private String _employer_Name;
 	private String _comment;
 	private String _heard_Of_Us;
-	private String _region;
 	private String _display_Name;
 	private Date _date_Of_Birth;
 	private String _reason_For_Lending;
 	private String _about_Themselves;
-	private boolean _automatic_Re_lend;
-	private double _monthly_Repayments;
+	private String _personal_Link;
 	private boolean _is_Public_Profile;
-	private String _bank_Details;
 	private boolean _recieve_Emails;
 	private boolean _recieve_GoodReturn_Info;
 	private boolean _is_Anonymous;
 	private boolean _is_Validated;
-	private double _current_Balance;
-	private String _paypal_Email;
 	private String _password;
 	private Date _last_Login_Date;
 	private String _featured_Lender;
-	private long _voucher_Id;
 	private boolean _is_Loan_Donation;
+	private String _changed_By;
+	private long _changed_Time;
 }

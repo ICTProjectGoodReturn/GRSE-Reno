@@ -30,8 +30,6 @@ import org.goodreturn.service.PersonLocalServiceUtil;
 import org.goodreturn.service.PersonServiceUtil;
 import org.goodreturn.service.StoryLocalServiceUtil;
 import org.goodreturn.service.StoryServiceUtil;
-import org.goodreturn.service.TeamLenderLoanLocalServiceUtil;
-import org.goodreturn.service.TeamLenderLoanServiceUtil;
 import org.goodreturn.service.TeamLenderLocalServiceUtil;
 import org.goodreturn.service.TeamLenderServiceUtil;
 import org.goodreturn.service.TeamLocalServiceUtil;
@@ -76,9 +74,6 @@ public class ClpMessageListener extends BaseMessageListener {
 			TeamLenderLocalServiceUtil.clearService();
 
 			TeamLenderServiceUtil.clearService();
-			TeamLenderLoanLocalServiceUtil.clearService();
-
-			TeamLenderLoanServiceUtil.clearService();
 		}
 	}
 }

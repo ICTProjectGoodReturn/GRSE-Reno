@@ -166,14 +166,14 @@ public class TeamLenderPersistenceImpl extends BasePersistenceImpl<TeamLender>
 	/**
 	 * Creates a new team lender with the primary key. Does not add the team lender to the database.
 	 *
-	 * @param teamlender_Id the primary key for the new team lender
+	 * @param team_lender_Id the primary key for the new team lender
 	 * @return the new team lender
 	 */
-	public TeamLender create(long teamlender_Id) {
+	public TeamLender create(long team_lender_Id) {
 		TeamLender teamLender = new TeamLenderImpl();
 
 		teamLender.setNew(true);
-		teamLender.setPrimaryKey(teamlender_Id);
+		teamLender.setPrimaryKey(team_lender_Id);
 
 		return teamLender;
 	}
@@ -181,14 +181,14 @@ public class TeamLenderPersistenceImpl extends BasePersistenceImpl<TeamLender>
 	/**
 	 * Removes the team lender with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param teamlender_Id the primary key of the team lender
+	 * @param team_lender_Id the primary key of the team lender
 	 * @return the team lender that was removed
 	 * @throws org.goodreturn.NoSuchTeamLenderException if a team lender with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public TeamLender remove(long teamlender_Id)
+	public TeamLender remove(long team_lender_Id)
 		throws NoSuchTeamLenderException, SystemException {
-		return remove(Long.valueOf(teamlender_Id));
+		return remove(Long.valueOf(team_lender_Id));
 	}
 
 	/**
@@ -301,7 +301,11 @@ public class TeamLenderPersistenceImpl extends BasePersistenceImpl<TeamLender>
 		teamLenderImpl.setNew(teamLender.isNew());
 		teamLenderImpl.setPrimaryKey(teamLender.getPrimaryKey());
 
-		teamLenderImpl.setTeamlender_Id(teamLender.getTeamlender_Id());
+		teamLenderImpl.setTeam_lender_Id(teamLender.getTeam_lender_Id());
+		teamLenderImpl.setLender_Id(teamLender.getLender_Id());
+		teamLenderImpl.setTeam_Id(teamLender.getTeam_Id());
+		teamLenderImpl.setChanged_By(teamLender.getChanged_By());
+		teamLenderImpl.setChanged_Time(teamLender.getChanged_Time());
 
 		return teamLenderImpl;
 	}
@@ -323,22 +327,22 @@ public class TeamLenderPersistenceImpl extends BasePersistenceImpl<TeamLender>
 	/**
 	 * Returns the team lender with the primary key or throws a {@link org.goodreturn.NoSuchTeamLenderException} if it could not be found.
 	 *
-	 * @param teamlender_Id the primary key of the team lender
+	 * @param team_lender_Id the primary key of the team lender
 	 * @return the team lender
 	 * @throws org.goodreturn.NoSuchTeamLenderException if a team lender with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public TeamLender findByPrimaryKey(long teamlender_Id)
+	public TeamLender findByPrimaryKey(long team_lender_Id)
 		throws NoSuchTeamLenderException, SystemException {
-		TeamLender teamLender = fetchByPrimaryKey(teamlender_Id);
+		TeamLender teamLender = fetchByPrimaryKey(team_lender_Id);
 
 		if (teamLender == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + teamlender_Id);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + team_lender_Id);
 			}
 
 			throw new NoSuchTeamLenderException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				teamlender_Id);
+				team_lender_Id);
 		}
 
 		return teamLender;
@@ -360,14 +364,14 @@ public class TeamLenderPersistenceImpl extends BasePersistenceImpl<TeamLender>
 	/**
 	 * Returns the team lender with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param teamlender_Id the primary key of the team lender
+	 * @param team_lender_Id the primary key of the team lender
 	 * @return the team lender, or <code>null</code> if a team lender with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public TeamLender fetchByPrimaryKey(long teamlender_Id)
+	public TeamLender fetchByPrimaryKey(long team_lender_Id)
 		throws SystemException {
 		TeamLender teamLender = (TeamLender)EntityCacheUtil.getResult(TeamLenderModelImpl.ENTITY_CACHE_ENABLED,
-				TeamLenderImpl.class, teamlender_Id);
+				TeamLenderImpl.class, team_lender_Id);
 
 		if (teamLender == _nullTeamLender) {
 			return null;
@@ -382,7 +386,7 @@ public class TeamLenderPersistenceImpl extends BasePersistenceImpl<TeamLender>
 				session = openSession();
 
 				teamLender = (TeamLender)session.get(TeamLenderImpl.class,
-						Long.valueOf(teamlender_Id));
+						Long.valueOf(team_lender_Id));
 			}
 			catch (Exception e) {
 				hasException = true;
@@ -395,7 +399,7 @@ public class TeamLenderPersistenceImpl extends BasePersistenceImpl<TeamLender>
 				}
 				else if (!hasException) {
 					EntityCacheUtil.putResult(TeamLenderModelImpl.ENTITY_CACHE_ENABLED,
-						TeamLenderImpl.class, teamlender_Id, _nullTeamLender);
+						TeamLenderImpl.class, team_lender_Id, _nullTeamLender);
 				}
 
 				closeSession(session);
@@ -616,8 +620,6 @@ public class TeamLenderPersistenceImpl extends BasePersistenceImpl<TeamLender>
 	protected TeamPersistence teamPersistence;
 	@BeanReference(type = TeamLenderPersistence.class)
 	protected TeamLenderPersistence teamLenderPersistence;
-	@BeanReference(type = TeamLenderLoanPersistence.class)
-	protected TeamLenderLoanPersistence teamLenderLoanPersistence;
 	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)

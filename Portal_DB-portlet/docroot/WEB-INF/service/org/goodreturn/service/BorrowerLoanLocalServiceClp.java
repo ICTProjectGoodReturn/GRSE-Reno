@@ -144,12 +144,13 @@ public class BorrowerLoanLocalServiceClp implements BorrowerLoanLocalService {
 	}
 
 	public org.goodreturn.model.BorrowerLoan createBorrowerLoan(
-		long borrower_Loan_Id) {
+		long abacus_Borrower_Loan_Id) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { borrower_Loan_Id });
+					_methodParameterTypes1,
+					new Object[] { abacus_Borrower_Loan_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -167,14 +168,15 @@ public class BorrowerLoanLocalServiceClp implements BorrowerLoanLocalService {
 	}
 
 	public org.goodreturn.model.BorrowerLoan deleteBorrowerLoan(
-		long borrower_Loan_Id)
+		long abacus_Borrower_Loan_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { borrower_Loan_Id });
+					_methodParameterTypes2,
+					new Object[] { abacus_Borrower_Loan_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -386,13 +388,14 @@ public class BorrowerLoanLocalServiceClp implements BorrowerLoanLocalService {
 	}
 
 	public org.goodreturn.model.BorrowerLoan fetchBorrowerLoan(
-		long borrower_Loan_Id)
+		long abacus_Borrower_Loan_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9, new Object[] { borrower_Loan_Id });
+					_methodParameterTypes9,
+					new Object[] { abacus_Borrower_Loan_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -414,14 +417,15 @@ public class BorrowerLoanLocalServiceClp implements BorrowerLoanLocalService {
 	}
 
 	public org.goodreturn.model.BorrowerLoan getBorrowerLoan(
-		long borrower_Loan_Id)
+		long abacus_Borrower_Loan_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { borrower_Loan_Id });
+					_methodParameterTypes10,
+					new Object[] { abacus_Borrower_Loan_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

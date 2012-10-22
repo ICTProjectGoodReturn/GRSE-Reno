@@ -45,23 +45,45 @@ public class BorrowerLoanWrapper implements BorrowerLoan,
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("borrower_Loan_Id", getBorrower_Loan_Id());
+		attributes.put("abacus_Borrower_Loan_Id", getAbacus_Borrower_Loan_Id());
 		attributes.put("borrower_Id", getBorrower_Id());
+		attributes.put("abacus_mfi_Id", getAbacus_mfi_Id());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 
 		return attributes;
 	}
 
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long borrower_Loan_Id = (Long)attributes.get("borrower_Loan_Id");
+		Long abacus_Borrower_Loan_Id = (Long)attributes.get(
+				"abacus_Borrower_Loan_Id");
 
-		if (borrower_Loan_Id != null) {
-			setBorrower_Loan_Id(borrower_Loan_Id);
+		if (abacus_Borrower_Loan_Id != null) {
+			setAbacus_Borrower_Loan_Id(abacus_Borrower_Loan_Id);
 		}
 
 		Long borrower_Id = (Long)attributes.get("borrower_Id");
 
 		if (borrower_Id != null) {
 			setBorrower_Id(borrower_Id);
+		}
+
+		Long abacus_mfi_Id = (Long)attributes.get("abacus_mfi_Id");
+
+		if (abacus_mfi_Id != null) {
+			setAbacus_mfi_Id(abacus_mfi_Id);
+		}
+
+		String changed_By = (String)attributes.get("changed_By");
+
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		String changed_Time = (String)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
 		}
 	}
 
@@ -84,21 +106,21 @@ public class BorrowerLoanWrapper implements BorrowerLoan,
 	}
 
 	/**
-	* Returns the borrower_ loan_ ID of this borrower loan.
+	* Returns the abacus_ borrower_ loan_ ID of this borrower loan.
 	*
-	* @return the borrower_ loan_ ID of this borrower loan
+	* @return the abacus_ borrower_ loan_ ID of this borrower loan
 	*/
-	public long getBorrower_Loan_Id() {
-		return _borrowerLoan.getBorrower_Loan_Id();
+	public long getAbacus_Borrower_Loan_Id() {
+		return _borrowerLoan.getAbacus_Borrower_Loan_Id();
 	}
 
 	/**
-	* Sets the borrower_ loan_ ID of this borrower loan.
+	* Sets the abacus_ borrower_ loan_ ID of this borrower loan.
 	*
-	* @param borrower_Loan_Id the borrower_ loan_ ID of this borrower loan
+	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID of this borrower loan
 	*/
-	public void setBorrower_Loan_Id(long borrower_Loan_Id) {
-		_borrowerLoan.setBorrower_Loan_Id(borrower_Loan_Id);
+	public void setAbacus_Borrower_Loan_Id(long abacus_Borrower_Loan_Id) {
+		_borrowerLoan.setAbacus_Borrower_Loan_Id(abacus_Borrower_Loan_Id);
 	}
 
 	/**
@@ -117,6 +139,60 @@ public class BorrowerLoanWrapper implements BorrowerLoan,
 	*/
 	public void setBorrower_Id(long borrower_Id) {
 		_borrowerLoan.setBorrower_Id(borrower_Id);
+	}
+
+	/**
+	* Returns the abacus_mfi_ ID of this borrower loan.
+	*
+	* @return the abacus_mfi_ ID of this borrower loan
+	*/
+	public long getAbacus_mfi_Id() {
+		return _borrowerLoan.getAbacus_mfi_Id();
+	}
+
+	/**
+	* Sets the abacus_mfi_ ID of this borrower loan.
+	*
+	* @param abacus_mfi_Id the abacus_mfi_ ID of this borrower loan
+	*/
+	public void setAbacus_mfi_Id(long abacus_mfi_Id) {
+		_borrowerLoan.setAbacus_mfi_Id(abacus_mfi_Id);
+	}
+
+	/**
+	* Returns the changed_ by of this borrower loan.
+	*
+	* @return the changed_ by of this borrower loan
+	*/
+	public java.lang.String getChanged_By() {
+		return _borrowerLoan.getChanged_By();
+	}
+
+	/**
+	* Sets the changed_ by of this borrower loan.
+	*
+	* @param changed_By the changed_ by of this borrower loan
+	*/
+	public void setChanged_By(java.lang.String changed_By) {
+		_borrowerLoan.setChanged_By(changed_By);
+	}
+
+	/**
+	* Returns the changed_ time of this borrower loan.
+	*
+	* @return the changed_ time of this borrower loan
+	*/
+	public java.lang.String getChanged_Time() {
+		return _borrowerLoan.getChanged_Time();
+	}
+
+	/**
+	* Sets the changed_ time of this borrower loan.
+	*
+	* @param changed_Time the changed_ time of this borrower loan
+	*/
+	public void setChanged_Time(java.lang.String changed_Time) {
+		_borrowerLoan.setChanged_Time(changed_Time);
 	}
 
 	public boolean isNew() {
@@ -161,7 +237,7 @@ public class BorrowerLoanWrapper implements BorrowerLoan,
 		return new BorrowerLoanWrapper((BorrowerLoan)_borrowerLoan.clone());
 	}
 
-	public int compareTo(BorrowerLoan borrowerLoan) {
+	public int compareTo(org.goodreturn.model.BorrowerLoan borrowerLoan) {
 		return _borrowerLoan.compareTo(borrowerLoan);
 	}
 
@@ -170,11 +246,11 @@ public class BorrowerLoanWrapper implements BorrowerLoan,
 		return _borrowerLoan.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<BorrowerLoan> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<org.goodreturn.model.BorrowerLoan> toCacheModel() {
 		return _borrowerLoan.toCacheModel();
 	}
 
-	public BorrowerLoan toEscapedModel() {
+	public org.goodreturn.model.BorrowerLoan toEscapedModel() {
 		return new BorrowerLoanWrapper(_borrowerLoan.toEscapedModel());
 	}
 

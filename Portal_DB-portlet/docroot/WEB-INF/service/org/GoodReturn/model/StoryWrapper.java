@@ -47,7 +47,7 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 
 		attributes.put("uuid", getUuid());
 		attributes.put("story_Id", getStory_Id());
-		attributes.put("borrower_Loan_Id", getBorrower_Loan_Id());
+		attributes.put("abacus_Borrower_Loan_Id", getAbacus_Borrower_Loan_Id());
 		attributes.put("story_Type", getStory_Type());
 		attributes.put("story_Text", getStory_Text());
 		attributes.put("video_Url", getVideo_Url());
@@ -58,6 +58,8 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 		attributes.put("status_By_User_Id", getStatus_By_User_Id());
 		attributes.put("status_By_User_Name", getStatus_By_User_Name());
 		attributes.put("status_Date", getStatus_Date());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 		attributes.put("company_Id", getCompany_Id());
 		attributes.put("group_Id", getGroup_Id());
 		attributes.put("user_Id", getUser_Id());
@@ -78,10 +80,11 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 			setStory_Id(story_Id);
 		}
 
-		Long borrower_Loan_Id = (Long)attributes.get("borrower_Loan_Id");
+		Long abacus_Borrower_Loan_Id = (Long)attributes.get(
+				"abacus_Borrower_Loan_Id");
 
-		if (borrower_Loan_Id != null) {
-			setBorrower_Loan_Id(borrower_Loan_Id);
+		if (abacus_Borrower_Loan_Id != null) {
+			setAbacus_Borrower_Loan_Id(abacus_Borrower_Loan_Id);
 		}
 
 		String story_Type = (String)attributes.get("story_Type");
@@ -139,6 +142,18 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 
 		if (status_Date != null) {
 			setStatus_Date(status_Date);
+		}
+
+		String changed_By = (String)attributes.get("changed_By");
+
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		Long changed_Time = (Long)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
 		}
 
 		Long company_Id = (Long)attributes.get("company_Id");
@@ -215,21 +230,21 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 	}
 
 	/**
-	* Returns the borrower_ loan_ ID of this story.
+	* Returns the abacus_ borrower_ loan_ ID of this story.
 	*
-	* @return the borrower_ loan_ ID of this story
+	* @return the abacus_ borrower_ loan_ ID of this story
 	*/
-	public long getBorrower_Loan_Id() {
-		return _story.getBorrower_Loan_Id();
+	public long getAbacus_Borrower_Loan_Id() {
+		return _story.getAbacus_Borrower_Loan_Id();
 	}
 
 	/**
-	* Sets the borrower_ loan_ ID of this story.
+	* Sets the abacus_ borrower_ loan_ ID of this story.
 	*
-	* @param borrower_Loan_Id the borrower_ loan_ ID of this story
+	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID of this story
 	*/
-	public void setBorrower_Loan_Id(long borrower_Loan_Id) {
-		_story.setBorrower_Loan_Id(borrower_Loan_Id);
+	public void setAbacus_Borrower_Loan_Id(long abacus_Borrower_Loan_Id) {
+		_story.setAbacus_Borrower_Loan_Id(abacus_Borrower_Loan_Id);
 	}
 
 	/**
@@ -411,6 +426,42 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 	*/
 	public void setStatus_Date(java.util.Date status_Date) {
 		_story.setStatus_Date(status_Date);
+	}
+
+	/**
+	* Returns the changed_ by of this story.
+	*
+	* @return the changed_ by of this story
+	*/
+	public java.lang.String getChanged_By() {
+		return _story.getChanged_By();
+	}
+
+	/**
+	* Sets the changed_ by of this story.
+	*
+	* @param changed_By the changed_ by of this story
+	*/
+	public void setChanged_By(java.lang.String changed_By) {
+		_story.setChanged_By(changed_By);
+	}
+
+	/**
+	* Returns the changed_ time of this story.
+	*
+	* @return the changed_ time of this story
+	*/
+	public long getChanged_Time() {
+		return _story.getChanged_Time();
+	}
+
+	/**
+	* Sets the changed_ time of this story.
+	*
+	* @param changed_Time the changed_ time of this story
+	*/
+	public void setChanged_Time(long changed_Time) {
+		_story.setChanged_Time(changed_Time);
 	}
 
 	/**

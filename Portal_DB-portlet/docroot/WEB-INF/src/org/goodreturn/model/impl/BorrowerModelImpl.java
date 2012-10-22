@@ -36,7 +36,6 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,24 +63,19 @@ public class BorrowerModelImpl extends BaseModelImpl<Borrower>
 	 */
 	public static final String TABLE_NAME = "GoodReturn_Borrower";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "abacus_Borrower_Id", Types.BIGINT },
-			{ "write_Off_Date", Types.TIMESTAMP },
-			{ "phone", Types.BIGINT },
-			{ "wait_Time", Types.BIGINT },
-			{ "country", Types.VARCHAR },
-			{ "amount_Needed", Types.DOUBLE },
-			{ "amount_Needed_AUD", Types.DOUBLE },
-			{ "type_Of_Person", Types.VARCHAR },
+			{ "borrower_Id", Types.BIGINT },
+			{ "abacus_Person_Id", Types.BIGINT },
 			{ "village", Types.VARCHAR },
 			{ "district", Types.VARCHAR },
 			{ "pdf_Link", Types.VARCHAR },
 			{ "currency_", Types.DOUBLE },
-			{ "date_Applied", Types.TIMESTAMP }
+			{ "changed_By", Types.VARCHAR },
+			{ "changed_Time", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Borrower (abacus_Borrower_Id LONG not null primary key,write_Off_Date DATE null,phone LONG,wait_Time LONG,country VARCHAR(75) null,amount_Needed DOUBLE,amount_Needed_AUD DOUBLE,type_Of_Person VARCHAR(75) null,village VARCHAR(75) null,district VARCHAR(75) null,pdf_Link VARCHAR(75) null,currency_ DOUBLE,date_Applied DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Borrower (borrower_Id LONG not null primary key,abacus_Person_Id LONG,village VARCHAR(75) null,district VARCHAR(75) null,pdf_Link VARCHAR(75) null,currency_ DOUBLE,changed_By VARCHAR(75) null,changed_Time LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Borrower";
-	public static final String ORDER_BY_JPQL = " ORDER BY borrower.amount_Needed ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Borrower.amount_Needed ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY borrower.borrower_Id ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Borrower.borrower_Id ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -106,19 +100,14 @@ public class BorrowerModelImpl extends BaseModelImpl<Borrower>
 
 		Borrower model = new BorrowerImpl();
 
-		model.setAbacus_Borrower_Id(soapModel.getAbacus_Borrower_Id());
-		model.setWrite_Off_Date(soapModel.getWrite_Off_Date());
-		model.setPhone(soapModel.getPhone());
-		model.setWait_Time(soapModel.getWait_Time());
-		model.setCountry(soapModel.getCountry());
-		model.setAmount_Needed(soapModel.getAmount_Needed());
-		model.setAmount_Needed_AUD(soapModel.getAmount_Needed_AUD());
-		model.setType_Of_Person(soapModel.getType_Of_Person());
+		model.setBorrower_Id(soapModel.getBorrower_Id());
+		model.setAbacus_Person_Id(soapModel.getAbacus_Person_Id());
 		model.setVillage(soapModel.getVillage());
 		model.setDistrict(soapModel.getDistrict());
 		model.setPdf_Link(soapModel.getPdf_Link());
 		model.setCurrency(soapModel.getCurrency());
-		model.setDate_Applied(soapModel.getDate_Applied());
+		model.setChanged_By(soapModel.getChanged_By());
+		model.setChanged_Time(soapModel.getChanged_Time());
 
 		return model;
 	}
@@ -150,15 +139,15 @@ public class BorrowerModelImpl extends BaseModelImpl<Borrower>
 	}
 
 	public long getPrimaryKey() {
-		return _abacus_Borrower_Id;
+		return _borrower_Id;
 	}
 
 	public void setPrimaryKey(long primaryKey) {
-		setAbacus_Borrower_Id(primaryKey);
+		setBorrower_Id(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_abacus_Borrower_Id);
+		return new Long(_borrower_Id);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
@@ -177,71 +166,30 @@ public class BorrowerModelImpl extends BaseModelImpl<Borrower>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("abacus_Borrower_Id", getAbacus_Borrower_Id());
-		attributes.put("write_Off_Date", getWrite_Off_Date());
-		attributes.put("phone", getPhone());
-		attributes.put("wait_Time", getWait_Time());
-		attributes.put("country", getCountry());
-		attributes.put("amount_Needed", getAmount_Needed());
-		attributes.put("amount_Needed_AUD", getAmount_Needed_AUD());
-		attributes.put("type_Of_Person", getType_Of_Person());
+		attributes.put("borrower_Id", getBorrower_Id());
+		attributes.put("abacus_Person_Id", getAbacus_Person_Id());
 		attributes.put("village", getVillage());
 		attributes.put("district", getDistrict());
 		attributes.put("pdf_Link", getPdf_Link());
 		attributes.put("currency", getCurrency());
-		attributes.put("date_Applied", getDate_Applied());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 
 		return attributes;
 	}
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long abacus_Borrower_Id = (Long)attributes.get("abacus_Borrower_Id");
+		Long borrower_Id = (Long)attributes.get("borrower_Id");
 
-		if (abacus_Borrower_Id != null) {
-			setAbacus_Borrower_Id(abacus_Borrower_Id);
+		if (borrower_Id != null) {
+			setBorrower_Id(borrower_Id);
 		}
 
-		Date write_Off_Date = (Date)attributes.get("write_Off_Date");
+		Long abacus_Person_Id = (Long)attributes.get("abacus_Person_Id");
 
-		if (write_Off_Date != null) {
-			setWrite_Off_Date(write_Off_Date);
-		}
-
-		Long phone = (Long)attributes.get("phone");
-
-		if (phone != null) {
-			setPhone(phone);
-		}
-
-		Long wait_Time = (Long)attributes.get("wait_Time");
-
-		if (wait_Time != null) {
-			setWait_Time(wait_Time);
-		}
-
-		String country = (String)attributes.get("country");
-
-		if (country != null) {
-			setCountry(country);
-		}
-
-		Double amount_Needed = (Double)attributes.get("amount_Needed");
-
-		if (amount_Needed != null) {
-			setAmount_Needed(amount_Needed);
-		}
-
-		Double amount_Needed_AUD = (Double)attributes.get("amount_Needed_AUD");
-
-		if (amount_Needed_AUD != null) {
-			setAmount_Needed_AUD(amount_Needed_AUD);
-		}
-
-		String type_Of_Person = (String)attributes.get("type_Of_Person");
-
-		if (type_Of_Person != null) {
-			setType_Of_Person(type_Of_Person);
+		if (abacus_Person_Id != null) {
+			setAbacus_Person_Id(abacus_Person_Id);
 		}
 
 		String village = (String)attributes.get("village");
@@ -268,93 +216,35 @@ public class BorrowerModelImpl extends BaseModelImpl<Borrower>
 			setCurrency(currency);
 		}
 
-		Date date_Applied = (Date)attributes.get("date_Applied");
+		String changed_By = (String)attributes.get("changed_By");
 
-		if (date_Applied != null) {
-			setDate_Applied(date_Applied);
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		Long changed_Time = (Long)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
 		}
 	}
 
 	@JSON
-	public long getAbacus_Borrower_Id() {
-		return _abacus_Borrower_Id;
+	public long getBorrower_Id() {
+		return _borrower_Id;
 	}
 
-	public void setAbacus_Borrower_Id(long abacus_Borrower_Id) {
-		_abacus_Borrower_Id = abacus_Borrower_Id;
-	}
-
-	@JSON
-	public Date getWrite_Off_Date() {
-		return _write_Off_Date;
-	}
-
-	public void setWrite_Off_Date(Date write_Off_Date) {
-		_write_Off_Date = write_Off_Date;
+	public void setBorrower_Id(long borrower_Id) {
+		_borrower_Id = borrower_Id;
 	}
 
 	@JSON
-	public long getPhone() {
-		return _phone;
+	public long getAbacus_Person_Id() {
+		return _abacus_Person_Id;
 	}
 
-	public void setPhone(long phone) {
-		_phone = phone;
-	}
-
-	@JSON
-	public long getWait_Time() {
-		return _wait_Time;
-	}
-
-	public void setWait_Time(long wait_Time) {
-		_wait_Time = wait_Time;
-	}
-
-	@JSON
-	public String getCountry() {
-		if (_country == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _country;
-		}
-	}
-
-	public void setCountry(String country) {
-		_country = country;
-	}
-
-	@JSON
-	public double getAmount_Needed() {
-		return _amount_Needed;
-	}
-
-	public void setAmount_Needed(double amount_Needed) {
-		_amount_Needed = amount_Needed;
-	}
-
-	@JSON
-	public double getAmount_Needed_AUD() {
-		return _amount_Needed_AUD;
-	}
-
-	public void setAmount_Needed_AUD(double amount_Needed_AUD) {
-		_amount_Needed_AUD = amount_Needed_AUD;
-	}
-
-	@JSON
-	public String getType_Of_Person() {
-		if (_type_Of_Person == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _type_Of_Person;
-		}
-	}
-
-	public void setType_Of_Person(String type_Of_Person) {
-		_type_Of_Person = type_Of_Person;
+	public void setAbacus_Person_Id(long abacus_Person_Id) {
+		_abacus_Person_Id = abacus_Person_Id;
 	}
 
 	@JSON
@@ -409,12 +299,26 @@ public class BorrowerModelImpl extends BaseModelImpl<Borrower>
 	}
 
 	@JSON
-	public Date getDate_Applied() {
-		return _date_Applied;
+	public String getChanged_By() {
+		if (_changed_By == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _changed_By;
+		}
 	}
 
-	public void setDate_Applied(Date date_Applied) {
-		_date_Applied = date_Applied;
+	public void setChanged_By(String changed_By) {
+		_changed_By = changed_By;
+	}
+
+	@JSON
+	public long getChanged_Time() {
+		return _changed_Time;
+	}
+
+	public void setChanged_Time(long changed_Time) {
+		_changed_Time = changed_Time;
 	}
 
 	@Override
@@ -445,19 +349,14 @@ public class BorrowerModelImpl extends BaseModelImpl<Borrower>
 	public Object clone() {
 		BorrowerImpl borrowerImpl = new BorrowerImpl();
 
-		borrowerImpl.setAbacus_Borrower_Id(getAbacus_Borrower_Id());
-		borrowerImpl.setWrite_Off_Date(getWrite_Off_Date());
-		borrowerImpl.setPhone(getPhone());
-		borrowerImpl.setWait_Time(getWait_Time());
-		borrowerImpl.setCountry(getCountry());
-		borrowerImpl.setAmount_Needed(getAmount_Needed());
-		borrowerImpl.setAmount_Needed_AUD(getAmount_Needed_AUD());
-		borrowerImpl.setType_Of_Person(getType_Of_Person());
+		borrowerImpl.setBorrower_Id(getBorrower_Id());
+		borrowerImpl.setAbacus_Person_Id(getAbacus_Person_Id());
 		borrowerImpl.setVillage(getVillage());
 		borrowerImpl.setDistrict(getDistrict());
 		borrowerImpl.setPdf_Link(getPdf_Link());
 		borrowerImpl.setCurrency(getCurrency());
-		borrowerImpl.setDate_Applied(getDate_Applied());
+		borrowerImpl.setChanged_By(getChanged_By());
+		borrowerImpl.setChanged_Time(getChanged_Time());
 
 		borrowerImpl.resetOriginalValues();
 
@@ -467,10 +366,10 @@ public class BorrowerModelImpl extends BaseModelImpl<Borrower>
 	public int compareTo(Borrower borrower) {
 		int value = 0;
 
-		if (getAmount_Needed() < borrower.getAmount_Needed()) {
+		if (getBorrower_Id() < borrower.getBorrower_Id()) {
 			value = -1;
 		}
-		else if (getAmount_Needed() > borrower.getAmount_Needed()) {
+		else if (getBorrower_Id() > borrower.getBorrower_Id()) {
 			value = 1;
 		}
 		else {
@@ -522,40 +421,9 @@ public class BorrowerModelImpl extends BaseModelImpl<Borrower>
 	public CacheModel<Borrower> toCacheModel() {
 		BorrowerCacheModel borrowerCacheModel = new BorrowerCacheModel();
 
-		borrowerCacheModel.abacus_Borrower_Id = getAbacus_Borrower_Id();
+		borrowerCacheModel.borrower_Id = getBorrower_Id();
 
-		Date write_Off_Date = getWrite_Off_Date();
-
-		if (write_Off_Date != null) {
-			borrowerCacheModel.write_Off_Date = write_Off_Date.getTime();
-		}
-		else {
-			borrowerCacheModel.write_Off_Date = Long.MIN_VALUE;
-		}
-
-		borrowerCacheModel.phone = getPhone();
-
-		borrowerCacheModel.wait_Time = getWait_Time();
-
-		borrowerCacheModel.country = getCountry();
-
-		String country = borrowerCacheModel.country;
-
-		if ((country != null) && (country.length() == 0)) {
-			borrowerCacheModel.country = null;
-		}
-
-		borrowerCacheModel.amount_Needed = getAmount_Needed();
-
-		borrowerCacheModel.amount_Needed_AUD = getAmount_Needed_AUD();
-
-		borrowerCacheModel.type_Of_Person = getType_Of_Person();
-
-		String type_Of_Person = borrowerCacheModel.type_Of_Person;
-
-		if ((type_Of_Person != null) && (type_Of_Person.length() == 0)) {
-			borrowerCacheModel.type_Of_Person = null;
-		}
+		borrowerCacheModel.abacus_Person_Id = getAbacus_Person_Id();
 
 		borrowerCacheModel.village = getVillage();
 
@@ -583,38 +451,27 @@ public class BorrowerModelImpl extends BaseModelImpl<Borrower>
 
 		borrowerCacheModel.currency = getCurrency();
 
-		Date date_Applied = getDate_Applied();
+		borrowerCacheModel.changed_By = getChanged_By();
 
-		if (date_Applied != null) {
-			borrowerCacheModel.date_Applied = date_Applied.getTime();
+		String changed_By = borrowerCacheModel.changed_By;
+
+		if ((changed_By != null) && (changed_By.length() == 0)) {
+			borrowerCacheModel.changed_By = null;
 		}
-		else {
-			borrowerCacheModel.date_Applied = Long.MIN_VALUE;
-		}
+
+		borrowerCacheModel.changed_Time = getChanged_Time();
 
 		return borrowerCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(17);
 
-		sb.append("{abacus_Borrower_Id=");
-		sb.append(getAbacus_Borrower_Id());
-		sb.append(", write_Off_Date=");
-		sb.append(getWrite_Off_Date());
-		sb.append(", phone=");
-		sb.append(getPhone());
-		sb.append(", wait_Time=");
-		sb.append(getWait_Time());
-		sb.append(", country=");
-		sb.append(getCountry());
-		sb.append(", amount_Needed=");
-		sb.append(getAmount_Needed());
-		sb.append(", amount_Needed_AUD=");
-		sb.append(getAmount_Needed_AUD());
-		sb.append(", type_Of_Person=");
-		sb.append(getType_Of_Person());
+		sb.append("{borrower_Id=");
+		sb.append(getBorrower_Id());
+		sb.append(", abacus_Person_Id=");
+		sb.append(getAbacus_Person_Id());
 		sb.append(", village=");
 		sb.append(getVillage());
 		sb.append(", district=");
@@ -623,51 +480,29 @@ public class BorrowerModelImpl extends BaseModelImpl<Borrower>
 		sb.append(getPdf_Link());
 		sb.append(", currency=");
 		sb.append(getCurrency());
-		sb.append(", date_Applied=");
-		sb.append(getDate_Applied());
+		sb.append(", changed_By=");
+		sb.append(getChanged_By());
+		sb.append(", changed_Time=");
+		sb.append(getChanged_Time());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Borrower");
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>abacus_Borrower_Id</column-name><column-value><![CDATA[");
-		sb.append(getAbacus_Borrower_Id());
+			"<column><column-name>borrower_Id</column-name><column-value><![CDATA[");
+		sb.append(getBorrower_Id());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>write_Off_Date</column-name><column-value><![CDATA[");
-		sb.append(getWrite_Off_Date());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>phone</column-name><column-value><![CDATA[");
-		sb.append(getPhone());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>wait_Time</column-name><column-value><![CDATA[");
-		sb.append(getWait_Time());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>country</column-name><column-value><![CDATA[");
-		sb.append(getCountry());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>amount_Needed</column-name><column-value><![CDATA[");
-		sb.append(getAmount_Needed());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>amount_Needed_AUD</column-name><column-value><![CDATA[");
-		sb.append(getAmount_Needed_AUD());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>type_Of_Person</column-name><column-value><![CDATA[");
-		sb.append(getType_Of_Person());
+			"<column><column-name>abacus_Person_Id</column-name><column-value><![CDATA[");
+		sb.append(getAbacus_Person_Id());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>village</column-name><column-value><![CDATA[");
@@ -686,8 +521,12 @@ public class BorrowerModelImpl extends BaseModelImpl<Borrower>
 		sb.append(getCurrency());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>date_Applied</column-name><column-value><![CDATA[");
-		sb.append(getDate_Applied());
+			"<column><column-name>changed_By</column-name><column-value><![CDATA[");
+		sb.append(getChanged_By());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
+		sb.append(getChanged_Time());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -699,18 +538,13 @@ public class BorrowerModelImpl extends BaseModelImpl<Borrower>
 	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
 			Borrower.class
 		};
-	private long _abacus_Borrower_Id;
-	private Date _write_Off_Date;
-	private long _phone;
-	private long _wait_Time;
-	private String _country;
-	private double _amount_Needed;
-	private double _amount_Needed_AUD;
-	private String _type_Of_Person;
+	private long _borrower_Id;
+	private long _abacus_Person_Id;
 	private String _village;
 	private String _district;
 	private String _pdf_Link;
 	private double _currency;
-	private Date _date_Applied;
+	private String _changed_By;
+	private long _changed_Time;
 	private Borrower _escapedModelProxy;
 }

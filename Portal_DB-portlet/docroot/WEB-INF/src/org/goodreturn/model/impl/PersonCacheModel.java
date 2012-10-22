@@ -32,7 +32,7 @@ import java.io.Serializable;
 public class PersonCacheModel implements CacheModel<Person>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{abacus_Person_Id=");
 		sb.append(abacus_Person_Id);
@@ -50,12 +50,20 @@ public class PersonCacheModel implements CacheModel<Person>, Serializable {
 		sb.append(country);
 		sb.append(", gender=");
 		sb.append(gender);
+		sb.append(", salutation=");
+		sb.append(salutation);
 		sb.append(", status=");
 		sb.append(status);
+		sb.append(", phone_Number=");
+		sb.append(phone_Number);
 		sb.append(", photo_URL=");
 		sb.append(photo_URL);
 		sb.append(", occupation=");
 		sb.append(occupation);
+		sb.append(", changed_By=");
+		sb.append(changed_By);
+		sb.append(", changed_Time=");
+		sb.append(changed_Time);
 		sb.append("}");
 
 		return sb.toString();
@@ -115,12 +123,21 @@ public class PersonCacheModel implements CacheModel<Person>, Serializable {
 			personImpl.setGender(gender);
 		}
 
+		if (salutation == null) {
+			personImpl.setSalutation(StringPool.BLANK);
+		}
+		else {
+			personImpl.setSalutation(salutation);
+		}
+
 		if (status == null) {
 			personImpl.setStatus(StringPool.BLANK);
 		}
 		else {
 			personImpl.setStatus(status);
 		}
+
+		personImpl.setPhone_Number(phone_Number);
 
 		if (photo_URL == null) {
 			personImpl.setPhoto_URL(StringPool.BLANK);
@@ -136,6 +153,15 @@ public class PersonCacheModel implements CacheModel<Person>, Serializable {
 			personImpl.setOccupation(occupation);
 		}
 
+		if (changed_By == null) {
+			personImpl.setChanged_By(StringPool.BLANK);
+		}
+		else {
+			personImpl.setChanged_By(changed_By);
+		}
+
+		personImpl.setChanged_Time(changed_Time);
+
 		personImpl.resetOriginalValues();
 
 		return personImpl;
@@ -149,7 +175,11 @@ public class PersonCacheModel implements CacheModel<Person>, Serializable {
 	public String address_Type;
 	public String country;
 	public String gender;
+	public String salutation;
 	public String status;
+	public long phone_Number;
 	public String photo_URL;
 	public String occupation;
+	public String changed_By;
+	public long changed_Time;
 }

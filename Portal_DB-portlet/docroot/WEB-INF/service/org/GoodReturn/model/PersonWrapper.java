@@ -52,9 +52,13 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
 		attributes.put("address_Type", getAddress_Type());
 		attributes.put("country", getCountry());
 		attributes.put("gender", getGender());
+		attributes.put("salutation", getSalutation());
 		attributes.put("status", getStatus());
+		attributes.put("phone_Number", getPhone_Number());
 		attributes.put("photo_URL", getPhoto_URL());
 		attributes.put("occupation", getOccupation());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 
 		return attributes;
 	}
@@ -108,10 +112,22 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
 			setGender(gender);
 		}
 
+		String salutation = (String)attributes.get("salutation");
+
+		if (salutation != null) {
+			setSalutation(salutation);
+		}
+
 		String status = (String)attributes.get("status");
 
 		if (status != null) {
 			setStatus(status);
+		}
+
+		Long phone_Number = (Long)attributes.get("phone_Number");
+
+		if (phone_Number != null) {
+			setPhone_Number(phone_Number);
 		}
 
 		String photo_URL = (String)attributes.get("photo_URL");
@@ -124,6 +140,18 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
 
 		if (occupation != null) {
 			setOccupation(occupation);
+		}
+
+		String changed_By = (String)attributes.get("changed_By");
+
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		Long changed_Time = (Long)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
 		}
 	}
 
@@ -290,6 +318,24 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
 	}
 
 	/**
+	* Returns the salutation of this person.
+	*
+	* @return the salutation of this person
+	*/
+	public java.lang.String getSalutation() {
+		return _person.getSalutation();
+	}
+
+	/**
+	* Sets the salutation of this person.
+	*
+	* @param salutation the salutation of this person
+	*/
+	public void setSalutation(java.lang.String salutation) {
+		_person.setSalutation(salutation);
+	}
+
+	/**
 	* Returns the status of this person.
 	*
 	* @return the status of this person
@@ -305,6 +351,24 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
 	*/
 	public void setStatus(java.lang.String status) {
 		_person.setStatus(status);
+	}
+
+	/**
+	* Returns the phone_ number of this person.
+	*
+	* @return the phone_ number of this person
+	*/
+	public long getPhone_Number() {
+		return _person.getPhone_Number();
+	}
+
+	/**
+	* Sets the phone_ number of this person.
+	*
+	* @param phone_Number the phone_ number of this person
+	*/
+	public void setPhone_Number(long phone_Number) {
+		_person.setPhone_Number(phone_Number);
 	}
 
 	/**
@@ -341,6 +405,42 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
 	*/
 	public void setOccupation(java.lang.String occupation) {
 		_person.setOccupation(occupation);
+	}
+
+	/**
+	* Returns the changed_ by of this person.
+	*
+	* @return the changed_ by of this person
+	*/
+	public java.lang.String getChanged_By() {
+		return _person.getChanged_By();
+	}
+
+	/**
+	* Sets the changed_ by of this person.
+	*
+	* @param changed_By the changed_ by of this person
+	*/
+	public void setChanged_By(java.lang.String changed_By) {
+		_person.setChanged_By(changed_By);
+	}
+
+	/**
+	* Returns the changed_ time of this person.
+	*
+	* @return the changed_ time of this person
+	*/
+	public long getChanged_Time() {
+		return _person.getChanged_Time();
+	}
+
+	/**
+	* Sets the changed_ time of this person.
+	*
+	* @param changed_Time the changed_ time of this person
+	*/
+	public void setChanged_Time(long changed_Time) {
+		_person.setChanged_Time(changed_Time);
 	}
 
 	public boolean isNew() {

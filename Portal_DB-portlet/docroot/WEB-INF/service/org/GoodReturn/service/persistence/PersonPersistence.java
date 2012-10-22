@@ -155,4 +155,158 @@ public interface PersonPersistence extends BasePersistence<Person> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns all the borrowers associated with the person.
+	*
+	* @param pk the primary key of the person
+	* @return the borrowers associated with the person
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<org.goodreturn.model.Borrower> getBorrowers(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the borrowers associated with the person.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param pk the primary key of the person
+	* @param start the lower bound of the range of persons
+	* @param end the upper bound of the range of persons (not inclusive)
+	* @return the range of borrowers associated with the person
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<org.goodreturn.model.Borrower> getBorrowers(long pk,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the borrowers associated with the person.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param pk the primary key of the person
+	* @param start the lower bound of the range of persons
+	* @param end the upper bound of the range of persons (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of borrowers associated with the person
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<org.goodreturn.model.Borrower> getBorrowers(long pk,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of borrowers associated with the person.
+	*
+	* @param pk the primary key of the person
+	* @return the number of borrowers associated with the person
+	* @throws SystemException if a system exception occurred
+	*/
+	public int getBorrowersSize(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns <code>true</code> if the borrower is associated with the person.
+	*
+	* @param pk the primary key of the person
+	* @param borrowerPK the primary key of the borrower
+	* @return <code>true</code> if the borrower is associated with the person; <code>false</code> otherwise
+	* @throws SystemException if a system exception occurred
+	*/
+	public boolean containsBorrower(long pk, long borrowerPK)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns <code>true</code> if the person has any borrowers associated with it.
+	*
+	* @param pk the primary key of the person to check for associations with borrowers
+	* @return <code>true</code> if the person has any borrowers associated with it; <code>false</code> otherwise
+	* @throws SystemException if a system exception occurred
+	*/
+	public boolean containsBorrowers(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns all the lenders associated with the person.
+	*
+	* @param pk the primary key of the person
+	* @return the lenders associated with the person
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<org.goodreturn.model.Lender> getLenders(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the lenders associated with the person.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param pk the primary key of the person
+	* @param start the lower bound of the range of persons
+	* @param end the upper bound of the range of persons (not inclusive)
+	* @return the range of lenders associated with the person
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<org.goodreturn.model.Lender> getLenders(long pk,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the lenders associated with the person.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param pk the primary key of the person
+	* @param start the lower bound of the range of persons
+	* @param end the upper bound of the range of persons (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of lenders associated with the person
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<org.goodreturn.model.Lender> getLenders(long pk,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of lenders associated with the person.
+	*
+	* @param pk the primary key of the person
+	* @return the number of lenders associated with the person
+	* @throws SystemException if a system exception occurred
+	*/
+	public int getLendersSize(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns <code>true</code> if the lender is associated with the person.
+	*
+	* @param pk the primary key of the person
+	* @param lenderPK the primary key of the lender
+	* @return <code>true</code> if the lender is associated with the person; <code>false</code> otherwise
+	* @throws SystemException if a system exception occurred
+	*/
+	public boolean containsLender(long pk, long lenderPK)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns <code>true</code> if the person has any lenders associated with it.
+	*
+	* @param pk the primary key of the person to check for associations with lenders
+	* @return <code>true</code> if the person has any lenders associated with it; <code>false</code> otherwise
+	* @throws SystemException if a system exception occurred
+	*/
+	public boolean containsLenders(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

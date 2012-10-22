@@ -65,7 +65,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "uuid_", Types.VARCHAR },
 			{ "story_Id", Types.BIGINT },
-			{ "borrower_Loan_Id", Types.BIGINT },
+			{ "abacus_Borrower_Loan_Id", Types.BIGINT },
 			{ "story_Type", Types.VARCHAR },
 			{ "story_Text", Types.VARCHAR },
 			{ "video_Url", Types.VARCHAR },
@@ -75,11 +75,13 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			{ "status_By_User_Id", Types.BIGINT },
 			{ "status_By_User_Name", Types.VARCHAR },
 			{ "status_Date", Types.TIMESTAMP },
+			{ "changed_By", Types.VARCHAR },
+			{ "changed_Time", Types.BIGINT },
 			{ "company_Id", Types.BIGINT },
 			{ "group_Id", Types.BIGINT },
 			{ "user_Id", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Story (uuid_ VARCHAR(75) null,story_Id LONG not null primary key,borrower_Loan_Id LONG,story_Type VARCHAR(75) null,story_Text VARCHAR(75) null,video_Url VARCHAR(75) null,is_Good_Enough_For_Marketing BOOLEAN,is_Good_Enough_For_Story BOOLEAN,status INTEGER,status_By_User_Id LONG,status_By_User_Name VARCHAR(75) null,status_Date DATE null,company_Id LONG,group_Id LONG,user_Id LONG)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Story (uuid_ VARCHAR(75) null,story_Id LONG not null primary key,abacus_Borrower_Loan_Id LONG,story_Type VARCHAR(75) null,story_Text VARCHAR(75) null,video_Url VARCHAR(75) null,is_Good_Enough_For_Marketing BOOLEAN,is_Good_Enough_For_Story BOOLEAN,status INTEGER,status_By_User_Id LONG,status_By_User_Name VARCHAR(75) null,status_Date DATE null,changed_By VARCHAR(75) null,changed_Time LONG,company_Id LONG,group_Id LONG,user_Id LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Story";
 	public static final String ORDER_BY_JPQL = " ORDER BY story.story_Id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Story.story_Id ASC";
@@ -95,7 +97,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.org.goodreturn.model.Story"),
 			true);
-	public static long BORROWER_LOAN_ID_COLUMN_BITMASK = 1L;
+	public static long ABACUS_BORROWER_LOAN_ID_COLUMN_BITMASK = 1L;
 	public static long STORY_TYPE_COLUMN_BITMASK = 2L;
 	public static long UUID_COLUMN_BITMASK = 4L;
 
@@ -114,7 +116,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		model.setUuid(soapModel.getUuid());
 		model.setStory_Id(soapModel.getStory_Id());
-		model.setBorrower_Loan_Id(soapModel.getBorrower_Loan_Id());
+		model.setAbacus_Borrower_Loan_Id(soapModel.getAbacus_Borrower_Loan_Id());
 		model.setStory_Type(soapModel.getStory_Type());
 		model.setStory_Text(soapModel.getStory_Text());
 		model.setVideo_Url(soapModel.getVideo_Url());
@@ -124,6 +126,8 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		model.setStatus_By_User_Id(soapModel.getStatus_By_User_Id());
 		model.setStatus_By_User_Name(soapModel.getStatus_By_User_Name());
 		model.setStatus_Date(soapModel.getStatus_Date());
+		model.setChanged_By(soapModel.getChanged_By());
+		model.setChanged_Time(soapModel.getChanged_Time());
 		model.setCompany_Id(soapModel.getCompany_Id());
 		model.setGroup_Id(soapModel.getGroup_Id());
 		model.setUser_Id(soapModel.getUser_Id());
@@ -187,7 +191,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		attributes.put("uuid", getUuid());
 		attributes.put("story_Id", getStory_Id());
-		attributes.put("borrower_Loan_Id", getBorrower_Loan_Id());
+		attributes.put("abacus_Borrower_Loan_Id", getAbacus_Borrower_Loan_Id());
 		attributes.put("story_Type", getStory_Type());
 		attributes.put("story_Text", getStory_Text());
 		attributes.put("video_Url", getVideo_Url());
@@ -198,6 +202,8 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		attributes.put("status_By_User_Id", getStatus_By_User_Id());
 		attributes.put("status_By_User_Name", getStatus_By_User_Name());
 		attributes.put("status_Date", getStatus_Date());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 		attributes.put("company_Id", getCompany_Id());
 		attributes.put("group_Id", getGroup_Id());
 		attributes.put("user_Id", getUser_Id());
@@ -219,10 +225,11 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			setStory_Id(story_Id);
 		}
 
-		Long borrower_Loan_Id = (Long)attributes.get("borrower_Loan_Id");
+		Long abacus_Borrower_Loan_Id = (Long)attributes.get(
+				"abacus_Borrower_Loan_Id");
 
-		if (borrower_Loan_Id != null) {
-			setBorrower_Loan_Id(borrower_Loan_Id);
+		if (abacus_Borrower_Loan_Id != null) {
+			setAbacus_Borrower_Loan_Id(abacus_Borrower_Loan_Id);
 		}
 
 		String story_Type = (String)attributes.get("story_Type");
@@ -282,6 +289,18 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			setStatus_Date(status_Date);
 		}
 
+		String changed_By = (String)attributes.get("changed_By");
+
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		Long changed_Time = (Long)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
+		}
+
 		Long company_Id = (Long)attributes.get("company_Id");
 
 		if (company_Id != null) {
@@ -335,24 +354,24 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	@JSON
-	public long getBorrower_Loan_Id() {
-		return _borrower_Loan_Id;
+	public long getAbacus_Borrower_Loan_Id() {
+		return _abacus_Borrower_Loan_Id;
 	}
 
-	public void setBorrower_Loan_Id(long borrower_Loan_Id) {
-		_columnBitmask |= BORROWER_LOAN_ID_COLUMN_BITMASK;
+	public void setAbacus_Borrower_Loan_Id(long abacus_Borrower_Loan_Id) {
+		_columnBitmask |= ABACUS_BORROWER_LOAN_ID_COLUMN_BITMASK;
 
-		if (!_setOriginalBorrower_Loan_Id) {
-			_setOriginalBorrower_Loan_Id = true;
+		if (!_setOriginalAbacus_Borrower_Loan_Id) {
+			_setOriginalAbacus_Borrower_Loan_Id = true;
 
-			_originalBorrower_Loan_Id = _borrower_Loan_Id;
+			_originalAbacus_Borrower_Loan_Id = _abacus_Borrower_Loan_Id;
 		}
 
-		_borrower_Loan_Id = borrower_Loan_Id;
+		_abacus_Borrower_Loan_Id = abacus_Borrower_Loan_Id;
 	}
 
-	public long getOriginalBorrower_Loan_Id() {
-		return _originalBorrower_Loan_Id;
+	public long getOriginalAbacus_Borrower_Loan_Id() {
+		return _originalAbacus_Borrower_Loan_Id;
 	}
 
 	@JSON
@@ -476,6 +495,29 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	@JSON
+	public String getChanged_By() {
+		if (_changed_By == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _changed_By;
+		}
+	}
+
+	public void setChanged_By(String changed_By) {
+		_changed_By = changed_By;
+	}
+
+	@JSON
+	public long getChanged_Time() {
+		return _changed_Time;
+	}
+
+	public void setChanged_Time(long changed_Time) {
+		_changed_Time = changed_Time;
+	}
+
+	@JSON
 	public long getCompany_Id() {
 		return _company_Id;
 	}
@@ -536,7 +578,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		storyImpl.setUuid(getUuid());
 		storyImpl.setStory_Id(getStory_Id());
-		storyImpl.setBorrower_Loan_Id(getBorrower_Loan_Id());
+		storyImpl.setAbacus_Borrower_Loan_Id(getAbacus_Borrower_Loan_Id());
 		storyImpl.setStory_Type(getStory_Type());
 		storyImpl.setStory_Text(getStory_Text());
 		storyImpl.setVideo_Url(getVideo_Url());
@@ -546,6 +588,8 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		storyImpl.setStatus_By_User_Id(getStatus_By_User_Id());
 		storyImpl.setStatus_By_User_Name(getStatus_By_User_Name());
 		storyImpl.setStatus_Date(getStatus_Date());
+		storyImpl.setChanged_By(getChanged_By());
+		storyImpl.setChanged_Time(getChanged_Time());
 		storyImpl.setCompany_Id(getCompany_Id());
 		storyImpl.setGroup_Id(getGroup_Id());
 		storyImpl.setUser_Id(getUser_Id());
@@ -611,9 +655,9 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		storyModelImpl._originalUuid = storyModelImpl._uuid;
 
-		storyModelImpl._originalBorrower_Loan_Id = storyModelImpl._borrower_Loan_Id;
+		storyModelImpl._originalAbacus_Borrower_Loan_Id = storyModelImpl._abacus_Borrower_Loan_Id;
 
-		storyModelImpl._setOriginalBorrower_Loan_Id = false;
+		storyModelImpl._setOriginalAbacus_Borrower_Loan_Id = false;
 
 		storyModelImpl._originalStory_Type = storyModelImpl._story_Type;
 
@@ -634,7 +678,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		storyCacheModel.story_Id = getStory_Id();
 
-		storyCacheModel.borrower_Loan_Id = getBorrower_Loan_Id();
+		storyCacheModel.abacus_Borrower_Loan_Id = getAbacus_Borrower_Loan_Id();
 
 		storyCacheModel.story_Type = getStory_Type();
 
@@ -686,6 +730,16 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			storyCacheModel.status_Date = Long.MIN_VALUE;
 		}
 
+		storyCacheModel.changed_By = getChanged_By();
+
+		String changed_By = storyCacheModel.changed_By;
+
+		if ((changed_By != null) && (changed_By.length() == 0)) {
+			storyCacheModel.changed_By = null;
+		}
+
+		storyCacheModel.changed_Time = getChanged_Time();
+
 		storyCacheModel.company_Id = getCompany_Id();
 
 		storyCacheModel.group_Id = getGroup_Id();
@@ -697,14 +751,14 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
 		sb.append(", story_Id=");
 		sb.append(getStory_Id());
-		sb.append(", borrower_Loan_Id=");
-		sb.append(getBorrower_Loan_Id());
+		sb.append(", abacus_Borrower_Loan_Id=");
+		sb.append(getAbacus_Borrower_Loan_Id());
 		sb.append(", story_Type=");
 		sb.append(getStory_Type());
 		sb.append(", story_Text=");
@@ -723,6 +777,10 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		sb.append(getStatus_By_User_Name());
 		sb.append(", status_Date=");
 		sb.append(getStatus_Date());
+		sb.append(", changed_By=");
+		sb.append(getChanged_By());
+		sb.append(", changed_Time=");
+		sb.append(getChanged_Time());
 		sb.append(", company_Id=");
 		sb.append(getCompany_Id());
 		sb.append(", group_Id=");
@@ -735,7 +793,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Story");
@@ -750,8 +808,8 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		sb.append(getStory_Id());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>borrower_Loan_Id</column-name><column-value><![CDATA[");
-		sb.append(getBorrower_Loan_Id());
+			"<column><column-name>abacus_Borrower_Loan_Id</column-name><column-value><![CDATA[");
+		sb.append(getAbacus_Borrower_Loan_Id());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>story_Type</column-name><column-value><![CDATA[");
@@ -790,6 +848,14 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		sb.append(getStatus_Date());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>changed_By</column-name><column-value><![CDATA[");
+		sb.append(getChanged_By());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
+		sb.append(getChanged_Time());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>company_Id</column-name><column-value><![CDATA[");
 		sb.append(getCompany_Id());
 		sb.append("]]></column-value></column>");
@@ -814,9 +880,9 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	private String _uuid;
 	private String _originalUuid;
 	private long _story_Id;
-	private long _borrower_Loan_Id;
-	private long _originalBorrower_Loan_Id;
-	private boolean _setOriginalBorrower_Loan_Id;
+	private long _abacus_Borrower_Loan_Id;
+	private long _originalAbacus_Borrower_Loan_Id;
+	private boolean _setOriginalAbacus_Borrower_Loan_Id;
 	private String _story_Type;
 	private String _originalStory_Type;
 	private String _story_Text;
@@ -827,6 +893,8 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	private long _status_By_User_Id;
 	private String _status_By_User_Name;
 	private Date _status_Date;
+	private String _changed_By;
+	private long _changed_Time;
 	private long _company_Id;
 	private long _group_Id;
 	private long _user_Id;

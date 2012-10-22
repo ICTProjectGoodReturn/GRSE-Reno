@@ -34,20 +34,20 @@ import java.util.Date;
 public class LenderCacheModel implements CacheModel<Lender>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(51);
+		StringBundler sb = new StringBundler(45);
 
 		sb.append("{lender_Id=");
 		sb.append(lender_Id);
-		sb.append(", salutation=");
-		sb.append(salutation);
+		sb.append(", abacus_Person_Id=");
+		sb.append(abacus_Person_Id);
+		sb.append(", certificate_Id=");
+		sb.append(certificate_Id);
 		sb.append(", employer_Name=");
 		sb.append(employer_Name);
 		sb.append(", comment=");
 		sb.append(comment);
 		sb.append(", heard_Of_Us=");
 		sb.append(heard_Of_Us);
-		sb.append(", region=");
-		sb.append(region);
 		sb.append(", display_Name=");
 		sb.append(display_Name);
 		sb.append(", date_Of_Birth=");
@@ -56,14 +56,10 @@ public class LenderCacheModel implements CacheModel<Lender>, Serializable {
 		sb.append(reason_For_Lending);
 		sb.append(", about_Themselves=");
 		sb.append(about_Themselves);
-		sb.append(", automatic_Re_lend=");
-		sb.append(automatic_Re_lend);
-		sb.append(", monthly_Repayments=");
-		sb.append(monthly_Repayments);
+		sb.append(", personal_Link=");
+		sb.append(personal_Link);
 		sb.append(", is_Public_Profile=");
 		sb.append(is_Public_Profile);
-		sb.append(", bank_Details=");
-		sb.append(bank_Details);
 		sb.append(", recieve_Emails=");
 		sb.append(recieve_Emails);
 		sb.append(", recieve_GoodReturn_Info=");
@@ -72,20 +68,18 @@ public class LenderCacheModel implements CacheModel<Lender>, Serializable {
 		sb.append(is_Anonymous);
 		sb.append(", is_Validated=");
 		sb.append(is_Validated);
-		sb.append(", current_Balance=");
-		sb.append(current_Balance);
-		sb.append(", paypal_Email=");
-		sb.append(paypal_Email);
 		sb.append(", password=");
 		sb.append(password);
 		sb.append(", last_Login_Date=");
 		sb.append(last_Login_Date);
 		sb.append(", featured_Lender=");
 		sb.append(featured_Lender);
-		sb.append(", voucher_Id=");
-		sb.append(voucher_Id);
 		sb.append(", is_Loan_Donation=");
 		sb.append(is_Loan_Donation);
+		sb.append(", changed_By=");
+		sb.append(changed_By);
+		sb.append(", changed_Time=");
+		sb.append(changed_Time);
 		sb.append("}");
 
 		return sb.toString();
@@ -95,13 +89,8 @@ public class LenderCacheModel implements CacheModel<Lender>, Serializable {
 		LenderImpl lenderImpl = new LenderImpl();
 
 		lenderImpl.setLender_Id(lender_Id);
-
-		if (salutation == null) {
-			lenderImpl.setSalutation(StringPool.BLANK);
-		}
-		else {
-			lenderImpl.setSalutation(salutation);
-		}
+		lenderImpl.setAbacus_Person_Id(abacus_Person_Id);
+		lenderImpl.setCertificate_Id(certificate_Id);
 
 		if (employer_Name == null) {
 			lenderImpl.setEmployer_Name(StringPool.BLANK);
@@ -122,13 +111,6 @@ public class LenderCacheModel implements CacheModel<Lender>, Serializable {
 		}
 		else {
 			lenderImpl.setHeard_Of_Us(heard_Of_Us);
-		}
-
-		if (region == null) {
-			lenderImpl.setRegion(StringPool.BLANK);
-		}
-		else {
-			lenderImpl.setRegion(region);
 		}
 
 		if (display_Name == null) {
@@ -159,29 +141,18 @@ public class LenderCacheModel implements CacheModel<Lender>, Serializable {
 			lenderImpl.setAbout_Themselves(about_Themselves);
 		}
 
-		lenderImpl.setAutomatic_Re_lend(automatic_Re_lend);
-		lenderImpl.setMonthly_Repayments(monthly_Repayments);
-		lenderImpl.setIs_Public_Profile(is_Public_Profile);
-
-		if (bank_Details == null) {
-			lenderImpl.setBank_Details(StringPool.BLANK);
+		if (personal_Link == null) {
+			lenderImpl.setPersonal_Link(StringPool.BLANK);
 		}
 		else {
-			lenderImpl.setBank_Details(bank_Details);
+			lenderImpl.setPersonal_Link(personal_Link);
 		}
 
+		lenderImpl.setIs_Public_Profile(is_Public_Profile);
 		lenderImpl.setRecieve_Emails(recieve_Emails);
 		lenderImpl.setRecieve_GoodReturn_Info(recieve_GoodReturn_Info);
 		lenderImpl.setIs_Anonymous(is_Anonymous);
 		lenderImpl.setIs_Validated(is_Validated);
-		lenderImpl.setCurrent_Balance(current_Balance);
-
-		if (paypal_Email == null) {
-			lenderImpl.setPaypal_Email(StringPool.BLANK);
-		}
-		else {
-			lenderImpl.setPaypal_Email(paypal_Email);
-		}
 
 		if (password == null) {
 			lenderImpl.setPassword(StringPool.BLANK);
@@ -204,8 +175,16 @@ public class LenderCacheModel implements CacheModel<Lender>, Serializable {
 			lenderImpl.setFeatured_Lender(featured_Lender);
 		}
 
-		lenderImpl.setVoucher_Id(voucher_Id);
 		lenderImpl.setIs_Loan_Donation(is_Loan_Donation);
+
+		if (changed_By == null) {
+			lenderImpl.setChanged_By(StringPool.BLANK);
+		}
+		else {
+			lenderImpl.setChanged_By(changed_By);
+		}
+
+		lenderImpl.setChanged_Time(changed_Time);
 
 		lenderImpl.resetOriginalValues();
 
@@ -213,28 +192,25 @@ public class LenderCacheModel implements CacheModel<Lender>, Serializable {
 	}
 
 	public long lender_Id;
-	public String salutation;
+	public long abacus_Person_Id;
+	public long certificate_Id;
 	public String employer_Name;
 	public String comment;
 	public String heard_Of_Us;
-	public String region;
 	public String display_Name;
 	public long date_Of_Birth;
 	public String reason_For_Lending;
 	public String about_Themselves;
-	public boolean automatic_Re_lend;
-	public double monthly_Repayments;
+	public String personal_Link;
 	public boolean is_Public_Profile;
-	public String bank_Details;
 	public boolean recieve_Emails;
 	public boolean recieve_GoodReturn_Info;
 	public boolean is_Anonymous;
 	public boolean is_Validated;
-	public double current_Balance;
-	public String paypal_Email;
 	public String password;
 	public long last_Login_Date;
 	public String featured_Lender;
-	public long voucher_Id;
 	public boolean is_Loan_Donation;
+	public String changed_By;
+	public long changed_Time;
 }

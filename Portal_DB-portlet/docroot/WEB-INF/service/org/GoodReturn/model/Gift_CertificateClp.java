@@ -68,6 +68,8 @@ public class Gift_CertificateClp extends BaseModelImpl<Gift_Certificate>
 		attributes.put("certificate_Id", getCertificate_Id());
 		attributes.put("certificate_Amount", getCertificate_Amount());
 		attributes.put("certificate_Type", getCertificate_Type());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 
 		return attributes;
 	}
@@ -90,6 +92,18 @@ public class Gift_CertificateClp extends BaseModelImpl<Gift_Certificate>
 
 		if (certificate_Type != null) {
 			setCertificate_Type(certificate_Type);
+		}
+
+		String changed_By = (String)attributes.get("changed_By");
+
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		Long changed_Time = (Long)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
 		}
 	}
 
@@ -115,6 +129,22 @@ public class Gift_CertificateClp extends BaseModelImpl<Gift_Certificate>
 
 	public void setCertificate_Type(String certificate_Type) {
 		_certificate_Type = certificate_Type;
+	}
+
+	public String getChanged_By() {
+		return _changed_By;
+	}
+
+	public void setChanged_By(String changed_By) {
+		_changed_By = changed_By;
+	}
+
+	public long getChanged_Time() {
+		return _changed_Time;
+	}
+
+	public void setChanged_Time(long changed_Time) {
+		_changed_Time = changed_Time;
 	}
 
 	public BaseModel<?> getGift_CertificateRemoteModel() {
@@ -149,6 +179,8 @@ public class Gift_CertificateClp extends BaseModelImpl<Gift_Certificate>
 		clone.setCertificate_Id(getCertificate_Id());
 		clone.setCertificate_Amount(getCertificate_Amount());
 		clone.setCertificate_Type(getCertificate_Type());
+		clone.setChanged_By(getChanged_By());
+		clone.setChanged_Time(getChanged_Time());
 
 		return clone;
 	}
@@ -205,7 +237,7 @@ public class Gift_CertificateClp extends BaseModelImpl<Gift_Certificate>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{certificate_Id=");
 		sb.append(getCertificate_Id());
@@ -213,13 +245,17 @@ public class Gift_CertificateClp extends BaseModelImpl<Gift_Certificate>
 		sb.append(getCertificate_Amount());
 		sb.append(", certificate_Type=");
 		sb.append(getCertificate_Type());
+		sb.append(", changed_By=");
+		sb.append(getChanged_By());
+		sb.append(", changed_Time=");
+		sb.append(getChanged_Time());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Gift_Certificate");
@@ -237,6 +273,14 @@ public class Gift_CertificateClp extends BaseModelImpl<Gift_Certificate>
 			"<column><column-name>certificate_Type</column-name><column-value><![CDATA[");
 		sb.append(getCertificate_Type());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>changed_By</column-name><column-value><![CDATA[");
+		sb.append(getChanged_By());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
+		sb.append(getChanged_Time());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -246,5 +290,7 @@ public class Gift_CertificateClp extends BaseModelImpl<Gift_Certificate>
 	private long _certificate_Id;
 	private double _certificate_Amount;
 	private String _certificate_Type;
+	private String _changed_By;
+	private long _changed_Time;
 	private BaseModel<?> _gift_CertificateRemoteModel;
 }

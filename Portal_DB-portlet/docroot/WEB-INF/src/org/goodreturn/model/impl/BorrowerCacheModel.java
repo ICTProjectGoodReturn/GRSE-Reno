@@ -22,8 +22,6 @@ import org.goodreturn.model.Borrower;
 
 import java.io.Serializable;
 
-import java.util.Date;
-
 /**
  * The cache model class for representing Borrower in entity cache.
  *
@@ -34,24 +32,12 @@ import java.util.Date;
 public class BorrowerCacheModel implements CacheModel<Borrower>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(17);
 
-		sb.append("{abacus_Borrower_Id=");
-		sb.append(abacus_Borrower_Id);
-		sb.append(", write_Off_Date=");
-		sb.append(write_Off_Date);
-		sb.append(", phone=");
-		sb.append(phone);
-		sb.append(", wait_Time=");
-		sb.append(wait_Time);
-		sb.append(", country=");
-		sb.append(country);
-		sb.append(", amount_Needed=");
-		sb.append(amount_Needed);
-		sb.append(", amount_Needed_AUD=");
-		sb.append(amount_Needed_AUD);
-		sb.append(", type_Of_Person=");
-		sb.append(type_Of_Person);
+		sb.append("{borrower_Id=");
+		sb.append(borrower_Id);
+		sb.append(", abacus_Person_Id=");
+		sb.append(abacus_Person_Id);
 		sb.append(", village=");
 		sb.append(village);
 		sb.append(", district=");
@@ -60,8 +46,10 @@ public class BorrowerCacheModel implements CacheModel<Borrower>, Serializable {
 		sb.append(pdf_Link);
 		sb.append(", currency=");
 		sb.append(currency);
-		sb.append(", date_Applied=");
-		sb.append(date_Applied);
+		sb.append(", changed_By=");
+		sb.append(changed_By);
+		sb.append(", changed_Time=");
+		sb.append(changed_Time);
 		sb.append("}");
 
 		return sb.toString();
@@ -70,34 +58,8 @@ public class BorrowerCacheModel implements CacheModel<Borrower>, Serializable {
 	public Borrower toEntityModel() {
 		BorrowerImpl borrowerImpl = new BorrowerImpl();
 
-		borrowerImpl.setAbacus_Borrower_Id(abacus_Borrower_Id);
-
-		if (write_Off_Date == Long.MIN_VALUE) {
-			borrowerImpl.setWrite_Off_Date(null);
-		}
-		else {
-			borrowerImpl.setWrite_Off_Date(new Date(write_Off_Date));
-		}
-
-		borrowerImpl.setPhone(phone);
-		borrowerImpl.setWait_Time(wait_Time);
-
-		if (country == null) {
-			borrowerImpl.setCountry(StringPool.BLANK);
-		}
-		else {
-			borrowerImpl.setCountry(country);
-		}
-
-		borrowerImpl.setAmount_Needed(amount_Needed);
-		borrowerImpl.setAmount_Needed_AUD(amount_Needed_AUD);
-
-		if (type_Of_Person == null) {
-			borrowerImpl.setType_Of_Person(StringPool.BLANK);
-		}
-		else {
-			borrowerImpl.setType_Of_Person(type_Of_Person);
-		}
+		borrowerImpl.setBorrower_Id(borrower_Id);
+		borrowerImpl.setAbacus_Person_Id(abacus_Person_Id);
 
 		if (village == null) {
 			borrowerImpl.setVillage(StringPool.BLANK);
@@ -122,29 +84,26 @@ public class BorrowerCacheModel implements CacheModel<Borrower>, Serializable {
 
 		borrowerImpl.setCurrency(currency);
 
-		if (date_Applied == Long.MIN_VALUE) {
-			borrowerImpl.setDate_Applied(null);
+		if (changed_By == null) {
+			borrowerImpl.setChanged_By(StringPool.BLANK);
 		}
 		else {
-			borrowerImpl.setDate_Applied(new Date(date_Applied));
+			borrowerImpl.setChanged_By(changed_By);
 		}
+
+		borrowerImpl.setChanged_Time(changed_Time);
 
 		borrowerImpl.resetOriginalValues();
 
 		return borrowerImpl;
 	}
 
-	public long abacus_Borrower_Id;
-	public long write_Off_Date;
-	public long phone;
-	public long wait_Time;
-	public String country;
-	public double amount_Needed;
-	public double amount_Needed_AUD;
-	public String type_Of_Person;
+	public long borrower_Id;
+	public long abacus_Person_Id;
 	public String village;
 	public String district;
 	public String pdf_Link;
 	public double currency;
-	public long date_Applied;
+	public String changed_By;
+	public long changed_Time;
 }

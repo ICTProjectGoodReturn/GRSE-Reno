@@ -171,14 +171,14 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 	/**
 	 * Creates a new borrower with the primary key. Does not add the borrower to the database.
 	 *
-	 * @param abacus_Borrower_Id the primary key for the new borrower
+	 * @param borrower_Id the primary key for the new borrower
 	 * @return the new borrower
 	 */
-	public Borrower create(long abacus_Borrower_Id) {
+	public Borrower create(long borrower_Id) {
 		Borrower borrower = new BorrowerImpl();
 
 		borrower.setNew(true);
-		borrower.setPrimaryKey(abacus_Borrower_Id);
+		borrower.setPrimaryKey(borrower_Id);
 
 		return borrower;
 	}
@@ -186,14 +186,14 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 	/**
 	 * Removes the borrower with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param abacus_Borrower_Id the primary key of the borrower
+	 * @param borrower_Id the primary key of the borrower
 	 * @return the borrower that was removed
 	 * @throws org.goodreturn.NoSuchBorrowerException if a borrower with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Borrower remove(long abacus_Borrower_Id)
+	public Borrower remove(long borrower_Id)
 		throws NoSuchBorrowerException, SystemException {
-		return remove(Long.valueOf(abacus_Borrower_Id));
+		return remove(Long.valueOf(borrower_Id));
 	}
 
 	/**
@@ -305,19 +305,14 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 		borrowerImpl.setNew(borrower.isNew());
 		borrowerImpl.setPrimaryKey(borrower.getPrimaryKey());
 
-		borrowerImpl.setAbacus_Borrower_Id(borrower.getAbacus_Borrower_Id());
-		borrowerImpl.setWrite_Off_Date(borrower.getWrite_Off_Date());
-		borrowerImpl.setPhone(borrower.getPhone());
-		borrowerImpl.setWait_Time(borrower.getWait_Time());
-		borrowerImpl.setCountry(borrower.getCountry());
-		borrowerImpl.setAmount_Needed(borrower.getAmount_Needed());
-		borrowerImpl.setAmount_Needed_AUD(borrower.getAmount_Needed_AUD());
-		borrowerImpl.setType_Of_Person(borrower.getType_Of_Person());
+		borrowerImpl.setBorrower_Id(borrower.getBorrower_Id());
+		borrowerImpl.setAbacus_Person_Id(borrower.getAbacus_Person_Id());
 		borrowerImpl.setVillage(borrower.getVillage());
 		borrowerImpl.setDistrict(borrower.getDistrict());
 		borrowerImpl.setPdf_Link(borrower.getPdf_Link());
 		borrowerImpl.setCurrency(borrower.getCurrency());
-		borrowerImpl.setDate_Applied(borrower.getDate_Applied());
+		borrowerImpl.setChanged_By(borrower.getChanged_By());
+		borrowerImpl.setChanged_Time(borrower.getChanged_Time());
 
 		return borrowerImpl;
 	}
@@ -339,23 +334,22 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 	/**
 	 * Returns the borrower with the primary key or throws a {@link org.goodreturn.NoSuchBorrowerException} if it could not be found.
 	 *
-	 * @param abacus_Borrower_Id the primary key of the borrower
+	 * @param borrower_Id the primary key of the borrower
 	 * @return the borrower
 	 * @throws org.goodreturn.NoSuchBorrowerException if a borrower with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Borrower findByPrimaryKey(long abacus_Borrower_Id)
+	public Borrower findByPrimaryKey(long borrower_Id)
 		throws NoSuchBorrowerException, SystemException {
-		Borrower borrower = fetchByPrimaryKey(abacus_Borrower_Id);
+		Borrower borrower = fetchByPrimaryKey(borrower_Id);
 
 		if (borrower == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					abacus_Borrower_Id);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + borrower_Id);
 			}
 
 			throw new NoSuchBorrowerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				abacus_Borrower_Id);
+				borrower_Id);
 		}
 
 		return borrower;
@@ -377,14 +371,14 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 	/**
 	 * Returns the borrower with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param abacus_Borrower_Id the primary key of the borrower
+	 * @param borrower_Id the primary key of the borrower
 	 * @return the borrower, or <code>null</code> if a borrower with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Borrower fetchByPrimaryKey(long abacus_Borrower_Id)
+	public Borrower fetchByPrimaryKey(long borrower_Id)
 		throws SystemException {
 		Borrower borrower = (Borrower)EntityCacheUtil.getResult(BorrowerModelImpl.ENTITY_CACHE_ENABLED,
-				BorrowerImpl.class, abacus_Borrower_Id);
+				BorrowerImpl.class, borrower_Id);
 
 		if (borrower == _nullBorrower) {
 			return null;
@@ -399,7 +393,7 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 				session = openSession();
 
 				borrower = (Borrower)session.get(BorrowerImpl.class,
-						Long.valueOf(abacus_Borrower_Id));
+						Long.valueOf(borrower_Id));
 			}
 			catch (Exception e) {
 				hasException = true;
@@ -412,7 +406,7 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 				}
 				else if (!hasException) {
 					EntityCacheUtil.putResult(BorrowerModelImpl.ENTITY_CACHE_ENABLED,
-						BorrowerImpl.class, abacus_Borrower_Id, _nullBorrower);
+						BorrowerImpl.class, borrower_Id, _nullBorrower);
 				}
 
 				closeSession(session);
@@ -586,19 +580,19 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 	}
 
 	/**
-	 * Returns all the persons associated with the borrower.
+	 * Returns all the borrower loans associated with the borrower.
 	 *
 	 * @param pk the primary key of the borrower
-	 * @return the persons associated with the borrower
+	 * @return the borrower loans associated with the borrower
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<org.goodreturn.model.Person> getPersons(long pk)
+	public List<org.goodreturn.model.BorrowerLoan> getBorrowerLoans(long pk)
 		throws SystemException {
-		return getPersons(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+		return getBorrowerLoans(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
 
 	/**
-	 * Returns a range of all the persons associated with the borrower.
+	 * Returns a range of all the borrower loans associated with the borrower.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -607,30 +601,30 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 	 * @param pk the primary key of the borrower
 	 * @param start the lower bound of the range of borrowers
 	 * @param end the upper bound of the range of borrowers (not inclusive)
-	 * @return the range of persons associated with the borrower
+	 * @return the range of borrower loans associated with the borrower
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<org.goodreturn.model.Person> getPersons(long pk, int start,
-		int end) throws SystemException {
-		return getPersons(pk, start, end, null);
+	public List<org.goodreturn.model.BorrowerLoan> getBorrowerLoans(long pk,
+		int start, int end) throws SystemException {
+		return getBorrowerLoans(pk, start, end, null);
 	}
 
-	public static final FinderPath FINDER_PATH_GET_PERSONS = new FinderPath(org.goodreturn.model.impl.PersonModelImpl.ENTITY_CACHE_ENABLED,
-			org.goodreturn.model.impl.PersonModelImpl.FINDER_CACHE_ENABLED,
-			org.goodreturn.model.impl.PersonImpl.class,
-			org.goodreturn.service.persistence.PersonPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"getPersons",
+	public static final FinderPath FINDER_PATH_GET_BORROWERLOANS = new FinderPath(org.goodreturn.model.impl.BorrowerLoanModelImpl.ENTITY_CACHE_ENABLED,
+			org.goodreturn.model.impl.BorrowerLoanModelImpl.FINDER_CACHE_ENABLED,
+			org.goodreturn.model.impl.BorrowerLoanImpl.class,
+			org.goodreturn.service.persistence.BorrowerLoanPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"getBorrowerLoans",
 			new String[] {
 				Long.class.getName(), "java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 
 	static {
-		FINDER_PATH_GET_PERSONS.setCacheKeyGeneratorCacheName(null);
+		FINDER_PATH_GET_BORROWERLOANS.setCacheKeyGeneratorCacheName(null);
 	}
 
 	/**
-	 * Returns an ordered range of all the persons associated with the borrower.
+	 * Returns an ordered range of all the borrower loans associated with the borrower.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -640,14 +634,15 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 	 * @param start the lower bound of the range of borrowers
 	 * @param end the upper bound of the range of borrowers (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of persons associated with the borrower
+	 * @return the ordered range of borrower loans associated with the borrower
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<org.goodreturn.model.Person> getPersons(long pk, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+	public List<org.goodreturn.model.BorrowerLoan> getBorrowerLoans(long pk,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
 		Object[] finderArgs = new Object[] { pk, start, end, orderByComparator };
 
-		List<org.goodreturn.model.Person> list = (List<org.goodreturn.model.Person>)FinderCacheUtil.getResult(FINDER_PATH_GET_PERSONS,
+		List<org.goodreturn.model.BorrowerLoan> list = (List<org.goodreturn.model.BorrowerLoan>)FinderCacheUtil.getResult(FINDER_PATH_GET_BORROWERLOANS,
 				finderArgs, this);
 
 		if (list == null) {
@@ -659,23 +654,23 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 				String sql = null;
 
 				if (orderByComparator != null) {
-					sql = _SQL_GETPERSONS.concat(ORDER_BY_CLAUSE)
-										 .concat(orderByComparator.getOrderBy());
+					sql = _SQL_GETBORROWERLOANS.concat(ORDER_BY_CLAUSE)
+											   .concat(orderByComparator.getOrderBy());
 				}
 				else {
-					sql = _SQL_GETPERSONS.concat(org.goodreturn.model.impl.PersonModelImpl.ORDER_BY_SQL);
+					sql = _SQL_GETBORROWERLOANS.concat(org.goodreturn.model.impl.BorrowerLoanModelImpl.ORDER_BY_SQL);
 				}
 
 				SQLQuery q = session.createSQLQuery(sql);
 
-				q.addEntity("GoodReturn_Person",
-					org.goodreturn.model.impl.PersonImpl.class);
+				q.addEntity("GoodReturn_BorrowerLoan",
+					org.goodreturn.model.impl.BorrowerLoanImpl.class);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				qPos.add(pk);
 
-				list = (List<org.goodreturn.model.Person>)QueryUtil.list(q,
+				list = (List<org.goodreturn.model.BorrowerLoan>)QueryUtil.list(q,
 						getDialect(), start, end);
 			}
 			catch (Exception e) {
@@ -683,13 +678,13 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_GET_PERSONS,
+					FinderCacheUtil.removeResult(FINDER_PATH_GET_BORROWERLOANS,
 						finderArgs);
 				}
 				else {
-					personPersistence.cacheResult(list);
+					borrowerLoanPersistence.cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_GET_PERSONS,
+					FinderCacheUtil.putResult(FINDER_PATH_GET_BORROWERLOANS,
 						finderArgs, list);
 				}
 
@@ -700,27 +695,27 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 		return list;
 	}
 
-	public static final FinderPath FINDER_PATH_GET_PERSONS_SIZE = new FinderPath(org.goodreturn.model.impl.PersonModelImpl.ENTITY_CACHE_ENABLED,
-			org.goodreturn.model.impl.PersonModelImpl.FINDER_CACHE_ENABLED,
-			org.goodreturn.model.impl.PersonImpl.class,
-			org.goodreturn.service.persistence.PersonPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"getPersonsSize", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_GET_BORROWERLOANS_SIZE = new FinderPath(org.goodreturn.model.impl.BorrowerLoanModelImpl.ENTITY_CACHE_ENABLED,
+			org.goodreturn.model.impl.BorrowerLoanModelImpl.FINDER_CACHE_ENABLED,
+			org.goodreturn.model.impl.BorrowerLoanImpl.class,
+			org.goodreturn.service.persistence.BorrowerLoanPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"getBorrowerLoansSize", new String[] { Long.class.getName() });
 
 	static {
-		FINDER_PATH_GET_PERSONS_SIZE.setCacheKeyGeneratorCacheName(null);
+		FINDER_PATH_GET_BORROWERLOANS_SIZE.setCacheKeyGeneratorCacheName(null);
 	}
 
 	/**
-	 * Returns the number of persons associated with the borrower.
+	 * Returns the number of borrower loans associated with the borrower.
 	 *
 	 * @param pk the primary key of the borrower
-	 * @return the number of persons associated with the borrower
+	 * @return the number of borrower loans associated with the borrower
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int getPersonsSize(long pk) throws SystemException {
+	public int getBorrowerLoansSize(long pk) throws SystemException {
 		Object[] finderArgs = new Object[] { pk };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_GET_PERSONS_SIZE,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_GET_BORROWERLOANS_SIZE,
 				finderArgs, this);
 
 		if (count == null) {
@@ -729,7 +724,7 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 			try {
 				session = openSession();
 
-				SQLQuery q = session.createSQLQuery(_SQL_GETPERSONSSIZE);
+				SQLQuery q = session.createSQLQuery(_SQL_GETBORROWERLOANSSIZE);
 
 				q.addScalar(COUNT_COLUMN_NAME,
 					com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -748,7 +743,7 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_GET_PERSONS_SIZE,
+				FinderCacheUtil.putResult(FINDER_PATH_GET_BORROWERLOANS_SIZE,
 					finderArgs, count);
 
 				closeSession(session);
@@ -758,31 +753,32 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 		return count.intValue();
 	}
 
-	public static final FinderPath FINDER_PATH_CONTAINS_PERSON = new FinderPath(org.goodreturn.model.impl.PersonModelImpl.ENTITY_CACHE_ENABLED,
-			org.goodreturn.model.impl.PersonModelImpl.FINDER_CACHE_ENABLED,
-			org.goodreturn.model.impl.PersonImpl.class,
-			org.goodreturn.service.persistence.PersonPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"containsPerson",
+	public static final FinderPath FINDER_PATH_CONTAINS_BORROWERLOAN = new FinderPath(org.goodreturn.model.impl.BorrowerLoanModelImpl.ENTITY_CACHE_ENABLED,
+			org.goodreturn.model.impl.BorrowerLoanModelImpl.FINDER_CACHE_ENABLED,
+			org.goodreturn.model.impl.BorrowerLoanImpl.class,
+			org.goodreturn.service.persistence.BorrowerLoanPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"containsBorrowerLoan",
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Returns <code>true</code> if the person is associated with the borrower.
+	 * Returns <code>true</code> if the borrower loan is associated with the borrower.
 	 *
 	 * @param pk the primary key of the borrower
-	 * @param personPK the primary key of the person
-	 * @return <code>true</code> if the person is associated with the borrower; <code>false</code> otherwise
+	 * @param borrowerLoanPK the primary key of the borrower loan
+	 * @return <code>true</code> if the borrower loan is associated with the borrower; <code>false</code> otherwise
 	 * @throws SystemException if a system exception occurred
 	 */
-	public boolean containsPerson(long pk, long personPK)
+	public boolean containsBorrowerLoan(long pk, long borrowerLoanPK)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { pk, personPK };
+		Object[] finderArgs = new Object[] { pk, borrowerLoanPK };
 
-		Boolean value = (Boolean)FinderCacheUtil.getResult(FINDER_PATH_CONTAINS_PERSON,
+		Boolean value = (Boolean)FinderCacheUtil.getResult(FINDER_PATH_CONTAINS_BORROWERLOAN,
 				finderArgs, this);
 
 		if (value == null) {
 			try {
-				value = Boolean.valueOf(containsPerson.contains(pk, personPK));
+				value = Boolean.valueOf(containsBorrowerLoan.contains(pk,
+							borrowerLoanPK));
 			}
 			catch (Exception e) {
 				throw processException(e);
@@ -792,7 +788,7 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 					value = Boolean.FALSE;
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_CONTAINS_PERSON,
+				FinderCacheUtil.putResult(FINDER_PATH_CONTAINS_BORROWERLOAN,
 					finderArgs, value);
 			}
 		}
@@ -801,14 +797,14 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 	}
 
 	/**
-	 * Returns <code>true</code> if the borrower has any persons associated with it.
+	 * Returns <code>true</code> if the borrower has any borrower loans associated with it.
 	 *
-	 * @param pk the primary key of the borrower to check for associations with persons
-	 * @return <code>true</code> if the borrower has any persons associated with it; <code>false</code> otherwise
+	 * @param pk the primary key of the borrower to check for associations with borrower loans
+	 * @return <code>true</code> if the borrower has any borrower loans associated with it; <code>false</code> otherwise
 	 * @throws SystemException if a system exception occurred
 	 */
-	public boolean containsPersons(long pk) throws SystemException {
-		if (getPersonsSize(pk) > 0) {
+	public boolean containsBorrowerLoans(long pk) throws SystemException {
+		if (getBorrowerLoansSize(pk) > 0) {
 			return true;
 		}
 		else {
@@ -840,7 +836,7 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 			}
 		}
 
-		containsPerson = new ContainsPerson();
+		containsBorrowerLoan = new ContainsBorrowerLoan();
 	}
 
 	public void destroy() {
@@ -865,26 +861,24 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 	protected TeamPersistence teamPersistence;
 	@BeanReference(type = TeamLenderPersistence.class)
 	protected TeamLenderPersistence teamLenderPersistence;
-	@BeanReference(type = TeamLenderLoanPersistence.class)
-	protected TeamLenderLoanPersistence teamLenderLoanPersistence;
 	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	protected ContainsPerson containsPerson;
+	protected ContainsBorrowerLoan containsBorrowerLoan;
 
-	protected class ContainsPerson {
-		protected ContainsPerson() {
+	protected class ContainsBorrowerLoan {
+		protected ContainsBorrowerLoan() {
 			_mappingSqlQuery = MappingSqlQueryFactoryUtil.getMappingSqlQuery(getDataSource(),
-					_SQL_CONTAINSPERSON,
+					_SQL_CONTAINSBORROWERLOAN,
 					new int[] { java.sql.Types.BIGINT, java.sql.Types.BIGINT },
 					RowMapper.COUNT);
 		}
 
-		protected boolean contains(long abacus_Borrower_Id,
-			long abacus_Person_Id) {
+		protected boolean contains(long borrower_Id,
+			long abacus_Borrower_Loan_Id) {
 			List<Integer> results = _mappingSqlQuery.execute(new Object[] {
-						new Long(abacus_Borrower_Id), new Long(abacus_Person_Id)
+						new Long(borrower_Id), new Long(abacus_Borrower_Loan_Id)
 					});
 
 			if (results.size() > 0) {
@@ -903,9 +897,9 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 
 	private static final String _SQL_SELECT_BORROWER = "SELECT borrower FROM Borrower borrower";
 	private static final String _SQL_COUNT_BORROWER = "SELECT COUNT(borrower) FROM Borrower borrower";
-	private static final String _SQL_GETPERSONS = "SELECT {GoodReturn_Person.*} FROM GoodReturn_Person INNER JOIN GoodReturn_Borrower ON (GoodReturn_Borrower.abacus_Borrower_Id = GoodReturn_Person.abacus_Borrower_Id) WHERE (GoodReturn_Borrower.abacus_Borrower_Id = ?)";
-	private static final String _SQL_GETPERSONSSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM GoodReturn_Person WHERE abacus_Borrower_Id = ?";
-	private static final String _SQL_CONTAINSPERSON = "SELECT COUNT(*) AS COUNT_VALUE FROM GoodReturn_Person WHERE abacus_Borrower_Id = ? AND abacus_Person_Id = ?";
+	private static final String _SQL_GETBORROWERLOANS = "SELECT {GoodReturn_BorrowerLoan.*} FROM GoodReturn_BorrowerLoan INNER JOIN GoodReturn_Borrower ON (GoodReturn_Borrower.borrower_Id = GoodReturn_BorrowerLoan.borrower_Id) WHERE (GoodReturn_Borrower.borrower_Id = ?)";
+	private static final String _SQL_GETBORROWERLOANSSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM GoodReturn_BorrowerLoan WHERE borrower_Id = ?";
+	private static final String _SQL_CONTAINSBORROWERLOAN = "SELECT COUNT(*) AS COUNT_VALUE FROM GoodReturn_BorrowerLoan WHERE borrower_Id = ? AND abacus_Borrower_Loan_Id = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "borrower.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Borrower exists with the primary key ";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(

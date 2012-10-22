@@ -44,16 +44,44 @@ public class TeamLenderWrapper implements TeamLender, ModelWrapper<TeamLender> {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("teamlender_Id", getTeamlender_Id());
+		attributes.put("team_lender_Id", getTeam_lender_Id());
+		attributes.put("lender_Id", getLender_Id());
+		attributes.put("team_Id", getTeam_Id());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 
 		return attributes;
 	}
 
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long teamlender_Id = (Long)attributes.get("teamlender_Id");
+		Long team_lender_Id = (Long)attributes.get("team_lender_Id");
 
-		if (teamlender_Id != null) {
-			setTeamlender_Id(teamlender_Id);
+		if (team_lender_Id != null) {
+			setTeam_lender_Id(team_lender_Id);
+		}
+
+		Long lender_Id = (Long)attributes.get("lender_Id");
+
+		if (lender_Id != null) {
+			setLender_Id(lender_Id);
+		}
+
+		Long team_Id = (Long)attributes.get("team_Id");
+
+		if (team_Id != null) {
+			setTeam_Id(team_Id);
+		}
+
+		String changed_By = (String)attributes.get("changed_By");
+
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		Long changed_Time = (Long)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
 		}
 	}
 
@@ -76,21 +104,93 @@ public class TeamLenderWrapper implements TeamLender, ModelWrapper<TeamLender> {
 	}
 
 	/**
-	* Returns the teamlender_ ID of this team lender.
+	* Returns the team_lender_ ID of this team lender.
 	*
-	* @return the teamlender_ ID of this team lender
+	* @return the team_lender_ ID of this team lender
 	*/
-	public long getTeamlender_Id() {
-		return _teamLender.getTeamlender_Id();
+	public long getTeam_lender_Id() {
+		return _teamLender.getTeam_lender_Id();
 	}
 
 	/**
-	* Sets the teamlender_ ID of this team lender.
+	* Sets the team_lender_ ID of this team lender.
 	*
-	* @param teamlender_Id the teamlender_ ID of this team lender
+	* @param team_lender_Id the team_lender_ ID of this team lender
 	*/
-	public void setTeamlender_Id(long teamlender_Id) {
-		_teamLender.setTeamlender_Id(teamlender_Id);
+	public void setTeam_lender_Id(long team_lender_Id) {
+		_teamLender.setTeam_lender_Id(team_lender_Id);
+	}
+
+	/**
+	* Returns the lender_ ID of this team lender.
+	*
+	* @return the lender_ ID of this team lender
+	*/
+	public long getLender_Id() {
+		return _teamLender.getLender_Id();
+	}
+
+	/**
+	* Sets the lender_ ID of this team lender.
+	*
+	* @param lender_Id the lender_ ID of this team lender
+	*/
+	public void setLender_Id(long lender_Id) {
+		_teamLender.setLender_Id(lender_Id);
+	}
+
+	/**
+	* Returns the team_ ID of this team lender.
+	*
+	* @return the team_ ID of this team lender
+	*/
+	public long getTeam_Id() {
+		return _teamLender.getTeam_Id();
+	}
+
+	/**
+	* Sets the team_ ID of this team lender.
+	*
+	* @param team_Id the team_ ID of this team lender
+	*/
+	public void setTeam_Id(long team_Id) {
+		_teamLender.setTeam_Id(team_Id);
+	}
+
+	/**
+	* Returns the changed_ by of this team lender.
+	*
+	* @return the changed_ by of this team lender
+	*/
+	public java.lang.String getChanged_By() {
+		return _teamLender.getChanged_By();
+	}
+
+	/**
+	* Sets the changed_ by of this team lender.
+	*
+	* @param changed_By the changed_ by of this team lender
+	*/
+	public void setChanged_By(java.lang.String changed_By) {
+		_teamLender.setChanged_By(changed_By);
+	}
+
+	/**
+	* Returns the changed_ time of this team lender.
+	*
+	* @return the changed_ time of this team lender
+	*/
+	public long getChanged_Time() {
+		return _teamLender.getChanged_Time();
+	}
+
+	/**
+	* Sets the changed_ time of this team lender.
+	*
+	* @param changed_Time the changed_ time of this team lender
+	*/
+	public void setChanged_Time(long changed_Time) {
+		_teamLender.setChanged_Time(changed_Time);
 	}
 
 	public boolean isNew() {

@@ -46,30 +46,27 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("lender_Id", getLender_Id());
-		attributes.put("salutation", getSalutation());
+		attributes.put("abacus_Person_Id", getAbacus_Person_Id());
+		attributes.put("certificate_Id", getCertificate_Id());
 		attributes.put("employer_Name", getEmployer_Name());
 		attributes.put("comment", getComment());
 		attributes.put("heard_Of_Us", getHeard_Of_Us());
-		attributes.put("region", getRegion());
 		attributes.put("display_Name", getDisplay_Name());
 		attributes.put("date_Of_Birth", getDate_Of_Birth());
 		attributes.put("reason_For_Lending", getReason_For_Lending());
 		attributes.put("about_Themselves", getAbout_Themselves());
-		attributes.put("automatic_Re_lend", getAutomatic_Re_lend());
-		attributes.put("monthly_Repayments", getMonthly_Repayments());
+		attributes.put("personal_Link", getPersonal_Link());
 		attributes.put("is_Public_Profile", getIs_Public_Profile());
-		attributes.put("bank_Details", getBank_Details());
 		attributes.put("recieve_Emails", getRecieve_Emails());
 		attributes.put("recieve_GoodReturn_Info", getRecieve_GoodReturn_Info());
 		attributes.put("is_Anonymous", getIs_Anonymous());
 		attributes.put("is_Validated", getIs_Validated());
-		attributes.put("current_Balance", getCurrent_Balance());
-		attributes.put("paypal_Email", getPaypal_Email());
 		attributes.put("password", getPassword());
 		attributes.put("last_Login_Date", getLast_Login_Date());
 		attributes.put("featured_Lender", getFeatured_Lender());
-		attributes.put("voucher_Id", getVoucher_Id());
 		attributes.put("is_Loan_Donation", getIs_Loan_Donation());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 
 		return attributes;
 	}
@@ -81,10 +78,16 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 			setLender_Id(lender_Id);
 		}
 
-		String salutation = (String)attributes.get("salutation");
+		Long abacus_Person_Id = (Long)attributes.get("abacus_Person_Id");
 
-		if (salutation != null) {
-			setSalutation(salutation);
+		if (abacus_Person_Id != null) {
+			setAbacus_Person_Id(abacus_Person_Id);
+		}
+
+		Long certificate_Id = (Long)attributes.get("certificate_Id");
+
+		if (certificate_Id != null) {
+			setCertificate_Id(certificate_Id);
 		}
 
 		String employer_Name = (String)attributes.get("employer_Name");
@@ -103,12 +106,6 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 
 		if (heard_Of_Us != null) {
 			setHeard_Of_Us(heard_Of_Us);
-		}
-
-		String region = (String)attributes.get("region");
-
-		if (region != null) {
-			setRegion(region);
 		}
 
 		String display_Name = (String)attributes.get("display_Name");
@@ -135,28 +132,16 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 			setAbout_Themselves(about_Themselves);
 		}
 
-		Boolean automatic_Re_lend = (Boolean)attributes.get("automatic_Re_lend");
+		String personal_Link = (String)attributes.get("personal_Link");
 
-		if (automatic_Re_lend != null) {
-			setAutomatic_Re_lend(automatic_Re_lend);
-		}
-
-		Double monthly_Repayments = (Double)attributes.get("monthly_Repayments");
-
-		if (monthly_Repayments != null) {
-			setMonthly_Repayments(monthly_Repayments);
+		if (personal_Link != null) {
+			setPersonal_Link(personal_Link);
 		}
 
 		Boolean is_Public_Profile = (Boolean)attributes.get("is_Public_Profile");
 
 		if (is_Public_Profile != null) {
 			setIs_Public_Profile(is_Public_Profile);
-		}
-
-		String bank_Details = (String)attributes.get("bank_Details");
-
-		if (bank_Details != null) {
-			setBank_Details(bank_Details);
 		}
 
 		Boolean recieve_Emails = (Boolean)attributes.get("recieve_Emails");
@@ -184,18 +169,6 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 			setIs_Validated(is_Validated);
 		}
 
-		Double current_Balance = (Double)attributes.get("current_Balance");
-
-		if (current_Balance != null) {
-			setCurrent_Balance(current_Balance);
-		}
-
-		String paypal_Email = (String)attributes.get("paypal_Email");
-
-		if (paypal_Email != null) {
-			setPaypal_Email(paypal_Email);
-		}
-
 		String password = (String)attributes.get("password");
 
 		if (password != null) {
@@ -214,16 +187,22 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 			setFeatured_Lender(featured_Lender);
 		}
 
-		Long voucher_Id = (Long)attributes.get("voucher_Id");
-
-		if (voucher_Id != null) {
-			setVoucher_Id(voucher_Id);
-		}
-
 		Boolean is_Loan_Donation = (Boolean)attributes.get("is_Loan_Donation");
 
 		if (is_Loan_Donation != null) {
 			setIs_Loan_Donation(is_Loan_Donation);
+		}
+
+		String changed_By = (String)attributes.get("changed_By");
+
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		Long changed_Time = (Long)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
 		}
 	}
 
@@ -264,21 +243,39 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 	}
 
 	/**
-	* Returns the salutation of this lender.
+	* Returns the abacus_ person_ ID of this lender.
 	*
-	* @return the salutation of this lender
+	* @return the abacus_ person_ ID of this lender
 	*/
-	public java.lang.String getSalutation() {
-		return _lender.getSalutation();
+	public long getAbacus_Person_Id() {
+		return _lender.getAbacus_Person_Id();
 	}
 
 	/**
-	* Sets the salutation of this lender.
+	* Sets the abacus_ person_ ID of this lender.
 	*
-	* @param salutation the salutation of this lender
+	* @param abacus_Person_Id the abacus_ person_ ID of this lender
 	*/
-	public void setSalutation(java.lang.String salutation) {
-		_lender.setSalutation(salutation);
+	public void setAbacus_Person_Id(long abacus_Person_Id) {
+		_lender.setAbacus_Person_Id(abacus_Person_Id);
+	}
+
+	/**
+	* Returns the certificate_ ID of this lender.
+	*
+	* @return the certificate_ ID of this lender
+	*/
+	public long getCertificate_Id() {
+		return _lender.getCertificate_Id();
+	}
+
+	/**
+	* Sets the certificate_ ID of this lender.
+	*
+	* @param certificate_Id the certificate_ ID of this lender
+	*/
+	public void setCertificate_Id(long certificate_Id) {
+		_lender.setCertificate_Id(certificate_Id);
 	}
 
 	/**
@@ -333,24 +330,6 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 	*/
 	public void setHeard_Of_Us(java.lang.String heard_Of_Us) {
 		_lender.setHeard_Of_Us(heard_Of_Us);
-	}
-
-	/**
-	* Returns the region of this lender.
-	*
-	* @return the region of this lender
-	*/
-	public java.lang.String getRegion() {
-		return _lender.getRegion();
-	}
-
-	/**
-	* Sets the region of this lender.
-	*
-	* @param region the region of this lender
-	*/
-	public void setRegion(java.lang.String region) {
-		_lender.setRegion(region);
 	}
 
 	/**
@@ -426,48 +405,21 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 	}
 
 	/**
-	* Returns the automatic_ re_lend of this lender.
+	* Returns the personal_ link of this lender.
 	*
-	* @return the automatic_ re_lend of this lender
+	* @return the personal_ link of this lender
 	*/
-	public boolean getAutomatic_Re_lend() {
-		return _lender.getAutomatic_Re_lend();
+	public java.lang.String getPersonal_Link() {
+		return _lender.getPersonal_Link();
 	}
 
 	/**
-	* Returns <code>true</code> if this lender is automatic_ re_lend.
+	* Sets the personal_ link of this lender.
 	*
-	* @return <code>true</code> if this lender is automatic_ re_lend; <code>false</code> otherwise
+	* @param personal_Link the personal_ link of this lender
 	*/
-	public boolean isAutomatic_Re_lend() {
-		return _lender.isAutomatic_Re_lend();
-	}
-
-	/**
-	* Sets whether this lender is automatic_ re_lend.
-	*
-	* @param automatic_Re_lend the automatic_ re_lend of this lender
-	*/
-	public void setAutomatic_Re_lend(boolean automatic_Re_lend) {
-		_lender.setAutomatic_Re_lend(automatic_Re_lend);
-	}
-
-	/**
-	* Returns the monthly_ repayments of this lender.
-	*
-	* @return the monthly_ repayments of this lender
-	*/
-	public double getMonthly_Repayments() {
-		return _lender.getMonthly_Repayments();
-	}
-
-	/**
-	* Sets the monthly_ repayments of this lender.
-	*
-	* @param monthly_Repayments the monthly_ repayments of this lender
-	*/
-	public void setMonthly_Repayments(double monthly_Repayments) {
-		_lender.setMonthly_Repayments(monthly_Repayments);
+	public void setPersonal_Link(java.lang.String personal_Link) {
+		_lender.setPersonal_Link(personal_Link);
 	}
 
 	/**
@@ -495,24 +447,6 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 	*/
 	public void setIs_Public_Profile(boolean is_Public_Profile) {
 		_lender.setIs_Public_Profile(is_Public_Profile);
-	}
-
-	/**
-	* Returns the bank_ details of this lender.
-	*
-	* @return the bank_ details of this lender
-	*/
-	public java.lang.String getBank_Details() {
-		return _lender.getBank_Details();
-	}
-
-	/**
-	* Sets the bank_ details of this lender.
-	*
-	* @param bank_Details the bank_ details of this lender
-	*/
-	public void setBank_Details(java.lang.String bank_Details) {
-		_lender.setBank_Details(bank_Details);
 	}
 
 	/**
@@ -624,42 +558,6 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 	}
 
 	/**
-	* Returns the current_ balance of this lender.
-	*
-	* @return the current_ balance of this lender
-	*/
-	public double getCurrent_Balance() {
-		return _lender.getCurrent_Balance();
-	}
-
-	/**
-	* Sets the current_ balance of this lender.
-	*
-	* @param current_Balance the current_ balance of this lender
-	*/
-	public void setCurrent_Balance(double current_Balance) {
-		_lender.setCurrent_Balance(current_Balance);
-	}
-
-	/**
-	* Returns the paypal_ email of this lender.
-	*
-	* @return the paypal_ email of this lender
-	*/
-	public java.lang.String getPaypal_Email() {
-		return _lender.getPaypal_Email();
-	}
-
-	/**
-	* Sets the paypal_ email of this lender.
-	*
-	* @param paypal_Email the paypal_ email of this lender
-	*/
-	public void setPaypal_Email(java.lang.String paypal_Email) {
-		_lender.setPaypal_Email(paypal_Email);
-	}
-
-	/**
 	* Returns the password of this lender.
 	*
 	* @return the password of this lender
@@ -714,24 +612,6 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 	}
 
 	/**
-	* Returns the voucher_ ID of this lender.
-	*
-	* @return the voucher_ ID of this lender
-	*/
-	public long getVoucher_Id() {
-		return _lender.getVoucher_Id();
-	}
-
-	/**
-	* Sets the voucher_ ID of this lender.
-	*
-	* @param voucher_Id the voucher_ ID of this lender
-	*/
-	public void setVoucher_Id(long voucher_Id) {
-		_lender.setVoucher_Id(voucher_Id);
-	}
-
-	/**
 	* Returns the is_ loan_ donation of this lender.
 	*
 	* @return the is_ loan_ donation of this lender
@@ -756,6 +636,42 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 	*/
 	public void setIs_Loan_Donation(boolean is_Loan_Donation) {
 		_lender.setIs_Loan_Donation(is_Loan_Donation);
+	}
+
+	/**
+	* Returns the changed_ by of this lender.
+	*
+	* @return the changed_ by of this lender
+	*/
+	public java.lang.String getChanged_By() {
+		return _lender.getChanged_By();
+	}
+
+	/**
+	* Sets the changed_ by of this lender.
+	*
+	* @param changed_By the changed_ by of this lender
+	*/
+	public void setChanged_By(java.lang.String changed_By) {
+		_lender.setChanged_By(changed_By);
+	}
+
+	/**
+	* Returns the changed_ time of this lender.
+	*
+	* @return the changed_ time of this lender
+	*/
+	public long getChanged_Time() {
+		return _lender.getChanged_Time();
+	}
+
+	/**
+	* Sets the changed_ time of this lender.
+	*
+	* @param changed_Time the changed_ time of this lender
+	*/
+	public void setChanged_Time(long changed_Time) {
+		_lender.setChanged_Time(changed_Time);
 	}
 
 	public boolean isNew() {

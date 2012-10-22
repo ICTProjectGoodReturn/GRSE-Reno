@@ -253,6 +253,95 @@ public class TeamUtil {
 		return getPersistence().countAll();
 	}
 
+	/**
+	* Returns all the team lenders associated with the team.
+	*
+	* @param pk the primary key of the team
+	* @return the team lenders associated with the team
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<org.goodreturn.model.TeamLender> getTeamLenders(
+		long pk) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getTeamLenders(pk);
+	}
+
+	/**
+	* Returns a range of all the team lenders associated with the team.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param pk the primary key of the team
+	* @param start the lower bound of the range of teams
+	* @param end the upper bound of the range of teams (not inclusive)
+	* @return the range of team lenders associated with the team
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<org.goodreturn.model.TeamLender> getTeamLenders(
+		long pk, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getTeamLenders(pk, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the team lenders associated with the team.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param pk the primary key of the team
+	* @param start the lower bound of the range of teams
+	* @param end the upper bound of the range of teams (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of team lenders associated with the team
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<org.goodreturn.model.TeamLender> getTeamLenders(
+		long pk, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getTeamLenders(pk, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the number of team lenders associated with the team.
+	*
+	* @param pk the primary key of the team
+	* @return the number of team lenders associated with the team
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int getTeamLendersSize(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getTeamLendersSize(pk);
+	}
+
+	/**
+	* Returns <code>true</code> if the team lender is associated with the team.
+	*
+	* @param pk the primary key of the team
+	* @param teamLenderPK the primary key of the team lender
+	* @return <code>true</code> if the team lender is associated with the team; <code>false</code> otherwise
+	* @throws SystemException if a system exception occurred
+	*/
+	public static boolean containsTeamLender(long pk, long teamLenderPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().containsTeamLender(pk, teamLenderPK);
+	}
+
+	/**
+	* Returns <code>true</code> if the team has any team lenders associated with it.
+	*
+	* @param pk the primary key of the team to check for associations with team lenders
+	* @return <code>true</code> if the team has any team lenders associated with it; <code>false</code> otherwise
+	* @throws SystemException if a system exception occurred
+	*/
+	public static boolean containsTeamLenders(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().containsTeamLenders(pk);
+	}
+
 	public static TeamPersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (TeamPersistence)PortletBeanLocatorUtil.locate(org.goodreturn.service.ClpSerializer.getServletContextName(),

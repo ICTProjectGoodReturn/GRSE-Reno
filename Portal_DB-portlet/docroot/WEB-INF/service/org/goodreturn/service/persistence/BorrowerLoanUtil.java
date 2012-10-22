@@ -133,27 +133,27 @@ public class BorrowerLoanUtil {
 	/**
 	* Creates a new borrower loan with the primary key. Does not add the borrower loan to the database.
 	*
-	* @param borrower_Loan_Id the primary key for the new borrower loan
+	* @param abacus_Borrower_Loan_Id the primary key for the new borrower loan
 	* @return the new borrower loan
 	*/
 	public static org.goodreturn.model.BorrowerLoan create(
-		long borrower_Loan_Id) {
-		return getPersistence().create(borrower_Loan_Id);
+		long abacus_Borrower_Loan_Id) {
+		return getPersistence().create(abacus_Borrower_Loan_Id);
 	}
 
 	/**
 	* Removes the borrower loan with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param borrower_Loan_Id the primary key of the borrower loan
+	* @param abacus_Borrower_Loan_Id the primary key of the borrower loan
 	* @return the borrower loan that was removed
 	* @throws org.goodreturn.NoSuchBorrowerLoanException if a borrower loan with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.BorrowerLoan remove(
-		long borrower_Loan_Id)
+		long abacus_Borrower_Loan_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchBorrowerLoanException {
-		return getPersistence().remove(borrower_Loan_Id);
+		return getPersistence().remove(abacus_Borrower_Loan_Id);
 	}
 
 	public static org.goodreturn.model.BorrowerLoan updateImpl(
@@ -165,29 +165,29 @@ public class BorrowerLoanUtil {
 	/**
 	* Returns the borrower loan with the primary key or throws a {@link org.goodreturn.NoSuchBorrowerLoanException} if it could not be found.
 	*
-	* @param borrower_Loan_Id the primary key of the borrower loan
+	* @param abacus_Borrower_Loan_Id the primary key of the borrower loan
 	* @return the borrower loan
 	* @throws org.goodreturn.NoSuchBorrowerLoanException if a borrower loan with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.BorrowerLoan findByPrimaryKey(
-		long borrower_Loan_Id)
+		long abacus_Borrower_Loan_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchBorrowerLoanException {
-		return getPersistence().findByPrimaryKey(borrower_Loan_Id);
+		return getPersistence().findByPrimaryKey(abacus_Borrower_Loan_Id);
 	}
 
 	/**
 	* Returns the borrower loan with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param borrower_Loan_Id the primary key of the borrower loan
+	* @param abacus_Borrower_Loan_Id the primary key of the borrower loan
 	* @return the borrower loan, or <code>null</code> if a borrower loan with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.BorrowerLoan fetchByPrimaryKey(
-		long borrower_Loan_Id)
+		long abacus_Borrower_Loan_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(borrower_Loan_Id);
+		return getPersistence().fetchByPrimaryKey(abacus_Borrower_Loan_Id);
 	}
 
 	/**
@@ -311,7 +311,7 @@ public class BorrowerLoanUtil {
 	/**
 	* Returns the borrower loans before and after the current borrower loan in the ordered set where borrower_Id = &#63;.
 	*
-	* @param borrower_Loan_Id the primary key of the current borrower loan
+	* @param abacus_Borrower_Loan_Id the primary key of the current borrower loan
 	* @param borrower_Id the borrower_ ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next borrower loan
@@ -319,13 +319,13 @@ public class BorrowerLoanUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.BorrowerLoan[] findByb_Id_PrevAndNext(
-		long borrower_Loan_Id, long borrower_Id,
+		long abacus_Borrower_Loan_Id, long borrower_Id,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchBorrowerLoanException {
 		return getPersistence()
-				   .findByb_Id_PrevAndNext(borrower_Loan_Id, borrower_Id,
-			orderByComparator);
+				   .findByb_Id_PrevAndNext(abacus_Borrower_Loan_Id,
+			borrower_Id, orderByComparator);
 	}
 
 	/**
@@ -419,6 +419,95 @@ public class BorrowerLoanUtil {
 	public static int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();
+	}
+
+	/**
+	* Returns all the stories associated with the borrower loan.
+	*
+	* @param pk the primary key of the borrower loan
+	* @return the stories associated with the borrower loan
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<org.goodreturn.model.Story> getStories(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getStories(pk);
+	}
+
+	/**
+	* Returns a range of all the stories associated with the borrower loan.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param pk the primary key of the borrower loan
+	* @param start the lower bound of the range of borrower loans
+	* @param end the upper bound of the range of borrower loans (not inclusive)
+	* @return the range of stories associated with the borrower loan
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<org.goodreturn.model.Story> getStories(
+		long pk, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getStories(pk, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the stories associated with the borrower loan.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param pk the primary key of the borrower loan
+	* @param start the lower bound of the range of borrower loans
+	* @param end the upper bound of the range of borrower loans (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of stories associated with the borrower loan
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<org.goodreturn.model.Story> getStories(
+		long pk, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getStories(pk, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the number of stories associated with the borrower loan.
+	*
+	* @param pk the primary key of the borrower loan
+	* @return the number of stories associated with the borrower loan
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int getStoriesSize(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().getStoriesSize(pk);
+	}
+
+	/**
+	* Returns <code>true</code> if the story is associated with the borrower loan.
+	*
+	* @param pk the primary key of the borrower loan
+	* @param storyPK the primary key of the story
+	* @return <code>true</code> if the story is associated with the borrower loan; <code>false</code> otherwise
+	* @throws SystemException if a system exception occurred
+	*/
+	public static boolean containsStory(long pk, long storyPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().containsStory(pk, storyPK);
+	}
+
+	/**
+	* Returns <code>true</code> if the borrower loan has any stories associated with it.
+	*
+	* @param pk the primary key of the borrower loan to check for associations with stories
+	* @return <code>true</code> if the borrower loan has any stories associated with it; <code>false</code> otherwise
+	* @throws SystemException if a system exception occurred
+	*/
+	public static boolean containsStories(long pk)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().containsStories(pk);
 	}
 
 	public static BorrowerLoanPersistence getPersistence() {

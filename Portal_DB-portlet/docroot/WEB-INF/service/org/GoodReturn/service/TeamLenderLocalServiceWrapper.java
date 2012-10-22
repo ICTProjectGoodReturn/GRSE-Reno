@@ -48,25 +48,25 @@ public class TeamLenderLocalServiceWrapper implements TeamLenderLocalService,
 	/**
 	* Creates a new team lender with the primary key. Does not add the team lender to the database.
 	*
-	* @param teamlender_Id the primary key for the new team lender
+	* @param team_lender_Id the primary key for the new team lender
 	* @return the new team lender
 	*/
-	public org.goodreturn.model.TeamLender createTeamLender(long teamlender_Id) {
-		return _teamLenderLocalService.createTeamLender(teamlender_Id);
+	public org.goodreturn.model.TeamLender createTeamLender(long team_lender_Id) {
+		return _teamLenderLocalService.createTeamLender(team_lender_Id);
 	}
 
 	/**
 	* Deletes the team lender with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param teamlender_Id the primary key of the team lender
+	* @param team_lender_Id the primary key of the team lender
 	* @return the team lender that was removed
 	* @throws PortalException if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.TeamLender deleteTeamLender(long teamlender_Id)
+	public org.goodreturn.model.TeamLender deleteTeamLender(long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _teamLenderLocalService.deleteTeamLender(teamlender_Id);
+		return _teamLenderLocalService.deleteTeamLender(team_lender_Id);
 	}
 
 	/**
@@ -157,23 +157,23 @@ public class TeamLenderLocalServiceWrapper implements TeamLenderLocalService,
 		return _teamLenderLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
-	public org.goodreturn.model.TeamLender fetchTeamLender(long teamlender_Id)
+	public org.goodreturn.model.TeamLender fetchTeamLender(long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _teamLenderLocalService.fetchTeamLender(teamlender_Id);
+		return _teamLenderLocalService.fetchTeamLender(team_lender_Id);
 	}
 
 	/**
 	* Returns the team lender with the primary key.
 	*
-	* @param teamlender_Id the primary key of the team lender
+	* @param team_lender_Id the primary key of the team lender
 	* @return the team lender
 	* @throws PortalException if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.TeamLender getTeamLender(long teamlender_Id)
+	public org.goodreturn.model.TeamLender getTeamLender(long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _teamLenderLocalService.getTeamLender(teamlender_Id);
+		return _teamLenderLocalService.getTeamLender(team_lender_Id);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(

@@ -38,9 +38,13 @@ public class PersonSoap implements Serializable {
 		soapModel.setAddress_Type(model.getAddress_Type());
 		soapModel.setCountry(model.getCountry());
 		soapModel.setGender(model.getGender());
+		soapModel.setSalutation(model.getSalutation());
 		soapModel.setStatus(model.getStatus());
+		soapModel.setPhone_Number(model.getPhone_Number());
 		soapModel.setPhoto_URL(model.getPhoto_URL());
 		soapModel.setOccupation(model.getOccupation());
+		soapModel.setChanged_By(model.getChanged_By());
+		soapModel.setChanged_Time(model.getChanged_Time());
 
 		return soapModel;
 	}
@@ -157,12 +161,28 @@ public class PersonSoap implements Serializable {
 		_gender = gender;
 	}
 
+	public String getSalutation() {
+		return _salutation;
+	}
+
+	public void setSalutation(String salutation) {
+		_salutation = salutation;
+	}
+
 	public String getStatus() {
 		return _status;
 	}
 
 	public void setStatus(String status) {
 		_status = status;
+	}
+
+	public long getPhone_Number() {
+		return _phone_Number;
+	}
+
+	public void setPhone_Number(long phone_Number) {
+		_phone_Number = phone_Number;
 	}
 
 	public String getPhoto_URL() {
@@ -181,6 +201,22 @@ public class PersonSoap implements Serializable {
 		_occupation = occupation;
 	}
 
+	public String getChanged_By() {
+		return _changed_By;
+	}
+
+	public void setChanged_By(String changed_By) {
+		_changed_By = changed_By;
+	}
+
+	public long getChanged_Time() {
+		return _changed_Time;
+	}
+
+	public void setChanged_Time(long changed_Time) {
+		_changed_Time = changed_Time;
+	}
+
 	private long _abacus_Person_Id;
 	private String _first_Name;
 	private String _last_Name;
@@ -189,7 +225,11 @@ public class PersonSoap implements Serializable {
 	private String _address_Type;
 	private String _country;
 	private String _gender;
+	private String _salutation;
 	private String _status;
+	private long _phone_Number;
 	private String _photo_URL;
 	private String _occupation;
+	private String _changed_By;
+	private long _changed_Time;
 }

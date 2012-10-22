@@ -51,8 +51,6 @@ import org.goodreturn.service.PersonLocalService;
 import org.goodreturn.service.PersonService;
 import org.goodreturn.service.StoryLocalService;
 import org.goodreturn.service.StoryService;
-import org.goodreturn.service.TeamLenderLoanLocalService;
-import org.goodreturn.service.TeamLenderLoanService;
 import org.goodreturn.service.TeamLenderLocalService;
 import org.goodreturn.service.TeamLenderService;
 import org.goodreturn.service.TeamLocalService;
@@ -63,7 +61,6 @@ import org.goodreturn.service.persistence.Gift_CertificatePersistence;
 import org.goodreturn.service.persistence.LenderPersistence;
 import org.goodreturn.service.persistence.PersonPersistence;
 import org.goodreturn.service.persistence.StoryPersistence;
-import org.goodreturn.service.persistence.TeamLenderLoanPersistence;
 import org.goodreturn.service.persistence.TeamLenderPersistence;
 import org.goodreturn.service.persistence.TeamPersistence;
 
@@ -112,25 +109,25 @@ public abstract class BorrowerLoanLocalServiceBaseImpl
 	/**
 	 * Creates a new borrower loan with the primary key. Does not add the borrower loan to the database.
 	 *
-	 * @param borrower_Loan_Id the primary key for the new borrower loan
+	 * @param abacus_Borrower_Loan_Id the primary key for the new borrower loan
 	 * @return the new borrower loan
 	 */
-	public BorrowerLoan createBorrowerLoan(long borrower_Loan_Id) {
-		return borrowerLoanPersistence.create(borrower_Loan_Id);
+	public BorrowerLoan createBorrowerLoan(long abacus_Borrower_Loan_Id) {
+		return borrowerLoanPersistence.create(abacus_Borrower_Loan_Id);
 	}
 
 	/**
 	 * Deletes the borrower loan with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param borrower_Loan_Id the primary key of the borrower loan
+	 * @param abacus_Borrower_Loan_Id the primary key of the borrower loan
 	 * @return the borrower loan that was removed
 	 * @throws PortalException if a borrower loan with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public BorrowerLoan deleteBorrowerLoan(long borrower_Loan_Id)
+	public BorrowerLoan deleteBorrowerLoan(long abacus_Borrower_Loan_Id)
 		throws PortalException, SystemException {
-		return borrowerLoanPersistence.remove(borrower_Loan_Id);
+		return borrowerLoanPersistence.remove(abacus_Borrower_Loan_Id);
 	}
 
 	/**
@@ -219,22 +216,22 @@ public abstract class BorrowerLoanLocalServiceBaseImpl
 		return borrowerLoanPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
-	public BorrowerLoan fetchBorrowerLoan(long borrower_Loan_Id)
+	public BorrowerLoan fetchBorrowerLoan(long abacus_Borrower_Loan_Id)
 		throws SystemException {
-		return borrowerLoanPersistence.fetchByPrimaryKey(borrower_Loan_Id);
+		return borrowerLoanPersistence.fetchByPrimaryKey(abacus_Borrower_Loan_Id);
 	}
 
 	/**
 	 * Returns the borrower loan with the primary key.
 	 *
-	 * @param borrower_Loan_Id the primary key of the borrower loan
+	 * @param abacus_Borrower_Loan_Id the primary key of the borrower loan
 	 * @return the borrower loan
 	 * @throws PortalException if a borrower loan with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public BorrowerLoan getBorrowerLoan(long borrower_Loan_Id)
+	public BorrowerLoan getBorrowerLoan(long abacus_Borrower_Loan_Id)
 		throws PortalException, SystemException {
-		return borrowerLoanPersistence.findByPrimaryKey(borrower_Loan_Id);
+		return borrowerLoanPersistence.findByPrimaryKey(abacus_Borrower_Loan_Id);
 	}
 
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
@@ -739,63 +736,6 @@ public abstract class BorrowerLoanLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the team lender loan local service.
-	 *
-	 * @return the team lender loan local service
-	 */
-	public TeamLenderLoanLocalService getTeamLenderLoanLocalService() {
-		return teamLenderLoanLocalService;
-	}
-
-	/**
-	 * Sets the team lender loan local service.
-	 *
-	 * @param teamLenderLoanLocalService the team lender loan local service
-	 */
-	public void setTeamLenderLoanLocalService(
-		TeamLenderLoanLocalService teamLenderLoanLocalService) {
-		this.teamLenderLoanLocalService = teamLenderLoanLocalService;
-	}
-
-	/**
-	 * Returns the team lender loan remote service.
-	 *
-	 * @return the team lender loan remote service
-	 */
-	public TeamLenderLoanService getTeamLenderLoanService() {
-		return teamLenderLoanService;
-	}
-
-	/**
-	 * Sets the team lender loan remote service.
-	 *
-	 * @param teamLenderLoanService the team lender loan remote service
-	 */
-	public void setTeamLenderLoanService(
-		TeamLenderLoanService teamLenderLoanService) {
-		this.teamLenderLoanService = teamLenderLoanService;
-	}
-
-	/**
-	 * Returns the team lender loan persistence.
-	 *
-	 * @return the team lender loan persistence
-	 */
-	public TeamLenderLoanPersistence getTeamLenderLoanPersistence() {
-		return teamLenderLoanPersistence;
-	}
-
-	/**
-	 * Sets the team lender loan persistence.
-	 *
-	 * @param teamLenderLoanPersistence the team lender loan persistence
-	 */
-	public void setTeamLenderLoanPersistence(
-		TeamLenderLoanPersistence teamLenderLoanPersistence) {
-		this.teamLenderLoanPersistence = teamLenderLoanPersistence;
-	}
-
-	/**
 	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
@@ -1030,12 +970,6 @@ public abstract class BorrowerLoanLocalServiceBaseImpl
 	protected TeamLenderService teamLenderService;
 	@BeanReference(type = TeamLenderPersistence.class)
 	protected TeamLenderPersistence teamLenderPersistence;
-	@BeanReference(type = TeamLenderLoanLocalService.class)
-	protected TeamLenderLoanLocalService teamLenderLoanLocalService;
-	@BeanReference(type = TeamLenderLoanService.class)
-	protected TeamLenderLoanService teamLenderLoanService;
-	@BeanReference(type = TeamLenderLoanPersistence.class)
-	protected TeamLenderLoanPersistence teamLenderLoanPersistence;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)

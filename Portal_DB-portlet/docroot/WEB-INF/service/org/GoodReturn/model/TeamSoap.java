@@ -32,7 +32,8 @@ public class TeamSoap implements Serializable {
 
 		soapModel.setTeam_Id(model.getTeam_Id());
 		soapModel.setTeam_Name(model.getTeam_Name());
-		soapModel.setAmount_Lent(model.getAmount_Lent());
+		soapModel.setChange_By(model.getChange_By());
+		soapModel.setChange_Time(model.getChange_Time());
 
 		return soapModel;
 	}
@@ -101,15 +102,24 @@ public class TeamSoap implements Serializable {
 		_team_Name = team_Name;
 	}
 
-	public String getAmount_Lent() {
-		return _amount_Lent;
+	public String getChange_By() {
+		return _change_By;
 	}
 
-	public void setAmount_Lent(String amount_Lent) {
-		_amount_Lent = amount_Lent;
+	public void setChange_By(String change_By) {
+		_change_By = change_By;
+	}
+
+	public long getChange_Time() {
+		return _change_Time;
+	}
+
+	public void setChange_Time(long change_Time) {
+		_change_Time = change_Time;
 	}
 
 	private long _team_Id;
 	private String _team_Name;
-	private String _amount_Lent;
+	private String _change_By;
+	private long _change_Time;
 }

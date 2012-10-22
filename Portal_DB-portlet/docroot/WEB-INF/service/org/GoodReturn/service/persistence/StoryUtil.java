@@ -321,27 +321,27 @@ public class StoryUtil {
 	}
 
 	/**
-	* Returns all the stories where borrower_Loan_Id = &#63; and story_Type = &#63;.
+	* Returns all the stories where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
 	*
-	* @param borrower_Loan_Id the borrower_ loan_ ID
+	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
 	* @param story_Type the story_ type
 	* @return the matching stories
 	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<org.goodreturn.model.Story> findByL_S(
-		long borrower_Loan_Id, java.lang.String story_Type)
+		long abacus_Borrower_Loan_Id, java.lang.String story_Type)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByL_S(borrower_Loan_Id, story_Type);
+		return getPersistence().findByL_S(abacus_Borrower_Loan_Id, story_Type);
 	}
 
 	/**
-	* Returns a range of all the stories where borrower_Loan_Id = &#63; and story_Type = &#63;.
+	* Returns a range of all the stories where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param borrower_Loan_Id the borrower_ loan_ ID
+	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
 	* @param story_Type the story_ type
 	* @param start the lower bound of the range of stories
 	* @param end the upper bound of the range of stories (not inclusive)
@@ -349,20 +349,20 @@ public class StoryUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<org.goodreturn.model.Story> findByL_S(
-		long borrower_Loan_Id, java.lang.String story_Type, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long abacus_Borrower_Loan_Id, java.lang.String story_Type, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByL_S(borrower_Loan_Id, story_Type, start, end);
+				   .findByL_S(abacus_Borrower_Loan_Id, story_Type, start, end);
 	}
 
 	/**
-	* Returns an ordered range of all the stories where borrower_Loan_Id = &#63; and story_Type = &#63;.
+	* Returns an ordered range of all the stories where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param borrower_Loan_Id the borrower_ loan_ ID
+	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
 	* @param story_Type the story_ type
 	* @param start the lower bound of the range of stories
 	* @param end the upper bound of the range of stories (not inclusive)
@@ -371,18 +371,19 @@ public class StoryUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<org.goodreturn.model.Story> findByL_S(
-		long borrower_Loan_Id, java.lang.String story_Type, int start, int end,
+		long abacus_Borrower_Loan_Id, java.lang.String story_Type, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByL_S(borrower_Loan_Id, story_Type, start, end,
+				   .findByL_S(abacus_Borrower_Loan_Id, story_Type, start, end,
 			orderByComparator);
 	}
 
 	/**
-	* Returns the first story in the ordered set where borrower_Loan_Id = &#63; and story_Type = &#63;.
+	* Returns the first story in the ordered set where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
 	*
-	* @param borrower_Loan_Id the borrower_ loan_ ID
+	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
 	* @param story_Type the story_ type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching story
@@ -390,37 +391,37 @@ public class StoryUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.Story findByL_S_First(
-		long borrower_Loan_Id, java.lang.String story_Type,
+		long abacus_Borrower_Loan_Id, java.lang.String story_Type,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchStoryException {
 		return getPersistence()
-				   .findByL_S_First(borrower_Loan_Id, story_Type,
+				   .findByL_S_First(abacus_Borrower_Loan_Id, story_Type,
 			orderByComparator);
 	}
 
 	/**
-	* Returns the first story in the ordered set where borrower_Loan_Id = &#63; and story_Type = &#63;.
+	* Returns the first story in the ordered set where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
 	*
-	* @param borrower_Loan_Id the borrower_ loan_ ID
+	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
 	* @param story_Type the story_ type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching story, or <code>null</code> if a matching story could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.Story fetchByL_S_First(
-		long borrower_Loan_Id, java.lang.String story_Type,
+		long abacus_Borrower_Loan_Id, java.lang.String story_Type,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByL_S_First(borrower_Loan_Id, story_Type,
+				   .fetchByL_S_First(abacus_Borrower_Loan_Id, story_Type,
 			orderByComparator);
 	}
 
 	/**
-	* Returns the last story in the ordered set where borrower_Loan_Id = &#63; and story_Type = &#63;.
+	* Returns the last story in the ordered set where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
 	*
-	* @param borrower_Loan_Id the borrower_ loan_ ID
+	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
 	* @param story_Type the story_ type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching story
@@ -428,38 +429,38 @@ public class StoryUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.Story findByL_S_Last(
-		long borrower_Loan_Id, java.lang.String story_Type,
+		long abacus_Borrower_Loan_Id, java.lang.String story_Type,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchStoryException {
 		return getPersistence()
-				   .findByL_S_Last(borrower_Loan_Id, story_Type,
+				   .findByL_S_Last(abacus_Borrower_Loan_Id, story_Type,
 			orderByComparator);
 	}
 
 	/**
-	* Returns the last story in the ordered set where borrower_Loan_Id = &#63; and story_Type = &#63;.
+	* Returns the last story in the ordered set where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
 	*
-	* @param borrower_Loan_Id the borrower_ loan_ ID
+	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
 	* @param story_Type the story_ type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching story, or <code>null</code> if a matching story could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.Story fetchByL_S_Last(
-		long borrower_Loan_Id, java.lang.String story_Type,
+		long abacus_Borrower_Loan_Id, java.lang.String story_Type,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByL_S_Last(borrower_Loan_Id, story_Type,
+				   .fetchByL_S_Last(abacus_Borrower_Loan_Id, story_Type,
 			orderByComparator);
 	}
 
 	/**
-	* Returns the stories before and after the current story in the ordered set where borrower_Loan_Id = &#63; and story_Type = &#63;.
+	* Returns the stories before and after the current story in the ordered set where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
 	*
 	* @param story_Id the primary key of the current story
-	* @param borrower_Loan_Id the borrower_ loan_ ID
+	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
 	* @param story_Type the story_ type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next story
@@ -467,12 +468,13 @@ public class StoryUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.Story[] findByL_S_PrevAndNext(
-		long story_Id, long borrower_Loan_Id, java.lang.String story_Type,
+		long story_Id, long abacus_Borrower_Loan_Id,
+		java.lang.String story_Type,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchStoryException {
 		return getPersistence()
-				   .findByL_S_PrevAndNext(story_Id, borrower_Loan_Id,
+				   .findByL_S_PrevAndNext(story_Id, abacus_Borrower_Loan_Id,
 			story_Type, orderByComparator);
 	}
 
@@ -537,16 +539,16 @@ public class StoryUtil {
 	}
 
 	/**
-	* Removes all the stories where borrower_Loan_Id = &#63; and story_Type = &#63; from the database.
+	* Removes all the stories where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63; from the database.
 	*
-	* @param borrower_Loan_Id the borrower_ loan_ ID
+	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
 	* @param story_Type the story_ type
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByL_S(long borrower_Loan_Id,
+	public static void removeByL_S(long abacus_Borrower_Loan_Id,
 		java.lang.String story_Type)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByL_S(borrower_Loan_Id, story_Type);
+		getPersistence().removeByL_S(abacus_Borrower_Loan_Id, story_Type);
 	}
 
 	/**
@@ -572,17 +574,17 @@ public class StoryUtil {
 	}
 
 	/**
-	* Returns the number of stories where borrower_Loan_Id = &#63; and story_Type = &#63;.
+	* Returns the number of stories where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
 	*
-	* @param borrower_Loan_Id the borrower_ loan_ ID
+	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
 	* @param story_Type the story_ type
 	* @return the number of matching stories
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByL_S(long borrower_Loan_Id,
+	public static int countByL_S(long abacus_Borrower_Loan_Id,
 		java.lang.String story_Type)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByL_S(borrower_Loan_Id, story_Type);
+		return getPersistence().countByL_S(abacus_Borrower_Loan_Id, story_Type);
 	}
 
 	/**

@@ -66,7 +66,8 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 
 		attributes.put("team_Id", getTeam_Id());
 		attributes.put("team_Name", getTeam_Name());
-		attributes.put("amount_Lent", getAmount_Lent());
+		attributes.put("change_By", getChange_By());
+		attributes.put("change_Time", getChange_Time());
 
 		return attributes;
 	}
@@ -85,10 +86,16 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 			setTeam_Name(team_Name);
 		}
 
-		String amount_Lent = (String)attributes.get("amount_Lent");
+		String change_By = (String)attributes.get("change_By");
 
-		if (amount_Lent != null) {
-			setAmount_Lent(amount_Lent);
+		if (change_By != null) {
+			setChange_By(change_By);
+		}
+
+		Long change_Time = (Long)attributes.get("change_Time");
+
+		if (change_Time != null) {
+			setChange_Time(change_Time);
 		}
 	}
 
@@ -108,12 +115,20 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 		_team_Name = team_Name;
 	}
 
-	public String getAmount_Lent() {
-		return _amount_Lent;
+	public String getChange_By() {
+		return _change_By;
 	}
 
-	public void setAmount_Lent(String amount_Lent) {
-		_amount_Lent = amount_Lent;
+	public void setChange_By(String change_By) {
+		_change_By = change_By;
+	}
+
+	public long getChange_Time() {
+		return _change_Time;
+	}
+
+	public void setChange_Time(long change_Time) {
+		_change_Time = change_Time;
 	}
 
 	public BaseModel<?> getTeamRemoteModel() {
@@ -145,7 +160,8 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 
 		clone.setTeam_Id(getTeam_Id());
 		clone.setTeam_Name(getTeam_Name());
-		clone.setAmount_Lent(getAmount_Lent());
+		clone.setChange_By(getChange_By());
+		clone.setChange_Time(getChange_Time());
 
 		return clone;
 	}
@@ -153,7 +169,15 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 	public int compareTo(Team team) {
 		int value = 0;
 
-		value = getTeam_Name().compareTo(team.getTeam_Name());
+		if (getTeam_Id() < team.getTeam_Id()) {
+			value = -1;
+		}
+		else if (getTeam_Id() > team.getTeam_Id()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		if (value != 0) {
 			return value;
@@ -194,21 +218,23 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(9);
 
 		sb.append("{team_Id=");
 		sb.append(getTeam_Id());
 		sb.append(", team_Name=");
 		sb.append(getTeam_Name());
-		sb.append(", amount_Lent=");
-		sb.append(getAmount_Lent());
+		sb.append(", change_By=");
+		sb.append(getChange_By());
+		sb.append(", change_Time=");
+		sb.append(getChange_Time());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(16);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Team");
@@ -223,8 +249,12 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 		sb.append(getTeam_Name());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>amount_Lent</column-name><column-value><![CDATA[");
-		sb.append(getAmount_Lent());
+			"<column><column-name>change_By</column-name><column-value><![CDATA[");
+		sb.append(getChange_By());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>change_Time</column-name><column-value><![CDATA[");
+		sb.append(getChange_Time());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -234,6 +264,7 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 
 	private long _team_Id;
 	private String _team_Name;
-	private String _amount_Lent;
+	private String _change_By;
+	private long _change_Time;
 	private BaseModel<?> _teamRemoteModel;
 }
