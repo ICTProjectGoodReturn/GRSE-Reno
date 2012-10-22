@@ -1,22 +1,20 @@
 package org.goodreturn.borrowers.util;
 
+import java.text.DateFormat;
 import java.util.Collections;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
+import javax.portlet.RenderRequest;
 
 import org.goodreturn.model.Borrower;
 import org.goodreturn.model.BorrowerLoan;
 import org.goodreturn.model.Story;
 import org.goodreturn.model.impl.BorrowerImpl;
+import org.goodreturn.model.impl.BorrowerLoanImpl;
 import org.goodreturn.model.impl.StoryImpl;
-import org.goodreturn.service.BorrowerLoanLocalServiceUtil;
-import org.goodreturn.service.BorrowerLoanServiceUtil;
-import org.goodreturn.service.BorrowerLocalServiceUtil;
 import org.goodreturn.service.StoryLocalServiceUtil;
-import org.goodreturn.borrowers.util.WebKeys;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -33,13 +31,19 @@ public class ActionUtil {
 	//
 	//	Render Phase (like) Data Retrieval Methods
 	//
+	
+	private long getMfiId(ActionRequest request) {
+		//TODO HERE AND EVERWHERE ELSE.
+		return 0;
+	}
+	
 	/**
-	 * Retrieves all borrowers for specific MFI. Designed to be called from action phase. 
+	 * Retrieves all borrowers for specific MFI. Designed to be called from render phase. 
 	 * 
-	 * @param request - action requested which has access from the action phase.
+	 * @param request - action requested which has access from the render phase.
 	 * @return List of Borrower objects for specific MFI.
 	 */
-	public static List<Borrower> getBorrowers(ActionRequest request) {
+	public static List<Borrower> getBorrowers(RenderRequest request) {
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
 
@@ -57,14 +61,14 @@ public class ActionUtil {
 	}
 	
 	/**
-	 * Retrieves single specific borrower based on borrower_Id. Designed to be called from action phase. 
+	 * Retrieves single specific borrower based on borrower_Id. Designed to be called from render phase. 
 	 * 
-	 * @param request - action requested which has access from the action phase.
+	 * @param request - action requested which has access from the render phase.
 	 * @return Specific Borrower object for specific borrower_Id. null if not found.
 	 */
-	public static Borrower getBorrower(ActionRequest request) {
+	public static Borrower getBorrower(RenderRequest request) {
 		//Values to retrieve data.
-		long borrowerId = ParamUtil.getLong(request, WebKeys.BORROWER_ID);
+		long borrowerId = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_ID);
 		Borrower tempResult;
 
 		//Returns borrower if possible, else null.
@@ -79,23 +83,37 @@ public class ActionUtil {
 		return tempResult;
 	}
 	
+	public static Borrower getEditableBorrower(RenderRequest request) {
+		Borrower borrower = ActionUtil.getBorrower(request);
+		
+		if (borrower == null) {
+			//TODO
+			
+			borrower = new BorrowerImpl();
+		}
+		
+		return borrower;
+	}
+	
+	
+	
 	/**
-	 * Retrieves all BorrowerLoans for specific borrower_Id. Designed to be called from action phase. 
+	 * Retrieves all BorrowerLoans for specific borrower_Id. Designed to be called from render phase. 
 	 * 
-	 * @param request Render request which has access from the action phase.
+	 * @param request Render request which has access from the render phase.
 	 * @return List of BorrowerLoan objects for specific Borrower.
 	 */
-	public static List<BorrowerLoan> getBorrowerLoans(ActionRequest request) {
+	public static List<BorrowerLoan> getBorrowerLoans(RenderRequest request) {
 		//Retrieves values needed for request.
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
 		
-		long borrowerId = ParamUtil.getLong(request, WebKeys.BORROWER_ID);
+		long borrowerId = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_ID);
 		List<BorrowerLoan> tempResults;
 
 		try {
 			//TODO FIX
-			//tempResults = BorrowerLoanLocalServiceUtil.getAllBorrowerLoans(groupId, borrowerId);
+			//tempResults = BorrowerLoanLocalServiceUtil.getAllBorrowerLoans(groupId);
 			throw new SystemException("not implemented");
 		} catch (SystemException se) {
 			tempResults = Collections.EMPTY_LIST;
@@ -105,17 +123,17 @@ public class ActionUtil {
 	}
 	
 	/**
-	 * Retrieves specific BorrowerLoan for specific borrower_Loan_Id. Designed to be called from action phase. 
+	 * Retrieves specific BorrowerLoan for specific borrower_Loan_Id. Designed to be called from render phase. 
 	 * 
-	 * @param request Render request which has access from the action phase.
+	 * @param request Render request which has access from the render phase.
 	 * @return specific BorrowerLoan object for specific borrower_Loan_Id.
 	 */
-	public static BorrowerLoan getBorrowerLoan(ActionRequest request) {
+	public static BorrowerLoan getBorrowerLoan(RenderRequest request) {
 		//Retrieves values needed for request.
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
 		
-		long borrowerLoanId = ParamUtil.getLong(request, WebKeys.BORROWER_LOAN_ID);
+		long borrowerLoanId = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_LOAN_ID);
 		BorrowerLoan tempResult;
 
 		try {
@@ -129,53 +147,68 @@ public class ActionUtil {
 		return tempResult;
 	}
 	
+	public static BorrowerLoan getEditableBorrowerLoan(RenderRequest request) {
+
+		BorrowerLoan borrowerLoan = ActionUtil.getBorrowerLoan(request);
+		
+		if (borrowerLoan == null) {
+			//TODO
+			
+			borrowerLoan = new BorrowerLoanImpl();
+		}
+
+		return borrowerLoan;
+	}
+	
 	/**
-	 * Retrieves all LenderContribution for specific Loan. Designed to be called from action phase. 
+	 * Retrieves all LenderContribution for specific Loan. Designed to be called from render phase. 
 	 * 
-	 * @param request Render request which has access from the action phase.
+	 * @param request Render request which has access from the render phase.
 	 * @return List of LenderContribution objects for specific Loan - based on loan_Id.
 	 */
-	//TODO fix class type and retrieve from accubus.
-	public static List<String> getLenderContributions(ActionRequest request) {
+	public static List<String> getLenderContributions(RenderRequest request) {
+		//TODO fix class return type and retrieve from accubus.
 		return null;
 	}
 
 	/**
-	 * Retrieves specific LenderContribution for specific lender_Contribution_Id. Designed to be called from action phase. 
+	 * Retrieves specific LenderContribution for specific lender_Contribution_Id. Designed to be called from render phase. 
 	 * 
-	 * @param request Render request which has access from the action phase.
+	 * @param request Render request which has access from the render phase.
 	 * @return specific LenderContribution object.
 	 */
-	//TODO fix class type and retrieve from accubus.
-	public static String getLenderContribution(ActionRequest request) {
+	public static String getLenderContribution(RenderRequest request) {
+		//TODO fix class return type and retrieve from accubus.
 		return null;
 	}
 	
 	/**
-	 * Retrieves InitialStory for specific Borrower. Designed to be called from action phase. 
+	 * Retrieves Story based on type specified in request. Designed to be called from render phase. 
 	 * 
-	 * @param request Render request which has access from the action phase.
-	 * @return Story object which represents the InitialStory for specific Loan. Returns null if not existent.
+	 * @param request Render request which has access from the render phase.
+	 * @return Story object which represents the InitialStory for specific Loan. Returns new Story for editing if not existent.
 	 */
-	public static Story getInitialStory(ActionRequest request) {
-		return getStoryByType(request, "initial");
+	public static Story getEditableStory(RenderRequest request) {
+		String storyType = ParamUtil.getString(request, WebKeys.ATTR_STORY_TYPE);
+		Story story = ActionUtil.getStoryByType(request, storyType);
+		
+		if (story == null) {
+			//Sets id FK data.
+			long borrower_Loan_Id = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_LOAN_ID);
+			
+			story = new StoryImpl();
+			story.setBorrower_Loan_Id(borrower_Loan_Id);
+			story.setStory_Type(storyType);
+		}
+		
+		return story;
 	}
 	
-	/**
-	 * Retrieves FinalStory for specific Borrower. Designed to be called from action phase. 
-	 * 
-	 * @param request Render request which has access from the action phase.
-	 * @return Story object which represents the FinalStory for specific Loan. Returns null if not existent.
-	 */
-	public static Story getFinalStory(ActionRequest request) {
-		return getStoryByType(request, "final");
-	}
-	
-	private static Story getStoryByType(ActionRequest request, String storyType) {
+	private static Story getStoryByType(RenderRequest request, String storyType) {
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
 		
-		long borrowerLoanId = ParamUtil.getLong(request, WebKeys.BORROWER_LOAN_ID);
+		long borrowerLoanId = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_LOAN_ID);
 		Story tempResult;
 
 		try {
@@ -193,7 +226,7 @@ public class ActionUtil {
 	//	Action Phase Processing Methods
 	//
 	/**
-	 * Creates a Borrower from a sent actionRequest object.
+	 * Creates a Borrower from a sent RenderRequest object.
 	 * 
 	 * @param request - The request which contains relevant data to build Borrower object.
 	 * @return - Borrower object which has been built from the request object.
@@ -202,16 +235,27 @@ public class ActionUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		Borrower borrower = new BorrowerImpl();
 		
-		//FK data
-		//TODO SPECIFIC
-		//borrower.setLoan_Account_Id(ParamUtil.getLong(request, "loan_Account_Id"));
-		
+		//PK/FK data
+		borrower.setAbacus_Borrower_Id(ParamUtil.getLong(request, "loan_Account_Id"));
+		//TODO how to set FK person id field?
+				
 		//Data
-		//TODO SPECIFIC
-		//borrower.setStory_Text(ParamUtil.getString(request, "story_Text"));
+		borrower.setWrite_Off_Date(ParamUtil.getDate(request, "write_Off_Date", DateFormat.getDateInstance())); //TODO CHECK THIS OUT.
+		borrower.setPhone(ParamUtil.getLong(request, "phone")); //TODO change to string datatype?
+		borrower.setWait_Time(ParamUtil.getLong(request, "wait_Time"));
+		borrower.setCountry(ParamUtil.getString(request, "country"));
+		borrower.setAmount_Needed(ParamUtil.getDouble(request, "amount_Needed")); //TODO change to int datatype?
+		borrower.setAmount_Needed_AUD(ParamUtil.getDouble(request, "amount_Needed_AUD")); //TODO change to int datatype?
+		borrower.setType_Of_Person(ParamUtil.getString(request, "type_Of_Person"));
+		borrower.setVillage(ParamUtil.getString(request, "village"));
+		borrower.setDistrict(ParamUtil.getString(request, "district"));
+		borrower.setPdf_Link(ParamUtil.getString(request, "pdf_Link"));
+		borrower.setCurrency(ParamUtil.getDouble(request, "currency"));
+		borrower.setDate_Applied(ParamUtil.getDate(request, "date_Applied", DateFormat.getDateInstance())); //TODO CHECK THIS OUT.
+		
 		
 		//Portal Identifying info
-		//TODO UNCOMMENT
+		//TODO Set specific data?
 		//borrower.setCompany_Id(themeDisplay.getCompanyId());
 		//borrower.setGroup_Id(themeDisplay.getScopeGroupId());
 		//borrower.setUser_Id(themeDisplay.getUserId());
@@ -219,64 +263,45 @@ public class ActionUtil {
 		return borrower;
 	}
 	
+	
 	/**
-	 * Creates a Supplementary_Table from a sent actionRequest object.
+	 * Creates a BorrowerLoan from a sent actionRequest object.
 	 * 
-	 * @param request - The request which contains relevant data to build Supplementary_Table object.
-	 * @return - Supplementary_Table object which has been built from the request object.
+	 * @param request - The request which contains relevant data to build BorrowerLoan object.
+	 * @return - BorrowerLoan object which has been built from the request object.
 	 */
-	//TODO UNCOMMENT
-	//public static Supplementary_Table supplementary_TableFromRequest(ActionRequest request) {
-		//ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		//Supplementary_Table supplementary_Table = new Supplementary_TableImpl();
+	public static BorrowerLoan borrowerLoanFromRequest(ActionRequest request) {
+		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
+		BorrowerLoan borrowerLoan = new BorrowerLoanImpl();
 		
-		//FK data
-		//TODO SPECIFIC
-		//supplementary_Table.setLoan_Account_Id(ParamUtil.getLong(request, "loan_Account_Id"));
+		//PK/FK data
+		borrowerLoan.setBorrower_Loan_Id(ParamUtil.getLong(request, "borrower_Loan_Id"));
+		borrowerLoan.setBorrower_Id(ParamUtil.getLong(request, "borrower_Id"));
 		
 		//Data
-		//TODO SPECIFIC
-		//supplementary_Table.setStory_Text(ParamUtil.getString(request, "story_Text"));
+		//TODO set other specific data.
+		//borrowerLoan.setX(ParamUtil.getString(request, "story_Text"));
 		
 		//Portal Identifying info
-		//TODO UNCOMMENT
-		//supplementary_Table.setCompany_Id(themeDisplay.getCompanyId());
-		//supplementary_Table.setGroup_Id(themeDisplay.getScopeGroupId());
-		//supplementary_Table.setUser_Id(themeDisplay.getUserId());
+		//TODO set other data.
+		//borrowerLoan.setCompany_Id(themeDisplay.getCompanyId());
+		//borrowerLoan.setGroup_Id(themeDisplay.getScopeGroupId());
+		//borrowerLoan.setUser_Id(themeDisplay.getUserId());
 
-		//TODO UNCOMMENT
-		//return loan;
-	//}
+		return borrowerLoan;
+	}
 
-	//TODO FIX
-	/* *
-	 * Creates a MoneyLent from a sent actionRequest object.
+	
+	/**
+	 * Creates a LenderContribution from a sent actionRequest object.
 	 * 
-	 * @param request - The request which contains relevant data to build MoneyLent object.
-	 * @return - MoneyLent object which has been built from the request object.
+	 * @param request - The request which contains relevant data to build LenderContribution object.
+	 * @return - LenderContribution object which has been built from the request object.
 	 */
-	//TODO UNCOMMENT
-	//public static MoneyLent moneyLentFromRequest(ActionRequest request) {
-		//ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		//MoneyLent moneyLent = new MoneyLentImpl();
-		
-		//FK data
-		//TODO SPECIFIC
-		//moneyLent.setLoan_Account_Id(ParamUtil.getLong(request, "loan_Account_Id"));
-		
-		//Data
-		//TODO SPECIFIC
-		//moneyLent.setStory_Text(ParamUtil.getString(request, "story_Text"));
-		
-		//Portal Identifying info
-		//TODO UNCOMMENT
-		//moneyLent.setCompany_Id(themeDisplay.getCompanyId());
-		//moneyLent.setGroup_Id(themeDisplay.getScopeGroupId());
-		//moneyLent.setUser_Id(themeDisplay.getUserId());
-
-		//TODO UNCOMMENT
-		//return moneyLent;
-	//}
+	//TODO fix class and call to abacus system for LenderContribution
+	public static String lenderContributionFromRequest(ActionRequest request) {
+		return null;
+	}
 	
 	/**
 	 * Creates a Story from a sent actionRequest object.

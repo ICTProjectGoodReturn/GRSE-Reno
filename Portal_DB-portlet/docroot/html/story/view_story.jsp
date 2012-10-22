@@ -1,15 +1,15 @@
 <%--
 /**
 * View for final and initial Story objects which is apart of
-* for LoanAccount objects. Should be used in conjunction with
-* BorrowersPortlet.viewInitialStory() and BorrowersPortlet.viewFinalStory(). 
+* for BorrowerLoan objects. Should be used in conjunction.
 */
 --%>
 <%@include file="/html/init.jsp"%>
 
 <!-- Data Definitions -->
 <%
-	Story story = (Story) request.getAttribute(WebKeys.STORY_OBJECT);
+	Story story = (Story) request.getAttribute(WebKeys.STORY_ENTRY);
+	String redirect = ParamUtil.getString(request, "redirect");
 
 	//Retrieves story type text and attribute.
 	String storyTypeText = "Unknown Story Type";
@@ -19,25 +19,30 @@
 		storyTypeText = storyType + "-story";
 	}
 
-	String actionButtonText = (story == null ? "add-new-" + storyType
-			: "edit-" + storyType);
+	String actionButtonText = (story == null ? "add-new-" + storyType : "edit-" + storyType);
 %>
 
 <!-- Link Definitions -->
-<portlet:renderURL var="addEditFinalStoryUrl">
+<portlet:renderURL var="addEditStoryUrl">
 	<portlet:param name="jspPage" value="/html/story/edit_story.jsp" />
+</portlet:renderURL>
+<portlet:actionURL name="updateStory" var="updateStoryUrl">
+	<portlet:param name="redirect" value="<%= redirect %>" />
+</portlet:actionURL>
+<portlet:renderURL windowState="normal" var="backURL">
+	<portlet:param name="jspPage" value="/html/view.jsp" />
 </portlet:renderURL>
 
 <!-- Structure Definition -->
+<liferay-ui:header title="Story Entry" backLabel="TODO" backURL="<%=backURL %>" />
+<!-- TODO ERRORS/MESSAGES -->
 <liferay-ui:error key="" message="" />
+
 <c:if test="<%=story!=null%>">
-	<liferay-ui:header title='<%=storyType + " Story for loan " + story.getLoan_Account_Id()%>'
-	backLabel="TODO" backURL="" />
-	
 	<aui:panel label="Story Text" >
 		<aui:panel>
-			<b>Marketing Acceptable: </b><%=story.getIs_Good_Enough_For_Marketing()%>
-			<b>Final Story Acceptable: </b><%=story.getIs_Good_Enough_For_Story()%>
+			<b>Marked as Marketing publication acceptable: </b><%=story.getIs_Good_Enough_For_Marketing()%>
+			<b>Marked as Story publication acceptable: </b><%=story.getIs_Good_Enough_For_Story()%>
 			
 			Video URL: <%=!(story.getVideo_Url() == null || ""
 								.equals(story.getVideo_Url())) ? "<a href="
@@ -49,6 +54,6 @@
 			<p><%=story.getStory_Text()%></p>
 		</aui:panel>
 	</aui:panel>
+	<aui:button type="cancel" value="Cancel" onClick="<%=redirect %>" />
 </c:if>
 
-<aui:button value="<%=actionButtonText%>" onClick="<%=addEditFinalStoryUrl.toString()%>" />

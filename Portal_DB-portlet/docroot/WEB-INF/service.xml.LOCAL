@@ -159,12 +159,12 @@
 		<!-- FK Fields -->
 		<column name="abacus_Borrower_Loan_Id" type="Collection" entity="Story" mapping-key="abacus_Borrower_Loan_Id" />
 		
+		<!-- Order -->
 		<column name="borrower_Id" type="long" />
 		<column name="abacus_mfi_Id" type="long" />
 		<column name="changed_By" type="String" />
 		<column name="changed_Time" type="String" />
-		
-		<!-- Order -->
+
 		<order by="asc">
 			<order-column name="abacus_Borrower_Loan_Id" />
 		</order>

@@ -154,17 +154,25 @@
 	<entity name="BorrowerLoan" remote-service="true" local-service="true">
 
 		<!-- PK Fields -->
+<<<<<<< HEAD
 		<column name="abacus_Borrower_Loan_Id" type="long" primary="true" />
 		
 		<!-- FK Fields -->
 		<column name="abacus_Borrower_Loan_Id" type="Collection" entity="Story" mapping-key="abacus_Borrower_Loan_Id" />
 		
+		<!-- Order -->
 		<column name="borrower_Id" type="long" />
 		<column name="abacus_mfi_Id" type="long" />
 		<column name="changed_By" type="String" />
 		<column name="changed_Time" type="String" />
+
+=======
+		<column name="borrower_Loan_Id" type="long" primary="true" />
+		<!-- TODO FK -->
+		<column name="borrower_Id" type="long" />
 		
 		<!-- Order -->
+>>>>>>> 168b03ca47e7e678c6178d38fa7e0cf5e54909d8
 		<order by="asc">
 			<order-column name="abacus_Borrower_Loan_Id" />
 		</order>
