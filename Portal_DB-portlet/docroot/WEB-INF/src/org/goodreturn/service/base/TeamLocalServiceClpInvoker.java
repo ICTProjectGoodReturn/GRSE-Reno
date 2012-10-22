@@ -98,13 +98,13 @@ public class TeamLocalServiceClpInvoker {
 				"org.goodreturn.model.Team", "boolean"
 			};
 
-		_methodName86 = "getBeanIdentifier";
+		_methodName80 = "getBeanIdentifier";
 
-		_methodParameterTypes86 = new String[] {  };
+		_methodParameterTypes80 = new String[] {  };
 
-		_methodName87 = "setBeanIdentifier";
+		_methodName81 = "setBeanIdentifier";
 
-		_methodParameterTypes87 = new String[] { "java.lang.String" };
+		_methodParameterTypes81 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -196,13 +196,13 @@ public class TeamLocalServiceClpInvoker {
 				((Boolean)arguments[1]).booleanValue());
 		}
 
-		if (_methodName86.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
+		if (_methodName80.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
 			return TeamLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName87.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes87, parameterTypes)) {
+		if (_methodName81.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
 			TeamLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
@@ -241,8 +241,8 @@ public class TeamLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName86;
-	private String[] _methodParameterTypes86;
-	private String _methodName87;
-	private String[] _methodParameterTypes87;
+	private String _methodName80;
+	private String[] _methodParameterTypes80;
+	private String _methodName81;
+	private String[] _methodParameterTypes81;
 }

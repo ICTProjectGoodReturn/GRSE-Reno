@@ -33,7 +33,7 @@ public class StorySoap implements Serializable {
 
 		soapModel.setUuid(model.getUuid());
 		soapModel.setStory_Id(model.getStory_Id());
-		soapModel.setBorrower_Loan_Id(model.getBorrower_Loan_Id());
+		soapModel.setAbacus_Borrower_Loan_Id(model.getAbacus_Borrower_Loan_Id());
 		soapModel.setStory_Type(model.getStory_Type());
 		soapModel.setStory_Text(model.getStory_Text());
 		soapModel.setVideo_Url(model.getVideo_Url());
@@ -43,6 +43,8 @@ public class StorySoap implements Serializable {
 		soapModel.setStatus_By_User_Id(model.getStatus_By_User_Id());
 		soapModel.setStatus_By_User_Name(model.getStatus_By_User_Name());
 		soapModel.setStatus_Date(model.getStatus_Date());
+		soapModel.setChanged_By(model.getChanged_By());
+		soapModel.setChanged_Time(model.getChanged_Time());
 		soapModel.setCompany_Id(model.getCompany_Id());
 		soapModel.setGroup_Id(model.getGroup_Id());
 		soapModel.setUser_Id(model.getUser_Id());
@@ -114,12 +116,12 @@ public class StorySoap implements Serializable {
 		_story_Id = story_Id;
 	}
 
-	public long getBorrower_Loan_Id() {
-		return _borrower_Loan_Id;
+	public long getAbacus_Borrower_Loan_Id() {
+		return _abacus_Borrower_Loan_Id;
 	}
 
-	public void setBorrower_Loan_Id(long borrower_Loan_Id) {
-		_borrower_Loan_Id = borrower_Loan_Id;
+	public void setAbacus_Borrower_Loan_Id(long abacus_Borrower_Loan_Id) {
+		_abacus_Borrower_Loan_Id = abacus_Borrower_Loan_Id;
 	}
 
 	public String getStory_Type() {
@@ -203,6 +205,22 @@ public class StorySoap implements Serializable {
 		_status_Date = status_Date;
 	}
 
+	public String getChanged_By() {
+		return _changed_By;
+	}
+
+	public void setChanged_By(String changed_By) {
+		_changed_By = changed_By;
+	}
+
+	public long getChanged_Time() {
+		return _changed_Time;
+	}
+
+	public void setChanged_Time(long changed_Time) {
+		_changed_Time = changed_Time;
+	}
+
 	public long getCompany_Id() {
 		return _company_Id;
 	}
@@ -229,7 +247,7 @@ public class StorySoap implements Serializable {
 
 	private String _uuid;
 	private long _story_Id;
-	private long _borrower_Loan_Id;
+	private long _abacus_Borrower_Loan_Id;
 	private String _story_Type;
 	private String _story_Text;
 	private String _video_Url;
@@ -239,6 +257,8 @@ public class StorySoap implements Serializable {
 	private long _status_By_User_Id;
 	private String _status_By_User_Name;
 	private Date _status_Date;
+	private String _changed_By;
+	private long _changed_Time;
 	private long _company_Id;
 	private long _group_Id;
 	private long _user_Id;

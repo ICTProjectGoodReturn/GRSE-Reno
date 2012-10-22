@@ -55,20 +55,20 @@ public interface BorrowerPersistence extends BasePersistence<Borrower> {
 	/**
 	* Creates a new borrower with the primary key. Does not add the borrower to the database.
 	*
-	* @param abacus_Borrower_Id the primary key for the new borrower
+	* @param borrower_Id the primary key for the new borrower
 	* @return the new borrower
 	*/
-	public org.goodreturn.model.Borrower create(long abacus_Borrower_Id);
+	public org.goodreturn.model.Borrower create(long borrower_Id);
 
 	/**
 	* Removes the borrower with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param abacus_Borrower_Id the primary key of the borrower
+	* @param borrower_Id the primary key of the borrower
 	* @return the borrower that was removed
 	* @throws org.goodreturn.NoSuchBorrowerException if a borrower with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.Borrower remove(long abacus_Borrower_Id)
+	public org.goodreturn.model.Borrower remove(long borrower_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchBorrowerException;
 
@@ -79,25 +79,23 @@ public interface BorrowerPersistence extends BasePersistence<Borrower> {
 	/**
 	* Returns the borrower with the primary key or throws a {@link org.goodreturn.NoSuchBorrowerException} if it could not be found.
 	*
-	* @param abacus_Borrower_Id the primary key of the borrower
+	* @param borrower_Id the primary key of the borrower
 	* @return the borrower
 	* @throws org.goodreturn.NoSuchBorrowerException if a borrower with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.Borrower findByPrimaryKey(
-		long abacus_Borrower_Id)
+	public org.goodreturn.model.Borrower findByPrimaryKey(long borrower_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchBorrowerException;
 
 	/**
 	* Returns the borrower with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param abacus_Borrower_Id the primary key of the borrower
+	* @param borrower_Id the primary key of the borrower
 	* @return the borrower, or <code>null</code> if a borrower with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.Borrower fetchByPrimaryKey(
-		long abacus_Borrower_Id)
+	public org.goodreturn.model.Borrower fetchByPrimaryKey(long borrower_Id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -160,17 +158,17 @@ public interface BorrowerPersistence extends BasePersistence<Borrower> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns all the persons associated with the borrower.
+	* Returns all the borrower loans associated with the borrower.
 	*
 	* @param pk the primary key of the borrower
-	* @return the persons associated with the borrower
+	* @return the borrower loans associated with the borrower
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.goodreturn.model.Person> getPersons(long pk)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<org.goodreturn.model.BorrowerLoan> getBorrowerLoans(
+		long pk) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the persons associated with the borrower.
+	* Returns a range of all the borrower loans associated with the borrower.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -179,15 +177,15 @@ public interface BorrowerPersistence extends BasePersistence<Borrower> {
 	* @param pk the primary key of the borrower
 	* @param start the lower bound of the range of borrowers
 	* @param end the upper bound of the range of borrowers (not inclusive)
-	* @return the range of persons associated with the borrower
+	* @return the range of borrower loans associated with the borrower
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.goodreturn.model.Person> getPersons(long pk,
-		int start, int end)
+	public java.util.List<org.goodreturn.model.BorrowerLoan> getBorrowerLoans(
+		long pk, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns an ordered range of all the persons associated with the borrower.
+	* Returns an ordered range of all the borrower loans associated with the borrower.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -197,42 +195,42 @@ public interface BorrowerPersistence extends BasePersistence<Borrower> {
 	* @param start the lower bound of the range of borrowers
 	* @param end the upper bound of the range of borrowers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of persons associated with the borrower
+	* @return the ordered range of borrower loans associated with the borrower
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.goodreturn.model.Person> getPersons(long pk,
-		int start, int end,
+	public java.util.List<org.goodreturn.model.BorrowerLoan> getBorrowerLoans(
+		long pk, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of persons associated with the borrower.
+	* Returns the number of borrower loans associated with the borrower.
 	*
 	* @param pk the primary key of the borrower
-	* @return the number of persons associated with the borrower
+	* @return the number of borrower loans associated with the borrower
 	* @throws SystemException if a system exception occurred
 	*/
-	public int getPersonsSize(long pk)
+	public int getBorrowerLoansSize(long pk)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns <code>true</code> if the person is associated with the borrower.
+	* Returns <code>true</code> if the borrower loan is associated with the borrower.
 	*
 	* @param pk the primary key of the borrower
-	* @param personPK the primary key of the person
-	* @return <code>true</code> if the person is associated with the borrower; <code>false</code> otherwise
+	* @param borrowerLoanPK the primary key of the borrower loan
+	* @return <code>true</code> if the borrower loan is associated with the borrower; <code>false</code> otherwise
 	* @throws SystemException if a system exception occurred
 	*/
-	public boolean containsPerson(long pk, long personPK)
+	public boolean containsBorrowerLoan(long pk, long borrowerLoanPK)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns <code>true</code> if the borrower has any persons associated with it.
+	* Returns <code>true</code> if the borrower has any borrower loans associated with it.
 	*
-	* @param pk the primary key of the borrower to check for associations with persons
-	* @return <code>true</code> if the borrower has any persons associated with it; <code>false</code> otherwise
+	* @param pk the primary key of the borrower to check for associations with borrower loans
+	* @return <code>true</code> if the borrower has any borrower loans associated with it; <code>false</code> otherwise
 	* @throws SystemException if a system exception occurred
 	*/
-	public boolean containsPersons(long pk)
+	public boolean containsBorrowerLoans(long pk)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

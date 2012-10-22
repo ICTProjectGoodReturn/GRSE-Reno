@@ -46,7 +46,8 @@ public class TeamWrapper implements Team, ModelWrapper<Team> {
 
 		attributes.put("team_Id", getTeam_Id());
 		attributes.put("team_Name", getTeam_Name());
-		attributes.put("amount_Lent", getAmount_Lent());
+		attributes.put("change_By", getChange_By());
+		attributes.put("change_Time", getChange_Time());
 
 		return attributes;
 	}
@@ -64,10 +65,16 @@ public class TeamWrapper implements Team, ModelWrapper<Team> {
 			setTeam_Name(team_Name);
 		}
 
-		String amount_Lent = (String)attributes.get("amount_Lent");
+		String change_By = (String)attributes.get("change_By");
 
-		if (amount_Lent != null) {
-			setAmount_Lent(amount_Lent);
+		if (change_By != null) {
+			setChange_By(change_By);
+		}
+
+		Long change_Time = (Long)attributes.get("change_Time");
+
+		if (change_Time != null) {
+			setChange_Time(change_Time);
 		}
 	}
 
@@ -126,21 +133,39 @@ public class TeamWrapper implements Team, ModelWrapper<Team> {
 	}
 
 	/**
-	* Returns the amount_ lent of this team.
+	* Returns the change_ by of this team.
 	*
-	* @return the amount_ lent of this team
+	* @return the change_ by of this team
 	*/
-	public java.lang.String getAmount_Lent() {
-		return _team.getAmount_Lent();
+	public java.lang.String getChange_By() {
+		return _team.getChange_By();
 	}
 
 	/**
-	* Sets the amount_ lent of this team.
+	* Sets the change_ by of this team.
 	*
-	* @param amount_Lent the amount_ lent of this team
+	* @param change_By the change_ by of this team
 	*/
-	public void setAmount_Lent(java.lang.String amount_Lent) {
-		_team.setAmount_Lent(amount_Lent);
+	public void setChange_By(java.lang.String change_By) {
+		_team.setChange_By(change_By);
+	}
+
+	/**
+	* Returns the change_ time of this team.
+	*
+	* @return the change_ time of this team
+	*/
+	public long getChange_Time() {
+		return _team.getChange_Time();
+	}
+
+	/**
+	* Sets the change_ time of this team.
+	*
+	* @param change_Time the change_ time of this team
+	*/
+	public void setChange_Time(long change_Time) {
+		_team.setChange_Time(change_Time);
 	}
 
 	public boolean isNew() {

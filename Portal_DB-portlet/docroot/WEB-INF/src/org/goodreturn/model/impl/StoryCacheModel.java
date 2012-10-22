@@ -34,14 +34,14 @@ import java.util.Date;
 public class StoryCacheModel implements CacheModel<Story>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
 		sb.append(", story_Id=");
 		sb.append(story_Id);
-		sb.append(", borrower_Loan_Id=");
-		sb.append(borrower_Loan_Id);
+		sb.append(", abacus_Borrower_Loan_Id=");
+		sb.append(abacus_Borrower_Loan_Id);
 		sb.append(", story_Type=");
 		sb.append(story_Type);
 		sb.append(", story_Text=");
@@ -60,6 +60,10 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 		sb.append(status_By_User_Name);
 		sb.append(", status_Date=");
 		sb.append(status_Date);
+		sb.append(", changed_By=");
+		sb.append(changed_By);
+		sb.append(", changed_Time=");
+		sb.append(changed_Time);
 		sb.append(", company_Id=");
 		sb.append(company_Id);
 		sb.append(", group_Id=");
@@ -82,7 +86,7 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 		}
 
 		storyImpl.setStory_Id(story_Id);
-		storyImpl.setBorrower_Loan_Id(borrower_Loan_Id);
+		storyImpl.setAbacus_Borrower_Loan_Id(abacus_Borrower_Loan_Id);
 
 		if (story_Type == null) {
 			storyImpl.setStory_Type(StringPool.BLANK);
@@ -124,6 +128,14 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 			storyImpl.setStatus_Date(new Date(status_Date));
 		}
 
+		if (changed_By == null) {
+			storyImpl.setChanged_By(StringPool.BLANK);
+		}
+		else {
+			storyImpl.setChanged_By(changed_By);
+		}
+
+		storyImpl.setChanged_Time(changed_Time);
 		storyImpl.setCompany_Id(company_Id);
 		storyImpl.setGroup_Id(group_Id);
 		storyImpl.setUser_Id(user_Id);
@@ -135,7 +147,7 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 
 	public String uuid;
 	public long story_Id;
-	public long borrower_Loan_Id;
+	public long abacus_Borrower_Loan_Id;
 	public String story_Type;
 	public String story_Text;
 	public String video_Url;
@@ -145,6 +157,8 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 	public long status_By_User_Id;
 	public String status_By_User_Name;
 	public long status_Date;
+	public String changed_By;
+	public long changed_Time;
 	public long company_Id;
 	public long group_Id;
 	public long user_Id;

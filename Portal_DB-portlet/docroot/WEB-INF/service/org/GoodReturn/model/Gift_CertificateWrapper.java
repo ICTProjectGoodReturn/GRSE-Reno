@@ -48,6 +48,8 @@ public class Gift_CertificateWrapper implements Gift_Certificate,
 		attributes.put("certificate_Id", getCertificate_Id());
 		attributes.put("certificate_Amount", getCertificate_Amount());
 		attributes.put("certificate_Type", getCertificate_Type());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 
 		return attributes;
 	}
@@ -69,6 +71,18 @@ public class Gift_CertificateWrapper implements Gift_Certificate,
 
 		if (certificate_Type != null) {
 			setCertificate_Type(certificate_Type);
+		}
+
+		String changed_By = (String)attributes.get("changed_By");
+
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		Long changed_Time = (Long)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
 		}
 	}
 
@@ -142,6 +156,42 @@ public class Gift_CertificateWrapper implements Gift_Certificate,
 	*/
 	public void setCertificate_Type(java.lang.String certificate_Type) {
 		_gift_Certificate.setCertificate_Type(certificate_Type);
+	}
+
+	/**
+	* Returns the changed_ by of this gift_ certificate.
+	*
+	* @return the changed_ by of this gift_ certificate
+	*/
+	public java.lang.String getChanged_By() {
+		return _gift_Certificate.getChanged_By();
+	}
+
+	/**
+	* Sets the changed_ by of this gift_ certificate.
+	*
+	* @param changed_By the changed_ by of this gift_ certificate
+	*/
+	public void setChanged_By(java.lang.String changed_By) {
+		_gift_Certificate.setChanged_By(changed_By);
+	}
+
+	/**
+	* Returns the changed_ time of this gift_ certificate.
+	*
+	* @return the changed_ time of this gift_ certificate
+	*/
+	public long getChanged_Time() {
+		return _gift_Certificate.getChanged_Time();
+	}
+
+	/**
+	* Sets the changed_ time of this gift_ certificate.
+	*
+	* @param changed_Time the changed_ time of this gift_ certificate
+	*/
+	public void setChanged_Time(long changed_Time) {
+		_gift_Certificate.setChanged_Time(changed_Time);
 	}
 
 	public boolean isNew() {

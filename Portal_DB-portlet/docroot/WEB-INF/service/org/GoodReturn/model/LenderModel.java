@@ -74,19 +74,32 @@ public interface LenderModel extends BaseModel<Lender> {
 	public void setLender_Id(long lender_Id);
 
 	/**
-	 * Returns the salutation of this lender.
+	 * Returns the abacus_ person_ ID of this lender.
 	 *
-	 * @return the salutation of this lender
+	 * @return the abacus_ person_ ID of this lender
 	 */
-	@AutoEscape
-	public String getSalutation();
+	public long getAbacus_Person_Id();
 
 	/**
-	 * Sets the salutation of this lender.
+	 * Sets the abacus_ person_ ID of this lender.
 	 *
-	 * @param salutation the salutation of this lender
+	 * @param abacus_Person_Id the abacus_ person_ ID of this lender
 	 */
-	public void setSalutation(String salutation);
+	public void setAbacus_Person_Id(long abacus_Person_Id);
+
+	/**
+	 * Returns the certificate_ ID of this lender.
+	 *
+	 * @return the certificate_ ID of this lender
+	 */
+	public long getCertificate_Id();
+
+	/**
+	 * Sets the certificate_ ID of this lender.
+	 *
+	 * @param certificate_Id the certificate_ ID of this lender
+	 */
+	public void setCertificate_Id(long certificate_Id);
 
 	/**
 	 * Returns the employer_ name of this lender.
@@ -132,21 +145,6 @@ public interface LenderModel extends BaseModel<Lender> {
 	 * @param heard_Of_Us the heard_ of_ us of this lender
 	 */
 	public void setHeard_Of_Us(String heard_Of_Us);
-
-	/**
-	 * Returns the region of this lender.
-	 *
-	 * @return the region of this lender
-	 */
-	@AutoEscape
-	public String getRegion();
-
-	/**
-	 * Sets the region of this lender.
-	 *
-	 * @param region the region of this lender
-	 */
-	public void setRegion(String region);
 
 	/**
 	 * Returns the display_ name of this lender.
@@ -208,39 +206,19 @@ public interface LenderModel extends BaseModel<Lender> {
 	public void setAbout_Themselves(String about_Themselves);
 
 	/**
-	 * Returns the automatic_ re_lend of this lender.
+	 * Returns the personal_ link of this lender.
 	 *
-	 * @return the automatic_ re_lend of this lender
+	 * @return the personal_ link of this lender
 	 */
-	public boolean getAutomatic_Re_lend();
+	@AutoEscape
+	public String getPersonal_Link();
 
 	/**
-	 * Returns <code>true</code> if this lender is automatic_ re_lend.
+	 * Sets the personal_ link of this lender.
 	 *
-	 * @return <code>true</code> if this lender is automatic_ re_lend; <code>false</code> otherwise
+	 * @param personal_Link the personal_ link of this lender
 	 */
-	public boolean isAutomatic_Re_lend();
-
-	/**
-	 * Sets whether this lender is automatic_ re_lend.
-	 *
-	 * @param automatic_Re_lend the automatic_ re_lend of this lender
-	 */
-	public void setAutomatic_Re_lend(boolean automatic_Re_lend);
-
-	/**
-	 * Returns the monthly_ repayments of this lender.
-	 *
-	 * @return the monthly_ repayments of this lender
-	 */
-	public double getMonthly_Repayments();
-
-	/**
-	 * Sets the monthly_ repayments of this lender.
-	 *
-	 * @param monthly_Repayments the monthly_ repayments of this lender
-	 */
-	public void setMonthly_Repayments(double monthly_Repayments);
+	public void setPersonal_Link(String personal_Link);
 
 	/**
 	 * Returns the is_ public_ profile of this lender.
@@ -262,21 +240,6 @@ public interface LenderModel extends BaseModel<Lender> {
 	 * @param is_Public_Profile the is_ public_ profile of this lender
 	 */
 	public void setIs_Public_Profile(boolean is_Public_Profile);
-
-	/**
-	 * Returns the bank_ details of this lender.
-	 *
-	 * @return the bank_ details of this lender
-	 */
-	@AutoEscape
-	public String getBank_Details();
-
-	/**
-	 * Sets the bank_ details of this lender.
-	 *
-	 * @param bank_Details the bank_ details of this lender
-	 */
-	public void setBank_Details(String bank_Details);
 
 	/**
 	 * Returns the recieve_ emails of this lender.
@@ -363,35 +326,6 @@ public interface LenderModel extends BaseModel<Lender> {
 	public void setIs_Validated(boolean is_Validated);
 
 	/**
-	 * Returns the current_ balance of this lender.
-	 *
-	 * @return the current_ balance of this lender
-	 */
-	public double getCurrent_Balance();
-
-	/**
-	 * Sets the current_ balance of this lender.
-	 *
-	 * @param current_Balance the current_ balance of this lender
-	 */
-	public void setCurrent_Balance(double current_Balance);
-
-	/**
-	 * Returns the paypal_ email of this lender.
-	 *
-	 * @return the paypal_ email of this lender
-	 */
-	@AutoEscape
-	public String getPaypal_Email();
-
-	/**
-	 * Sets the paypal_ email of this lender.
-	 *
-	 * @param paypal_Email the paypal_ email of this lender
-	 */
-	public void setPaypal_Email(String paypal_Email);
-
-	/**
 	 * Returns the password of this lender.
 	 *
 	 * @return the password of this lender
@@ -436,20 +370,6 @@ public interface LenderModel extends BaseModel<Lender> {
 	public void setFeatured_Lender(String featured_Lender);
 
 	/**
-	 * Returns the voucher_ ID of this lender.
-	 *
-	 * @return the voucher_ ID of this lender
-	 */
-	public long getVoucher_Id();
-
-	/**
-	 * Sets the voucher_ ID of this lender.
-	 *
-	 * @param voucher_Id the voucher_ ID of this lender
-	 */
-	public void setVoucher_Id(long voucher_Id);
-
-	/**
 	 * Returns the is_ loan_ donation of this lender.
 	 *
 	 * @return the is_ loan_ donation of this lender
@@ -469,6 +389,35 @@ public interface LenderModel extends BaseModel<Lender> {
 	 * @param is_Loan_Donation the is_ loan_ donation of this lender
 	 */
 	public void setIs_Loan_Donation(boolean is_Loan_Donation);
+
+	/**
+	 * Returns the changed_ by of this lender.
+	 *
+	 * @return the changed_ by of this lender
+	 */
+	@AutoEscape
+	public String getChanged_By();
+
+	/**
+	 * Sets the changed_ by of this lender.
+	 *
+	 * @param changed_By the changed_ by of this lender
+	 */
+	public void setChanged_By(String changed_By);
+
+	/**
+	 * Returns the changed_ time of this lender.
+	 *
+	 * @return the changed_ time of this lender
+	 */
+	public long getChanged_Time();
+
+	/**
+	 * Sets the changed_ time of this lender.
+	 *
+	 * @param changed_Time the changed_ time of this lender
+	 */
+	public void setChanged_Time(long changed_Time);
 
 	public boolean isNew();
 

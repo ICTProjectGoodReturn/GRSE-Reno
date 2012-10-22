@@ -64,12 +64,13 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "team_Id", Types.BIGINT },
 			{ "team_Name", Types.VARCHAR },
-			{ "amount_Lent", Types.VARCHAR }
+			{ "change_By", Types.VARCHAR },
+			{ "change_Time", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Team (team_Id LONG not null primary key,team_Name VARCHAR(75) null,amount_Lent VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Team (team_Id LONG not null primary key,team_Name VARCHAR(75) null,change_By VARCHAR(75) null,change_Time LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Team";
-	public static final String ORDER_BY_JPQL = " ORDER BY team.team_Name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Team.team_Name ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY team.team_Id ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Team.team_Id ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -96,7 +97,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 
 		model.setTeam_Id(soapModel.getTeam_Id());
 		model.setTeam_Name(soapModel.getTeam_Name());
-		model.setAmount_Lent(soapModel.getAmount_Lent());
+		model.setChange_By(soapModel.getChange_By());
+		model.setChange_Time(soapModel.getChange_Time());
 
 		return model;
 	}
@@ -157,7 +159,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 
 		attributes.put("team_Id", getTeam_Id());
 		attributes.put("team_Name", getTeam_Name());
-		attributes.put("amount_Lent", getAmount_Lent());
+		attributes.put("change_By", getChange_By());
+		attributes.put("change_Time", getChange_Time());
 
 		return attributes;
 	}
@@ -176,10 +179,16 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			setTeam_Name(team_Name);
 		}
 
-		String amount_Lent = (String)attributes.get("amount_Lent");
+		String change_By = (String)attributes.get("change_By");
 
-		if (amount_Lent != null) {
-			setAmount_Lent(amount_Lent);
+		if (change_By != null) {
+			setChange_By(change_By);
+		}
+
+		Long change_Time = (Long)attributes.get("change_Time");
+
+		if (change_Time != null) {
+			setChange_Time(change_Time);
 		}
 	}
 
@@ -207,17 +216,26 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 	}
 
 	@JSON
-	public String getAmount_Lent() {
-		if (_amount_Lent == null) {
+	public String getChange_By() {
+		if (_change_By == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _amount_Lent;
+			return _change_By;
 		}
 	}
 
-	public void setAmount_Lent(String amount_Lent) {
-		_amount_Lent = amount_Lent;
+	public void setChange_By(String change_By) {
+		_change_By = change_By;
+	}
+
+	@JSON
+	public long getChange_Time() {
+		return _change_Time;
+	}
+
+	public void setChange_Time(long change_Time) {
+		_change_Time = change_Time;
 	}
 
 	@Override
@@ -250,7 +268,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 
 		teamImpl.setTeam_Id(getTeam_Id());
 		teamImpl.setTeam_Name(getTeam_Name());
-		teamImpl.setAmount_Lent(getAmount_Lent());
+		teamImpl.setChange_By(getChange_By());
+		teamImpl.setChange_Time(getChange_Time());
 
 		teamImpl.resetOriginalValues();
 
@@ -260,7 +279,15 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 	public int compareTo(Team team) {
 		int value = 0;
 
-		value = getTeam_Name().compareTo(team.getTeam_Name());
+		if (getTeam_Id() < team.getTeam_Id()) {
+			value = -1;
+		}
+		else if (getTeam_Id() > team.getTeam_Id()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		if (value != 0) {
 			return value;
@@ -317,34 +344,38 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			teamCacheModel.team_Name = null;
 		}
 
-		teamCacheModel.amount_Lent = getAmount_Lent();
+		teamCacheModel.change_By = getChange_By();
 
-		String amount_Lent = teamCacheModel.amount_Lent;
+		String change_By = teamCacheModel.change_By;
 
-		if ((amount_Lent != null) && (amount_Lent.length() == 0)) {
-			teamCacheModel.amount_Lent = null;
+		if ((change_By != null) && (change_By.length() == 0)) {
+			teamCacheModel.change_By = null;
 		}
+
+		teamCacheModel.change_Time = getChange_Time();
 
 		return teamCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(9);
 
 		sb.append("{team_Id=");
 		sb.append(getTeam_Id());
 		sb.append(", team_Name=");
 		sb.append(getTeam_Name());
-		sb.append(", amount_Lent=");
-		sb.append(getAmount_Lent());
+		sb.append(", change_By=");
+		sb.append(getChange_By());
+		sb.append(", change_Time=");
+		sb.append(getChange_Time());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(16);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Team");
@@ -359,8 +390,12 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 		sb.append(getTeam_Name());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>amount_Lent</column-name><column-value><![CDATA[");
-		sb.append(getAmount_Lent());
+			"<column><column-name>change_By</column-name><column-value><![CDATA[");
+		sb.append(getChange_By());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>change_Time</column-name><column-value><![CDATA[");
+		sb.append(getChange_Time());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -374,6 +409,7 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 		};
 	private long _team_Id;
 	private String _team_Name;
-	private String _amount_Lent;
+	private String _change_By;
+	private long _change_Time;
 	private Team _escapedModelProxy;
 }

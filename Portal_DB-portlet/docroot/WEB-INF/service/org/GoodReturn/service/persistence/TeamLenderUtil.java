@@ -132,25 +132,25 @@ public class TeamLenderUtil {
 	/**
 	* Creates a new team lender with the primary key. Does not add the team lender to the database.
 	*
-	* @param teamlender_Id the primary key for the new team lender
+	* @param team_lender_Id the primary key for the new team lender
 	* @return the new team lender
 	*/
-	public static org.goodreturn.model.TeamLender create(long teamlender_Id) {
-		return getPersistence().create(teamlender_Id);
+	public static org.goodreturn.model.TeamLender create(long team_lender_Id) {
+		return getPersistence().create(team_lender_Id);
 	}
 
 	/**
 	* Removes the team lender with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param teamlender_Id the primary key of the team lender
+	* @param team_lender_Id the primary key of the team lender
 	* @return the team lender that was removed
 	* @throws org.goodreturn.NoSuchTeamLenderException if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.goodreturn.model.TeamLender remove(long teamlender_Id)
+	public static org.goodreturn.model.TeamLender remove(long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchTeamLenderException {
-		return getPersistence().remove(teamlender_Id);
+		return getPersistence().remove(team_lender_Id);
 	}
 
 	public static org.goodreturn.model.TeamLender updateImpl(
@@ -162,29 +162,29 @@ public class TeamLenderUtil {
 	/**
 	* Returns the team lender with the primary key or throws a {@link org.goodreturn.NoSuchTeamLenderException} if it could not be found.
 	*
-	* @param teamlender_Id the primary key of the team lender
+	* @param team_lender_Id the primary key of the team lender
 	* @return the team lender
 	* @throws org.goodreturn.NoSuchTeamLenderException if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.TeamLender findByPrimaryKey(
-		long teamlender_Id)
+		long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchTeamLenderException {
-		return getPersistence().findByPrimaryKey(teamlender_Id);
+		return getPersistence().findByPrimaryKey(team_lender_Id);
 	}
 
 	/**
 	* Returns the team lender with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param teamlender_Id the primary key of the team lender
+	* @param team_lender_Id the primary key of the team lender
 	* @return the team lender, or <code>null</code> if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.TeamLender fetchByPrimaryKey(
-		long teamlender_Id)
+		long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(teamlender_Id);
+		return getPersistence().fetchByPrimaryKey(team_lender_Id);
 	}
 
 	/**

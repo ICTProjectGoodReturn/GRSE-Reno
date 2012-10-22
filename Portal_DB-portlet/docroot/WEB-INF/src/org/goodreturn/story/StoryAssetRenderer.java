@@ -29,12 +29,12 @@ public class StoryAssetRenderer extends BaseAssetRenderer {
 
 	@Override
 	public String getSummary(Locale locale) {
-		return "Story for loan " + story.getBorrower_Loan_Id();
+		return "Story for loan " + story.getAbacus_Borrower_Loan_Id();
 	}
 
 	@Override
 	public String getTitle(Locale locale) {
-		return "Story for loan " + story.getBorrower_Loan_Id();
+		return "Story for loan " + story.getAbacus_Borrower_Loan_Id();
 	}
 
 	@Override

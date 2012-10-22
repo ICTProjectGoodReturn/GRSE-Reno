@@ -60,20 +60,20 @@ public interface TeamLenderLocalService extends BaseLocalService,
 	/**
 	* Creates a new team lender with the primary key. Does not add the team lender to the database.
 	*
-	* @param teamlender_Id the primary key for the new team lender
+	* @param team_lender_Id the primary key for the new team lender
 	* @return the new team lender
 	*/
-	public org.goodreturn.model.TeamLender createTeamLender(long teamlender_Id);
+	public org.goodreturn.model.TeamLender createTeamLender(long team_lender_Id);
 
 	/**
 	* Deletes the team lender with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param teamlender_Id the primary key of the team lender
+	* @param team_lender_Id the primary key of the team lender
 	* @return the team lender that was removed
 	* @throws PortalException if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.TeamLender deleteTeamLender(long teamlender_Id)
+	public org.goodreturn.model.TeamLender deleteTeamLender(long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -153,19 +153,19 @@ public interface TeamLenderLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.goodreturn.model.TeamLender fetchTeamLender(long teamlender_Id)
+	public org.goodreturn.model.TeamLender fetchTeamLender(long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the team lender with the primary key.
 	*
-	* @param teamlender_Id the primary key of the team lender
+	* @param team_lender_Id the primary key of the team lender
 	* @return the team lender
 	* @throws PortalException if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public org.goodreturn.model.TeamLender getTeamLender(long teamlender_Id)
+	public org.goodreturn.model.TeamLender getTeamLender(long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

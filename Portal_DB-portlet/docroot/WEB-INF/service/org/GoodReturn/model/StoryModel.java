@@ -89,18 +89,18 @@ public interface StoryModel extends BaseModel<Story> {
 	public void setStory_Id(long story_Id);
 
 	/**
-	 * Returns the borrower_ loan_ ID of this story.
+	 * Returns the abacus_ borrower_ loan_ ID of this story.
 	 *
-	 * @return the borrower_ loan_ ID of this story
+	 * @return the abacus_ borrower_ loan_ ID of this story
 	 */
-	public long getBorrower_Loan_Id();
+	public long getAbacus_Borrower_Loan_Id();
 
 	/**
-	 * Sets the borrower_ loan_ ID of this story.
+	 * Sets the abacus_ borrower_ loan_ ID of this story.
 	 *
-	 * @param borrower_Loan_Id the borrower_ loan_ ID of this story
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID of this story
 	 */
-	public void setBorrower_Loan_Id(long borrower_Loan_Id);
+	public void setAbacus_Borrower_Loan_Id(long abacus_Borrower_Loan_Id);
 
 	/**
 	 * Returns the story_ type of this story.
@@ -246,6 +246,35 @@ public interface StoryModel extends BaseModel<Story> {
 	 * @param status_Date the status_ date of this story
 	 */
 	public void setStatus_Date(Date status_Date);
+
+	/**
+	 * Returns the changed_ by of this story.
+	 *
+	 * @return the changed_ by of this story
+	 */
+	@AutoEscape
+	public String getChanged_By();
+
+	/**
+	 * Sets the changed_ by of this story.
+	 *
+	 * @param changed_By the changed_ by of this story
+	 */
+	public void setChanged_By(String changed_By);
+
+	/**
+	 * Returns the changed_ time of this story.
+	 *
+	 * @return the changed_ time of this story
+	 */
+	public long getChanged_Time();
+
+	/**
+	 * Sets the changed_ time of this story.
+	 *
+	 * @param changed_Time the changed_ time of this story
+	 */
+	public void setChanged_Time(long changed_Time);
 
 	/**
 	 * Returns the company_ ID of this story.

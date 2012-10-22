@@ -55,20 +55,20 @@ public interface TeamLenderPersistence extends BasePersistence<TeamLender> {
 	/**
 	* Creates a new team lender with the primary key. Does not add the team lender to the database.
 	*
-	* @param teamlender_Id the primary key for the new team lender
+	* @param team_lender_Id the primary key for the new team lender
 	* @return the new team lender
 	*/
-	public org.goodreturn.model.TeamLender create(long teamlender_Id);
+	public org.goodreturn.model.TeamLender create(long team_lender_Id);
 
 	/**
 	* Removes the team lender with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param teamlender_Id the primary key of the team lender
+	* @param team_lender_Id the primary key of the team lender
 	* @return the team lender that was removed
 	* @throws org.goodreturn.NoSuchTeamLenderException if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.TeamLender remove(long teamlender_Id)
+	public org.goodreturn.model.TeamLender remove(long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchTeamLenderException;
 
@@ -79,23 +79,24 @@ public interface TeamLenderPersistence extends BasePersistence<TeamLender> {
 	/**
 	* Returns the team lender with the primary key or throws a {@link org.goodreturn.NoSuchTeamLenderException} if it could not be found.
 	*
-	* @param teamlender_Id the primary key of the team lender
+	* @param team_lender_Id the primary key of the team lender
 	* @return the team lender
 	* @throws org.goodreturn.NoSuchTeamLenderException if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.TeamLender findByPrimaryKey(long teamlender_Id)
+	public org.goodreturn.model.TeamLender findByPrimaryKey(long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchTeamLenderException;
 
 	/**
 	* Returns the team lender with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param teamlender_Id the primary key of the team lender
+	* @param team_lender_Id the primary key of the team lender
 	* @return the team lender, or <code>null</code> if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.TeamLender fetchByPrimaryKey(long teamlender_Id)
+	public org.goodreturn.model.TeamLender fetchByPrimaryKey(
+		long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

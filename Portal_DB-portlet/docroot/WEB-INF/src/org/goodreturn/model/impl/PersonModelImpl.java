@@ -71,14 +71,18 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 			{ "address_Type", Types.VARCHAR },
 			{ "country", Types.VARCHAR },
 			{ "gender", Types.VARCHAR },
+			{ "salutation", Types.VARCHAR },
 			{ "status", Types.VARCHAR },
+			{ "phone_Number", Types.BIGINT },
 			{ "photo_URL", Types.VARCHAR },
-			{ "occupation", Types.VARCHAR }
+			{ "occupation", Types.VARCHAR },
+			{ "changed_By", Types.VARCHAR },
+			{ "changed_Time", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Person (abacus_Person_Id LONG not null primary key,first_Name VARCHAR(75) null,last_Name VARCHAR(75) null,email VARCHAR(75) null,address VARCHAR(75) null,address_Type VARCHAR(75) null,country VARCHAR(75) null,gender VARCHAR(75) null,status VARCHAR(75) null,photo_URL VARCHAR(75) null,occupation VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Person (abacus_Person_Id LONG not null primary key,first_Name VARCHAR(75) null,last_Name VARCHAR(75) null,email VARCHAR(75) null,address VARCHAR(75) null,address_Type VARCHAR(75) null,country VARCHAR(75) null,gender VARCHAR(75) null,salutation VARCHAR(75) null,status VARCHAR(75) null,phone_Number LONG,photo_URL VARCHAR(75) null,occupation VARCHAR(75) null,changed_By VARCHAR(75) null,changed_Time LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Person";
-	public static final String ORDER_BY_JPQL = " ORDER BY person.last_Name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Person.last_Name ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY person.abacus_Person_Id ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Person.abacus_Person_Id ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -111,9 +115,13 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 		model.setAddress_Type(soapModel.getAddress_Type());
 		model.setCountry(soapModel.getCountry());
 		model.setGender(soapModel.getGender());
+		model.setSalutation(soapModel.getSalutation());
 		model.setStatus(soapModel.getStatus());
+		model.setPhone_Number(soapModel.getPhone_Number());
 		model.setPhoto_URL(soapModel.getPhoto_URL());
 		model.setOccupation(soapModel.getOccupation());
+		model.setChanged_By(soapModel.getChanged_By());
+		model.setChanged_Time(soapModel.getChanged_Time());
 
 		return model;
 	}
@@ -180,9 +188,13 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 		attributes.put("address_Type", getAddress_Type());
 		attributes.put("country", getCountry());
 		attributes.put("gender", getGender());
+		attributes.put("salutation", getSalutation());
 		attributes.put("status", getStatus());
+		attributes.put("phone_Number", getPhone_Number());
 		attributes.put("photo_URL", getPhoto_URL());
 		attributes.put("occupation", getOccupation());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 
 		return attributes;
 	}
@@ -237,10 +249,22 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 			setGender(gender);
 		}
 
+		String salutation = (String)attributes.get("salutation");
+
+		if (salutation != null) {
+			setSalutation(salutation);
+		}
+
 		String status = (String)attributes.get("status");
 
 		if (status != null) {
 			setStatus(status);
+		}
+
+		Long phone_Number = (Long)attributes.get("phone_Number");
+
+		if (phone_Number != null) {
+			setPhone_Number(phone_Number);
 		}
 
 		String photo_URL = (String)attributes.get("photo_URL");
@@ -253,6 +277,18 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 
 		if (occupation != null) {
 			setOccupation(occupation);
+		}
+
+		String changed_By = (String)attributes.get("changed_By");
+
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		Long changed_Time = (Long)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
 		}
 	}
 
@@ -364,6 +400,20 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 	}
 
 	@JSON
+	public String getSalutation() {
+		if (_salutation == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _salutation;
+		}
+	}
+
+	public void setSalutation(String salutation) {
+		_salutation = salutation;
+	}
+
+	@JSON
 	public String getStatus() {
 		if (_status == null) {
 			return StringPool.BLANK;
@@ -375,6 +425,15 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 
 	public void setStatus(String status) {
 		_status = status;
+	}
+
+	@JSON
+	public long getPhone_Number() {
+		return _phone_Number;
+	}
+
+	public void setPhone_Number(long phone_Number) {
+		_phone_Number = phone_Number;
 	}
 
 	@JSON
@@ -403,6 +462,29 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 
 	public void setOccupation(String occupation) {
 		_occupation = occupation;
+	}
+
+	@JSON
+	public String getChanged_By() {
+		if (_changed_By == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _changed_By;
+		}
+	}
+
+	public void setChanged_By(String changed_By) {
+		_changed_By = changed_By;
+	}
+
+	@JSON
+	public long getChanged_Time() {
+		return _changed_Time;
+	}
+
+	public void setChanged_Time(long changed_Time) {
+		_changed_Time = changed_Time;
 	}
 
 	@Override
@@ -441,9 +523,13 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 		personImpl.setAddress_Type(getAddress_Type());
 		personImpl.setCountry(getCountry());
 		personImpl.setGender(getGender());
+		personImpl.setSalutation(getSalutation());
 		personImpl.setStatus(getStatus());
+		personImpl.setPhone_Number(getPhone_Number());
 		personImpl.setPhoto_URL(getPhoto_URL());
 		personImpl.setOccupation(getOccupation());
+		personImpl.setChanged_By(getChanged_By());
+		personImpl.setChanged_Time(getChanged_Time());
 
 		personImpl.resetOriginalValues();
 
@@ -453,7 +539,15 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 	public int compareTo(Person person) {
 		int value = 0;
 
-		value = getLast_Name().compareTo(person.getLast_Name());
+		if (getAbacus_Person_Id() < person.getAbacus_Person_Id()) {
+			value = -1;
+		}
+		else if (getAbacus_Person_Id() > person.getAbacus_Person_Id()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		if (value != 0) {
 			return value;
@@ -558,6 +652,14 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 			personCacheModel.gender = null;
 		}
 
+		personCacheModel.salutation = getSalutation();
+
+		String salutation = personCacheModel.salutation;
+
+		if ((salutation != null) && (salutation.length() == 0)) {
+			personCacheModel.salutation = null;
+		}
+
 		personCacheModel.status = getStatus();
 
 		String status = personCacheModel.status;
@@ -565,6 +667,8 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 		if ((status != null) && (status.length() == 0)) {
 			personCacheModel.status = null;
 		}
+
+		personCacheModel.phone_Number = getPhone_Number();
 
 		personCacheModel.photo_URL = getPhoto_URL();
 
@@ -582,12 +686,22 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 			personCacheModel.occupation = null;
 		}
 
+		personCacheModel.changed_By = getChanged_By();
+
+		String changed_By = personCacheModel.changed_By;
+
+		if ((changed_By != null) && (changed_By.length() == 0)) {
+			personCacheModel.changed_By = null;
+		}
+
+		personCacheModel.changed_Time = getChanged_Time();
+
 		return personCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{abacus_Person_Id=");
 		sb.append(getAbacus_Person_Id());
@@ -605,19 +719,27 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 		sb.append(getCountry());
 		sb.append(", gender=");
 		sb.append(getGender());
+		sb.append(", salutation=");
+		sb.append(getSalutation());
 		sb.append(", status=");
 		sb.append(getStatus());
+		sb.append(", phone_Number=");
+		sb.append(getPhone_Number());
 		sb.append(", photo_URL=");
 		sb.append(getPhoto_URL());
 		sb.append(", occupation=");
 		sb.append(getOccupation());
+		sb.append(", changed_By=");
+		sb.append(getChanged_By());
+		sb.append(", changed_Time=");
+		sb.append(getChanged_Time());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Person");
@@ -656,8 +778,16 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 		sb.append(getGender());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>salutation</column-name><column-value><![CDATA[");
+		sb.append(getSalutation());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
 		sb.append(getStatus());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>phone_Number</column-name><column-value><![CDATA[");
+		sb.append(getPhone_Number());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>photo_URL</column-name><column-value><![CDATA[");
@@ -666,6 +796,14 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 		sb.append(
 			"<column><column-name>occupation</column-name><column-value><![CDATA[");
 		sb.append(getOccupation());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>changed_By</column-name><column-value><![CDATA[");
+		sb.append(getChanged_By());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
+		sb.append(getChanged_Time());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -685,8 +823,12 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 	private String _address_Type;
 	private String _country;
 	private String _gender;
+	private String _salutation;
 	private String _status;
+	private long _phone_Number;
 	private String _photo_URL;
 	private String _occupation;
+	private String _changed_By;
+	private long _changed_Time;
 	private Person _escapedModelProxy;
 }

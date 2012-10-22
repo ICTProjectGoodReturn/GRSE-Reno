@@ -33,7 +33,6 @@ import org.goodreturn.model.PersonClp;
 import org.goodreturn.model.StoryClp;
 import org.goodreturn.model.TeamClp;
 import org.goodreturn.model.TeamLenderClp;
-import org.goodreturn.model.TeamLenderLoanClp;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -142,10 +141,6 @@ public class ClpSerializer {
 			return translateInputTeamLender(oldModel);
 		}
 
-		if (oldModelClassName.equals(TeamLenderLoanClp.class.getName())) {
-			return translateInputTeamLenderLoan(oldModel);
-		}
-
 		return oldModel;
 	}
 
@@ -241,16 +236,6 @@ public class ClpSerializer {
 		return newModel;
 	}
 
-	public static Object translateInputTeamLenderLoan(BaseModel<?> oldModel) {
-		TeamLenderLoanClp oldClpModel = (TeamLenderLoanClp)oldModel;
-
-		BaseModel<?> newModel = oldClpModel.getTeamLenderLoanRemoteModel();
-
-		newModel.setModelAttributes(oldClpModel.getModelAttributes());
-
-		return newModel;
-	}
-
 	public static Object translateInput(Object obj) {
 		if (obj instanceof BaseModel<?>) {
 			return translateInput((BaseModel<?>)obj);
@@ -300,11 +285,6 @@ public class ClpSerializer {
 
 		if (oldModelClassName.equals("org.goodreturn.model.impl.TeamLenderImpl")) {
 			return translateOutputTeamLender(oldModel);
-		}
-
-		if (oldModelClassName.equals(
-					"org.goodreturn.model.impl.TeamLenderLoanImpl")) {
-			return translateOutputTeamLenderLoan(oldModel);
 		}
 
 		return oldModel;
@@ -419,10 +399,6 @@ public class ClpSerializer {
 			return new org.goodreturn.NoSuchTeamLenderException();
 		}
 
-		if (className.equals("org.goodreturn.NoSuchTeamLenderLoanException")) {
-			return new org.goodreturn.NoSuchTeamLenderLoanException();
-		}
-
 		return throwable;
 	}
 
@@ -502,16 +478,6 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setTeamLenderRemoteModel(oldModel);
-
-		return newModel;
-	}
-
-	public static Object translateOutputTeamLenderLoan(BaseModel<?> oldModel) {
-		TeamLenderLoanClp newModel = new TeamLenderLoanClp();
-
-		newModel.setModelAttributes(oldModel.getModelAttributes());
-
-		newModel.setTeamLenderLoanRemoteModel(oldModel);
 
 		return newModel;
 	}

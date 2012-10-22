@@ -15,6 +15,7 @@
 package org.goodreturn.model.impl;
 
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
 import org.goodreturn.model.BorrowerLoan;
@@ -32,12 +33,18 @@ public class BorrowerLoanCacheModel implements CacheModel<BorrowerLoan>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(5);
+		StringBundler sb = new StringBundler(11);
 
-		sb.append("{borrower_Loan_Id=");
-		sb.append(borrower_Loan_Id);
+		sb.append("{abacus_Borrower_Loan_Id=");
+		sb.append(abacus_Borrower_Loan_Id);
 		sb.append(", borrower_Id=");
 		sb.append(borrower_Id);
+		sb.append(", abacus_mfi_Id=");
+		sb.append(abacus_mfi_Id);
+		sb.append(", changed_By=");
+		sb.append(changed_By);
+		sb.append(", changed_Time=");
+		sb.append(changed_Time);
 		sb.append("}");
 
 		return sb.toString();
@@ -46,14 +53,32 @@ public class BorrowerLoanCacheModel implements CacheModel<BorrowerLoan>,
 	public BorrowerLoan toEntityModel() {
 		BorrowerLoanImpl borrowerLoanImpl = new BorrowerLoanImpl();
 
-		borrowerLoanImpl.setBorrower_Loan_Id(borrower_Loan_Id);
+		borrowerLoanImpl.setAbacus_Borrower_Loan_Id(abacus_Borrower_Loan_Id);
 		borrowerLoanImpl.setBorrower_Id(borrower_Id);
+		borrowerLoanImpl.setAbacus_mfi_Id(abacus_mfi_Id);
+
+		if (changed_By == null) {
+			borrowerLoanImpl.setChanged_By(StringPool.BLANK);
+		}
+		else {
+			borrowerLoanImpl.setChanged_By(changed_By);
+		}
+
+		if (changed_Time == null) {
+			borrowerLoanImpl.setChanged_Time(StringPool.BLANK);
+		}
+		else {
+			borrowerLoanImpl.setChanged_Time(changed_Time);
+		}
 
 		borrowerLoanImpl.resetOriginalValues();
 
 		return borrowerLoanImpl;
 	}
 
-	public long borrower_Loan_Id;
+	public long abacus_Borrower_Loan_Id;
 	public long borrower_Id;
+	public long abacus_mfi_Id;
+	public String changed_By;
+	public String changed_Time;
 }

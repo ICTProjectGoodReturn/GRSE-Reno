@@ -26,7 +26,6 @@ import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,15 +45,15 @@ public class BorrowerClp extends BaseModelImpl<Borrower> implements Borrower {
 	}
 
 	public long getPrimaryKey() {
-		return _abacus_Borrower_Id;
+		return _borrower_Id;
 	}
 
 	public void setPrimaryKey(long primaryKey) {
-		setAbacus_Borrower_Id(primaryKey);
+		setBorrower_Id(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_abacus_Borrower_Id);
+		return new Long(_borrower_Id);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
@@ -65,71 +64,30 @@ public class BorrowerClp extends BaseModelImpl<Borrower> implements Borrower {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("abacus_Borrower_Id", getAbacus_Borrower_Id());
-		attributes.put("write_Off_Date", getWrite_Off_Date());
-		attributes.put("phone", getPhone());
-		attributes.put("wait_Time", getWait_Time());
-		attributes.put("country", getCountry());
-		attributes.put("amount_Needed", getAmount_Needed());
-		attributes.put("amount_Needed_AUD", getAmount_Needed_AUD());
-		attributes.put("type_Of_Person", getType_Of_Person());
+		attributes.put("borrower_Id", getBorrower_Id());
+		attributes.put("abacus_Person_Id", getAbacus_Person_Id());
 		attributes.put("village", getVillage());
 		attributes.put("district", getDistrict());
 		attributes.put("pdf_Link", getPdf_Link());
 		attributes.put("currency", getCurrency());
-		attributes.put("date_Applied", getDate_Applied());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 
 		return attributes;
 	}
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long abacus_Borrower_Id = (Long)attributes.get("abacus_Borrower_Id");
+		Long borrower_Id = (Long)attributes.get("borrower_Id");
 
-		if (abacus_Borrower_Id != null) {
-			setAbacus_Borrower_Id(abacus_Borrower_Id);
+		if (borrower_Id != null) {
+			setBorrower_Id(borrower_Id);
 		}
 
-		Date write_Off_Date = (Date)attributes.get("write_Off_Date");
+		Long abacus_Person_Id = (Long)attributes.get("abacus_Person_Id");
 
-		if (write_Off_Date != null) {
-			setWrite_Off_Date(write_Off_Date);
-		}
-
-		Long phone = (Long)attributes.get("phone");
-
-		if (phone != null) {
-			setPhone(phone);
-		}
-
-		Long wait_Time = (Long)attributes.get("wait_Time");
-
-		if (wait_Time != null) {
-			setWait_Time(wait_Time);
-		}
-
-		String country = (String)attributes.get("country");
-
-		if (country != null) {
-			setCountry(country);
-		}
-
-		Double amount_Needed = (Double)attributes.get("amount_Needed");
-
-		if (amount_Needed != null) {
-			setAmount_Needed(amount_Needed);
-		}
-
-		Double amount_Needed_AUD = (Double)attributes.get("amount_Needed_AUD");
-
-		if (amount_Needed_AUD != null) {
-			setAmount_Needed_AUD(amount_Needed_AUD);
-		}
-
-		String type_Of_Person = (String)attributes.get("type_Of_Person");
-
-		if (type_Of_Person != null) {
-			setType_Of_Person(type_Of_Person);
+		if (abacus_Person_Id != null) {
+			setAbacus_Person_Id(abacus_Person_Id);
 		}
 
 		String village = (String)attributes.get("village");
@@ -156,75 +114,33 @@ public class BorrowerClp extends BaseModelImpl<Borrower> implements Borrower {
 			setCurrency(currency);
 		}
 
-		Date date_Applied = (Date)attributes.get("date_Applied");
+		String changed_By = (String)attributes.get("changed_By");
 
-		if (date_Applied != null) {
-			setDate_Applied(date_Applied);
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		Long changed_Time = (Long)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
 		}
 	}
 
-	public long getAbacus_Borrower_Id() {
-		return _abacus_Borrower_Id;
+	public long getBorrower_Id() {
+		return _borrower_Id;
 	}
 
-	public void setAbacus_Borrower_Id(long abacus_Borrower_Id) {
-		_abacus_Borrower_Id = abacus_Borrower_Id;
+	public void setBorrower_Id(long borrower_Id) {
+		_borrower_Id = borrower_Id;
 	}
 
-	public Date getWrite_Off_Date() {
-		return _write_Off_Date;
+	public long getAbacus_Person_Id() {
+		return _abacus_Person_Id;
 	}
 
-	public void setWrite_Off_Date(Date write_Off_Date) {
-		_write_Off_Date = write_Off_Date;
-	}
-
-	public long getPhone() {
-		return _phone;
-	}
-
-	public void setPhone(long phone) {
-		_phone = phone;
-	}
-
-	public long getWait_Time() {
-		return _wait_Time;
-	}
-
-	public void setWait_Time(long wait_Time) {
-		_wait_Time = wait_Time;
-	}
-
-	public String getCountry() {
-		return _country;
-	}
-
-	public void setCountry(String country) {
-		_country = country;
-	}
-
-	public double getAmount_Needed() {
-		return _amount_Needed;
-	}
-
-	public void setAmount_Needed(double amount_Needed) {
-		_amount_Needed = amount_Needed;
-	}
-
-	public double getAmount_Needed_AUD() {
-		return _amount_Needed_AUD;
-	}
-
-	public void setAmount_Needed_AUD(double amount_Needed_AUD) {
-		_amount_Needed_AUD = amount_Needed_AUD;
-	}
-
-	public String getType_Of_Person() {
-		return _type_Of_Person;
-	}
-
-	public void setType_Of_Person(String type_Of_Person) {
-		_type_Of_Person = type_Of_Person;
+	public void setAbacus_Person_Id(long abacus_Person_Id) {
+		_abacus_Person_Id = abacus_Person_Id;
 	}
 
 	public String getVillage() {
@@ -259,12 +175,20 @@ public class BorrowerClp extends BaseModelImpl<Borrower> implements Borrower {
 		_currency = currency;
 	}
 
-	public Date getDate_Applied() {
-		return _date_Applied;
+	public String getChanged_By() {
+		return _changed_By;
 	}
 
-	public void setDate_Applied(Date date_Applied) {
-		_date_Applied = date_Applied;
+	public void setChanged_By(String changed_By) {
+		_changed_By = changed_By;
+	}
+
+	public long getChanged_Time() {
+		return _changed_Time;
+	}
+
+	public void setChanged_Time(long changed_Time) {
+		_changed_Time = changed_Time;
 	}
 
 	public BaseModel<?> getBorrowerRemoteModel() {
@@ -294,19 +218,14 @@ public class BorrowerClp extends BaseModelImpl<Borrower> implements Borrower {
 	public Object clone() {
 		BorrowerClp clone = new BorrowerClp();
 
-		clone.setAbacus_Borrower_Id(getAbacus_Borrower_Id());
-		clone.setWrite_Off_Date(getWrite_Off_Date());
-		clone.setPhone(getPhone());
-		clone.setWait_Time(getWait_Time());
-		clone.setCountry(getCountry());
-		clone.setAmount_Needed(getAmount_Needed());
-		clone.setAmount_Needed_AUD(getAmount_Needed_AUD());
-		clone.setType_Of_Person(getType_Of_Person());
+		clone.setBorrower_Id(getBorrower_Id());
+		clone.setAbacus_Person_Id(getAbacus_Person_Id());
 		clone.setVillage(getVillage());
 		clone.setDistrict(getDistrict());
 		clone.setPdf_Link(getPdf_Link());
 		clone.setCurrency(getCurrency());
-		clone.setDate_Applied(getDate_Applied());
+		clone.setChanged_By(getChanged_By());
+		clone.setChanged_Time(getChanged_Time());
 
 		return clone;
 	}
@@ -314,10 +233,10 @@ public class BorrowerClp extends BaseModelImpl<Borrower> implements Borrower {
 	public int compareTo(Borrower borrower) {
 		int value = 0;
 
-		if (getAmount_Needed() < borrower.getAmount_Needed()) {
+		if (getBorrower_Id() < borrower.getBorrower_Id()) {
 			value = -1;
 		}
-		else if (getAmount_Needed() > borrower.getAmount_Needed()) {
+		else if (getBorrower_Id() > borrower.getBorrower_Id()) {
 			value = 1;
 		}
 		else {
@@ -363,24 +282,12 @@ public class BorrowerClp extends BaseModelImpl<Borrower> implements Borrower {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(17);
 
-		sb.append("{abacus_Borrower_Id=");
-		sb.append(getAbacus_Borrower_Id());
-		sb.append(", write_Off_Date=");
-		sb.append(getWrite_Off_Date());
-		sb.append(", phone=");
-		sb.append(getPhone());
-		sb.append(", wait_Time=");
-		sb.append(getWait_Time());
-		sb.append(", country=");
-		sb.append(getCountry());
-		sb.append(", amount_Needed=");
-		sb.append(getAmount_Needed());
-		sb.append(", amount_Needed_AUD=");
-		sb.append(getAmount_Needed_AUD());
-		sb.append(", type_Of_Person=");
-		sb.append(getType_Of_Person());
+		sb.append("{borrower_Id=");
+		sb.append(getBorrower_Id());
+		sb.append(", abacus_Person_Id=");
+		sb.append(getAbacus_Person_Id());
 		sb.append(", village=");
 		sb.append(getVillage());
 		sb.append(", district=");
@@ -389,51 +296,29 @@ public class BorrowerClp extends BaseModelImpl<Borrower> implements Borrower {
 		sb.append(getPdf_Link());
 		sb.append(", currency=");
 		sb.append(getCurrency());
-		sb.append(", date_Applied=");
-		sb.append(getDate_Applied());
+		sb.append(", changed_By=");
+		sb.append(getChanged_By());
+		sb.append(", changed_Time=");
+		sb.append(getChanged_Time());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Borrower");
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>abacus_Borrower_Id</column-name><column-value><![CDATA[");
-		sb.append(getAbacus_Borrower_Id());
+			"<column><column-name>borrower_Id</column-name><column-value><![CDATA[");
+		sb.append(getBorrower_Id());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>write_Off_Date</column-name><column-value><![CDATA[");
-		sb.append(getWrite_Off_Date());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>phone</column-name><column-value><![CDATA[");
-		sb.append(getPhone());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>wait_Time</column-name><column-value><![CDATA[");
-		sb.append(getWait_Time());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>country</column-name><column-value><![CDATA[");
-		sb.append(getCountry());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>amount_Needed</column-name><column-value><![CDATA[");
-		sb.append(getAmount_Needed());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>amount_Needed_AUD</column-name><column-value><![CDATA[");
-		sb.append(getAmount_Needed_AUD());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>type_Of_Person</column-name><column-value><![CDATA[");
-		sb.append(getType_Of_Person());
+			"<column><column-name>abacus_Person_Id</column-name><column-value><![CDATA[");
+		sb.append(getAbacus_Person_Id());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>village</column-name><column-value><![CDATA[");
@@ -452,8 +337,12 @@ public class BorrowerClp extends BaseModelImpl<Borrower> implements Borrower {
 		sb.append(getCurrency());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>date_Applied</column-name><column-value><![CDATA[");
-		sb.append(getDate_Applied());
+			"<column><column-name>changed_By</column-name><column-value><![CDATA[");
+		sb.append(getChanged_By());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
+		sb.append(getChanged_Time());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -461,18 +350,13 @@ public class BorrowerClp extends BaseModelImpl<Borrower> implements Borrower {
 		return sb.toString();
 	}
 
-	private long _abacus_Borrower_Id;
-	private Date _write_Off_Date;
-	private long _phone;
-	private long _wait_Time;
-	private String _country;
-	private double _amount_Needed;
-	private double _amount_Needed_AUD;
-	private String _type_Of_Person;
+	private long _borrower_Id;
+	private long _abacus_Person_Id;
 	private String _village;
 	private String _district;
 	private String _pdf_Link;
 	private double _currency;
-	private Date _date_Applied;
+	private String _changed_By;
+	private long _changed_Time;
 	private BaseModel<?> _borrowerRemoteModel;
 }

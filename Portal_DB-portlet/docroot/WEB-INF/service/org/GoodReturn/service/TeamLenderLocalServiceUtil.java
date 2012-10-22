@@ -54,27 +54,27 @@ public class TeamLenderLocalServiceUtil {
 	/**
 	* Creates a new team lender with the primary key. Does not add the team lender to the database.
 	*
-	* @param teamlender_Id the primary key for the new team lender
+	* @param team_lender_Id the primary key for the new team lender
 	* @return the new team lender
 	*/
 	public static org.goodreturn.model.TeamLender createTeamLender(
-		long teamlender_Id) {
-		return getService().createTeamLender(teamlender_Id);
+		long team_lender_Id) {
+		return getService().createTeamLender(team_lender_Id);
 	}
 
 	/**
 	* Deletes the team lender with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param teamlender_Id the primary key of the team lender
+	* @param team_lender_Id the primary key of the team lender
 	* @return the team lender that was removed
 	* @throws PortalException if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.TeamLender deleteTeamLender(
-		long teamlender_Id)
+		long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().deleteTeamLender(teamlender_Id);
+		return getService().deleteTeamLender(team_lender_Id);
 	}
 
 	/**
@@ -166,24 +166,24 @@ public class TeamLenderLocalServiceUtil {
 	}
 
 	public static org.goodreturn.model.TeamLender fetchTeamLender(
-		long teamlender_Id)
+		long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchTeamLender(teamlender_Id);
+		return getService().fetchTeamLender(team_lender_Id);
 	}
 
 	/**
 	* Returns the team lender with the primary key.
 	*
-	* @param teamlender_Id the primary key of the team lender
+	* @param team_lender_Id the primary key of the team lender
 	* @return the team lender
 	* @throws PortalException if a team lender with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.TeamLender getTeamLender(
-		long teamlender_Id)
+		long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getTeamLender(teamlender_Id);
+		return getService().getTeamLender(team_lender_Id);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(

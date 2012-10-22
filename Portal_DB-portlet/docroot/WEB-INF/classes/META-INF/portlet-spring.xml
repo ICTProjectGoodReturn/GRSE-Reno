@@ -25,7 +25,4 @@
 	<bean id="org.goodreturn.service.TeamLenderLocalService" class="org.goodreturn.service.impl.TeamLenderLocalServiceImpl" />
 	<bean id="org.goodreturn.service.TeamLenderService" class="org.goodreturn.service.impl.TeamLenderServiceImpl" />
 	<bean id="org.goodreturn.service.persistence.TeamLenderPersistence" class="org.goodreturn.service.persistence.TeamLenderPersistenceImpl" parent="basePersistence" />
-	<bean id="org.goodreturn.service.TeamLenderLoanLocalService" class="org.goodreturn.service.impl.TeamLenderLoanLocalServiceImpl" />
-	<bean id="org.goodreturn.service.TeamLenderLoanService" class="org.goodreturn.service.impl.TeamLenderLoanServiceImpl" />
-	<bean id="org.goodreturn.service.persistence.TeamLenderLoanPersistence" class="org.goodreturn.service.persistence.TeamLenderLoanPersistenceImpl" parent="basePersistence" />
 </beans>

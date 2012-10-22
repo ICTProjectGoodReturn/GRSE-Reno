@@ -17,7 +17,6 @@ package org.goodreturn.model;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,19 +30,14 @@ public class BorrowerSoap implements Serializable {
 	public static BorrowerSoap toSoapModel(Borrower model) {
 		BorrowerSoap soapModel = new BorrowerSoap();
 
-		soapModel.setAbacus_Borrower_Id(model.getAbacus_Borrower_Id());
-		soapModel.setWrite_Off_Date(model.getWrite_Off_Date());
-		soapModel.setPhone(model.getPhone());
-		soapModel.setWait_Time(model.getWait_Time());
-		soapModel.setCountry(model.getCountry());
-		soapModel.setAmount_Needed(model.getAmount_Needed());
-		soapModel.setAmount_Needed_AUD(model.getAmount_Needed_AUD());
-		soapModel.setType_Of_Person(model.getType_Of_Person());
+		soapModel.setBorrower_Id(model.getBorrower_Id());
+		soapModel.setAbacus_Person_Id(model.getAbacus_Person_Id());
 		soapModel.setVillage(model.getVillage());
 		soapModel.setDistrict(model.getDistrict());
 		soapModel.setPdf_Link(model.getPdf_Link());
 		soapModel.setCurrency(model.getCurrency());
-		soapModel.setDate_Applied(model.getDate_Applied());
+		soapModel.setChanged_By(model.getChanged_By());
+		soapModel.setChanged_Time(model.getChanged_Time());
 
 		return soapModel;
 	}
@@ -89,75 +83,27 @@ public class BorrowerSoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _abacus_Borrower_Id;
+		return _borrower_Id;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setAbacus_Borrower_Id(pk);
+		setBorrower_Id(pk);
 	}
 
-	public long getAbacus_Borrower_Id() {
-		return _abacus_Borrower_Id;
+	public long getBorrower_Id() {
+		return _borrower_Id;
 	}
 
-	public void setAbacus_Borrower_Id(long abacus_Borrower_Id) {
-		_abacus_Borrower_Id = abacus_Borrower_Id;
+	public void setBorrower_Id(long borrower_Id) {
+		_borrower_Id = borrower_Id;
 	}
 
-	public Date getWrite_Off_Date() {
-		return _write_Off_Date;
+	public long getAbacus_Person_Id() {
+		return _abacus_Person_Id;
 	}
 
-	public void setWrite_Off_Date(Date write_Off_Date) {
-		_write_Off_Date = write_Off_Date;
-	}
-
-	public long getPhone() {
-		return _phone;
-	}
-
-	public void setPhone(long phone) {
-		_phone = phone;
-	}
-
-	public long getWait_Time() {
-		return _wait_Time;
-	}
-
-	public void setWait_Time(long wait_Time) {
-		_wait_Time = wait_Time;
-	}
-
-	public String getCountry() {
-		return _country;
-	}
-
-	public void setCountry(String country) {
-		_country = country;
-	}
-
-	public double getAmount_Needed() {
-		return _amount_Needed;
-	}
-
-	public void setAmount_Needed(double amount_Needed) {
-		_amount_Needed = amount_Needed;
-	}
-
-	public double getAmount_Needed_AUD() {
-		return _amount_Needed_AUD;
-	}
-
-	public void setAmount_Needed_AUD(double amount_Needed_AUD) {
-		_amount_Needed_AUD = amount_Needed_AUD;
-	}
-
-	public String getType_Of_Person() {
-		return _type_Of_Person;
-	}
-
-	public void setType_Of_Person(String type_Of_Person) {
-		_type_Of_Person = type_Of_Person;
+	public void setAbacus_Person_Id(long abacus_Person_Id) {
+		_abacus_Person_Id = abacus_Person_Id;
 	}
 
 	public String getVillage() {
@@ -192,25 +138,28 @@ public class BorrowerSoap implements Serializable {
 		_currency = currency;
 	}
 
-	public Date getDate_Applied() {
-		return _date_Applied;
+	public String getChanged_By() {
+		return _changed_By;
 	}
 
-	public void setDate_Applied(Date date_Applied) {
-		_date_Applied = date_Applied;
+	public void setChanged_By(String changed_By) {
+		_changed_By = changed_By;
 	}
 
-	private long _abacus_Borrower_Id;
-	private Date _write_Off_Date;
-	private long _phone;
-	private long _wait_Time;
-	private String _country;
-	private double _amount_Needed;
-	private double _amount_Needed_AUD;
-	private String _type_Of_Person;
+	public long getChanged_Time() {
+		return _changed_Time;
+	}
+
+	public void setChanged_Time(long changed_Time) {
+		_changed_Time = changed_Time;
+	}
+
+	private long _borrower_Id;
+	private long _abacus_Person_Id;
 	private String _village;
 	private String _district;
 	private String _pdf_Link;
 	private double _currency;
-	private Date _date_Applied;
+	private String _changed_By;
+	private long _changed_Time;
 }

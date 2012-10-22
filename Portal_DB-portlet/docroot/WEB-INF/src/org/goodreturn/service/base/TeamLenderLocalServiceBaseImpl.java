@@ -51,8 +51,6 @@ import org.goodreturn.service.PersonLocalService;
 import org.goodreturn.service.PersonService;
 import org.goodreturn.service.StoryLocalService;
 import org.goodreturn.service.StoryService;
-import org.goodreturn.service.TeamLenderLoanLocalService;
-import org.goodreturn.service.TeamLenderLoanService;
 import org.goodreturn.service.TeamLenderLocalService;
 import org.goodreturn.service.TeamLenderService;
 import org.goodreturn.service.TeamLocalService;
@@ -63,7 +61,6 @@ import org.goodreturn.service.persistence.Gift_CertificatePersistence;
 import org.goodreturn.service.persistence.LenderPersistence;
 import org.goodreturn.service.persistence.PersonPersistence;
 import org.goodreturn.service.persistence.StoryPersistence;
-import org.goodreturn.service.persistence.TeamLenderLoanPersistence;
 import org.goodreturn.service.persistence.TeamLenderPersistence;
 import org.goodreturn.service.persistence.TeamPersistence;
 
@@ -112,25 +109,25 @@ public abstract class TeamLenderLocalServiceBaseImpl
 	/**
 	 * Creates a new team lender with the primary key. Does not add the team lender to the database.
 	 *
-	 * @param teamlender_Id the primary key for the new team lender
+	 * @param team_lender_Id the primary key for the new team lender
 	 * @return the new team lender
 	 */
-	public TeamLender createTeamLender(long teamlender_Id) {
-		return teamLenderPersistence.create(teamlender_Id);
+	public TeamLender createTeamLender(long team_lender_Id) {
+		return teamLenderPersistence.create(team_lender_Id);
 	}
 
 	/**
 	 * Deletes the team lender with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param teamlender_Id the primary key of the team lender
+	 * @param team_lender_Id the primary key of the team lender
 	 * @return the team lender that was removed
 	 * @throws PortalException if a team lender with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public TeamLender deleteTeamLender(long teamlender_Id)
+	public TeamLender deleteTeamLender(long team_lender_Id)
 		throws PortalException, SystemException {
-		return teamLenderPersistence.remove(teamlender_Id);
+		return teamLenderPersistence.remove(team_lender_Id);
 	}
 
 	/**
@@ -219,22 +216,22 @@ public abstract class TeamLenderLocalServiceBaseImpl
 		return teamLenderPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
-	public TeamLender fetchTeamLender(long teamlender_Id)
+	public TeamLender fetchTeamLender(long team_lender_Id)
 		throws SystemException {
-		return teamLenderPersistence.fetchByPrimaryKey(teamlender_Id);
+		return teamLenderPersistence.fetchByPrimaryKey(team_lender_Id);
 	}
 
 	/**
 	 * Returns the team lender with the primary key.
 	 *
-	 * @param teamlender_Id the primary key of the team lender
+	 * @param team_lender_Id the primary key of the team lender
 	 * @return the team lender
 	 * @throws PortalException if a team lender with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public TeamLender getTeamLender(long teamlender_Id)
+	public TeamLender getTeamLender(long team_lender_Id)
 		throws PortalException, SystemException {
-		return teamLenderPersistence.findByPrimaryKey(teamlender_Id);
+		return teamLenderPersistence.findByPrimaryKey(team_lender_Id);
 	}
 
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
@@ -739,63 +736,6 @@ public abstract class TeamLenderLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the team lender loan local service.
-	 *
-	 * @return the team lender loan local service
-	 */
-	public TeamLenderLoanLocalService getTeamLenderLoanLocalService() {
-		return teamLenderLoanLocalService;
-	}
-
-	/**
-	 * Sets the team lender loan local service.
-	 *
-	 * @param teamLenderLoanLocalService the team lender loan local service
-	 */
-	public void setTeamLenderLoanLocalService(
-		TeamLenderLoanLocalService teamLenderLoanLocalService) {
-		this.teamLenderLoanLocalService = teamLenderLoanLocalService;
-	}
-
-	/**
-	 * Returns the team lender loan remote service.
-	 *
-	 * @return the team lender loan remote service
-	 */
-	public TeamLenderLoanService getTeamLenderLoanService() {
-		return teamLenderLoanService;
-	}
-
-	/**
-	 * Sets the team lender loan remote service.
-	 *
-	 * @param teamLenderLoanService the team lender loan remote service
-	 */
-	public void setTeamLenderLoanService(
-		TeamLenderLoanService teamLenderLoanService) {
-		this.teamLenderLoanService = teamLenderLoanService;
-	}
-
-	/**
-	 * Returns the team lender loan persistence.
-	 *
-	 * @return the team lender loan persistence
-	 */
-	public TeamLenderLoanPersistence getTeamLenderLoanPersistence() {
-		return teamLenderLoanPersistence;
-	}
-
-	/**
-	 * Sets the team lender loan persistence.
-	 *
-	 * @param teamLenderLoanPersistence the team lender loan persistence
-	 */
-	public void setTeamLenderLoanPersistence(
-		TeamLenderLoanPersistence teamLenderLoanPersistence) {
-		this.teamLenderLoanPersistence = teamLenderLoanPersistence;
-	}
-
-	/**
 	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
@@ -1030,12 +970,6 @@ public abstract class TeamLenderLocalServiceBaseImpl
 	protected TeamLenderService teamLenderService;
 	@BeanReference(type = TeamLenderPersistence.class)
 	protected TeamLenderPersistence teamLenderPersistence;
-	@BeanReference(type = TeamLenderLoanLocalService.class)
-	protected TeamLenderLoanLocalService teamLenderLoanLocalService;
-	@BeanReference(type = TeamLenderLoanService.class)
-	protected TeamLenderLoanService teamLenderLoanService;
-	@BeanReference(type = TeamLenderLoanPersistence.class)
-	protected TeamLenderLoanPersistence teamLenderLoanPersistence;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)

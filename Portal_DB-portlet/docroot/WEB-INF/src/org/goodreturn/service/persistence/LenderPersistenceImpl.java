@@ -305,30 +305,27 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 		lenderImpl.setPrimaryKey(lender.getPrimaryKey());
 
 		lenderImpl.setLender_Id(lender.getLender_Id());
-		lenderImpl.setSalutation(lender.getSalutation());
+		lenderImpl.setAbacus_Person_Id(lender.getAbacus_Person_Id());
+		lenderImpl.setCertificate_Id(lender.getCertificate_Id());
 		lenderImpl.setEmployer_Name(lender.getEmployer_Name());
 		lenderImpl.setComment(lender.getComment());
 		lenderImpl.setHeard_Of_Us(lender.getHeard_Of_Us());
-		lenderImpl.setRegion(lender.getRegion());
 		lenderImpl.setDisplay_Name(lender.getDisplay_Name());
 		lenderImpl.setDate_Of_Birth(lender.getDate_Of_Birth());
 		lenderImpl.setReason_For_Lending(lender.getReason_For_Lending());
 		lenderImpl.setAbout_Themselves(lender.getAbout_Themselves());
-		lenderImpl.setAutomatic_Re_lend(lender.isAutomatic_Re_lend());
-		lenderImpl.setMonthly_Repayments(lender.getMonthly_Repayments());
+		lenderImpl.setPersonal_Link(lender.getPersonal_Link());
 		lenderImpl.setIs_Public_Profile(lender.isIs_Public_Profile());
-		lenderImpl.setBank_Details(lender.getBank_Details());
 		lenderImpl.setRecieve_Emails(lender.isRecieve_Emails());
 		lenderImpl.setRecieve_GoodReturn_Info(lender.isRecieve_GoodReturn_Info());
 		lenderImpl.setIs_Anonymous(lender.isIs_Anonymous());
 		lenderImpl.setIs_Validated(lender.isIs_Validated());
-		lenderImpl.setCurrent_Balance(lender.getCurrent_Balance());
-		lenderImpl.setPaypal_Email(lender.getPaypal_Email());
 		lenderImpl.setPassword(lender.getPassword());
 		lenderImpl.setLast_Login_Date(lender.getLast_Login_Date());
 		lenderImpl.setFeatured_Lender(lender.getFeatured_Lender());
-		lenderImpl.setVoucher_Id(lender.getVoucher_Id());
 		lenderImpl.setIs_Loan_Donation(lender.isIs_Loan_Donation());
+		lenderImpl.setChanged_By(lender.getChanged_By());
+		lenderImpl.setChanged_Time(lender.getChanged_Time());
 
 		return lenderImpl;
 	}
@@ -595,19 +592,19 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 	}
 
 	/**
-	 * Returns all the persons associated with the lender.
+	 * Returns all the team lenders associated with the lender.
 	 *
 	 * @param pk the primary key of the lender
-	 * @return the persons associated with the lender
+	 * @return the team lenders associated with the lender
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<org.goodreturn.model.Person> getPersons(long pk)
+	public List<org.goodreturn.model.TeamLender> getTeamLenders(long pk)
 		throws SystemException {
-		return getPersons(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+		return getTeamLenders(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
 
 	/**
-	 * Returns a range of all the persons associated with the lender.
+	 * Returns a range of all the team lenders associated with the lender.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -616,30 +613,30 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 	 * @param pk the primary key of the lender
 	 * @param start the lower bound of the range of lenders
 	 * @param end the upper bound of the range of lenders (not inclusive)
-	 * @return the range of persons associated with the lender
+	 * @return the range of team lenders associated with the lender
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<org.goodreturn.model.Person> getPersons(long pk, int start,
-		int end) throws SystemException {
-		return getPersons(pk, start, end, null);
+	public List<org.goodreturn.model.TeamLender> getTeamLenders(long pk,
+		int start, int end) throws SystemException {
+		return getTeamLenders(pk, start, end, null);
 	}
 
-	public static final FinderPath FINDER_PATH_GET_PERSONS = new FinderPath(org.goodreturn.model.impl.PersonModelImpl.ENTITY_CACHE_ENABLED,
-			org.goodreturn.model.impl.PersonModelImpl.FINDER_CACHE_ENABLED,
-			org.goodreturn.model.impl.PersonImpl.class,
-			org.goodreturn.service.persistence.PersonPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"getPersons",
+	public static final FinderPath FINDER_PATH_GET_TEAMLENDERS = new FinderPath(org.goodreturn.model.impl.TeamLenderModelImpl.ENTITY_CACHE_ENABLED,
+			org.goodreturn.model.impl.TeamLenderModelImpl.FINDER_CACHE_ENABLED,
+			org.goodreturn.model.impl.TeamLenderImpl.class,
+			org.goodreturn.service.persistence.TeamLenderPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"getTeamLenders",
 			new String[] {
 				Long.class.getName(), "java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 
 	static {
-		FINDER_PATH_GET_PERSONS.setCacheKeyGeneratorCacheName(null);
+		FINDER_PATH_GET_TEAMLENDERS.setCacheKeyGeneratorCacheName(null);
 	}
 
 	/**
-	 * Returns an ordered range of all the persons associated with the lender.
+	 * Returns an ordered range of all the team lenders associated with the lender.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -649,14 +646,15 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 	 * @param start the lower bound of the range of lenders
 	 * @param end the upper bound of the range of lenders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of persons associated with the lender
+	 * @return the ordered range of team lenders associated with the lender
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<org.goodreturn.model.Person> getPersons(long pk, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+	public List<org.goodreturn.model.TeamLender> getTeamLenders(long pk,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
 		Object[] finderArgs = new Object[] { pk, start, end, orderByComparator };
 
-		List<org.goodreturn.model.Person> list = (List<org.goodreturn.model.Person>)FinderCacheUtil.getResult(FINDER_PATH_GET_PERSONS,
+		List<org.goodreturn.model.TeamLender> list = (List<org.goodreturn.model.TeamLender>)FinderCacheUtil.getResult(FINDER_PATH_GET_TEAMLENDERS,
 				finderArgs, this);
 
 		if (list == null) {
@@ -668,23 +666,23 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 				String sql = null;
 
 				if (orderByComparator != null) {
-					sql = _SQL_GETPERSONS.concat(ORDER_BY_CLAUSE)
-										 .concat(orderByComparator.getOrderBy());
+					sql = _SQL_GETTEAMLENDERS.concat(ORDER_BY_CLAUSE)
+											 .concat(orderByComparator.getOrderBy());
 				}
 				else {
-					sql = _SQL_GETPERSONS.concat(org.goodreturn.model.impl.PersonModelImpl.ORDER_BY_SQL);
+					sql = _SQL_GETTEAMLENDERS.concat(org.goodreturn.model.impl.TeamLenderModelImpl.ORDER_BY_SQL);
 				}
 
 				SQLQuery q = session.createSQLQuery(sql);
 
-				q.addEntity("GoodReturn_Person",
-					org.goodreturn.model.impl.PersonImpl.class);
+				q.addEntity("GoodReturn_TeamLender",
+					org.goodreturn.model.impl.TeamLenderImpl.class);
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				qPos.add(pk);
 
-				list = (List<org.goodreturn.model.Person>)QueryUtil.list(q,
+				list = (List<org.goodreturn.model.TeamLender>)QueryUtil.list(q,
 						getDialect(), start, end);
 			}
 			catch (Exception e) {
@@ -692,13 +690,13 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_GET_PERSONS,
+					FinderCacheUtil.removeResult(FINDER_PATH_GET_TEAMLENDERS,
 						finderArgs);
 				}
 				else {
-					personPersistence.cacheResult(list);
+					teamLenderPersistence.cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_GET_PERSONS,
+					FinderCacheUtil.putResult(FINDER_PATH_GET_TEAMLENDERS,
 						finderArgs, list);
 				}
 
@@ -709,27 +707,27 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 		return list;
 	}
 
-	public static final FinderPath FINDER_PATH_GET_PERSONS_SIZE = new FinderPath(org.goodreturn.model.impl.PersonModelImpl.ENTITY_CACHE_ENABLED,
-			org.goodreturn.model.impl.PersonModelImpl.FINDER_CACHE_ENABLED,
-			org.goodreturn.model.impl.PersonImpl.class,
-			org.goodreturn.service.persistence.PersonPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"getPersonsSize", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_GET_TEAMLENDERS_SIZE = new FinderPath(org.goodreturn.model.impl.TeamLenderModelImpl.ENTITY_CACHE_ENABLED,
+			org.goodreturn.model.impl.TeamLenderModelImpl.FINDER_CACHE_ENABLED,
+			org.goodreturn.model.impl.TeamLenderImpl.class,
+			org.goodreturn.service.persistence.TeamLenderPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"getTeamLendersSize", new String[] { Long.class.getName() });
 
 	static {
-		FINDER_PATH_GET_PERSONS_SIZE.setCacheKeyGeneratorCacheName(null);
+		FINDER_PATH_GET_TEAMLENDERS_SIZE.setCacheKeyGeneratorCacheName(null);
 	}
 
 	/**
-	 * Returns the number of persons associated with the lender.
+	 * Returns the number of team lenders associated with the lender.
 	 *
 	 * @param pk the primary key of the lender
-	 * @return the number of persons associated with the lender
+	 * @return the number of team lenders associated with the lender
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int getPersonsSize(long pk) throws SystemException {
+	public int getTeamLendersSize(long pk) throws SystemException {
 		Object[] finderArgs = new Object[] { pk };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_GET_PERSONS_SIZE,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_GET_TEAMLENDERS_SIZE,
 				finderArgs, this);
 
 		if (count == null) {
@@ -738,7 +736,7 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 			try {
 				session = openSession();
 
-				SQLQuery q = session.createSQLQuery(_SQL_GETPERSONSSIZE);
+				SQLQuery q = session.createSQLQuery(_SQL_GETTEAMLENDERSSIZE);
 
 				q.addScalar(COUNT_COLUMN_NAME,
 					com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -757,7 +755,7 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_GET_PERSONS_SIZE,
+				FinderCacheUtil.putResult(FINDER_PATH_GET_TEAMLENDERS_SIZE,
 					finderArgs, count);
 
 				closeSession(session);
@@ -767,31 +765,32 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 		return count.intValue();
 	}
 
-	public static final FinderPath FINDER_PATH_CONTAINS_PERSON = new FinderPath(org.goodreturn.model.impl.PersonModelImpl.ENTITY_CACHE_ENABLED,
-			org.goodreturn.model.impl.PersonModelImpl.FINDER_CACHE_ENABLED,
-			org.goodreturn.model.impl.PersonImpl.class,
-			org.goodreturn.service.persistence.PersonPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"containsPerson",
+	public static final FinderPath FINDER_PATH_CONTAINS_TEAMLENDER = new FinderPath(org.goodreturn.model.impl.TeamLenderModelImpl.ENTITY_CACHE_ENABLED,
+			org.goodreturn.model.impl.TeamLenderModelImpl.FINDER_CACHE_ENABLED,
+			org.goodreturn.model.impl.TeamLenderImpl.class,
+			org.goodreturn.service.persistence.TeamLenderPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"containsTeamLender",
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Returns <code>true</code> if the person is associated with the lender.
+	 * Returns <code>true</code> if the team lender is associated with the lender.
 	 *
 	 * @param pk the primary key of the lender
-	 * @param personPK the primary key of the person
-	 * @return <code>true</code> if the person is associated with the lender; <code>false</code> otherwise
+	 * @param teamLenderPK the primary key of the team lender
+	 * @return <code>true</code> if the team lender is associated with the lender; <code>false</code> otherwise
 	 * @throws SystemException if a system exception occurred
 	 */
-	public boolean containsPerson(long pk, long personPK)
+	public boolean containsTeamLender(long pk, long teamLenderPK)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { pk, personPK };
+		Object[] finderArgs = new Object[] { pk, teamLenderPK };
 
-		Boolean value = (Boolean)FinderCacheUtil.getResult(FINDER_PATH_CONTAINS_PERSON,
+		Boolean value = (Boolean)FinderCacheUtil.getResult(FINDER_PATH_CONTAINS_TEAMLENDER,
 				finderArgs, this);
 
 		if (value == null) {
 			try {
-				value = Boolean.valueOf(containsPerson.contains(pk, personPK));
+				value = Boolean.valueOf(containsTeamLender.contains(pk,
+							teamLenderPK));
 			}
 			catch (Exception e) {
 				throw processException(e);
@@ -801,7 +800,7 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 					value = Boolean.FALSE;
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_CONTAINS_PERSON,
+				FinderCacheUtil.putResult(FINDER_PATH_CONTAINS_TEAMLENDER,
 					finderArgs, value);
 			}
 		}
@@ -810,14 +809,14 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 	}
 
 	/**
-	 * Returns <code>true</code> if the lender has any persons associated with it.
+	 * Returns <code>true</code> if the lender has any team lenders associated with it.
 	 *
-	 * @param pk the primary key of the lender to check for associations with persons
-	 * @return <code>true</code> if the lender has any persons associated with it; <code>false</code> otherwise
+	 * @param pk the primary key of the lender to check for associations with team lenders
+	 * @return <code>true</code> if the lender has any team lenders associated with it; <code>false</code> otherwise
 	 * @throws SystemException if a system exception occurred
 	 */
-	public boolean containsPersons(long pk) throws SystemException {
-		if (getPersonsSize(pk) > 0) {
+	public boolean containsTeamLenders(long pk) throws SystemException {
+		if (getTeamLendersSize(pk) > 0) {
 			return true;
 		}
 		else {
@@ -849,7 +848,7 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 			}
 		}
 
-		containsPerson = new ContainsPerson();
+		containsTeamLender = new ContainsTeamLender();
 	}
 
 	public void destroy() {
@@ -874,25 +873,23 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 	protected TeamPersistence teamPersistence;
 	@BeanReference(type = TeamLenderPersistence.class)
 	protected TeamLenderPersistence teamLenderPersistence;
-	@BeanReference(type = TeamLenderLoanPersistence.class)
-	protected TeamLenderLoanPersistence teamLenderLoanPersistence;
 	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	protected ContainsPerson containsPerson;
+	protected ContainsTeamLender containsTeamLender;
 
-	protected class ContainsPerson {
-		protected ContainsPerson() {
+	protected class ContainsTeamLender {
+		protected ContainsTeamLender() {
 			_mappingSqlQuery = MappingSqlQueryFactoryUtil.getMappingSqlQuery(getDataSource(),
-					_SQL_CONTAINSPERSON,
+					_SQL_CONTAINSTEAMLENDER,
 					new int[] { java.sql.Types.BIGINT, java.sql.Types.BIGINT },
 					RowMapper.COUNT);
 		}
 
-		protected boolean contains(long lender_Id, long abacus_Person_Id) {
+		protected boolean contains(long lender_Id, long team_lender_Id) {
 			List<Integer> results = _mappingSqlQuery.execute(new Object[] {
-						new Long(lender_Id), new Long(abacus_Person_Id)
+						new Long(lender_Id), new Long(team_lender_Id)
 					});
 
 			if (results.size() > 0) {
@@ -911,9 +908,9 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 
 	private static final String _SQL_SELECT_LENDER = "SELECT lender FROM Lender lender";
 	private static final String _SQL_COUNT_LENDER = "SELECT COUNT(lender) FROM Lender lender";
-	private static final String _SQL_GETPERSONS = "SELECT {GoodReturn_Person.*} FROM GoodReturn_Person INNER JOIN GoodReturn_Lender ON (GoodReturn_Lender.lender_Id = GoodReturn_Person.lender_Id) WHERE (GoodReturn_Lender.lender_Id = ?)";
-	private static final String _SQL_GETPERSONSSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM GoodReturn_Person WHERE lender_Id = ?";
-	private static final String _SQL_CONTAINSPERSON = "SELECT COUNT(*) AS COUNT_VALUE FROM GoodReturn_Person WHERE lender_Id = ? AND abacus_Person_Id = ?";
+	private static final String _SQL_GETTEAMLENDERS = "SELECT {GoodReturn_TeamLender.*} FROM GoodReturn_TeamLender INNER JOIN GoodReturn_Lender ON (GoodReturn_Lender.lender_Id = GoodReturn_TeamLender.lender_Id) WHERE (GoodReturn_Lender.lender_Id = ?)";
+	private static final String _SQL_GETTEAMLENDERSSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM GoodReturn_TeamLender WHERE lender_Id = ?";
+	private static final String _SQL_CONTAINSTEAMLENDER = "SELECT COUNT(*) AS COUNT_VALUE FROM GoodReturn_TeamLender WHERE lender_Id = ? AND team_lender_Id = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "lender.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Lender exists with the primary key ";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(

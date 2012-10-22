@@ -10,31 +10,28 @@
 	<import class="org.goodreturn.model.Story" />
 	<import class="org.goodreturn.model.Team" />
 	<import class="org.goodreturn.model.TeamLender" />
-	<import class="org.goodreturn.model.TeamLenderLoan" />
 	<class name="org.goodreturn.model.impl.BorrowerImpl" table="GoodReturn_Borrower">
 		<cache usage="read-write" />
-		<id name="abacus_Borrower_Id" type="long">
+		<id name="borrower_Id" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="write_Off_Date" type="org.hibernate.type.TimestampType" />
-		<property name="phone" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="wait_Time" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="country" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="amount_Needed" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="amount_Needed_AUD" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="type_Of_Person" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="abacus_Person_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="village" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="district" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="pdf_Link" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="currency" type="com.liferay.portal.dao.orm.hibernate.DoubleType" column="currency_" />
-		<property name="date_Applied" type="org.hibernate.type.TimestampType" />
+		<property name="changed_By" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="changed_Time" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="org.goodreturn.model.impl.BorrowerLoanImpl" table="GoodReturn_BorrowerLoan">
 		<cache usage="read-write" />
-		<id name="borrower_Loan_Id" type="long">
+		<id name="abacus_Borrower_Loan_Id" type="long">
 			<generator class="assigned" />
 		</id>
 		<property name="borrower_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="abacus_mfi_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="changed_By" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="changed_Time" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="org.goodreturn.model.impl.Gift_CertificateImpl" table="GoodReturn_Gift_Certificate">
 		<cache usage="read-write" />
@@ -43,36 +40,35 @@
 		</id>
 		<property name="certificate_Amount" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="certificate_Type" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="changed_By" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="changed_Time" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="org.goodreturn.model.impl.LenderImpl" table="GoodReturn_Lender">
 		<cache usage="read-write" />
 		<id name="lender_Id" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="salutation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="abacus_Person_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="certificate_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="employer_Name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="comment" type="com.liferay.portal.dao.orm.hibernate.StringType" column="comment_" />
 		<property name="heard_Of_Us" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="region" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="display_Name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="date_Of_Birth" type="org.hibernate.type.TimestampType" />
 		<property name="reason_For_Lending" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="about_Themselves" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="automatic_Re_lend" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="monthly_Repayments" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="personal_Link" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="is_Public_Profile" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="bank_Details" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="recieve_Emails" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="recieve_GoodReturn_Info" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="is_Anonymous" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="is_Validated" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="current_Balance" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="paypal_Email" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="password" type="com.liferay.portal.dao.orm.hibernate.StringType" column="password_" />
 		<property name="last_Login_Date" type="org.hibernate.type.TimestampType" />
 		<property name="featured_Lender" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="voucher_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="is_Loan_Donation" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="changed_By" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="changed_Time" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="org.goodreturn.model.impl.PersonImpl" table="GoodReturn_Person">
 		<cache usage="read-write" />
@@ -86,9 +82,13 @@
 		<property name="address_Type" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="country" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="gender" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="salutation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="phone_Number" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="photo_URL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="occupation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="changed_By" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="changed_Time" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="org.goodreturn.model.impl.StoryImpl" table="GoodReturn_Story">
 		<cache usage="read-write" />
@@ -96,7 +96,7 @@
 			<generator class="assigned" />
 		</id>
 		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
-		<property name="borrower_Loan_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="abacus_Borrower_Loan_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="story_Type" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="story_Text" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="video_Url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -106,6 +106,8 @@
 		<property name="status_By_User_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="status_By_User_Name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="status_Date" type="org.hibernate.type.TimestampType" />
+		<property name="changed_By" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="changed_Time" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="company_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="group_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="user_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -116,18 +118,17 @@
 			<generator class="assigned" />
 		</id>
 		<property name="team_Name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="amount_Lent" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="change_By" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="change_Time" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="org.goodreturn.model.impl.TeamLenderImpl" table="GoodReturn_TeamLender">
 		<cache usage="read-write" />
-		<id name="teamlender_Id" type="long">
+		<id name="team_lender_Id" type="long">
 			<generator class="assigned" />
 		</id>
-	</class>
-	<class name="org.goodreturn.model.impl.TeamLenderLoanImpl" table="GoodReturn_TeamLenderLoan">
-		<cache usage="read-write" />
-		<id name="account_Id" type="long">
-			<generator class="assigned" />
-		</id>
+		<property name="lender_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="team_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="changed_By" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="changed_Time" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 </hibernate-mapping>

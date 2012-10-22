@@ -16,7 +16,6 @@ package org.goodreturn.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,70 +44,29 @@ public class BorrowerWrapper implements Borrower, ModelWrapper<Borrower> {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("abacus_Borrower_Id", getAbacus_Borrower_Id());
-		attributes.put("write_Off_Date", getWrite_Off_Date());
-		attributes.put("phone", getPhone());
-		attributes.put("wait_Time", getWait_Time());
-		attributes.put("country", getCountry());
-		attributes.put("amount_Needed", getAmount_Needed());
-		attributes.put("amount_Needed_AUD", getAmount_Needed_AUD());
-		attributes.put("type_Of_Person", getType_Of_Person());
+		attributes.put("borrower_Id", getBorrower_Id());
+		attributes.put("abacus_Person_Id", getAbacus_Person_Id());
 		attributes.put("village", getVillage());
 		attributes.put("district", getDistrict());
 		attributes.put("pdf_Link", getPdf_Link());
 		attributes.put("currency", getCurrency());
-		attributes.put("date_Applied", getDate_Applied());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 
 		return attributes;
 	}
 
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long abacus_Borrower_Id = (Long)attributes.get("abacus_Borrower_Id");
+		Long borrower_Id = (Long)attributes.get("borrower_Id");
 
-		if (abacus_Borrower_Id != null) {
-			setAbacus_Borrower_Id(abacus_Borrower_Id);
+		if (borrower_Id != null) {
+			setBorrower_Id(borrower_Id);
 		}
 
-		Date write_Off_Date = (Date)attributes.get("write_Off_Date");
+		Long abacus_Person_Id = (Long)attributes.get("abacus_Person_Id");
 
-		if (write_Off_Date != null) {
-			setWrite_Off_Date(write_Off_Date);
-		}
-
-		Long phone = (Long)attributes.get("phone");
-
-		if (phone != null) {
-			setPhone(phone);
-		}
-
-		Long wait_Time = (Long)attributes.get("wait_Time");
-
-		if (wait_Time != null) {
-			setWait_Time(wait_Time);
-		}
-
-		String country = (String)attributes.get("country");
-
-		if (country != null) {
-			setCountry(country);
-		}
-
-		Double amount_Needed = (Double)attributes.get("amount_Needed");
-
-		if (amount_Needed != null) {
-			setAmount_Needed(amount_Needed);
-		}
-
-		Double amount_Needed_AUD = (Double)attributes.get("amount_Needed_AUD");
-
-		if (amount_Needed_AUD != null) {
-			setAmount_Needed_AUD(amount_Needed_AUD);
-		}
-
-		String type_Of_Person = (String)attributes.get("type_Of_Person");
-
-		if (type_Of_Person != null) {
-			setType_Of_Person(type_Of_Person);
+		if (abacus_Person_Id != null) {
+			setAbacus_Person_Id(abacus_Person_Id);
 		}
 
 		String village = (String)attributes.get("village");
@@ -135,10 +93,16 @@ public class BorrowerWrapper implements Borrower, ModelWrapper<Borrower> {
 			setCurrency(currency);
 		}
 
-		Date date_Applied = (Date)attributes.get("date_Applied");
+		String changed_By = (String)attributes.get("changed_By");
 
-		if (date_Applied != null) {
-			setDate_Applied(date_Applied);
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		Long changed_Time = (Long)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
 		}
 	}
 
@@ -161,147 +125,39 @@ public class BorrowerWrapper implements Borrower, ModelWrapper<Borrower> {
 	}
 
 	/**
-	* Returns the abacus_ borrower_ ID of this borrower.
+	* Returns the borrower_ ID of this borrower.
 	*
-	* @return the abacus_ borrower_ ID of this borrower
+	* @return the borrower_ ID of this borrower
 	*/
-	public long getAbacus_Borrower_Id() {
-		return _borrower.getAbacus_Borrower_Id();
+	public long getBorrower_Id() {
+		return _borrower.getBorrower_Id();
 	}
 
 	/**
-	* Sets the abacus_ borrower_ ID of this borrower.
+	* Sets the borrower_ ID of this borrower.
 	*
-	* @param abacus_Borrower_Id the abacus_ borrower_ ID of this borrower
+	* @param borrower_Id the borrower_ ID of this borrower
 	*/
-	public void setAbacus_Borrower_Id(long abacus_Borrower_Id) {
-		_borrower.setAbacus_Borrower_Id(abacus_Borrower_Id);
+	public void setBorrower_Id(long borrower_Id) {
+		_borrower.setBorrower_Id(borrower_Id);
 	}
 
 	/**
-	* Returns the write_ off_ date of this borrower.
+	* Returns the abacus_ person_ ID of this borrower.
 	*
-	* @return the write_ off_ date of this borrower
+	* @return the abacus_ person_ ID of this borrower
 	*/
-	public java.util.Date getWrite_Off_Date() {
-		return _borrower.getWrite_Off_Date();
+	public long getAbacus_Person_Id() {
+		return _borrower.getAbacus_Person_Id();
 	}
 
 	/**
-	* Sets the write_ off_ date of this borrower.
+	* Sets the abacus_ person_ ID of this borrower.
 	*
-	* @param write_Off_Date the write_ off_ date of this borrower
+	* @param abacus_Person_Id the abacus_ person_ ID of this borrower
 	*/
-	public void setWrite_Off_Date(java.util.Date write_Off_Date) {
-		_borrower.setWrite_Off_Date(write_Off_Date);
-	}
-
-	/**
-	* Returns the phone of this borrower.
-	*
-	* @return the phone of this borrower
-	*/
-	public long getPhone() {
-		return _borrower.getPhone();
-	}
-
-	/**
-	* Sets the phone of this borrower.
-	*
-	* @param phone the phone of this borrower
-	*/
-	public void setPhone(long phone) {
-		_borrower.setPhone(phone);
-	}
-
-	/**
-	* Returns the wait_ time of this borrower.
-	*
-	* @return the wait_ time of this borrower
-	*/
-	public long getWait_Time() {
-		return _borrower.getWait_Time();
-	}
-
-	/**
-	* Sets the wait_ time of this borrower.
-	*
-	* @param wait_Time the wait_ time of this borrower
-	*/
-	public void setWait_Time(long wait_Time) {
-		_borrower.setWait_Time(wait_Time);
-	}
-
-	/**
-	* Returns the country of this borrower.
-	*
-	* @return the country of this borrower
-	*/
-	public java.lang.String getCountry() {
-		return _borrower.getCountry();
-	}
-
-	/**
-	* Sets the country of this borrower.
-	*
-	* @param country the country of this borrower
-	*/
-	public void setCountry(java.lang.String country) {
-		_borrower.setCountry(country);
-	}
-
-	/**
-	* Returns the amount_ needed of this borrower.
-	*
-	* @return the amount_ needed of this borrower
-	*/
-	public double getAmount_Needed() {
-		return _borrower.getAmount_Needed();
-	}
-
-	/**
-	* Sets the amount_ needed of this borrower.
-	*
-	* @param amount_Needed the amount_ needed of this borrower
-	*/
-	public void setAmount_Needed(double amount_Needed) {
-		_borrower.setAmount_Needed(amount_Needed);
-	}
-
-	/**
-	* Returns the amount_ needed_ a u d of this borrower.
-	*
-	* @return the amount_ needed_ a u d of this borrower
-	*/
-	public double getAmount_Needed_AUD() {
-		return _borrower.getAmount_Needed_AUD();
-	}
-
-	/**
-	* Sets the amount_ needed_ a u d of this borrower.
-	*
-	* @param amount_Needed_AUD the amount_ needed_ a u d of this borrower
-	*/
-	public void setAmount_Needed_AUD(double amount_Needed_AUD) {
-		_borrower.setAmount_Needed_AUD(amount_Needed_AUD);
-	}
-
-	/**
-	* Returns the type_ of_ person of this borrower.
-	*
-	* @return the type_ of_ person of this borrower
-	*/
-	public java.lang.String getType_Of_Person() {
-		return _borrower.getType_Of_Person();
-	}
-
-	/**
-	* Sets the type_ of_ person of this borrower.
-	*
-	* @param type_Of_Person the type_ of_ person of this borrower
-	*/
-	public void setType_Of_Person(java.lang.String type_Of_Person) {
-		_borrower.setType_Of_Person(type_Of_Person);
+	public void setAbacus_Person_Id(long abacus_Person_Id) {
+		_borrower.setAbacus_Person_Id(abacus_Person_Id);
 	}
 
 	/**
@@ -377,21 +233,39 @@ public class BorrowerWrapper implements Borrower, ModelWrapper<Borrower> {
 	}
 
 	/**
-	* Returns the date_ applied of this borrower.
+	* Returns the changed_ by of this borrower.
 	*
-	* @return the date_ applied of this borrower
+	* @return the changed_ by of this borrower
 	*/
-	public java.util.Date getDate_Applied() {
-		return _borrower.getDate_Applied();
+	public java.lang.String getChanged_By() {
+		return _borrower.getChanged_By();
 	}
 
 	/**
-	* Sets the date_ applied of this borrower.
+	* Sets the changed_ by of this borrower.
 	*
-	* @param date_Applied the date_ applied of this borrower
+	* @param changed_By the changed_ by of this borrower
 	*/
-	public void setDate_Applied(java.util.Date date_Applied) {
-		_borrower.setDate_Applied(date_Applied);
+	public void setChanged_By(java.lang.String changed_By) {
+		_borrower.setChanged_By(changed_By);
+	}
+
+	/**
+	* Returns the changed_ time of this borrower.
+	*
+	* @return the changed_ time of this borrower
+	*/
+	public long getChanged_Time() {
+		return _borrower.getChanged_Time();
+	}
+
+	/**
+	* Sets the changed_ time of this borrower.
+	*
+	* @param changed_Time the changed_ time of this borrower
+	*/
+	public void setChanged_Time(long changed_Time) {
+		_borrower.setChanged_Time(changed_Time);
 	}
 
 	public boolean isNew() {

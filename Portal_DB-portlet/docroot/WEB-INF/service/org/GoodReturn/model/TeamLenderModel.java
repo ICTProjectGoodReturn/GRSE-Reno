@@ -14,6 +14,7 @@
 
 package org.goodreturn.model;
 
+import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -57,18 +58,75 @@ public interface TeamLenderModel extends BaseModel<TeamLender> {
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Returns the teamlender_ ID of this team lender.
+	 * Returns the team_lender_ ID of this team lender.
 	 *
-	 * @return the teamlender_ ID of this team lender
+	 * @return the team_lender_ ID of this team lender
 	 */
-	public long getTeamlender_Id();
+	public long getTeam_lender_Id();
 
 	/**
-	 * Sets the teamlender_ ID of this team lender.
+	 * Sets the team_lender_ ID of this team lender.
 	 *
-	 * @param teamlender_Id the teamlender_ ID of this team lender
+	 * @param team_lender_Id the team_lender_ ID of this team lender
 	 */
-	public void setTeamlender_Id(long teamlender_Id);
+	public void setTeam_lender_Id(long team_lender_Id);
+
+	/**
+	 * Returns the lender_ ID of this team lender.
+	 *
+	 * @return the lender_ ID of this team lender
+	 */
+	public long getLender_Id();
+
+	/**
+	 * Sets the lender_ ID of this team lender.
+	 *
+	 * @param lender_Id the lender_ ID of this team lender
+	 */
+	public void setLender_Id(long lender_Id);
+
+	/**
+	 * Returns the team_ ID of this team lender.
+	 *
+	 * @return the team_ ID of this team lender
+	 */
+	public long getTeam_Id();
+
+	/**
+	 * Sets the team_ ID of this team lender.
+	 *
+	 * @param team_Id the team_ ID of this team lender
+	 */
+	public void setTeam_Id(long team_Id);
+
+	/**
+	 * Returns the changed_ by of this team lender.
+	 *
+	 * @return the changed_ by of this team lender
+	 */
+	@AutoEscape
+	public String getChanged_By();
+
+	/**
+	 * Sets the changed_ by of this team lender.
+	 *
+	 * @param changed_By the changed_ by of this team lender
+	 */
+	public void setChanged_By(String changed_By);
+
+	/**
+	 * Returns the changed_ time of this team lender.
+	 *
+	 * @return the changed_ time of this team lender
+	 */
+	public long getChanged_Time();
+
+	/**
+	 * Sets the changed_ time of this team lender.
+	 *
+	 * @param changed_Time the changed_ time of this team lender
+	 */
+	public void setChanged_Time(long changed_Time);
 
 	public boolean isNew();
 

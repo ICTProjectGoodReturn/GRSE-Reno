@@ -72,9 +72,13 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 		attributes.put("address_Type", getAddress_Type());
 		attributes.put("country", getCountry());
 		attributes.put("gender", getGender());
+		attributes.put("salutation", getSalutation());
 		attributes.put("status", getStatus());
+		attributes.put("phone_Number", getPhone_Number());
 		attributes.put("photo_URL", getPhoto_URL());
 		attributes.put("occupation", getOccupation());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 
 		return attributes;
 	}
@@ -129,10 +133,22 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 			setGender(gender);
 		}
 
+		String salutation = (String)attributes.get("salutation");
+
+		if (salutation != null) {
+			setSalutation(salutation);
+		}
+
 		String status = (String)attributes.get("status");
 
 		if (status != null) {
 			setStatus(status);
+		}
+
+		Long phone_Number = (Long)attributes.get("phone_Number");
+
+		if (phone_Number != null) {
+			setPhone_Number(phone_Number);
 		}
 
 		String photo_URL = (String)attributes.get("photo_URL");
@@ -145,6 +161,18 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 
 		if (occupation != null) {
 			setOccupation(occupation);
+		}
+
+		String changed_By = (String)attributes.get("changed_By");
+
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		Long changed_Time = (Long)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
 		}
 	}
 
@@ -212,12 +240,28 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 		_gender = gender;
 	}
 
+	public String getSalutation() {
+		return _salutation;
+	}
+
+	public void setSalutation(String salutation) {
+		_salutation = salutation;
+	}
+
 	public String getStatus() {
 		return _status;
 	}
 
 	public void setStatus(String status) {
 		_status = status;
+	}
+
+	public long getPhone_Number() {
+		return _phone_Number;
+	}
+
+	public void setPhone_Number(long phone_Number) {
+		_phone_Number = phone_Number;
 	}
 
 	public String getPhoto_URL() {
@@ -234,6 +278,22 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 
 	public void setOccupation(String occupation) {
 		_occupation = occupation;
+	}
+
+	public String getChanged_By() {
+		return _changed_By;
+	}
+
+	public void setChanged_By(String changed_By) {
+		_changed_By = changed_By;
+	}
+
+	public long getChanged_Time() {
+		return _changed_Time;
+	}
+
+	public void setChanged_Time(long changed_Time) {
+		_changed_Time = changed_Time;
 	}
 
 	public BaseModel<?> getPersonRemoteModel() {
@@ -271,9 +331,13 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 		clone.setAddress_Type(getAddress_Type());
 		clone.setCountry(getCountry());
 		clone.setGender(getGender());
+		clone.setSalutation(getSalutation());
 		clone.setStatus(getStatus());
+		clone.setPhone_Number(getPhone_Number());
 		clone.setPhoto_URL(getPhoto_URL());
 		clone.setOccupation(getOccupation());
+		clone.setChanged_By(getChanged_By());
+		clone.setChanged_Time(getChanged_Time());
 
 		return clone;
 	}
@@ -281,7 +345,15 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 	public int compareTo(Person person) {
 		int value = 0;
 
-		value = getLast_Name().compareTo(person.getLast_Name());
+		if (getAbacus_Person_Id() < person.getAbacus_Person_Id()) {
+			value = -1;
+		}
+		else if (getAbacus_Person_Id() > person.getAbacus_Person_Id()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		if (value != 0) {
 			return value;
@@ -322,7 +394,7 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{abacus_Person_Id=");
 		sb.append(getAbacus_Person_Id());
@@ -340,19 +412,27 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 		sb.append(getCountry());
 		sb.append(", gender=");
 		sb.append(getGender());
+		sb.append(", salutation=");
+		sb.append(getSalutation());
 		sb.append(", status=");
 		sb.append(getStatus());
+		sb.append(", phone_Number=");
+		sb.append(getPhone_Number());
 		sb.append(", photo_URL=");
 		sb.append(getPhoto_URL());
 		sb.append(", occupation=");
 		sb.append(getOccupation());
+		sb.append(", changed_By=");
+		sb.append(getChanged_By());
+		sb.append(", changed_Time=");
+		sb.append(getChanged_Time());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Person");
@@ -391,8 +471,16 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 		sb.append(getGender());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>salutation</column-name><column-value><![CDATA[");
+		sb.append(getSalutation());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
 		sb.append(getStatus());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>phone_Number</column-name><column-value><![CDATA[");
+		sb.append(getPhone_Number());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>photo_URL</column-name><column-value><![CDATA[");
@@ -401,6 +489,14 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 		sb.append(
 			"<column><column-name>occupation</column-name><column-value><![CDATA[");
 		sb.append(getOccupation());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>changed_By</column-name><column-value><![CDATA[");
+		sb.append(getChanged_By());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
+		sb.append(getChanged_Time());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -416,8 +512,12 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 	private String _address_Type;
 	private String _country;
 	private String _gender;
+	private String _salutation;
 	private String _status;
+	private long _phone_Number;
 	private String _photo_URL;
 	private String _occupation;
+	private String _changed_By;
+	private long _changed_Time;
 	private BaseModel<?> _personRemoteModel;
 }

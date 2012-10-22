@@ -14,6 +14,7 @@
 
 package org.goodreturn.model;
 
+import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -57,18 +58,18 @@ public interface BorrowerLoanModel extends BaseModel<BorrowerLoan> {
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Returns the borrower_ loan_ ID of this borrower loan.
+	 * Returns the abacus_ borrower_ loan_ ID of this borrower loan.
 	 *
-	 * @return the borrower_ loan_ ID of this borrower loan
+	 * @return the abacus_ borrower_ loan_ ID of this borrower loan
 	 */
-	public long getBorrower_Loan_Id();
+	public long getAbacus_Borrower_Loan_Id();
 
 	/**
-	 * Sets the borrower_ loan_ ID of this borrower loan.
+	 * Sets the abacus_ borrower_ loan_ ID of this borrower loan.
 	 *
-	 * @param borrower_Loan_Id the borrower_ loan_ ID of this borrower loan
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID of this borrower loan
 	 */
-	public void setBorrower_Loan_Id(long borrower_Loan_Id);
+	public void setAbacus_Borrower_Loan_Id(long abacus_Borrower_Loan_Id);
 
 	/**
 	 * Returns the borrower_ ID of this borrower loan.
@@ -83,6 +84,50 @@ public interface BorrowerLoanModel extends BaseModel<BorrowerLoan> {
 	 * @param borrower_Id the borrower_ ID of this borrower loan
 	 */
 	public void setBorrower_Id(long borrower_Id);
+
+	/**
+	 * Returns the abacus_mfi_ ID of this borrower loan.
+	 *
+	 * @return the abacus_mfi_ ID of this borrower loan
+	 */
+	public long getAbacus_mfi_Id();
+
+	/**
+	 * Sets the abacus_mfi_ ID of this borrower loan.
+	 *
+	 * @param abacus_mfi_Id the abacus_mfi_ ID of this borrower loan
+	 */
+	public void setAbacus_mfi_Id(long abacus_mfi_Id);
+
+	/**
+	 * Returns the changed_ by of this borrower loan.
+	 *
+	 * @return the changed_ by of this borrower loan
+	 */
+	@AutoEscape
+	public String getChanged_By();
+
+	/**
+	 * Sets the changed_ by of this borrower loan.
+	 *
+	 * @param changed_By the changed_ by of this borrower loan
+	 */
+	public void setChanged_By(String changed_By);
+
+	/**
+	 * Returns the changed_ time of this borrower loan.
+	 *
+	 * @return the changed_ time of this borrower loan
+	 */
+	@AutoEscape
+	public String getChanged_Time();
+
+	/**
+	 * Sets the changed_ time of this borrower loan.
+	 *
+	 * @param changed_Time the changed_ time of this borrower loan
+	 */
+	public void setChanged_Time(String changed_Time);
 
 	public boolean isNew();
 

@@ -30,7 +30,11 @@ public class TeamLenderSoap implements Serializable {
 	public static TeamLenderSoap toSoapModel(TeamLender model) {
 		TeamLenderSoap soapModel = new TeamLenderSoap();
 
-		soapModel.setTeamlender_Id(model.getTeamlender_Id());
+		soapModel.setTeam_lender_Id(model.getTeam_lender_Id());
+		soapModel.setLender_Id(model.getLender_Id());
+		soapModel.setTeam_Id(model.getTeam_Id());
+		soapModel.setChanged_By(model.getChanged_By());
+		soapModel.setChanged_Time(model.getChanged_Time());
 
 		return soapModel;
 	}
@@ -76,20 +80,56 @@ public class TeamLenderSoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _teamlender_Id;
+		return _team_lender_Id;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setTeamlender_Id(pk);
+		setTeam_lender_Id(pk);
 	}
 
-	public long getTeamlender_Id() {
-		return _teamlender_Id;
+	public long getTeam_lender_Id() {
+		return _team_lender_Id;
 	}
 
-	public void setTeamlender_Id(long teamlender_Id) {
-		_teamlender_Id = teamlender_Id;
+	public void setTeam_lender_Id(long team_lender_Id) {
+		_team_lender_Id = team_lender_Id;
 	}
 
-	private long _teamlender_Id;
+	public long getLender_Id() {
+		return _lender_Id;
+	}
+
+	public void setLender_Id(long lender_Id) {
+		_lender_Id = lender_Id;
+	}
+
+	public long getTeam_Id() {
+		return _team_Id;
+	}
+
+	public void setTeam_Id(long team_Id) {
+		_team_Id = team_Id;
+	}
+
+	public String getChanged_By() {
+		return _changed_By;
+	}
+
+	public void setChanged_By(String changed_By) {
+		_changed_By = changed_By;
+	}
+
+	public long getChanged_Time() {
+		return _changed_Time;
+	}
+
+	public void setChanged_Time(long changed_Time) {
+		_changed_Time = changed_Time;
+	}
+
+	private long _team_lender_Id;
+	private long _lender_Id;
+	private long _team_Id;
+	private String _changed_By;
+	private long _changed_Time;
 }

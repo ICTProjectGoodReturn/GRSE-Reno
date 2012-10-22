@@ -137,12 +137,12 @@ public class TeamLenderLocalServiceClp implements TeamLenderLocalService {
 		return (org.goodreturn.model.TeamLender)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.goodreturn.model.TeamLender createTeamLender(long teamlender_Id) {
+	public org.goodreturn.model.TeamLender createTeamLender(long team_lender_Id) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { teamlender_Id });
+					_methodParameterTypes1, new Object[] { team_lender_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -159,14 +159,14 @@ public class TeamLenderLocalServiceClp implements TeamLenderLocalService {
 		return (org.goodreturn.model.TeamLender)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.goodreturn.model.TeamLender deleteTeamLender(long teamlender_Id)
+	public org.goodreturn.model.TeamLender deleteTeamLender(long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { teamlender_Id });
+					_methodParameterTypes2, new Object[] { team_lender_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -377,13 +377,13 @@ public class TeamLenderLocalServiceClp implements TeamLenderLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
-	public org.goodreturn.model.TeamLender fetchTeamLender(long teamlender_Id)
+	public org.goodreturn.model.TeamLender fetchTeamLender(long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9, new Object[] { teamlender_Id });
+					_methodParameterTypes9, new Object[] { team_lender_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -404,14 +404,14 @@ public class TeamLenderLocalServiceClp implements TeamLenderLocalService {
 		return (org.goodreturn.model.TeamLender)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.goodreturn.model.TeamLender getTeamLender(long teamlender_Id)
+	public org.goodreturn.model.TeamLender getTeamLender(long team_lender_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { teamlender_Id });
+					_methodParameterTypes10, new Object[] { team_lender_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

@@ -15,6 +15,7 @@
 package org.goodreturn.model.impl;
 
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
 import org.goodreturn.model.TeamLender;
@@ -32,10 +33,19 @@ public class TeamLenderCacheModel implements CacheModel<TeamLender>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(3);
+		StringBundler sb = new StringBundler(11);
 
-		sb.append("{teamlender_Id=");
-		sb.append(teamlender_Id);
+		sb.append("{team_lender_Id=");
+		sb.append(team_lender_Id);
+		sb.append(", lender_Id=");
+		sb.append(lender_Id);
+		sb.append(", team_Id=");
+		sb.append(team_Id);
+		sb.append(", changed_By=");
+		sb.append(changed_By);
+		sb.append(", changed_Time=");
+		sb.append(changed_Time);
+		sb.append("}");
 
 		return sb.toString();
 	}
@@ -43,12 +53,27 @@ public class TeamLenderCacheModel implements CacheModel<TeamLender>,
 	public TeamLender toEntityModel() {
 		TeamLenderImpl teamLenderImpl = new TeamLenderImpl();
 
-		teamLenderImpl.setTeamlender_Id(teamlender_Id);
+		teamLenderImpl.setTeam_lender_Id(team_lender_Id);
+		teamLenderImpl.setLender_Id(lender_Id);
+		teamLenderImpl.setTeam_Id(team_Id);
+
+		if (changed_By == null) {
+			teamLenderImpl.setChanged_By(StringPool.BLANK);
+		}
+		else {
+			teamLenderImpl.setChanged_By(changed_By);
+		}
+
+		teamLenderImpl.setChanged_Time(changed_Time);
 
 		teamLenderImpl.resetOriginalValues();
 
 		return teamLenderImpl;
 	}
 
-	public long teamlender_Id;
+	public long team_lender_Id;
+	public long lender_Id;
+	public long team_Id;
+	public String changed_By;
+	public long changed_Time;
 }

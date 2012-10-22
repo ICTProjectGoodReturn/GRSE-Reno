@@ -65,35 +65,32 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 	public static final String TABLE_NAME = "GoodReturn_Lender";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "lender_Id", Types.BIGINT },
-			{ "salutation", Types.VARCHAR },
+			{ "abacus_Person_Id", Types.BIGINT },
+			{ "certificate_Id", Types.BIGINT },
 			{ "employer_Name", Types.VARCHAR },
 			{ "comment_", Types.VARCHAR },
 			{ "heard_Of_Us", Types.VARCHAR },
-			{ "region", Types.VARCHAR },
 			{ "display_Name", Types.VARCHAR },
 			{ "date_Of_Birth", Types.TIMESTAMP },
 			{ "reason_For_Lending", Types.VARCHAR },
 			{ "about_Themselves", Types.VARCHAR },
-			{ "automatic_Re_lend", Types.BOOLEAN },
-			{ "monthly_Repayments", Types.DOUBLE },
+			{ "personal_Link", Types.VARCHAR },
 			{ "is_Public_Profile", Types.BOOLEAN },
-			{ "bank_Details", Types.VARCHAR },
 			{ "recieve_Emails", Types.BOOLEAN },
 			{ "recieve_GoodReturn_Info", Types.BOOLEAN },
 			{ "is_Anonymous", Types.BOOLEAN },
 			{ "is_Validated", Types.BOOLEAN },
-			{ "current_Balance", Types.DOUBLE },
-			{ "paypal_Email", Types.VARCHAR },
 			{ "password_", Types.VARCHAR },
 			{ "last_Login_Date", Types.TIMESTAMP },
 			{ "featured_Lender", Types.VARCHAR },
-			{ "voucher_Id", Types.BIGINT },
-			{ "is_Loan_Donation", Types.BOOLEAN }
+			{ "is_Loan_Donation", Types.BOOLEAN },
+			{ "changed_By", Types.VARCHAR },
+			{ "changed_Time", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Lender (lender_Id LONG not null primary key,salutation VARCHAR(75) null,employer_Name VARCHAR(75) null,comment_ VARCHAR(75) null,heard_Of_Us VARCHAR(75) null,region VARCHAR(75) null,display_Name VARCHAR(75) null,date_Of_Birth DATE null,reason_For_Lending VARCHAR(75) null,about_Themselves VARCHAR(75) null,automatic_Re_lend BOOLEAN,monthly_Repayments DOUBLE,is_Public_Profile BOOLEAN,bank_Details VARCHAR(75) null,recieve_Emails BOOLEAN,recieve_GoodReturn_Info BOOLEAN,is_Anonymous BOOLEAN,is_Validated BOOLEAN,current_Balance DOUBLE,paypal_Email VARCHAR(75) null,password_ VARCHAR(75) null,last_Login_Date DATE null,featured_Lender VARCHAR(75) null,voucher_Id LONG,is_Loan_Donation BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Lender (lender_Id LONG not null primary key,abacus_Person_Id LONG,certificate_Id LONG,employer_Name VARCHAR(75) null,comment_ VARCHAR(75) null,heard_Of_Us VARCHAR(75) null,display_Name VARCHAR(75) null,date_Of_Birth DATE null,reason_For_Lending VARCHAR(75) null,about_Themselves VARCHAR(75) null,personal_Link VARCHAR(75) null,is_Public_Profile BOOLEAN,recieve_Emails BOOLEAN,recieve_GoodReturn_Info BOOLEAN,is_Anonymous BOOLEAN,is_Validated BOOLEAN,password_ VARCHAR(75) null,last_Login_Date DATE null,featured_Lender VARCHAR(75) null,is_Loan_Donation BOOLEAN,changed_By VARCHAR(75) null,changed_Time LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Lender";
-	public static final String ORDER_BY_JPQL = " ORDER BY lender.display_Name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Lender.display_Name ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY lender.lender_Id ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Lender.lender_Id ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -119,30 +116,27 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		Lender model = new LenderImpl();
 
 		model.setLender_Id(soapModel.getLender_Id());
-		model.setSalutation(soapModel.getSalutation());
+		model.setAbacus_Person_Id(soapModel.getAbacus_Person_Id());
+		model.setCertificate_Id(soapModel.getCertificate_Id());
 		model.setEmployer_Name(soapModel.getEmployer_Name());
 		model.setComment(soapModel.getComment());
 		model.setHeard_Of_Us(soapModel.getHeard_Of_Us());
-		model.setRegion(soapModel.getRegion());
 		model.setDisplay_Name(soapModel.getDisplay_Name());
 		model.setDate_Of_Birth(soapModel.getDate_Of_Birth());
 		model.setReason_For_Lending(soapModel.getReason_For_Lending());
 		model.setAbout_Themselves(soapModel.getAbout_Themselves());
-		model.setAutomatic_Re_lend(soapModel.getAutomatic_Re_lend());
-		model.setMonthly_Repayments(soapModel.getMonthly_Repayments());
+		model.setPersonal_Link(soapModel.getPersonal_Link());
 		model.setIs_Public_Profile(soapModel.getIs_Public_Profile());
-		model.setBank_Details(soapModel.getBank_Details());
 		model.setRecieve_Emails(soapModel.getRecieve_Emails());
 		model.setRecieve_GoodReturn_Info(soapModel.getRecieve_GoodReturn_Info());
 		model.setIs_Anonymous(soapModel.getIs_Anonymous());
 		model.setIs_Validated(soapModel.getIs_Validated());
-		model.setCurrent_Balance(soapModel.getCurrent_Balance());
-		model.setPaypal_Email(soapModel.getPaypal_Email());
 		model.setPassword(soapModel.getPassword());
 		model.setLast_Login_Date(soapModel.getLast_Login_Date());
 		model.setFeatured_Lender(soapModel.getFeatured_Lender());
-		model.setVoucher_Id(soapModel.getVoucher_Id());
 		model.setIs_Loan_Donation(soapModel.getIs_Loan_Donation());
+		model.setChanged_By(soapModel.getChanged_By());
+		model.setChanged_Time(soapModel.getChanged_Time());
 
 		return model;
 	}
@@ -202,30 +196,27 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("lender_Id", getLender_Id());
-		attributes.put("salutation", getSalutation());
+		attributes.put("abacus_Person_Id", getAbacus_Person_Id());
+		attributes.put("certificate_Id", getCertificate_Id());
 		attributes.put("employer_Name", getEmployer_Name());
 		attributes.put("comment", getComment());
 		attributes.put("heard_Of_Us", getHeard_Of_Us());
-		attributes.put("region", getRegion());
 		attributes.put("display_Name", getDisplay_Name());
 		attributes.put("date_Of_Birth", getDate_Of_Birth());
 		attributes.put("reason_For_Lending", getReason_For_Lending());
 		attributes.put("about_Themselves", getAbout_Themselves());
-		attributes.put("automatic_Re_lend", getAutomatic_Re_lend());
-		attributes.put("monthly_Repayments", getMonthly_Repayments());
+		attributes.put("personal_Link", getPersonal_Link());
 		attributes.put("is_Public_Profile", getIs_Public_Profile());
-		attributes.put("bank_Details", getBank_Details());
 		attributes.put("recieve_Emails", getRecieve_Emails());
 		attributes.put("recieve_GoodReturn_Info", getRecieve_GoodReturn_Info());
 		attributes.put("is_Anonymous", getIs_Anonymous());
 		attributes.put("is_Validated", getIs_Validated());
-		attributes.put("current_Balance", getCurrent_Balance());
-		attributes.put("paypal_Email", getPaypal_Email());
 		attributes.put("password", getPassword());
 		attributes.put("last_Login_Date", getLast_Login_Date());
 		attributes.put("featured_Lender", getFeatured_Lender());
-		attributes.put("voucher_Id", getVoucher_Id());
 		attributes.put("is_Loan_Donation", getIs_Loan_Donation());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 
 		return attributes;
 	}
@@ -238,10 +229,16 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 			setLender_Id(lender_Id);
 		}
 
-		String salutation = (String)attributes.get("salutation");
+		Long abacus_Person_Id = (Long)attributes.get("abacus_Person_Id");
 
-		if (salutation != null) {
-			setSalutation(salutation);
+		if (abacus_Person_Id != null) {
+			setAbacus_Person_Id(abacus_Person_Id);
+		}
+
+		Long certificate_Id = (Long)attributes.get("certificate_Id");
+
+		if (certificate_Id != null) {
+			setCertificate_Id(certificate_Id);
 		}
 
 		String employer_Name = (String)attributes.get("employer_Name");
@@ -260,12 +257,6 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 
 		if (heard_Of_Us != null) {
 			setHeard_Of_Us(heard_Of_Us);
-		}
-
-		String region = (String)attributes.get("region");
-
-		if (region != null) {
-			setRegion(region);
 		}
 
 		String display_Name = (String)attributes.get("display_Name");
@@ -292,28 +283,16 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 			setAbout_Themselves(about_Themselves);
 		}
 
-		Boolean automatic_Re_lend = (Boolean)attributes.get("automatic_Re_lend");
+		String personal_Link = (String)attributes.get("personal_Link");
 
-		if (automatic_Re_lend != null) {
-			setAutomatic_Re_lend(automatic_Re_lend);
-		}
-
-		Double monthly_Repayments = (Double)attributes.get("monthly_Repayments");
-
-		if (monthly_Repayments != null) {
-			setMonthly_Repayments(monthly_Repayments);
+		if (personal_Link != null) {
+			setPersonal_Link(personal_Link);
 		}
 
 		Boolean is_Public_Profile = (Boolean)attributes.get("is_Public_Profile");
 
 		if (is_Public_Profile != null) {
 			setIs_Public_Profile(is_Public_Profile);
-		}
-
-		String bank_Details = (String)attributes.get("bank_Details");
-
-		if (bank_Details != null) {
-			setBank_Details(bank_Details);
 		}
 
 		Boolean recieve_Emails = (Boolean)attributes.get("recieve_Emails");
@@ -341,18 +320,6 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 			setIs_Validated(is_Validated);
 		}
 
-		Double current_Balance = (Double)attributes.get("current_Balance");
-
-		if (current_Balance != null) {
-			setCurrent_Balance(current_Balance);
-		}
-
-		String paypal_Email = (String)attributes.get("paypal_Email");
-
-		if (paypal_Email != null) {
-			setPaypal_Email(paypal_Email);
-		}
-
 		String password = (String)attributes.get("password");
 
 		if (password != null) {
@@ -371,16 +338,22 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 			setFeatured_Lender(featured_Lender);
 		}
 
-		Long voucher_Id = (Long)attributes.get("voucher_Id");
-
-		if (voucher_Id != null) {
-			setVoucher_Id(voucher_Id);
-		}
-
 		Boolean is_Loan_Donation = (Boolean)attributes.get("is_Loan_Donation");
 
 		if (is_Loan_Donation != null) {
 			setIs_Loan_Donation(is_Loan_Donation);
+		}
+
+		String changed_By = (String)attributes.get("changed_By");
+
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		Long changed_Time = (Long)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
 		}
 	}
 
@@ -394,17 +367,21 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 	}
 
 	@JSON
-	public String getSalutation() {
-		if (_salutation == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _salutation;
-		}
+	public long getAbacus_Person_Id() {
+		return _abacus_Person_Id;
 	}
 
-	public void setSalutation(String salutation) {
-		_salutation = salutation;
+	public void setAbacus_Person_Id(long abacus_Person_Id) {
+		_abacus_Person_Id = abacus_Person_Id;
+	}
+
+	@JSON
+	public long getCertificate_Id() {
+		return _certificate_Id;
+	}
+
+	public void setCertificate_Id(long certificate_Id) {
+		_certificate_Id = certificate_Id;
 	}
 
 	@JSON
@@ -447,20 +424,6 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 
 	public void setHeard_Of_Us(String heard_Of_Us) {
 		_heard_Of_Us = heard_Of_Us;
-	}
-
-	@JSON
-	public String getRegion() {
-		if (_region == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _region;
-		}
-	}
-
-	public void setRegion(String region) {
-		_region = region;
 	}
 
 	@JSON
@@ -515,25 +478,17 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 	}
 
 	@JSON
-	public boolean getAutomatic_Re_lend() {
-		return _automatic_Re_lend;
+	public String getPersonal_Link() {
+		if (_personal_Link == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _personal_Link;
+		}
 	}
 
-	public boolean isAutomatic_Re_lend() {
-		return _automatic_Re_lend;
-	}
-
-	public void setAutomatic_Re_lend(boolean automatic_Re_lend) {
-		_automatic_Re_lend = automatic_Re_lend;
-	}
-
-	@JSON
-	public double getMonthly_Repayments() {
-		return _monthly_Repayments;
-	}
-
-	public void setMonthly_Repayments(double monthly_Repayments) {
-		_monthly_Repayments = monthly_Repayments;
+	public void setPersonal_Link(String personal_Link) {
+		_personal_Link = personal_Link;
 	}
 
 	@JSON
@@ -547,20 +502,6 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 
 	public void setIs_Public_Profile(boolean is_Public_Profile) {
 		_is_Public_Profile = is_Public_Profile;
-	}
-
-	@JSON
-	public String getBank_Details() {
-		if (_bank_Details == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _bank_Details;
-		}
-	}
-
-	public void setBank_Details(String bank_Details) {
-		_bank_Details = bank_Details;
 	}
 
 	@JSON
@@ -616,29 +557,6 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 	}
 
 	@JSON
-	public double getCurrent_Balance() {
-		return _current_Balance;
-	}
-
-	public void setCurrent_Balance(double current_Balance) {
-		_current_Balance = current_Balance;
-	}
-
-	@JSON
-	public String getPaypal_Email() {
-		if (_paypal_Email == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _paypal_Email;
-		}
-	}
-
-	public void setPaypal_Email(String paypal_Email) {
-		_paypal_Email = paypal_Email;
-	}
-
-	@JSON
 	public String getPassword() {
 		if (_password == null) {
 			return StringPool.BLANK;
@@ -676,15 +594,6 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 	}
 
 	@JSON
-	public long getVoucher_Id() {
-		return _voucher_Id;
-	}
-
-	public void setVoucher_Id(long voucher_Id) {
-		_voucher_Id = voucher_Id;
-	}
-
-	@JSON
 	public boolean getIs_Loan_Donation() {
 		return _is_Loan_Donation;
 	}
@@ -695,6 +604,29 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 
 	public void setIs_Loan_Donation(boolean is_Loan_Donation) {
 		_is_Loan_Donation = is_Loan_Donation;
+	}
+
+	@JSON
+	public String getChanged_By() {
+		if (_changed_By == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _changed_By;
+		}
+	}
+
+	public void setChanged_By(String changed_By) {
+		_changed_By = changed_By;
+	}
+
+	@JSON
+	public long getChanged_Time() {
+		return _changed_Time;
+	}
+
+	public void setChanged_Time(long changed_Time) {
+		_changed_Time = changed_Time;
 	}
 
 	@Override
@@ -726,30 +658,27 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		LenderImpl lenderImpl = new LenderImpl();
 
 		lenderImpl.setLender_Id(getLender_Id());
-		lenderImpl.setSalutation(getSalutation());
+		lenderImpl.setAbacus_Person_Id(getAbacus_Person_Id());
+		lenderImpl.setCertificate_Id(getCertificate_Id());
 		lenderImpl.setEmployer_Name(getEmployer_Name());
 		lenderImpl.setComment(getComment());
 		lenderImpl.setHeard_Of_Us(getHeard_Of_Us());
-		lenderImpl.setRegion(getRegion());
 		lenderImpl.setDisplay_Name(getDisplay_Name());
 		lenderImpl.setDate_Of_Birth(getDate_Of_Birth());
 		lenderImpl.setReason_For_Lending(getReason_For_Lending());
 		lenderImpl.setAbout_Themselves(getAbout_Themselves());
-		lenderImpl.setAutomatic_Re_lend(getAutomatic_Re_lend());
-		lenderImpl.setMonthly_Repayments(getMonthly_Repayments());
+		lenderImpl.setPersonal_Link(getPersonal_Link());
 		lenderImpl.setIs_Public_Profile(getIs_Public_Profile());
-		lenderImpl.setBank_Details(getBank_Details());
 		lenderImpl.setRecieve_Emails(getRecieve_Emails());
 		lenderImpl.setRecieve_GoodReturn_Info(getRecieve_GoodReturn_Info());
 		lenderImpl.setIs_Anonymous(getIs_Anonymous());
 		lenderImpl.setIs_Validated(getIs_Validated());
-		lenderImpl.setCurrent_Balance(getCurrent_Balance());
-		lenderImpl.setPaypal_Email(getPaypal_Email());
 		lenderImpl.setPassword(getPassword());
 		lenderImpl.setLast_Login_Date(getLast_Login_Date());
 		lenderImpl.setFeatured_Lender(getFeatured_Lender());
-		lenderImpl.setVoucher_Id(getVoucher_Id());
 		lenderImpl.setIs_Loan_Donation(getIs_Loan_Donation());
+		lenderImpl.setChanged_By(getChanged_By());
+		lenderImpl.setChanged_Time(getChanged_Time());
 
 		lenderImpl.resetOriginalValues();
 
@@ -759,7 +688,15 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 	public int compareTo(Lender lender) {
 		int value = 0;
 
-		value = getDisplay_Name().compareTo(lender.getDisplay_Name());
+		if (getLender_Id() < lender.getLender_Id()) {
+			value = -1;
+		}
+		else if (getLender_Id() > lender.getLender_Id()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		if (value != 0) {
 			return value;
@@ -808,13 +745,9 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 
 		lenderCacheModel.lender_Id = getLender_Id();
 
-		lenderCacheModel.salutation = getSalutation();
+		lenderCacheModel.abacus_Person_Id = getAbacus_Person_Id();
 
-		String salutation = lenderCacheModel.salutation;
-
-		if ((salutation != null) && (salutation.length() == 0)) {
-			lenderCacheModel.salutation = null;
-		}
+		lenderCacheModel.certificate_Id = getCertificate_Id();
 
 		lenderCacheModel.employer_Name = getEmployer_Name();
 
@@ -838,14 +771,6 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 
 		if ((heard_Of_Us != null) && (heard_Of_Us.length() == 0)) {
 			lenderCacheModel.heard_Of_Us = null;
-		}
-
-		lenderCacheModel.region = getRegion();
-
-		String region = lenderCacheModel.region;
-
-		if ((region != null) && (region.length() == 0)) {
-			lenderCacheModel.region = null;
 		}
 
 		lenderCacheModel.display_Name = getDisplay_Name();
@@ -881,19 +806,15 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 			lenderCacheModel.about_Themselves = null;
 		}
 
-		lenderCacheModel.automatic_Re_lend = getAutomatic_Re_lend();
+		lenderCacheModel.personal_Link = getPersonal_Link();
 
-		lenderCacheModel.monthly_Repayments = getMonthly_Repayments();
+		String personal_Link = lenderCacheModel.personal_Link;
+
+		if ((personal_Link != null) && (personal_Link.length() == 0)) {
+			lenderCacheModel.personal_Link = null;
+		}
 
 		lenderCacheModel.is_Public_Profile = getIs_Public_Profile();
-
-		lenderCacheModel.bank_Details = getBank_Details();
-
-		String bank_Details = lenderCacheModel.bank_Details;
-
-		if ((bank_Details != null) && (bank_Details.length() == 0)) {
-			lenderCacheModel.bank_Details = null;
-		}
 
 		lenderCacheModel.recieve_Emails = getRecieve_Emails();
 
@@ -902,16 +823,6 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		lenderCacheModel.is_Anonymous = getIs_Anonymous();
 
 		lenderCacheModel.is_Validated = getIs_Validated();
-
-		lenderCacheModel.current_Balance = getCurrent_Balance();
-
-		lenderCacheModel.paypal_Email = getPaypal_Email();
-
-		String paypal_Email = lenderCacheModel.paypal_Email;
-
-		if ((paypal_Email != null) && (paypal_Email.length() == 0)) {
-			lenderCacheModel.paypal_Email = null;
-		}
 
 		lenderCacheModel.password = getPassword();
 
@@ -938,29 +849,37 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 			lenderCacheModel.featured_Lender = null;
 		}
 
-		lenderCacheModel.voucher_Id = getVoucher_Id();
-
 		lenderCacheModel.is_Loan_Donation = getIs_Loan_Donation();
+
+		lenderCacheModel.changed_By = getChanged_By();
+
+		String changed_By = lenderCacheModel.changed_By;
+
+		if ((changed_By != null) && (changed_By.length() == 0)) {
+			lenderCacheModel.changed_By = null;
+		}
+
+		lenderCacheModel.changed_Time = getChanged_Time();
 
 		return lenderCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(51);
+		StringBundler sb = new StringBundler(45);
 
 		sb.append("{lender_Id=");
 		sb.append(getLender_Id());
-		sb.append(", salutation=");
-		sb.append(getSalutation());
+		sb.append(", abacus_Person_Id=");
+		sb.append(getAbacus_Person_Id());
+		sb.append(", certificate_Id=");
+		sb.append(getCertificate_Id());
 		sb.append(", employer_Name=");
 		sb.append(getEmployer_Name());
 		sb.append(", comment=");
 		sb.append(getComment());
 		sb.append(", heard_Of_Us=");
 		sb.append(getHeard_Of_Us());
-		sb.append(", region=");
-		sb.append(getRegion());
 		sb.append(", display_Name=");
 		sb.append(getDisplay_Name());
 		sb.append(", date_Of_Birth=");
@@ -969,14 +888,10 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		sb.append(getReason_For_Lending());
 		sb.append(", about_Themselves=");
 		sb.append(getAbout_Themselves());
-		sb.append(", automatic_Re_lend=");
-		sb.append(getAutomatic_Re_lend());
-		sb.append(", monthly_Repayments=");
-		sb.append(getMonthly_Repayments());
+		sb.append(", personal_Link=");
+		sb.append(getPersonal_Link());
 		sb.append(", is_Public_Profile=");
 		sb.append(getIs_Public_Profile());
-		sb.append(", bank_Details=");
-		sb.append(getBank_Details());
 		sb.append(", recieve_Emails=");
 		sb.append(getRecieve_Emails());
 		sb.append(", recieve_GoodReturn_Info=");
@@ -985,27 +900,25 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		sb.append(getIs_Anonymous());
 		sb.append(", is_Validated=");
 		sb.append(getIs_Validated());
-		sb.append(", current_Balance=");
-		sb.append(getCurrent_Balance());
-		sb.append(", paypal_Email=");
-		sb.append(getPaypal_Email());
 		sb.append(", password=");
 		sb.append(getPassword());
 		sb.append(", last_Login_Date=");
 		sb.append(getLast_Login_Date());
 		sb.append(", featured_Lender=");
 		sb.append(getFeatured_Lender());
-		sb.append(", voucher_Id=");
-		sb.append(getVoucher_Id());
 		sb.append(", is_Loan_Donation=");
 		sb.append(getIs_Loan_Donation());
+		sb.append(", changed_By=");
+		sb.append(getChanged_By());
+		sb.append(", changed_Time=");
+		sb.append(getChanged_Time());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(79);
+		StringBundler sb = new StringBundler(70);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Lender");
@@ -1016,8 +929,12 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		sb.append(getLender_Id());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>salutation</column-name><column-value><![CDATA[");
-		sb.append(getSalutation());
+			"<column><column-name>abacus_Person_Id</column-name><column-value><![CDATA[");
+		sb.append(getAbacus_Person_Id());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>certificate_Id</column-name><column-value><![CDATA[");
+		sb.append(getCertificate_Id());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>employer_Name</column-name><column-value><![CDATA[");
@@ -1030,10 +947,6 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		sb.append(
 			"<column><column-name>heard_Of_Us</column-name><column-value><![CDATA[");
 		sb.append(getHeard_Of_Us());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>region</column-name><column-value><![CDATA[");
-		sb.append(getRegion());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>display_Name</column-name><column-value><![CDATA[");
@@ -1052,20 +965,12 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		sb.append(getAbout_Themselves());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>automatic_Re_lend</column-name><column-value><![CDATA[");
-		sb.append(getAutomatic_Re_lend());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>monthly_Repayments</column-name><column-value><![CDATA[");
-		sb.append(getMonthly_Repayments());
+			"<column><column-name>personal_Link</column-name><column-value><![CDATA[");
+		sb.append(getPersonal_Link());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>is_Public_Profile</column-name><column-value><![CDATA[");
 		sb.append(getIs_Public_Profile());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>bank_Details</column-name><column-value><![CDATA[");
-		sb.append(getBank_Details());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>recieve_Emails</column-name><column-value><![CDATA[");
@@ -1084,14 +989,6 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		sb.append(getIs_Validated());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>current_Balance</column-name><column-value><![CDATA[");
-		sb.append(getCurrent_Balance());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>paypal_Email</column-name><column-value><![CDATA[");
-		sb.append(getPaypal_Email());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>password</column-name><column-value><![CDATA[");
 		sb.append(getPassword());
 		sb.append("]]></column-value></column>");
@@ -1104,12 +1001,16 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		sb.append(getFeatured_Lender());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>voucher_Id</column-name><column-value><![CDATA[");
-		sb.append(getVoucher_Id());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>is_Loan_Donation</column-name><column-value><![CDATA[");
 		sb.append(getIs_Loan_Donation());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>changed_By</column-name><column-value><![CDATA[");
+		sb.append(getChanged_By());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
+		sb.append(getChanged_Time());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -1122,29 +1023,26 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 			Lender.class
 		};
 	private long _lender_Id;
-	private String _salutation;
+	private long _abacus_Person_Id;
+	private long _certificate_Id;
 	private String _employer_Name;
 	private String _comment;
 	private String _heard_Of_Us;
-	private String _region;
 	private String _display_Name;
 	private Date _date_Of_Birth;
 	private String _reason_For_Lending;
 	private String _about_Themselves;
-	private boolean _automatic_Re_lend;
-	private double _monthly_Repayments;
+	private String _personal_Link;
 	private boolean _is_Public_Profile;
-	private String _bank_Details;
 	private boolean _recieve_Emails;
 	private boolean _recieve_GoodReturn_Info;
 	private boolean _is_Anonymous;
 	private boolean _is_Validated;
-	private double _current_Balance;
-	private String _paypal_Email;
 	private String _password;
 	private Date _last_Login_Date;
 	private String _featured_Lender;
-	private long _voucher_Id;
 	private boolean _is_Loan_Donation;
+	private String _changed_By;
+	private long _changed_Time;
 	private Lender _escapedModelProxy;
 }

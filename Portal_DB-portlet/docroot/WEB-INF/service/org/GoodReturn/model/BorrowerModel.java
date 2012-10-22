@@ -23,8 +23,6 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 
 import java.io.Serializable;
 
-import java.util.Date;
-
 /**
  * The base model interface for the Borrower service. Represents a row in the &quot;GoodReturn_Borrower&quot; database table, with each column mapped to a property of this class.
  *
@@ -60,118 +58,32 @@ public interface BorrowerModel extends BaseModel<Borrower> {
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Returns the abacus_ borrower_ ID of this borrower.
+	 * Returns the borrower_ ID of this borrower.
 	 *
-	 * @return the abacus_ borrower_ ID of this borrower
+	 * @return the borrower_ ID of this borrower
 	 */
-	public long getAbacus_Borrower_Id();
+	public long getBorrower_Id();
 
 	/**
-	 * Sets the abacus_ borrower_ ID of this borrower.
+	 * Sets the borrower_ ID of this borrower.
 	 *
-	 * @param abacus_Borrower_Id the abacus_ borrower_ ID of this borrower
+	 * @param borrower_Id the borrower_ ID of this borrower
 	 */
-	public void setAbacus_Borrower_Id(long abacus_Borrower_Id);
+	public void setBorrower_Id(long borrower_Id);
 
 	/**
-	 * Returns the write_ off_ date of this borrower.
+	 * Returns the abacus_ person_ ID of this borrower.
 	 *
-	 * @return the write_ off_ date of this borrower
+	 * @return the abacus_ person_ ID of this borrower
 	 */
-	public Date getWrite_Off_Date();
+	public long getAbacus_Person_Id();
 
 	/**
-	 * Sets the write_ off_ date of this borrower.
+	 * Sets the abacus_ person_ ID of this borrower.
 	 *
-	 * @param write_Off_Date the write_ off_ date of this borrower
+	 * @param abacus_Person_Id the abacus_ person_ ID of this borrower
 	 */
-	public void setWrite_Off_Date(Date write_Off_Date);
-
-	/**
-	 * Returns the phone of this borrower.
-	 *
-	 * @return the phone of this borrower
-	 */
-	public long getPhone();
-
-	/**
-	 * Sets the phone of this borrower.
-	 *
-	 * @param phone the phone of this borrower
-	 */
-	public void setPhone(long phone);
-
-	/**
-	 * Returns the wait_ time of this borrower.
-	 *
-	 * @return the wait_ time of this borrower
-	 */
-	public long getWait_Time();
-
-	/**
-	 * Sets the wait_ time of this borrower.
-	 *
-	 * @param wait_Time the wait_ time of this borrower
-	 */
-	public void setWait_Time(long wait_Time);
-
-	/**
-	 * Returns the country of this borrower.
-	 *
-	 * @return the country of this borrower
-	 */
-	@AutoEscape
-	public String getCountry();
-
-	/**
-	 * Sets the country of this borrower.
-	 *
-	 * @param country the country of this borrower
-	 */
-	public void setCountry(String country);
-
-	/**
-	 * Returns the amount_ needed of this borrower.
-	 *
-	 * @return the amount_ needed of this borrower
-	 */
-	public double getAmount_Needed();
-
-	/**
-	 * Sets the amount_ needed of this borrower.
-	 *
-	 * @param amount_Needed the amount_ needed of this borrower
-	 */
-	public void setAmount_Needed(double amount_Needed);
-
-	/**
-	 * Returns the amount_ needed_ a u d of this borrower.
-	 *
-	 * @return the amount_ needed_ a u d of this borrower
-	 */
-	public double getAmount_Needed_AUD();
-
-	/**
-	 * Sets the amount_ needed_ a u d of this borrower.
-	 *
-	 * @param amount_Needed_AUD the amount_ needed_ a u d of this borrower
-	 */
-	public void setAmount_Needed_AUD(double amount_Needed_AUD);
-
-	/**
-	 * Returns the type_ of_ person of this borrower.
-	 *
-	 * @return the type_ of_ person of this borrower
-	 */
-	@AutoEscape
-	public String getType_Of_Person();
-
-	/**
-	 * Sets the type_ of_ person of this borrower.
-	 *
-	 * @param type_Of_Person the type_ of_ person of this borrower
-	 */
-	public void setType_Of_Person(String type_Of_Person);
+	public void setAbacus_Person_Id(long abacus_Person_Id);
 
 	/**
 	 * Returns the village of this borrower.
@@ -233,18 +145,33 @@ public interface BorrowerModel extends BaseModel<Borrower> {
 	public void setCurrency(double currency);
 
 	/**
-	 * Returns the date_ applied of this borrower.
+	 * Returns the changed_ by of this borrower.
 	 *
-	 * @return the date_ applied of this borrower
+	 * @return the changed_ by of this borrower
 	 */
-	public Date getDate_Applied();
+	@AutoEscape
+	public String getChanged_By();
 
 	/**
-	 * Sets the date_ applied of this borrower.
+	 * Sets the changed_ by of this borrower.
 	 *
-	 * @param date_Applied the date_ applied of this borrower
+	 * @param changed_By the changed_ by of this borrower
 	 */
-	public void setDate_Applied(Date date_Applied);
+	public void setChanged_By(String changed_By);
+
+	/**
+	 * Returns the changed_ time of this borrower.
+	 *
+	 * @return the changed_ time of this borrower
+	 */
+	public long getChanged_Time();
+
+	/**
+	 * Sets the changed_ time of this borrower.
+	 *
+	 * @param changed_Time the changed_ time of this borrower
+	 */
+	public void setChanged_Time(long changed_Time);
 
 	public boolean isNew();
 

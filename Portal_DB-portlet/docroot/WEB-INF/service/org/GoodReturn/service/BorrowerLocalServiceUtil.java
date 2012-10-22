@@ -54,27 +54,25 @@ public class BorrowerLocalServiceUtil {
 	/**
 	* Creates a new borrower with the primary key. Does not add the borrower to the database.
 	*
-	* @param abacus_Borrower_Id the primary key for the new borrower
+	* @param borrower_Id the primary key for the new borrower
 	* @return the new borrower
 	*/
-	public static org.goodreturn.model.Borrower createBorrower(
-		long abacus_Borrower_Id) {
-		return getService().createBorrower(abacus_Borrower_Id);
+	public static org.goodreturn.model.Borrower createBorrower(long borrower_Id) {
+		return getService().createBorrower(borrower_Id);
 	}
 
 	/**
 	* Deletes the borrower with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param abacus_Borrower_Id the primary key of the borrower
+	* @param borrower_Id the primary key of the borrower
 	* @return the borrower that was removed
 	* @throws PortalException if a borrower with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.goodreturn.model.Borrower deleteBorrower(
-		long abacus_Borrower_Id)
+	public static org.goodreturn.model.Borrower deleteBorrower(long borrower_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().deleteBorrower(abacus_Borrower_Id);
+		return getService().deleteBorrower(borrower_Id);
 	}
 
 	/**
@@ -165,25 +163,23 @@ public class BorrowerLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
-	public static org.goodreturn.model.Borrower fetchBorrower(
-		long abacus_Borrower_Id)
+	public static org.goodreturn.model.Borrower fetchBorrower(long borrower_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchBorrower(abacus_Borrower_Id);
+		return getService().fetchBorrower(borrower_Id);
 	}
 
 	/**
 	* Returns the borrower with the primary key.
 	*
-	* @param abacus_Borrower_Id the primary key of the borrower
+	* @param borrower_Id the primary key of the borrower
 	* @return the borrower
 	* @throws PortalException if a borrower with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.goodreturn.model.Borrower getBorrower(
-		long abacus_Borrower_Id)
+	public static org.goodreturn.model.Borrower getBorrower(long borrower_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getBorrower(abacus_Borrower_Id);
+		return getService().getBorrower(borrower_Id);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(

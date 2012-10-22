@@ -177,6 +177,21 @@ public interface PersonModel extends BaseModel<Person> {
 	public void setGender(String gender);
 
 	/**
+	 * Returns the salutation of this person.
+	 *
+	 * @return the salutation of this person
+	 */
+	@AutoEscape
+	public String getSalutation();
+
+	/**
+	 * Sets the salutation of this person.
+	 *
+	 * @param salutation the salutation of this person
+	 */
+	public void setSalutation(String salutation);
+
+	/**
 	 * Returns the status of this person.
 	 *
 	 * @return the status of this person
@@ -190,6 +205,20 @@ public interface PersonModel extends BaseModel<Person> {
 	 * @param status the status of this person
 	 */
 	public void setStatus(String status);
+
+	/**
+	 * Returns the phone_ number of this person.
+	 *
+	 * @return the phone_ number of this person
+	 */
+	public long getPhone_Number();
+
+	/**
+	 * Sets the phone_ number of this person.
+	 *
+	 * @param phone_Number the phone_ number of this person
+	 */
+	public void setPhone_Number(long phone_Number);
 
 	/**
 	 * Returns the photo_ u r l of this person.
@@ -220,6 +249,35 @@ public interface PersonModel extends BaseModel<Person> {
 	 * @param occupation the occupation of this person
 	 */
 	public void setOccupation(String occupation);
+
+	/**
+	 * Returns the changed_ by of this person.
+	 *
+	 * @return the changed_ by of this person
+	 */
+	@AutoEscape
+	public String getChanged_By();
+
+	/**
+	 * Sets the changed_ by of this person.
+	 *
+	 * @param changed_By the changed_ by of this person
+	 */
+	public void setChanged_By(String changed_By);
+
+	/**
+	 * Returns the changed_ time of this person.
+	 *
+	 * @return the changed_ time of this person
+	 */
+	public long getChanged_Time();
+
+	/**
+	 * Sets the changed_ time of this person.
+	 *
+	 * @param changed_Time the changed_ time of this person
+	 */
+	public void setChanged_Time(long changed_Time);
 
 	public boolean isNew();
 

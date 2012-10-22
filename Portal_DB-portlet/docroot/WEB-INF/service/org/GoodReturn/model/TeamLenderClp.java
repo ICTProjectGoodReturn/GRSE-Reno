@@ -46,15 +46,15 @@ public class TeamLenderClp extends BaseModelImpl<TeamLender>
 	}
 
 	public long getPrimaryKey() {
-		return _teamlender_Id;
+		return _team_lender_Id;
 	}
 
 	public void setPrimaryKey(long primaryKey) {
-		setTeamlender_Id(primaryKey);
+		setTeam_lender_Id(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_teamlender_Id);
+		return new Long(_team_lender_Id);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
@@ -65,26 +65,86 @@ public class TeamLenderClp extends BaseModelImpl<TeamLender>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("teamlender_Id", getTeamlender_Id());
+		attributes.put("team_lender_Id", getTeam_lender_Id());
+		attributes.put("lender_Id", getLender_Id());
+		attributes.put("team_Id", getTeam_Id());
+		attributes.put("changed_By", getChanged_By());
+		attributes.put("changed_Time", getChanged_Time());
 
 		return attributes;
 	}
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long teamlender_Id = (Long)attributes.get("teamlender_Id");
+		Long team_lender_Id = (Long)attributes.get("team_lender_Id");
 
-		if (teamlender_Id != null) {
-			setTeamlender_Id(teamlender_Id);
+		if (team_lender_Id != null) {
+			setTeam_lender_Id(team_lender_Id);
+		}
+
+		Long lender_Id = (Long)attributes.get("lender_Id");
+
+		if (lender_Id != null) {
+			setLender_Id(lender_Id);
+		}
+
+		Long team_Id = (Long)attributes.get("team_Id");
+
+		if (team_Id != null) {
+			setTeam_Id(team_Id);
+		}
+
+		String changed_By = (String)attributes.get("changed_By");
+
+		if (changed_By != null) {
+			setChanged_By(changed_By);
+		}
+
+		Long changed_Time = (Long)attributes.get("changed_Time");
+
+		if (changed_Time != null) {
+			setChanged_Time(changed_Time);
 		}
 	}
 
-	public long getTeamlender_Id() {
-		return _teamlender_Id;
+	public long getTeam_lender_Id() {
+		return _team_lender_Id;
 	}
 
-	public void setTeamlender_Id(long teamlender_Id) {
-		_teamlender_Id = teamlender_Id;
+	public void setTeam_lender_Id(long team_lender_Id) {
+		_team_lender_Id = team_lender_Id;
+	}
+
+	public long getLender_Id() {
+		return _lender_Id;
+	}
+
+	public void setLender_Id(long lender_Id) {
+		_lender_Id = lender_Id;
+	}
+
+	public long getTeam_Id() {
+		return _team_Id;
+	}
+
+	public void setTeam_Id(long team_Id) {
+		_team_Id = team_Id;
+	}
+
+	public String getChanged_By() {
+		return _changed_By;
+	}
+
+	public void setChanged_By(String changed_By) {
+		_changed_By = changed_By;
+	}
+
+	public long getChanged_Time() {
+		return _changed_Time;
+	}
+
+	public void setChanged_Time(long changed_Time) {
+		_changed_Time = changed_Time;
 	}
 
 	public BaseModel<?> getTeamLenderRemoteModel() {
@@ -114,7 +174,11 @@ public class TeamLenderClp extends BaseModelImpl<TeamLender>
 	public Object clone() {
 		TeamLenderClp clone = new TeamLenderClp();
 
-		clone.setTeamlender_Id(getTeamlender_Id());
+		clone.setTeam_lender_Id(getTeam_lender_Id());
+		clone.setLender_Id(getLender_Id());
+		clone.setTeam_Id(getTeam_Id());
+		clone.setChanged_By(getChanged_By());
+		clone.setChanged_Time(getChanged_Time());
 
 		return clone;
 	}
@@ -122,10 +186,10 @@ public class TeamLenderClp extends BaseModelImpl<TeamLender>
 	public int compareTo(TeamLender teamLender) {
 		int value = 0;
 
-		if (getTeamlender_Id() < teamLender.getTeamlender_Id()) {
+		if (getTeam_lender_Id() < teamLender.getTeam_lender_Id()) {
 			value = -1;
 		}
-		else if (getTeamlender_Id() > teamLender.getTeamlender_Id()) {
+		else if (getTeam_lender_Id() > teamLender.getTeam_lender_Id()) {
 			value = 1;
 		}
 		else {
@@ -171,24 +235,49 @@ public class TeamLenderClp extends BaseModelImpl<TeamLender>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(3);
+		StringBundler sb = new StringBundler(11);
 
-		sb.append("{teamlender_Id=");
-		sb.append(getTeamlender_Id());
+		sb.append("{team_lender_Id=");
+		sb.append(getTeam_lender_Id());
+		sb.append(", lender_Id=");
+		sb.append(getLender_Id());
+		sb.append(", team_Id=");
+		sb.append(getTeam_Id());
+		sb.append(", changed_By=");
+		sb.append(getChanged_By());
+		sb.append(", changed_Time=");
+		sb.append(getChanged_Time());
+		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.TeamLender");
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>teamlender_Id</column-name><column-value><![CDATA[");
-		sb.append(getTeamlender_Id());
+			"<column><column-name>team_lender_Id</column-name><column-value><![CDATA[");
+		sb.append(getTeam_lender_Id());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lender_Id</column-name><column-value><![CDATA[");
+		sb.append(getLender_Id());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>team_Id</column-name><column-value><![CDATA[");
+		sb.append(getTeam_Id());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>changed_By</column-name><column-value><![CDATA[");
+		sb.append(getChanged_By());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
+		sb.append(getChanged_Time());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -196,6 +285,10 @@ public class TeamLenderClp extends BaseModelImpl<TeamLender>
 		return sb.toString();
 	}
 
-	private long _teamlender_Id;
+	private long _team_lender_Id;
+	private long _lender_Id;
+	private long _team_Id;
+	private String _changed_By;
+	private long _changed_Time;
 	private BaseModel<?> _teamLenderRemoteModel;
 }

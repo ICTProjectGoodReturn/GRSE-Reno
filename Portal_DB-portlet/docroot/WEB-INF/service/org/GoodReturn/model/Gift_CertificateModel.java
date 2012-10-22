@@ -100,6 +100,35 @@ public interface Gift_CertificateModel extends BaseModel<Gift_Certificate> {
 	 */
 	public void setCertificate_Type(String certificate_Type);
 
+	/**
+	 * Returns the changed_ by of this gift_ certificate.
+	 *
+	 * @return the changed_ by of this gift_ certificate
+	 */
+	@AutoEscape
+	public String getChanged_By();
+
+	/**
+	 * Sets the changed_ by of this gift_ certificate.
+	 *
+	 * @param changed_By the changed_ by of this gift_ certificate
+	 */
+	public void setChanged_By(String changed_By);
+
+	/**
+	 * Returns the changed_ time of this gift_ certificate.
+	 *
+	 * @return the changed_ time of this gift_ certificate
+	 */
+	public long getChanged_Time();
+
+	/**
+	 * Sets the changed_ time of this gift_ certificate.
+	 *
+	 * @param changed_Time the changed_ time of this gift_ certificate
+	 */
+	public void setChanged_Time(long changed_Time);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);

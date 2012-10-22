@@ -319,7 +319,7 @@ public class ActionUtil {
 		
 		//PK/FK data
 		story.setStory_Id(ParamUtil.getLong(request, "Story_Id"));
-		story.setBorrower_Loan_Id(ParamUtil.getLong(request, "borrower_Loan_Id"));
+		story.setAbacus_Borrower_Loan_Id(ParamUtil.getLong(request, "borrower_Loan_Id"));
 		
 		//Data
 		story.setStory_Text(ParamUtil.getString(request, "story_Text"));
