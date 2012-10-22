@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 /**
@@ -71,8 +72,9 @@ public class BorrowersPortlet extends MVCPortlet {
 			} else {
 				// Adding
 				/*try {
+					long userId = ((ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY)).getUserId();
 					TODO
-					BorrowerLocalServiceUtil.addBorrower(borrower, borrower.getAbacus_Borrower_Id(), serviceContext);
+					BorrowerLocalServiceUtil.addBorrower(borrower, userId, serviceContext);
 					SessionMessages.add(request, "borrower-add-success");
 					operationFailed = false;
 				//Borrower could not be added.
@@ -131,8 +133,9 @@ public class BorrowersPortlet extends MVCPortlet {
 			} else {
 				// Adding
 				/*try {
+					long userId = ((ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY)).getUserId();
 					TODO
-					BorrowerLoanLocalServiceUtil.addBorrowerLoan(borrowerLoan, borrowerLoan.getBorrower_Loan_Id(), serviceContext);
+					BorrowerLoanLocalServiceUtil.addBorrowerLoan(borrowerLoan, userId, serviceContext);
 					SessionMessages.add(request, "borrower-loan-add-success");
 					operationFailed = false;
 				//BorrowerLoan could not be added.
@@ -163,21 +166,14 @@ public class BorrowersPortlet extends MVCPortlet {
 	}
 	
 
-	public void updateStory(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
-		System.out.println("SUCCESS!!!!");
+	public void updateStory(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException, PortalException, SystemException {
+		System.out.println("SUCCESS!!!");
 		//Retrieves data for processing request.
 		Story story = ActionUtil.storyFromRequest(actionRequest);
 		ArrayList<String> errors = new ArrayList<String>();
 		ServiceContext serviceContext = null;
-		try {
-			serviceContext = ServiceContextFactory.getInstance(Story.class.getName(), actionRequest);
-		} catch (PortalException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (SystemException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
+		serviceContext = ServiceContextFactory.getInstance(Story.class.getName(), actionRequest);
 
 		//Updates or adds story to database if valid.
 		boolean operationFailed = true;
@@ -188,7 +184,7 @@ public class BorrowersPortlet extends MVCPortlet {
 					Story fromDB = StoryLocalServiceUtil.getStory(story.getStory_Id());
 
 					if (fromDB != null && (story.getStory_Id() == fromDB.getStory_Id())) {
-
+						System.out.println("update called");
 						fromDB = StoryLocalServiceUtil.updateStory(story, false);
 						SessionMessages.add(actionRequest, "story-update-success");
 						operationFailed = false;
@@ -202,13 +198,17 @@ public class BorrowersPortlet extends MVCPortlet {
 			} else {
 				// Adding
 				try {
-					StoryLocalServiceUtil.addStory(story, story.getStory_Id(), serviceContext);
+					long userId = ((ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY)).getUserId();
+
+					StoryLocalServiceUtil.addStory(story, userId, serviceContext);
 					SessionMessages.add(actionRequest, "story-add-success");
 					operationFailed = false;
 				//Story could not be added.
 				} catch (SystemException e) {
+					e.printStackTrace();
 					errors.add("story-add-error");
 				} catch (PortalException e) {
+					e.printStackTrace();
 					errors.add("story-add-error");
 				}
 			}
@@ -218,6 +218,7 @@ public class BorrowersPortlet extends MVCPortlet {
 		
 		//Add/Update failed, adds all errors for user display.
 		if (operationFailed) {
+			System.out.println("Then failed.");
 			for (String error : errors) {
 				SessionErrors.add(actionRequest, error);
 			}
@@ -225,9 +226,6 @@ public class BorrowersPortlet extends MVCPortlet {
 			// Sets render page with data.
 			actionRequest.setAttribute(WebKeys.STORY_ENTRY, story);
 			actionResponse.setRenderParameter("jspPage", "/html/story/edit_story.jsp");
-		} else {
-			//Redirect to new page.
-			actionResponse.setRenderParameter("jspPage",actionRequest.getParameter("jspPage"));
 		}
 	}
 
@@ -249,14 +247,4 @@ public class BorrowersPortlet extends MVCPortlet {
 		}
 		response.setRenderParameter("jspPage",request.getParameter("jspPage"));
 	}*/
-	
-	/* ****************************************
-	 * Helper methods for obtaining and display content.
-	 * ****************************************/
-	@Override
-	public void processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
-		//TODO first page's content - if needed?
-		
-		System.out.println("FAIL!!!");
-	}
 }

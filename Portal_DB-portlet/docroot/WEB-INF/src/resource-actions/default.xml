@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resource-action-mapping>
+
+	<portlet-resource>
+		<portlet-name>borrowersportlet</portlet-name>
+		<permissions>
+			<supports>
+				<!-- NOTE: not put into use yet, add when needed. 
+				<action-key>VIEW_BORROWER</action-key>
+				<action-key>EDIT_BORROWER</action-key>
+				<action-key>DELETE_BORROWER</action-key>
+
+				<action-key>VIEW_BORROWER_LOAN</action-key>
+				<action-key>EDIT_BORROWER_LOAN</action-key>
+				<action-key>DELETE_BORROWER_LOAN</action-key>
+				 -->
+				 
+				<action-key>VIEW_STORY</action-key>
+				<action-key>EDIT_ENTRY_STORY</action-key>
+				<action-key>EDIT_VID_STORY</action-key>
+				<action-key>EDIT_APPROVE_STORY</action-key>
+				<action-key>EDIT_STORY</action-key>
+				<action-key>DELETE_STORY</action-key>
+			</supports>
+			
+            <site-member-defaults />
+            
+			<guest-defaults />
+
+			<guest-unsupported>
+				<!-- NOTE: not put into use yet, add when needed. 
+				<action-key>VIEW_BORROWER</action-key>
+				<action-key>EDIT_BORROWER</action-key>
+				<action-key>DELETE_BORROWER</action-key>
+
+				<action-key>VIEW_BORROWER_LOAN</action-key>
+				<action-key>EDIT_BORROWER_LOAN</action-key>
+				<action-key>DELETE_BORROWER_LOAN</action-key>
+				 -->
+				 
+				 
+				
+				<action-key>VIEW_STORY</action-key>
+				<action-key>EDIT_ENTRY_STORY</action-key>
+				<action-key>EDIT_VID_STORY</action-key>
+				<action-key>EDIT_APPROVE_STORY</action-key>
+				<action-key>EDIT_STORY</action-key>
+				<action-key>DELETE_STORY</action-key>
+			</guest-unsupported>
+		</permissions>
+	</portlet-resource>
+
+	<model-resource>
+		<model-name>org.goodreturn.model.Story</model-name>
+		<portlet-ref>
+			<portlet-name>borrowersportlet</portlet-name>
+		</portlet-ref>
+		<permissions>
+			<supports>
+				<action-key>VIEW_STORY</action-key>
+				<action-key>EDIT_ENTRY_STORY</action-key>
+				<action-key>EDIT_VID_STORY</action-key>
+				<action-key>EDIT_APPROVE_STORY</action-key>
+				<action-key>EDIT_STORY</action-key>
+				<action-key>DELETE_STORY</action-key>
+			</supports>
+			
+            <site-member-defaults />
+            
+			<guest-defaults />
+			
+			<guest-unsupported>
+				<action-key>VIEW_STORY</action-key>
+				<action-key>EDIT_ENTRY_STORY</action-key>
+				<action-key>EDIT_VID_STORY</action-key>
+				<action-key>EDIT_APPROVE_STORY</action-key>
+				<action-key>EDIT_STORY</action-key>
+				<action-key>DELETE_STORY</action-key>
+			</guest-unsupported>
+		</permissions>
+	</model-resource>
+
+</resource-action-mapping>
+

@@ -17,6 +17,7 @@ import org.goodreturn.service.StoryLocalServiceUtil;
 
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.theme.ThemeDisplay;
 
 /**
@@ -196,9 +197,12 @@ public class ActionUtil {
 			//Sets id FK data.
 			long borrower_Loan_Id = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_LOAN_ID);
 			
-			story = new StoryImpl();
-			story.setBorrower_Loan_Id(borrower_Loan_Id);
-			story.setStory_Type(storyType);
+			//If no story and loan id existed, create new Story object.
+			if (Validator.isNotNull(borrower_Loan_Id)) {
+				story = new StoryImpl();
+				story.setBorrower_Loan_Id(borrower_Loan_Id);
+				story.setStory_Type(storyType);
+			}
 		}
 		
 		return story;

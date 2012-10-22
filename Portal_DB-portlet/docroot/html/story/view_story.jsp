@@ -30,13 +30,18 @@
 	<portlet:param name="redirect" value="<%= redirect %>" />
 </portlet:actionURL>
 <portlet:renderURL windowState="normal" var="backURL">
-	<portlet:param name="jspPage" value="/html/view.jsp" />
+	<portlet:param name="jspPage" value="/html/borrowersportlet/view.jsp" />
 </portlet:renderURL>
 
 <!-- Structure Definition -->
 <liferay-ui:header title="Story Entry" backLabel="TODO" backURL="<%=backURL %>" />
 <!-- TODO ERRORS/MESSAGES -->
-<liferay-ui:error key="" message="" />
+<liferay-ui:error key="story-update-error" message="story-update-error" />
+<liferay-ui:error key="story-add-error" message="story-add-error" />
+<liferay-ui:error key="story-data-invalid-error" message="story-data-invalid-error" />
+<liferay-ui:success key="story-update-success" message="story-update-success"/>
+<liferay-ui:success key="story-add-success" message="story-add-success"/>
+
 
 <c:if test="<%=story!=null%>">
 	<aui:panel label="Story Text" >

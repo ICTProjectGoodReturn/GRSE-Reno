@@ -9,11 +9,14 @@
 
 <!-- Data Definitions -->
 <%
-	Story story = ActionUtil.getEditableStory(renderRequest);
+	//Retrieves story and other sent data.
+	Story story = (Story) request.getAttribute(WebKeys.STORY_ENTRY);
+	if (story == null) {
+		story = ActionUtil.getEditableStory(renderRequest);
+	}
 	String redirect = ParamUtil.getString(request, "redirect");
 
-	long resourcePrimKey = BeanParamUtil.getLong(story, request,
-			"story_Id");
+	long resourcePrimKey = BeanParamUtil.getLong(story, request, "story_Id");
 	int status = BeanParamUtil.getInteger(story, request, "status",
 			WorkflowConstants.STATUS_DRAFT);
 
@@ -31,18 +34,18 @@
 
 <!-- Link Definitions -->
 <portlet:renderURL windowState="normal" var="backUrl">
-	<portlet:param name="jspPage" value="/html/storyportlet/view.jsp" />
+	<portlet:param name="jspPage" value="/html/storyportlet/view_story.jsp" />
 </portlet:renderURL>
 <portlet:actionURL name="updateStory" var="updateStoryUrl">
 	<portlet:param name="redirect" value="<%=redirect%>" />
 </portlet:actionURL>
 <portlet:renderURL var="cancelUrl">
-	<portlet:param name="jspPage" value="/html/storyportlet/view.jsp" />
+	<portlet:param name="jspPage" value="/html/borrowersportlet/view.jsp" />
 </portlet:renderURL>
 
 <liferay-ui:header backURL="<%=backUrl%>"
-	title='<%=(story.getStory_Id() == 0) ? "New " + storyTypeText
-					: storyTypeText + " for loan "
+	title='<%=(story.getStory_Id() == 0) ? "New " + storyType + " story"
+					: storyType + " story for loan "
 							+ story.getBorrower_Loan_Id()%>'
 />
 
@@ -55,18 +58,20 @@
 			<aui:workflow-status id="<%=String.valueOf(story.getStory_Id())%>" status="<%=story.getStatus()%>" />
 		</c:if>
 	
-	<!-- TODO -->
-		<liferay-ui:error key="fields-required" message="fields-required" />
-		<liferay-ui:error key="story-fields-required" message="story-fields-required" />
-		<liferay-ui:success key="story-saved-successfully" message="story-saved-successfully" />
-		
+		<!-- TODO -->
+		<liferay-ui:error key="story-update-error" message="story-update-error" />
+		<liferay-ui:error key="story-add-error" message="story-add-error" />
+		<liferay-ui:error key="story-data-invalid-error" message="story-data-invalid-error" />
+		<liferay-ui:success key="story-update-success" message="story-update-success"/>
+		<liferay-ui:success key="story-add-success" message="story-add-success"/>
+
 		<!-- TODO Borrower information?? -->
 		
-		<aui:input name="story_Id" type="hidden" />
+		<aui:input name="story_Id" type="text" />
 		
-		<aui:input name="borrower_Loan_Id" type="hidden" />
+		<aui:input name="borrower_Loan_Id" type="text" />
 		
-		<aui:input name="story_Type" value="<%=storyType%>" type="hidden" />
+		<aui:input name="story_Type" value="<%=storyType%>" type="text" />
 		
 		<aui:input label="Good enough for marketing?" name="is_Good_Enough_For_Marketing" first="true" autoFocus="true" />
 		
@@ -76,13 +81,11 @@
 		
 		<aui:field-wrapper label='<%=storyTypeText + " Text"%>'>
 			<liferay-ui:input-editor name="story_Text" toolbarSet="liferay-article" initMethod="initEditor" width="200"  />
-			<!--
 			<script type="text/javascript">
 				function <portlet:namespace />initEditor() { return "<%=UnicodeFormatter
 								.toString(story == null ? StringPool.BLANK
 										: story.getStory_Text())%>"; }
 			</script>
-			-->
 		</aui:field-wrapper>
 		
 		<aui:button-row>

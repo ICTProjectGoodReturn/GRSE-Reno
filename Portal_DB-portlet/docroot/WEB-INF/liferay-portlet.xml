@@ -3,14 +3,6 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>Portal_DB</portlet-name>
-		<icon>/icon.png</icon>
-		<instanceable>false</instanceable>
-		<header-portlet-css>/css/main.css</header-portlet-css>
-		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
-		<css-class-wrapper>Portal_DB-portlet</css-class-wrapper>
-	</portlet>
-	<portlet>
 		<portlet-name>borrowersportlet</portlet-name>
 		<icon>/icon.png</icon>
 		<asset-renderer-factory>org.goodreturn.story.StoryAssetRendererFactory</asset-renderer-factory>
