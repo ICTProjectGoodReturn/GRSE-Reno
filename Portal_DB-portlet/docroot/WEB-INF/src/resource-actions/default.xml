@@ -6,7 +6,6 @@
 		<portlet-name>borrowersportlet</portlet-name>
 		<permissions>
 			<supports>
-				<!-- NOTE: not put into use yet, add when needed. 
 				<action-key>VIEW_BORROWER</action-key>
 				<action-key>EDIT_BORROWER</action-key>
 				<action-key>DELETE_BORROWER</action-key>
@@ -14,7 +13,6 @@
 				<action-key>VIEW_BORROWER_LOAN</action-key>
 				<action-key>EDIT_BORROWER_LOAN</action-key>
 				<action-key>DELETE_BORROWER_LOAN</action-key>
-				 -->
 				 
 				<action-key>VIEW_STORY</action-key>
 				<action-key>EDIT_ENTRY_STORY</action-key>
@@ -29,7 +27,6 @@
 			<guest-defaults />
 
 			<guest-unsupported>
-				<!-- NOTE: not put into use yet, add when needed. 
 				<action-key>VIEW_BORROWER</action-key>
 				<action-key>EDIT_BORROWER</action-key>
 				<action-key>DELETE_BORROWER</action-key>
@@ -37,9 +34,6 @@
 				<action-key>VIEW_BORROWER_LOAN</action-key>
 				<action-key>EDIT_BORROWER_LOAN</action-key>
 				<action-key>DELETE_BORROWER_LOAN</action-key>
-				 -->
-				 
-				 
 				
 				<action-key>VIEW_STORY</action-key>
 				<action-key>EDIT_ENTRY_STORY</action-key>

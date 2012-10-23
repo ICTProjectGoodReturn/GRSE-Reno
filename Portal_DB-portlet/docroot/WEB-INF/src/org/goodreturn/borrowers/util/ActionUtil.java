@@ -200,7 +200,7 @@ public class ActionUtil {
 			//If no story and loan id existed, create new Story object.
 			if (Validator.isNotNull(borrower_Loan_Id)) {
 				story = new StoryImpl();
-				story.setBorrower_Loan_Id(borrower_Loan_Id);
+				story.setAbacus_Borrower_Loan_Id(borrower_Loan_Id);
 				story.setStory_Type(storyType);
 			}
 		}
@@ -240,22 +240,16 @@ public class ActionUtil {
 		Borrower borrower = new BorrowerImpl();
 		
 		//PK/FK data
-		borrower.setAbacus_Borrower_Id(ParamUtil.getLong(request, "loan_Account_Id"));
-		//TODO how to set FK person id field?
+		borrower.setBorrower_Id(ParamUtil.getLong(request, "borrower_Id"));
+		borrower.setAbacus_Person_Id(ParamUtil.getLong(request, "abacus_Person_Id"));
 				
 		//Data
-		borrower.setWrite_Off_Date(ParamUtil.getDate(request, "write_Off_Date", DateFormat.getDateInstance())); //TODO CHECK THIS OUT.
-		borrower.setPhone(ParamUtil.getLong(request, "phone")); //TODO change to string datatype?
-		borrower.setWait_Time(ParamUtil.getLong(request, "wait_Time"));
-		borrower.setCountry(ParamUtil.getString(request, "country"));
-		borrower.setAmount_Needed(ParamUtil.getDouble(request, "amount_Needed")); //TODO change to int datatype?
-		borrower.setAmount_Needed_AUD(ParamUtil.getDouble(request, "amount_Needed_AUD")); //TODO change to int datatype?
-		borrower.setType_Of_Person(ParamUtil.getString(request, "type_Of_Person"));
 		borrower.setVillage(ParamUtil.getString(request, "village"));
 		borrower.setDistrict(ParamUtil.getString(request, "district"));
 		borrower.setPdf_Link(ParamUtil.getString(request, "pdf_Link"));
 		borrower.setCurrency(ParamUtil.getDouble(request, "currency"));
-		borrower.setDate_Applied(ParamUtil.getDate(request, "date_Applied", DateFormat.getDateInstance())); //TODO CHECK THIS OUT.
+		borrower.setChanged_By(ParamUtil.getString(request, "changed_By"));
+		borrower.setChanged_Time(ParamUtil.getLong(request, "changed_Time"));
 		
 		
 		//Portal Identifying info
@@ -279,12 +273,13 @@ public class ActionUtil {
 		BorrowerLoan borrowerLoan = new BorrowerLoanImpl();
 		
 		//PK/FK data
-		borrowerLoan.setBorrower_Loan_Id(ParamUtil.getLong(request, "borrower_Loan_Id"));
+		borrowerLoan.setAbacus_Borrower_Loan_Id(ParamUtil.getLong(request, "abacus_Borrower_Loan_Id"));
 		borrowerLoan.setBorrower_Id(ParamUtil.getLong(request, "borrower_Id"));
 		
 		//Data
-		//TODO set other specific data.
-		//borrowerLoan.setX(ParamUtil.getString(request, "story_Text"));
+		borrowerLoan.setAbacus_mfi_Id(ParamUtil.getLong(request, "abacus_mfi_Id"));
+		borrowerLoan.setChanged_By(ParamUtil.getString(request, "changed_By"));
+		borrowerLoan.setChanged_Time(ParamUtil.getString(request, "changed_Time"));
 		
 		//Portal Identifying info
 		//TODO set other data.
@@ -302,7 +297,7 @@ public class ActionUtil {
 	 * @param request - The request which contains relevant data to build LenderContribution object.
 	 * @return - LenderContribution object which has been built from the request object.
 	 */
-	//TODO fix class and call to abacus system for LenderContribution
+	//TODO fix class and call to abacus system for LenderContribution?
 	public static String lenderContributionFromRequest(ActionRequest request) {
 		return null;
 	}
@@ -318,8 +313,8 @@ public class ActionUtil {
 		Story story = new StoryImpl();
 		
 		//PK/FK data
-		story.setStory_Id(ParamUtil.getLong(request, "Story_Id"));
-		story.setAbacus_Borrower_Loan_Id(ParamUtil.getLong(request, "borrower_Loan_Id"));
+		story.setStory_Id(ParamUtil.getLong(request, "story_Id"));
+		story.setAbacus_Borrower_Loan_Id(ParamUtil.getLong(request, "abacus_Borrower_Loan_Id"));
 		
 		//Data
 		story.setStory_Text(ParamUtil.getString(request, "story_Text"));

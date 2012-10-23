@@ -64,9 +64,6 @@ public class StoryLocalServiceImpl extends StoryLocalServiceBaseImpl {
 		//Creates the FinalStory and sets all variables.
 		Story story = storyPersistence.create(counterLocalService.increment(Story.class.getName()));
 		story.setAbacus_Borrower_Loan_Id(newStory.getAbacus_Borrower_Loan_Id());
-		System.out.println("**********************************************************");
-		System.out.println(story.getStory_Id());
-		System.out.println("*********************************************************");
 
 		story.setStory_Type(newStory.getStory_Type());
 		story.setStory_Text(newStory.getStory_Text());

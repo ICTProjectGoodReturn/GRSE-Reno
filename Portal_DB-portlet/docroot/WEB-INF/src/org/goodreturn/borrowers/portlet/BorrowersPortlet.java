@@ -52,12 +52,12 @@ public class BorrowersPortlet extends MVCPortlet {
 		//Updates or adds borrower to database if valid.
 		boolean operationFailed = true;
 		if (BorrowerValidator.validateBorrower(borrower, errors)) {
-			if (borrower.getAbacus_Borrower_Id() > 0) {
+			if (borrower.getBorrower_Id() > 0) {
 				// Updating
 				try {
-					Borrower fromDB = BorrowerLocalServiceUtil.getBorrower(borrower.getAbacus_Borrower_Id());
+					Borrower fromDB = BorrowerLocalServiceUtil.getBorrower(borrower.getBorrower_Id());
 
-					if (fromDB != null && (borrower.getAbacus_Borrower_Id() == fromDB.getAbacus_Borrower_Id())) {
+					if (fromDB != null && (borrower.getBorrower_Id() == fromDB.getBorrower_Id())) {
 						
 						fromDB = BorrowerLocalServiceUtil.updateBorrower(borrower, false);
 						SessionMessages.add(request, "borrower-update-success");
@@ -113,12 +113,12 @@ public class BorrowersPortlet extends MVCPortlet {
 		//Updates or adds borrowerLoan to database if valid.
 		boolean operationFailed = true;
 		if (BorrowerLoanValidator.validateBorrowerLoan(borrowerLoan, errors)) {
-			if (borrowerLoan.getBorrower_Loan_Id() > 0) {
+			if (borrowerLoan.getAbacus_Borrower_Loan_Id() > 0) {
 				// Updating
 				try {
-					BorrowerLoan fromDB = BorrowerLoanLocalServiceUtil.getBorrowerLoan(borrowerLoan.getBorrower_Loan_Id());
+					BorrowerLoan fromDB = BorrowerLoanLocalServiceUtil.getBorrowerLoan(borrowerLoan.getAbacus_Borrower_Loan_Id());
 
-					if (fromDB != null && (borrowerLoan.getBorrower_Loan_Id() == fromDB.getBorrower_Loan_Id())) {
+					if (fromDB != null && (borrowerLoan.getAbacus_Borrower_Loan_Id() == fromDB.getAbacus_Borrower_Loan_Id())) {
 						
 						fromDB = BorrowerLoanLocalServiceUtil.updateBorrowerLoan(borrowerLoan, false);
 						SessionMessages.add(request, "borrower-loan-update-success");

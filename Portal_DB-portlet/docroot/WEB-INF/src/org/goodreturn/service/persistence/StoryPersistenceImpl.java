@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -39,6 +40,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
+import com.liferay.portal.security.permission.InlineSQLHelperUtil;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
@@ -913,6 +915,336 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
+	 * Returns all the stories that the user has permission to view where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @return the matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> filterFindByUuid(String uuid) throws SystemException {
+		return filterFindByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the stories that the user has permission to view where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @return the range of matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> filterFindByUuid(String uuid, int start, int end)
+		throws SystemException {
+		return filterFindByUuid(uuid, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the stories that the user has permissions to view where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> filterFindByUuid(String uuid, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByUuid(uuid, start, end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(3 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		if (uuid == null) {
+			query.append(_FINDER_COLUMN_UUID_UUID_1);
+		}
+		else {
+			if (uuid.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_UUID_UUID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_UUID_UUID_2);
+			}
+		}
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(StoryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(StoryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Story.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, StoryImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, StoryImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			if (uuid != null) {
+				qPos.add(uuid);
+			}
+
+			return (List<Story>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the stories before and after the current story in the ordered set of stories that the user has permission to view where uuid = &#63;.
+	 *
+	 * @param story_Id the primary key of the current story
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next story
+	 * @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story[] filterFindByUuid_PrevAndNext(long story_Id, String uuid,
+		OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByUuid_PrevAndNext(story_Id, uuid, orderByComparator);
+		}
+
+		Story story = findByPrimaryKey(story_Id);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Story[] array = new StoryImpl[3];
+
+			array[0] = filterGetByUuid_PrevAndNext(session, story, uuid,
+					orderByComparator, true);
+
+			array[1] = story;
+
+			array[2] = filterGetByUuid_PrevAndNext(session, story, uuid,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Story filterGetByUuid_PrevAndNext(Session session, Story story,
+		String uuid, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		if (uuid == null) {
+			query.append(_FINDER_COLUMN_UUID_UUID_1);
+		}
+		else {
+			if (uuid.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_UUID_UUID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_UUID_UUID_2);
+			}
+		}
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(StoryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(StoryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Story.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, StoryImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, StoryImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (uuid != null) {
+			qPos.add(uuid);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(story);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Story> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Returns all the stories where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
 	 *
 	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
@@ -1351,6 +1683,357 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
+	 * Returns all the stories that the user has permission to view where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param story_Type the story_ type
+	 * @return the matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> filterFindByL_S(long abacus_Borrower_Loan_Id,
+		String story_Type) throws SystemException {
+		return filterFindByL_S(abacus_Borrower_Loan_Id, story_Type,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the stories that the user has permission to view where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param story_Type the story_ type
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @return the range of matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> filterFindByL_S(long abacus_Borrower_Loan_Id,
+		String story_Type, int start, int end) throws SystemException {
+		return filterFindByL_S(abacus_Borrower_Loan_Id, story_Type, start, end,
+			null);
+	}
+
+	/**
+	 * Returns an ordered range of all the stories that the user has permissions to view where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param story_Type the story_ type
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> filterFindByL_S(long abacus_Borrower_Loan_Id,
+		String story_Type, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByL_S(abacus_Borrower_Loan_Id, story_Type, start, end,
+				orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(4);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_L_S_ABACUS_BORROWER_LOAN_ID_2);
+
+		if (story_Type == null) {
+			query.append(_FINDER_COLUMN_L_S_STORY_TYPE_1);
+		}
+		else {
+			if (story_Type.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_L_S_STORY_TYPE_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_L_S_STORY_TYPE_2);
+			}
+		}
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(StoryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(StoryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Story.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, StoryImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, StoryImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(abacus_Borrower_Loan_Id);
+
+			if (story_Type != null) {
+				qPos.add(story_Type);
+			}
+
+			return (List<Story>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the stories before and after the current story in the ordered set of stories that the user has permission to view where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
+	 *
+	 * @param story_Id the primary key of the current story
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param story_Type the story_ type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next story
+	 * @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story[] filterFindByL_S_PrevAndNext(long story_Id,
+		long abacus_Borrower_Loan_Id, String story_Type,
+		OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByL_S_PrevAndNext(story_Id, abacus_Borrower_Loan_Id,
+				story_Type, orderByComparator);
+		}
+
+		Story story = findByPrimaryKey(story_Id);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Story[] array = new StoryImpl[3];
+
+			array[0] = filterGetByL_S_PrevAndNext(session, story,
+					abacus_Borrower_Loan_Id, story_Type, orderByComparator, true);
+
+			array[1] = story;
+
+			array[2] = filterGetByL_S_PrevAndNext(session, story,
+					abacus_Borrower_Loan_Id, story_Type, orderByComparator,
+					false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Story filterGetByL_S_PrevAndNext(Session session, Story story,
+		long abacus_Borrower_Loan_Id, String story_Type,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_L_S_ABACUS_BORROWER_LOAN_ID_2);
+
+		if (story_Type == null) {
+			query.append(_FINDER_COLUMN_L_S_STORY_TYPE_1);
+		}
+		else {
+			if (story_Type.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_L_S_STORY_TYPE_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_L_S_STORY_TYPE_2);
+			}
+		}
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(StoryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(StoryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Story.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, StoryImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, StoryImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(abacus_Borrower_Loan_Id);
+
+		if (story_Type != null) {
+			qPos.add(story_Type);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(story);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Story> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Returns all the stories.
 	 *
 	 * @return the stories
@@ -1567,6 +2250,65 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
+	 * Returns the number of stories that the user has permission to view where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @return the number of matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByUuid(String uuid) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByUuid(uuid);
+		}
+
+		StringBundler query = new StringBundler(2);
+
+		query.append(_FILTER_SQL_COUNT_STORY_WHERE);
+
+		if (uuid == null) {
+			query.append(_FINDER_COLUMN_UUID_UUID_1);
+		}
+		else {
+			if (uuid.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_UUID_UUID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_UUID_UUID_2);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Story.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			if (uuid != null) {
+				qPos.add(uuid);
+			}
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
 	 * Returns the number of stories where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
 	 *
 	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
@@ -1635,6 +2377,71 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 		}
 
 		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of stories that the user has permission to view where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param story_Type the story_ type
+	 * @return the number of matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByL_S(long abacus_Borrower_Loan_Id, String story_Type)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByL_S(abacus_Borrower_Loan_Id, story_Type);
+		}
+
+		StringBundler query = new StringBundler(3);
+
+		query.append(_FILTER_SQL_COUNT_STORY_WHERE);
+
+		query.append(_FINDER_COLUMN_L_S_ABACUS_BORROWER_LOAN_ID_2);
+
+		if (story_Type == null) {
+			query.append(_FINDER_COLUMN_L_S_STORY_TYPE_1);
+		}
+		else {
+			if (story_Type.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_L_S_STORY_TYPE_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_L_S_STORY_TYPE_2);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Story.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(abacus_Borrower_Loan_Id);
+
+			if (story_Type != null) {
+				qPos.add(story_Type);
+			}
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
 	}
 
 	/**
@@ -1741,7 +2548,17 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	private static final String _FINDER_COLUMN_L_S_STORY_TYPE_1 = "story.story_Type IS NULL";
 	private static final String _FINDER_COLUMN_L_S_STORY_TYPE_2 = "story.story_Type = ?";
 	private static final String _FINDER_COLUMN_L_S_STORY_TYPE_3 = "(story.story_Type IS NULL OR story.story_Type = ?)";
+	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "story.story_Id";
+	private static final String _FILTER_SQL_SELECT_STORY_WHERE = "SELECT DISTINCT {story.*} FROM GoodReturn_Story story WHERE ";
+	private static final String _FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_1 =
+		"SELECT {GoodReturn_Story.*} FROM (SELECT DISTINCT story.story_Id FROM GoodReturn_Story story WHERE ";
+	private static final String _FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_2 =
+		") TEMP_TABLE INNER JOIN GoodReturn_Story ON TEMP_TABLE.story_Id = GoodReturn_Story.story_Id";
+	private static final String _FILTER_SQL_COUNT_STORY_WHERE = "SELECT COUNT(DISTINCT story.story_Id) AS COUNT_VALUE FROM GoodReturn_Story story WHERE ";
+	private static final String _FILTER_ENTITY_ALIAS = "story";
+	private static final String _FILTER_ENTITY_TABLE = "GoodReturn_Story";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "story.";
+	private static final String _ORDER_BY_ENTITY_TABLE = "GoodReturn_Story.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Story exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Story exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
