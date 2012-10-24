@@ -16,20 +16,16 @@
 	}
 	String redirect = ParamUtil.getString(request, "redirect");
 
-	long resourcePrimKey = BeanParamUtil.getLong(story, request, "story_Id");
-	int status = BeanParamUtil.getInteger(story, request, "status",
-			WorkflowConstants.STATUS_DRAFT);
-
-	//Retrieves story type text and attribute.
-	String storyTypeText;
-	String storyType;
-	if (story == null) {
-		storyType = ParamUtil.getString(request, "story_Type");
-		storyTypeText = storyType + "-story";
+	//Prepares story type text.
+	String storyTypeText = story.getStory_Type();
+	if (storyTypeText != null && storyTypeText.length() > 1) {
+		storyTypeText = storyTypeText.substring(0, 1).toUpperCase() + storyTypeText.substring(1);
 	} else {
-		storyType = story.getStory_Type();
-		storyTypeText = storyType + "-story";
+		storyTypeText = "Unknown";
 	}
+
+	long resourcePrimKey = BeanParamUtil.getLong(story, request, "story_Id");
+	int status = BeanParamUtil.getInteger(story, request, "status", WorkflowConstants.STATUS_DRAFT);
 %>
 
 <!-- Link Definitions -->
@@ -44,10 +40,18 @@
 </portlet:renderURL>
 
 <liferay-ui:header backURL="<%=backUrl%>"
-	title='<%=(story.getStory_Id() == 0) ? "New " + storyType + " story"
-					: storyType + " story for loan "
-							+ story.getBorrower_Loan_Id()%>'
+	title='<%=(story.getStory_Id() == 0) ? "New " + storyTypeText + " Story"
+					: storyTypeText + " Story for Loan "
+							+ story.getAbacus_Borrower_Loan_Id()%>'
 />
+
+<!-- Errors and messages -->
+<liferay-ui:error key="story-update-error" message="story-update-error" />
+<liferay-ui:error key="story-add-error" message="story-add-error" />
+<liferay-ui:error key="story-data-invalid-error" message="story-data-invalid-error" />
+<liferay-ui:success key="story-update-success" message="story-update-success"/>
+<liferay-ui:success key="story-add-success" message="story-add-success"/>
+
 
 <aui:form action="<%=updateStoryUrl.toString()%>" method="post">
 	
@@ -58,20 +62,14 @@
 			<aui:workflow-status id="<%=String.valueOf(story.getStory_Id())%>" status="<%=story.getStatus()%>" />
 		</c:if>
 	
-		<!-- TODO -->
-		<liferay-ui:error key="story-update-error" message="story-update-error" />
-		<liferay-ui:error key="story-add-error" message="story-add-error" />
-		<liferay-ui:error key="story-data-invalid-error" message="story-data-invalid-error" />
-		<liferay-ui:success key="story-update-success" message="story-update-success"/>
-		<liferay-ui:success key="story-add-success" message="story-add-success"/>
 
 		<!-- TODO Borrower information?? -->
 		
 		<aui:input name="story_Id" type="text" />
 		
-		<aui:input name="borrower_Loan_Id" type="text" />
+		<aui:input name="abacus_Borrower_Loan_Id" type="text" />
 		
-		<aui:input name="story_Type" value="<%=storyType%>" type="text" />
+		<aui:input name="story_Type" type="text" />
 		
 		<aui:input label="Good enough for marketing?" name="is_Good_Enough_For_Marketing" first="true" autoFocus="true" />
 		
@@ -79,7 +77,7 @@
 		
 		<aui:input label="Video URL" name="video_Url" last="true" />
 		
-		<aui:field-wrapper label='<%=storyTypeText + " Text"%>'>
+		<aui:field-wrapper label='<%=storyTypeText + " Story Text:"%>'>
 			<liferay-ui:input-editor name="story_Text" toolbarSet="liferay-article" initMethod="initEditor" width="200"  />
 			<script type="text/javascript">
 				function <portlet:namespace />initEditor() { return "<%=UnicodeFormatter

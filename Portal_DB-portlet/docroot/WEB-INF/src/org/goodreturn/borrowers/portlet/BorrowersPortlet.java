@@ -44,6 +44,7 @@ public class BorrowersPortlet extends MVCPortlet {
 	 * Action methods for performing operations.
 	 * ****************************************/
 	public void updateBorrower(ActionRequest request, ActionResponse response) throws PortalException, SystemException {
+		//TODO may need another look at.
 		//Retrieves data for processing request.
 		Borrower borrower = ActionUtil.borrowerFromRequest(request);
 		ArrayList<String> errors = new ArrayList<String>();
@@ -105,6 +106,7 @@ public class BorrowersPortlet extends MVCPortlet {
 	
 	
 	public void updateBorrowerLoan(ActionRequest request, ActionResponse response) throws PortalException, SystemException {
+		//TODO may need another look at.
 		//Retrieves data for processing request.
 		BorrowerLoan borrowerLoan = ActionUtil.borrowerLoanFromRequest(request);
 		ArrayList<String> errors = new ArrayList<String>();
@@ -167,7 +169,6 @@ public class BorrowersPortlet extends MVCPortlet {
 	
 
 	public void updateStory(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException, PortalException, SystemException {
-		System.out.println("SUCCESS!!!");
 		//Retrieves data for processing request.
 		Story story = ActionUtil.storyFromRequest(actionRequest);
 		ArrayList<String> errors = new ArrayList<String>();
@@ -184,7 +185,6 @@ public class BorrowersPortlet extends MVCPortlet {
 					Story fromDB = StoryLocalServiceUtil.getStory(story.getStory_Id());
 
 					if (fromDB != null && (story.getStory_Id() == fromDB.getStory_Id())) {
-						System.out.println("update called");
 						fromDB = StoryLocalServiceUtil.updateStory(story, false);
 						SessionMessages.add(actionRequest, "story-update-success");
 						operationFailed = false;
@@ -218,7 +218,6 @@ public class BorrowersPortlet extends MVCPortlet {
 		
 		//Add/Update failed, adds all errors for user display.
 		if (operationFailed) {
-			System.out.println("Then failed.");
 			for (String error : errors) {
 				SessionErrors.add(actionRequest, error);
 			}

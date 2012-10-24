@@ -1,12 +1,12 @@
 package org.goodreturn.borrowers.util;
 
-import java.text.DateFormat;
 import java.util.Collections;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.RenderRequest;
 
+import org.goodreturn.NoSuchStoryException;
 import org.goodreturn.model.Borrower;
 import org.goodreturn.model.BorrowerLoan;
 import org.goodreturn.model.Story;
@@ -15,9 +15,15 @@ import org.goodreturn.model.impl.BorrowerLoanImpl;
 import org.goodreturn.model.impl.StoryImpl;
 import org.goodreturn.service.StoryLocalServiceUtil;
 
+import com.liferay.portal.NoSuchOrganizationException;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Organization;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 
 /**
@@ -32,12 +38,40 @@ public class ActionUtil {
 	//
 	//	Render Phase (like) Data Retrieval Methods
 	//
-	
-	private long getMfiId(ActionRequest request) {
-		//TODO HERE AND EVERWHERE ELSE.
-		return 0;
+
+	/**
+	 * Retrieves 
+	 * Does not support member being part of multiple mfi organizations. returns first found.
+	 * 
+	 * @param themeDisplay
+	 * @return
+	 * @throws NoSuchOrganizationException 
+	 */
+	private static long getMfiId(ThemeDisplay themeDisplay) throws NoSuchOrganizationException {
+		try {
+			//Retrieves mfi parent id.
+			long mfiOrganizationId;
+			mfiOrganizationId = OrganizationLocalServiceUtil.getOrganizationId(themeDisplay.getCompanyId(), "MFI");
+
+
+			//Discovers which org is an mfi
+			List<Organization> orgs = themeDisplay.getUser().getOrganizations();
+			for (Organization currentOrganization : orgs) {
+				if (currentOrganization.getParentOrganizationId() == mfiOrganizationId) {
+					return currentOrganization.getOrganizationId();
+				}
+			}
+
+		} catch (SystemException e) {
+			//MFI organization cannot be found.
+		} catch (PortalException e) {
+			//user is not in any organization.
+		}
+
+		//Cannot be found.
+		throw new NoSuchOrganizationException("MFI organization cannot be found for specific user.");
 	}
-	
+
 	/**
 	 * Retrieves all borrowers for specific MFI. Designed to be called from render phase. 
 	 * 
@@ -60,7 +94,7 @@ public class ActionUtil {
 
 		return tempResults;
 	}
-	
+
 	/**
 	 * Retrieves single specific borrower based on borrower_Id. Designed to be called from render phase. 
 	 * 
@@ -83,21 +117,21 @@ public class ActionUtil {
 
 		return tempResult;
 	}
-	
+
 	public static Borrower getEditableBorrower(RenderRequest request) {
 		Borrower borrower = ActionUtil.getBorrower(request);
-		
+
 		if (borrower == null) {
 			//TODO
-			
+
 			borrower = new BorrowerImpl();
 		}
-		
+
 		return borrower;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Retrieves all BorrowerLoans for specific borrower_Id. Designed to be called from render phase. 
 	 * 
@@ -108,7 +142,7 @@ public class ActionUtil {
 		//Retrieves values needed for request.
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
-		
+
 		long borrowerId = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_ID);
 		List<BorrowerLoan> tempResults;
 
@@ -122,7 +156,7 @@ public class ActionUtil {
 
 		return tempResults;
 	}
-	
+
 	/**
 	 * Retrieves specific BorrowerLoan for specific borrower_Loan_Id. Designed to be called from render phase. 
 	 * 
@@ -133,7 +167,7 @@ public class ActionUtil {
 		//Retrieves values needed for request.
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
-		
+
 		long borrowerLoanId = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_LOAN_ID);
 		BorrowerLoan tempResult;
 
@@ -147,20 +181,20 @@ public class ActionUtil {
 
 		return tempResult;
 	}
-	
+
 	public static BorrowerLoan getEditableBorrowerLoan(RenderRequest request) {
 
 		BorrowerLoan borrowerLoan = ActionUtil.getBorrowerLoan(request);
-		
+
 		if (borrowerLoan == null) {
 			//TODO
-			
+
 			borrowerLoan = new BorrowerLoanImpl();
 		}
 
 		return borrowerLoan;
 	}
-	
+
 	/**
 	 * Retrieves all LenderContribution for specific Loan. Designed to be called from render phase. 
 	 * 
@@ -182,37 +216,51 @@ public class ActionUtil {
 		//TODO fix class return type and retrieve from accubus.
 		return null;
 	}
-	
+
 	/**
 	 * Retrieves Story based on type specified in request. Designed to be called from render phase. 
+	 * Retrieves based on  values in order of: story_Id (non-existent)--> Borrower_Loan_Id, story_Type.
+	 * 
+	 * Returns new story with borrower_Loan_Id and Story_Type if none exists.
 	 * 
 	 * @param request Render request which has access from the render phase.
 	 * @return Story object which represents the InitialStory for specific Loan. Returns new Story for editing if not existent.
 	 */
 	public static Story getEditableStory(RenderRequest request) {
-		String storyType = ParamUtil.getString(request, WebKeys.ATTR_STORY_TYPE);
-		Story story = ActionUtil.getStoryByType(request, storyType);
-		
-		if (story == null) {
-			//Sets id FK data.
-			long borrower_Loan_Id = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_LOAN_ID);
-			
-			//If no story and loan id existed, create new Story object.
-			if (Validator.isNotNull(borrower_Loan_Id)) {
-				story = new StoryImpl();
-				story.setAbacus_Borrower_Loan_Id(borrower_Loan_Id);
-				story.setStory_Type(storyType);
+		Story story;
+
+		//Attempts story based on Id.
+		long storyId = ParamUtil.getLong(request, WebKeys.ATTR_STORY_ID);
+		if (Validator.isNotNull(storyId)) {
+			try {
+				return StoryLocalServiceUtil.getStory(storyId);
+
+				//These Exceptions should not really occur.
+			} catch (NoSuchStoryException e) {
+				e.printStackTrace();
+			} catch (PortalException e) {
+				e.printStackTrace();
+			} catch (SystemException e) {
+				e.printStackTrace();
 			}
 		}
-		
+
+		//Retrieves story based on borrowerLoanId and storyType.
+		long borrowerLoanId = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_LOAN_ID);
+		String storyType = ParamUtil.getString(request, WebKeys.ATTR_STORY_TYPE);
+		story = ActionUtil.getStoryByType(borrowerLoanId, storyType);
+
+		//Returns new story if it could not be found. (with storyType and BorrowerLoanId).
+		if (story == null) {
+			story = new StoryImpl();
+			story.setStory_Type(storyType);
+			story.setAbacus_Borrower_Loan_Id(borrowerLoanId);
+		}
+
 		return story;
 	}
-	
-	private static Story getStoryByType(RenderRequest request, String storyType) {
-		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		long groupId = themeDisplay.getScopeGroupId();
-		
-		long borrowerLoanId = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_LOAN_ID);
+
+	private static Story getStoryByType(long borrowerLoanId, String storyType) {
 		Story tempResult;
 
 		try {
@@ -236,13 +284,16 @@ public class ActionUtil {
 	 * @return - Borrower object which has been built from the request object.
 	 */
 	public static Borrower borrowerFromRequest(ActionRequest request) {
+		//TODO if edits allowed? retrieve stored entity from db if id indicates it is not new.
+		//This prevents losing data which is not set and allows for data to be set at appropriate times.
+		//Look at storyFromRequest(ActionRequest request) if example needed.
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		Borrower borrower = new BorrowerImpl();
-		
+
 		//PK/FK data
 		borrower.setBorrower_Id(ParamUtil.getLong(request, "borrower_Id"));
 		borrower.setAbacus_Person_Id(ParamUtil.getLong(request, "abacus_Person_Id"));
-				
+
 		//Data
 		borrower.setVillage(ParamUtil.getString(request, "village"));
 		borrower.setDistrict(ParamUtil.getString(request, "district"));
@@ -250,8 +301,8 @@ public class ActionUtil {
 		borrower.setCurrency(ParamUtil.getDouble(request, "currency"));
 		borrower.setChanged_By(ParamUtil.getString(request, "changed_By"));
 		borrower.setChanged_Time(ParamUtil.getLong(request, "changed_Time"));
-		
-		
+
+
 		//Portal Identifying info
 		//TODO Set specific data?
 		//borrower.setCompany_Id(themeDisplay.getCompanyId());
@@ -260,8 +311,8 @@ public class ActionUtil {
 
 		return borrower;
 	}
-	
-	
+
+
 	/**
 	 * Creates a BorrowerLoan from a sent actionRequest object.
 	 * 
@@ -269,18 +320,21 @@ public class ActionUtil {
 	 * @return - BorrowerLoan object which has been built from the request object.
 	 */
 	public static BorrowerLoan borrowerLoanFromRequest(ActionRequest request) {
+		//TODO if edits allowed? retrieve stored entity from db if id indicates it is not new.
+		//This prevents losing data which is not set and allows for data to be set at appropriate times.
+		//Look at storyFromRequest(ActionRequest request) if example needed.
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		BorrowerLoan borrowerLoan = new BorrowerLoanImpl();
-		
+
 		//PK/FK data
 		borrowerLoan.setAbacus_Borrower_Loan_Id(ParamUtil.getLong(request, "abacus_Borrower_Loan_Id"));
 		borrowerLoan.setBorrower_Id(ParamUtil.getLong(request, "borrower_Id"));
-		
+
 		//Data
 		borrowerLoan.setAbacus_mfi_Id(ParamUtil.getLong(request, "abacus_mfi_Id"));
 		borrowerLoan.setChanged_By(ParamUtil.getString(request, "changed_By"));
 		borrowerLoan.setChanged_Time(ParamUtil.getString(request, "changed_Time"));
-		
+
 		//Portal Identifying info
 		//TODO set other data.
 		//borrowerLoan.setCompany_Id(themeDisplay.getCompanyId());
@@ -290,7 +344,7 @@ public class ActionUtil {
 		return borrowerLoan;
 	}
 
-	
+
 	/**
 	 * Creates a LenderContribution from a sent actionRequest object.
 	 * 
@@ -301,7 +355,7 @@ public class ActionUtil {
 	public static String lenderContributionFromRequest(ActionRequest request) {
 		return null;
 	}
-	
+
 	/**
 	 * Creates a Story from a sent actionRequest object.
 	 * 
@@ -309,24 +363,44 @@ public class ActionUtil {
 	 * @return - Story object which has been built from the request object.
 	 */
 	public static Story storyFromRequest(ActionRequest request) {
-		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		Story story = new StoryImpl();
-		
-		//PK/FK data
-		story.setStory_Id(ParamUtil.getLong(request, "story_Id"));
-		story.setAbacus_Borrower_Loan_Id(ParamUtil.getLong(request, "abacus_Borrower_Loan_Id"));
-		
+		long storyId = ParamUtil.getLong(request, "story_Id");
+		boolean newStory = true;
+		Story story = null;
+
+		//Loads existing data if needed before replacing changes or creates new object.
+		if (storyId > 0) {
+			try {
+				story = StoryLocalServiceUtil.getStory(storyId);
+				newStory = false;
+				
+			//Pointless exceptions as flag wont be set which will allow new story
+			//to be made.
+			} catch (NoSuchStoryException e) {}
+			  catch (PortalException e) {}
+			  catch (SystemException e) {}
+		} 
+
+		//Creates new Story if needed.
+		if (newStory) {
+			//PK/FK data
+			story = new StoryImpl();
+			story.setStory_Id(storyId); //Shouldn't matter either way.
+			story.setAbacus_Borrower_Loan_Id(ParamUtil.getLong(request, "abacus_Borrower_Loan_Id"));
+
+			//Portal Identifying info
+			ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
+			story.setCompany_Id(themeDisplay.getCompanyId());
+			story.setGroup_Id(themeDisplay.getScopeGroupId());
+			story.setUser_Id(themeDisplay.getUserId());
+		}
+
 		//Data
 		story.setStory_Text(ParamUtil.getString(request, "story_Text"));
 		story.setVideo_Url(ParamUtil.getString(request, "video_Url"));
 		story.setIs_Good_Enough_For_Marketing(ParamUtil.getBoolean(request, "is_Good_Enough_For_Marketing"));
 		story.setIs_Good_Enough_For_Story(ParamUtil.getBoolean(request, "is_Good_Enough_For_Story"));
 		story.setStory_Type(ParamUtil.getString(request, "story_Type"));
-		
-		//Portal Identifying info
-		story.setCompany_Id(themeDisplay.getCompanyId());
-		story.setGroup_Id(themeDisplay.getScopeGroupId());
-		story.setUser_Id(themeDisplay.getUserId());
+
 
 		return story;
 	}

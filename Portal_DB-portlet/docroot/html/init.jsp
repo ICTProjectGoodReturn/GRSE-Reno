@@ -27,4 +27,5 @@
 <%@ page import="org.goodreturn.borrowers.util.ActionUtil" %>
 
 <portlet:defineObjects />
+
 <liferay-theme:defineObjects />
