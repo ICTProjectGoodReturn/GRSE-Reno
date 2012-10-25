@@ -77,9 +77,8 @@ public class StoryLocalServiceImpl extends StoryLocalServiceBaseImpl {
 		
 		story.setStatus(WorkflowConstants.STATUS_DRAFT);
 
-		//Updates it in the database.
+		//Updates in the database.
 		storyPersistence.update(story, false);
-
 
 		resourceLocalService.addResources(
 				story.getCompany_Id(), story.getGroup_Id(), userId,
@@ -139,6 +138,18 @@ public class StoryLocalServiceImpl extends StoryLocalServiceBaseImpl {
 	 */
 	public List<Story> getStoryByL_S(long borrowerLoanId, String storyType) throws SystemException {
 		return storyPersistence.findByL_S(borrowerLoanId, storyType);
+	}
+	
+	/**
+	 * Retrieves all loans which have borrower_Loan_Id and story_Type.
+	 * 
+	 * @param groupId - group_Id field which is associated with groups.
+	 * @param status
+	 * @return
+	 * @throws SystemException
+	 */
+	public List<Story> getStoryByG_S(long groupId, int status) throws SystemException {
+		return storyPersistence.findByG_S(groupId, status);
 	}
 	
 	

@@ -3,7 +3,7 @@
 <portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0">
 	<portlet>
 		<portlet-name>borrowersportlet</portlet-name>
-		<display-name>Borrowers Portlet</display-name>
+		<display-name>MFI Story Portlet</display-name>
 		<portlet-class>org.goodreturn.borrowers.portlet.BorrowersPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
@@ -16,8 +16,8 @@
 		</supports>
 		<resource-bundle>org.goodreturn.borrowers.messages</resource-bundle>
 		<portlet-info>
-			<title>Borrowers Portlet</title>
-			<short-title>Borrowers Portlet</short-title>
+			<title>MFI Story Portlet</title>
+			<short-title>Story Portlet</short-title>
 			<keywords></keywords>
 		</portlet-info>
 		<security-role-ref>
@@ -34,5 +34,38 @@
 		</security-role-ref>
 		<!-- Fix roles above to cover: MFI Leader, MFI Finance, MFI Story, WEAL Owner,
 			WEAL Admin, WEAL Marketing, WEAL Finance, WEAL Operations, WEAL Volunteer -->
+	</portlet>
+	<portlet>
+		<portlet-name>storyexporterportlet</portlet-name>
+		<display-name>Story Exporter Portlet</display-name>
+		<portlet-class>
+			org.goodreturn.story.exporter.StoryExporterPortlet
+		</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/html/story/export_story.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Story Exporter Portlet</title>
+			<short-title>Story Exporter Portlet</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
 	</portlet>
 </portlet-app>

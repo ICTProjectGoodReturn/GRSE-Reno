@@ -58,8 +58,6 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 		attributes.put("status_By_User_Id", getStatus_By_User_Id());
 		attributes.put("status_By_User_Name", getStatus_By_User_Name());
 		attributes.put("status_Date", getStatus_Date());
-		attributes.put("changed_By", getChanged_By());
-		attributes.put("changed_Time", getChanged_Time());
 		attributes.put("company_Id", getCompany_Id());
 		attributes.put("group_Id", getGroup_Id());
 		attributes.put("user_Id", getUser_Id());
@@ -142,18 +140,6 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 
 		if (status_Date != null) {
 			setStatus_Date(status_Date);
-		}
-
-		String changed_By = (String)attributes.get("changed_By");
-
-		if (changed_By != null) {
-			setChanged_By(changed_By);
-		}
-
-		Long changed_Time = (Long)attributes.get("changed_Time");
-
-		if (changed_Time != null) {
-			setChanged_Time(changed_Time);
 		}
 
 		Long company_Id = (Long)attributes.get("company_Id");
@@ -426,42 +412,6 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 	*/
 	public void setStatus_Date(java.util.Date status_Date) {
 		_story.setStatus_Date(status_Date);
-	}
-
-	/**
-	* Returns the changed_ by of this story.
-	*
-	* @return the changed_ by of this story
-	*/
-	public java.lang.String getChanged_By() {
-		return _story.getChanged_By();
-	}
-
-	/**
-	* Sets the changed_ by of this story.
-	*
-	* @param changed_By the changed_ by of this story
-	*/
-	public void setChanged_By(java.lang.String changed_By) {
-		_story.setChanged_By(changed_By);
-	}
-
-	/**
-	* Returns the changed_ time of this story.
-	*
-	* @return the changed_ time of this story
-	*/
-	public long getChanged_Time() {
-		return _story.getChanged_Time();
-	}
-
-	/**
-	* Sets the changed_ time of this story.
-	*
-	* @param changed_Time the changed_ time of this story
-	*/
-	public void setChanged_Time(long changed_Time) {
-		_story.setChanged_Time(changed_Time);
 	}
 
 	/**

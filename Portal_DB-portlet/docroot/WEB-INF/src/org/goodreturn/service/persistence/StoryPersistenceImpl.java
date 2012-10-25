@@ -122,6 +122,25 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 			StoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByL_S",
 			new String[] { Long.class.getName(), String.class.getName() });
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_S = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
+			StoryModelImpl.FINDER_CACHE_ENABLED, StoryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_S",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_S = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
+			StoryModelImpl.FINDER_CACHE_ENABLED, StoryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_S",
+			new String[] { Long.class.getName(), Integer.class.getName() },
+			StoryModelImpl.GROUP_ID_COLUMN_BITMASK |
+			StoryModelImpl.STATUS_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_G_S = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
+			StoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_S",
+			new String[] { Long.class.getName(), Integer.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
 			StoryModelImpl.FINDER_CACHE_ENABLED, StoryImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
@@ -378,6 +397,27 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_L_S,
 					args);
 			}
+
+			if ((storyModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_S.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(storyModelImpl.getOriginalGroup_Id()),
+						Integer.valueOf(storyModelImpl.getOriginalStatus())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_S,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(storyModelImpl.getGroup_Id()),
+						Integer.valueOf(storyModelImpl.getStatus())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_S,
+					args);
+			}
 		}
 
 		EntityCacheUtil.putResult(StoryModelImpl.ENTITY_CACHE_ENABLED,
@@ -408,8 +448,6 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 		storyImpl.setStatus_By_User_Id(story.getStatus_By_User_Id());
 		storyImpl.setStatus_By_User_Name(story.getStatus_By_User_Name());
 		storyImpl.setStatus_Date(story.getStatus_Date());
-		storyImpl.setChanged_By(story.getChanged_By());
-		storyImpl.setChanged_Time(story.getChanged_Time());
 		storyImpl.setCompany_Id(story.getCompany_Id());
 		storyImpl.setGroup_Id(story.getGroup_Id());
 		storyImpl.setUser_Id(story.getUser_Id());
@@ -2034,6 +2072,734 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
+	 * Returns all the stories where group_Id = &#63; and status = &#63;.
+	 *
+	 * @param group_Id the group_ ID
+	 * @param status the status
+	 * @return the matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> findByG_S(long group_Id, int status)
+		throws SystemException {
+		return findByG_S(group_Id, status, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the stories where group_Id = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param group_Id the group_ ID
+	 * @param status the status
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @return the range of matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> findByG_S(long group_Id, int status, int start, int end)
+		throws SystemException {
+		return findByG_S(group_Id, status, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the stories where group_Id = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param group_Id the group_ ID
+	 * @param status the status
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> findByG_S(long group_Id, int status, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_S;
+			finderArgs = new Object[] { group_Id, status };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_G_S;
+			finderArgs = new Object[] {
+					group_Id, status,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<Story> list = (List<Story>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Story story : list) {
+				if ((group_Id != story.getGroup_Id()) ||
+						(status != story.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_STORY_WHERE);
+
+			query.append(_FINDER_COLUMN_G_S_GROUP_ID_2);
+
+			query.append(_FINDER_COLUMN_G_S_STATUS_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(StoryModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(group_Id);
+
+				qPos.add(status);
+
+				list = (List<Story>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first story in the ordered set where group_Id = &#63; and status = &#63;.
+	 *
+	 * @param group_Id the group_ ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching story
+	 * @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story findByG_S_First(long group_Id, int status,
+		OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		Story story = fetchByG_S_First(group_Id, status, orderByComparator);
+
+		if (story != null) {
+			return story;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("group_Id=");
+		msg.append(group_Id);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchStoryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first story in the ordered set where group_Id = &#63; and status = &#63;.
+	 *
+	 * @param group_Id the group_ ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching story, or <code>null</code> if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story fetchByG_S_First(long group_Id, int status,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Story> list = findByG_S(group_Id, status, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last story in the ordered set where group_Id = &#63; and status = &#63;.
+	 *
+	 * @param group_Id the group_ ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching story
+	 * @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story findByG_S_Last(long group_Id, int status,
+		OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		Story story = fetchByG_S_Last(group_Id, status, orderByComparator);
+
+		if (story != null) {
+			return story;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("group_Id=");
+		msg.append(group_Id);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchStoryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last story in the ordered set where group_Id = &#63; and status = &#63;.
+	 *
+	 * @param group_Id the group_ ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching story, or <code>null</code> if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story fetchByG_S_Last(long group_Id, int status,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByG_S(group_Id, status);
+
+		List<Story> list = findByG_S(group_Id, status, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the stories before and after the current story in the ordered set where group_Id = &#63; and status = &#63;.
+	 *
+	 * @param story_Id the primary key of the current story
+	 * @param group_Id the group_ ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next story
+	 * @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story[] findByG_S_PrevAndNext(long story_Id, long group_Id,
+		int status, OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		Story story = findByPrimaryKey(story_Id);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Story[] array = new StoryImpl[3];
+
+			array[0] = getByG_S_PrevAndNext(session, story, group_Id, status,
+					orderByComparator, true);
+
+			array[1] = story;
+
+			array[2] = getByG_S_PrevAndNext(session, story, group_Id, status,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Story getByG_S_PrevAndNext(Session session, Story story,
+		long group_Id, int status, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_STORY_WHERE);
+
+		query.append(_FINDER_COLUMN_G_S_GROUP_ID_2);
+
+		query.append(_FINDER_COLUMN_G_S_STATUS_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(StoryModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(group_Id);
+
+		qPos.add(status);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(story);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Story> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Returns all the stories that the user has permission to view where group_Id = &#63; and status = &#63;.
+	 *
+	 * @param group_Id the group_ ID
+	 * @param status the status
+	 * @return the matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> filterFindByG_S(long group_Id, int status)
+		throws SystemException {
+		return filterFindByG_S(group_Id, status, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the stories that the user has permission to view where group_Id = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param group_Id the group_ ID
+	 * @param status the status
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @return the range of matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> filterFindByG_S(long group_Id, int status, int start,
+		int end) throws SystemException {
+		return filterFindByG_S(group_Id, status, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the stories that the user has permissions to view where group_Id = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param group_Id the group_ ID
+	 * @param status the status
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> filterFindByG_S(long group_Id, int status, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByG_S(group_Id, status, start, end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(4);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_S_GROUP_ID_2);
+
+		query.append(_FINDER_COLUMN_G_S_STATUS_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(StoryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(StoryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Story.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, StoryImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, StoryImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(group_Id);
+
+			qPos.add(status);
+
+			return (List<Story>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the stories before and after the current story in the ordered set of stories that the user has permission to view where group_Id = &#63; and status = &#63;.
+	 *
+	 * @param story_Id the primary key of the current story
+	 * @param group_Id the group_ ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next story
+	 * @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story[] filterFindByG_S_PrevAndNext(long story_Id, long group_Id,
+		int status, OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByG_S_PrevAndNext(story_Id, group_Id, status,
+				orderByComparator);
+		}
+
+		Story story = findByPrimaryKey(story_Id);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Story[] array = new StoryImpl[3];
+
+			array[0] = filterGetByG_S_PrevAndNext(session, story, group_Id,
+					status, orderByComparator, true);
+
+			array[1] = story;
+
+			array[2] = filterGetByG_S_PrevAndNext(session, story, group_Id,
+					status, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Story filterGetByG_S_PrevAndNext(Session session, Story story,
+		long group_Id, int status, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_S_GROUP_ID_2);
+
+		query.append(_FINDER_COLUMN_G_S_STATUS_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(StoryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(StoryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Story.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, StoryImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, StoryImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(group_Id);
+
+		qPos.add(status);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(story);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Story> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Returns all the stories.
 	 *
 	 * @return the stories
@@ -2169,6 +2935,20 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	public void removeByL_S(long abacus_Borrower_Loan_Id, String story_Type)
 		throws SystemException {
 		for (Story story : findByL_S(abacus_Borrower_Loan_Id, story_Type)) {
+			remove(story);
+		}
+	}
+
+	/**
+	 * Removes all the stories where group_Id = &#63; and status = &#63; from the database.
+	 *
+	 * @param group_Id the group_ ID
+	 * @param status the status
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByG_S(long group_Id, int status)
+		throws SystemException {
+		for (Story story : findByG_S(group_Id, status)) {
 			remove(story);
 		}
 	}
@@ -2445,6 +3225,117 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
+	 * Returns the number of stories where group_Id = &#63; and status = &#63;.
+	 *
+	 * @param group_Id the group_ ID
+	 * @param status the status
+	 * @return the number of matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByG_S(long group_Id, int status) throws SystemException {
+		Object[] finderArgs = new Object[] { group_Id, status };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_S,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_STORY_WHERE);
+
+			query.append(_FINDER_COLUMN_G_S_GROUP_ID_2);
+
+			query.append(_FINDER_COLUMN_G_S_STATUS_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(group_Id);
+
+				qPos.add(status);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_S, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of stories that the user has permission to view where group_Id = &#63; and status = &#63;.
+	 *
+	 * @param group_Id the group_ ID
+	 * @param status the status
+	 * @return the number of matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByG_S(long group_Id, int status)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByG_S(group_Id, status);
+		}
+
+		StringBundler query = new StringBundler(3);
+
+		query.append(_FILTER_SQL_COUNT_STORY_WHERE);
+
+		query.append(_FINDER_COLUMN_G_S_GROUP_ID_2);
+
+		query.append(_FINDER_COLUMN_G_S_STATUS_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Story.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(group_Id);
+
+			qPos.add(status);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
 	 * Returns the number of stories.
 	 *
 	 * @return the number of stories
@@ -2548,6 +3439,8 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	private static final String _FINDER_COLUMN_L_S_STORY_TYPE_1 = "story.story_Type IS NULL";
 	private static final String _FINDER_COLUMN_L_S_STORY_TYPE_2 = "story.story_Type = ?";
 	private static final String _FINDER_COLUMN_L_S_STORY_TYPE_3 = "(story.story_Type IS NULL OR story.story_Type = ?)";
+	private static final String _FINDER_COLUMN_G_S_GROUP_ID_2 = "story.group_Id = ? AND ";
+	private static final String _FINDER_COLUMN_G_S_STATUS_2 = "story.status = ?";
 	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "story.story_Id";
 	private static final String _FILTER_SQL_SELECT_STORY_WHERE = "SELECT DISTINCT {story.*} FROM GoodReturn_Story story WHERE ";
 	private static final String _FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_1 =

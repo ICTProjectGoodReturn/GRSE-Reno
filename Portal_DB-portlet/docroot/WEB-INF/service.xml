@@ -13,7 +13,7 @@
 		<column name="abacus_Person_Id" type="Collection" entity="Borrower" mapping-key="abacus_Person_Id" />
 		<column name="abacus_Person_Id" type="Collection" entity="Lender" mapping-key="abacus_Person_Id" />
 
-		<!-- Audit Fields -->
+		<!-- Data Fields -->
 		<column name="first_Name" type="String" />
 		<column name="last_Name" type="String" />
 		<column name="email" type="String" />
@@ -30,13 +30,11 @@
 		<column name="changed_Time" type="long" />
 
 		<!-- Order -->
-
 		<order by="asc">
 			<order-column name="abacus_Person_Id" />
 		</order>
-
-
-
+		
+		
 	</entity>
 
 	<entity name="Lender" local-service="true" remote-service="true">
@@ -196,13 +194,11 @@
 		<column name="status_By_User_Id" type="long" />
 		<column name="status_By_User_Name" type="String" />
 		<column name="status_Date" type="Date" />
-		<column name="changed_By" type="String" />
-		<column name="changed_Time" type="long" />
 
 		<!-- Audit -->
-		<column name="company_Id" type="long" />
-		<column name="group_Id" type="long" />
-		<column name="user_Id" type="long" />
+		<column name="companyId" type="long" />
+		<column name="groupId" type="long" />
+		<column name="userId" type="long" />
 
 		<!-- Order -->
 		<order by="asc">
@@ -213,6 +209,11 @@
 		<finder name="L_S" return-type="Collection">
 			<finder-column name="abacus_Borrower_Loan_Id" />
 			<finder-column name="story_Type" />
+		</finder>
+		
+		<finder name="G_S" return-type="Collection">
+			<finder-column name="group_Id" />
+			<finder-column name="status" />
 		</finder>
 
 		<!-- Reference -->
@@ -228,12 +229,12 @@
 		<column name="team_lender_Id" type="long" primary="true" />
 		
 		<!-- FK Fields -->
-	<column name="lender_Id" type="long" />
-	<column name="team_Id" type="long" />
-	
-	<!-- Other fields -->
-	<column name="changed_By" type="String" />
-	<column name="changed_Time" type="long" />
+		<column name="lender_Id" type="long" />
+		<column name="team_Id" type="long" />
+		
+		<!-- Other fields -->
+		<column name="changed_By" type="String" />
+		<column name="changed_Time" type="long" />
 
 		<!-- Order -->
 

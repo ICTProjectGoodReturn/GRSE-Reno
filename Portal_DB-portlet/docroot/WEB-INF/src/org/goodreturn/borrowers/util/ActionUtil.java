@@ -401,7 +401,6 @@ public class ActionUtil {
 		story.setIs_Good_Enough_For_Story(ParamUtil.getBoolean(request, "is_Good_Enough_For_Story"));
 		story.setStory_Type(ParamUtil.getString(request, "story_Type"));
 
-
 		return story;
 	}
 }

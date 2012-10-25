@@ -75,13 +75,11 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			{ "status_By_User_Id", Types.BIGINT },
 			{ "status_By_User_Name", Types.VARCHAR },
 			{ "status_Date", Types.TIMESTAMP },
-			{ "changed_By", Types.VARCHAR },
-			{ "changed_Time", Types.BIGINT },
 			{ "company_Id", Types.BIGINT },
 			{ "group_Id", Types.BIGINT },
 			{ "user_Id", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Story (uuid_ VARCHAR(75) null,story_Id LONG not null primary key,abacus_Borrower_Loan_Id LONG,story_Type VARCHAR(75) null,story_Text VARCHAR(75) null,video_Url VARCHAR(75) null,is_Good_Enough_For_Marketing BOOLEAN,is_Good_Enough_For_Story BOOLEAN,status INTEGER,status_By_User_Id LONG,status_By_User_Name VARCHAR(75) null,status_Date DATE null,changed_By VARCHAR(75) null,changed_Time LONG,company_Id LONG,group_Id LONG,user_Id LONG)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Story (uuid_ VARCHAR(75) null,story_Id LONG not null primary key,abacus_Borrower_Loan_Id LONG,story_Type VARCHAR(75) null,story_Text VARCHAR(75) null,video_Url VARCHAR(75) null,is_Good_Enough_For_Marketing BOOLEAN,is_Good_Enough_For_Story BOOLEAN,status INTEGER,status_By_User_Id LONG,status_By_User_Name VARCHAR(75) null,status_Date DATE null,company_Id LONG,group_Id LONG,user_Id LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Story";
 	public static final String ORDER_BY_JPQL = " ORDER BY story.story_Id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Story.story_Id ASC";
@@ -98,8 +96,10 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 				"value.object.column.bitmask.enabled.org.goodreturn.model.Story"),
 			true);
 	public static long ABACUS_BORROWER_LOAN_ID_COLUMN_BITMASK = 1L;
-	public static long STORY_TYPE_COLUMN_BITMASK = 2L;
-	public static long UUID_COLUMN_BITMASK = 4L;
+	public static long GROUP_ID_COLUMN_BITMASK = 2L;
+	public static long STATUS_COLUMN_BITMASK = 4L;
+	public static long STORY_TYPE_COLUMN_BITMASK = 8L;
+	public static long UUID_COLUMN_BITMASK = 16L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -126,8 +126,6 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		model.setStatus_By_User_Id(soapModel.getStatus_By_User_Id());
 		model.setStatus_By_User_Name(soapModel.getStatus_By_User_Name());
 		model.setStatus_Date(soapModel.getStatus_Date());
-		model.setChanged_By(soapModel.getChanged_By());
-		model.setChanged_Time(soapModel.getChanged_Time());
 		model.setCompany_Id(soapModel.getCompany_Id());
 		model.setGroup_Id(soapModel.getGroup_Id());
 		model.setUser_Id(soapModel.getUser_Id());
@@ -202,8 +200,6 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		attributes.put("status_By_User_Id", getStatus_By_User_Id());
 		attributes.put("status_By_User_Name", getStatus_By_User_Name());
 		attributes.put("status_Date", getStatus_Date());
-		attributes.put("changed_By", getChanged_By());
-		attributes.put("changed_Time", getChanged_Time());
 		attributes.put("company_Id", getCompany_Id());
 		attributes.put("group_Id", getGroup_Id());
 		attributes.put("user_Id", getUser_Id());
@@ -287,18 +283,6 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		if (status_Date != null) {
 			setStatus_Date(status_Date);
-		}
-
-		String changed_By = (String)attributes.get("changed_By");
-
-		if (changed_By != null) {
-			setChanged_By(changed_By);
-		}
-
-		Long changed_Time = (Long)attributes.get("changed_Time");
-
-		if (changed_Time != null) {
-			setChanged_Time(changed_Time);
 		}
 
 		Long company_Id = (Long)attributes.get("company_Id");
@@ -459,7 +443,19 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	public void setStatus(int status) {
+		_columnBitmask |= STATUS_COLUMN_BITMASK;
+
+		if (!_setOriginalStatus) {
+			_setOriginalStatus = true;
+
+			_originalStatus = _status;
+		}
+
 		_status = status;
+	}
+
+	public int getOriginalStatus() {
+		return _originalStatus;
 	}
 
 	@JSON
@@ -495,29 +491,6 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	@JSON
-	public String getChanged_By() {
-		if (_changed_By == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _changed_By;
-		}
-	}
-
-	public void setChanged_By(String changed_By) {
-		_changed_By = changed_By;
-	}
-
-	@JSON
-	public long getChanged_Time() {
-		return _changed_Time;
-	}
-
-	public void setChanged_Time(long changed_Time) {
-		_changed_Time = changed_Time;
-	}
-
-	@JSON
 	public long getCompany_Id() {
 		return _company_Id;
 	}
@@ -532,7 +505,19 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	public void setGroup_Id(long group_Id) {
+		_columnBitmask |= GROUP_ID_COLUMN_BITMASK;
+
+		if (!_setOriginalGroup_Id) {
+			_setOriginalGroup_Id = true;
+
+			_originalGroup_Id = _group_Id;
+		}
+
 		_group_Id = group_Id;
+	}
+
+	public long getOriginalGroup_Id() {
+		return _originalGroup_Id;
 	}
 
 	@JSON
@@ -588,8 +573,6 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		storyImpl.setStatus_By_User_Id(getStatus_By_User_Id());
 		storyImpl.setStatus_By_User_Name(getStatus_By_User_Name());
 		storyImpl.setStatus_Date(getStatus_Date());
-		storyImpl.setChanged_By(getChanged_By());
-		storyImpl.setChanged_Time(getChanged_Time());
 		storyImpl.setCompany_Id(getCompany_Id());
 		storyImpl.setGroup_Id(getGroup_Id());
 		storyImpl.setUser_Id(getUser_Id());
@@ -661,6 +644,14 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		storyModelImpl._originalStory_Type = storyModelImpl._story_Type;
 
+		storyModelImpl._originalStatus = storyModelImpl._status;
+
+		storyModelImpl._setOriginalStatus = false;
+
+		storyModelImpl._originalGroup_Id = storyModelImpl._group_Id;
+
+		storyModelImpl._setOriginalGroup_Id = false;
+
 		storyModelImpl._columnBitmask = 0;
 	}
 
@@ -730,16 +721,6 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			storyCacheModel.status_Date = Long.MIN_VALUE;
 		}
 
-		storyCacheModel.changed_By = getChanged_By();
-
-		String changed_By = storyCacheModel.changed_By;
-
-		if ((changed_By != null) && (changed_By.length() == 0)) {
-			storyCacheModel.changed_By = null;
-		}
-
-		storyCacheModel.changed_Time = getChanged_Time();
-
 		storyCacheModel.company_Id = getCompany_Id();
 
 		storyCacheModel.group_Id = getGroup_Id();
@@ -751,7 +732,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(35);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -777,10 +758,6 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		sb.append(getStatus_By_User_Name());
 		sb.append(", status_Date=");
 		sb.append(getStatus_Date());
-		sb.append(", changed_By=");
-		sb.append(getChanged_By());
-		sb.append(", changed_Time=");
-		sb.append(getChanged_Time());
 		sb.append(", company_Id=");
 		sb.append(getCompany_Id());
 		sb.append(", group_Id=");
@@ -793,7 +770,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Story");
@@ -848,14 +825,6 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		sb.append(getStatus_Date());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>changed_By</column-name><column-value><![CDATA[");
-		sb.append(getChanged_By());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
-		sb.append(getChanged_Time());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>company_Id</column-name><column-value><![CDATA[");
 		sb.append(getCompany_Id());
 		sb.append("]]></column-value></column>");
@@ -890,13 +859,15 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	private boolean _is_Good_Enough_For_Marketing;
 	private boolean _is_Good_Enough_For_Story;
 	private int _status;
+	private int _originalStatus;
+	private boolean _setOriginalStatus;
 	private long _status_By_User_Id;
 	private String _status_By_User_Name;
 	private Date _status_Date;
-	private String _changed_By;
-	private long _changed_Time;
 	private long _company_Id;
 	private long _group_Id;
+	private long _originalGroup_Id;
+	private boolean _setOriginalGroup_Id;
 	private long _user_Id;
 	private long _columnBitmask;
 	private Story _escapedModelProxy;

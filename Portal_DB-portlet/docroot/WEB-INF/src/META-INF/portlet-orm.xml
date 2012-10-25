@@ -102,6 +102,8 @@
 			<basic name="occupation" />
 			<basic name="changed_By" />
 			<basic name="changed_Time" />
+			<basic name="companyId" />
+			<basic name="organizationId" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -125,8 +127,6 @@
 			<basic name="status_Date">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="changed_By" />
-			<basic name="changed_Time" />
 			<basic name="company_Id" />
 			<basic name="group_Id" />
 			<basic name="user_Id" />

@@ -78,8 +78,6 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		attributes.put("status_By_User_Id", getStatus_By_User_Id());
 		attributes.put("status_By_User_Name", getStatus_By_User_Name());
 		attributes.put("status_Date", getStatus_Date());
-		attributes.put("changed_By", getChanged_By());
-		attributes.put("changed_Time", getChanged_Time());
 		attributes.put("company_Id", getCompany_Id());
 		attributes.put("group_Id", getGroup_Id());
 		attributes.put("user_Id", getUser_Id());
@@ -163,18 +161,6 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 
 		if (status_Date != null) {
 			setStatus_Date(status_Date);
-		}
-
-		String changed_By = (String)attributes.get("changed_By");
-
-		if (changed_By != null) {
-			setChanged_By(changed_By);
-		}
-
-		Long changed_Time = (Long)attributes.get("changed_Time");
-
-		if (changed_Time != null) {
-			setChanged_Time(changed_Time);
 		}
 
 		Long company_Id = (Long)attributes.get("company_Id");
@@ -301,22 +287,6 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		_status_Date = status_Date;
 	}
 
-	public String getChanged_By() {
-		return _changed_By;
-	}
-
-	public void setChanged_By(String changed_By) {
-		_changed_By = changed_By;
-	}
-
-	public long getChanged_Time() {
-		return _changed_Time;
-	}
-
-	public void setChanged_Time(long changed_Time) {
-		_changed_Time = changed_Time;
-	}
-
 	public long getCompany_Id() {
 		return _company_Id;
 	}
@@ -380,8 +350,6 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		clone.setStatus_By_User_Id(getStatus_By_User_Id());
 		clone.setStatus_By_User_Name(getStatus_By_User_Name());
 		clone.setStatus_Date(getStatus_Date());
-		clone.setChanged_By(getChanged_By());
-		clone.setChanged_Time(getChanged_Time());
 		clone.setCompany_Id(getCompany_Id());
 		clone.setGroup_Id(getGroup_Id());
 		clone.setUser_Id(getUser_Id());
@@ -441,7 +409,7 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(35);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -467,10 +435,6 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		sb.append(getStatus_By_User_Name());
 		sb.append(", status_Date=");
 		sb.append(getStatus_Date());
-		sb.append(", changed_By=");
-		sb.append(getChanged_By());
-		sb.append(", changed_Time=");
-		sb.append(getChanged_Time());
 		sb.append(", company_Id=");
 		sb.append(getCompany_Id());
 		sb.append(", group_Id=");
@@ -483,7 +447,7 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Story");
@@ -538,14 +502,6 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		sb.append(getStatus_Date());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>changed_By</column-name><column-value><![CDATA[");
-		sb.append(getChanged_By());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
-		sb.append(getChanged_Time());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>company_Id</column-name><column-value><![CDATA[");
 		sb.append(getCompany_Id());
 		sb.append("]]></column-value></column>");
@@ -575,8 +531,6 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 	private long _status_By_User_Id;
 	private String _status_By_User_Name;
 	private Date _status_Date;
-	private String _changed_By;
-	private long _changed_Time;
 	private long _company_Id;
 	private long _group_Id;
 	private long _user_Id;

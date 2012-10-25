@@ -1,12 +1,23 @@
-package org.goodreturn;
+package org.goodreturn.story.exporter;
 
 import java.io.IOException;
 import java.util.LinkedList;
 
 import org.apache.commons.csv.CSVUtils;
 
-public class FinalStoryExporter {
+/**
+ * Basic class which performs data loading and exporting as CSV data.
+ * Operations performed in a static context.
+ * 
+ * @author Kyle Pink
+ */
+public class StoryExporter {
 
+	/**
+	 * Retrieves the data required for the csv data export.
+	 * 
+	 * @return a LinkedList<String[]> data structure which contains the desired
+	 */
 	public static LinkedList<String[]> loadData() {
 		//Loads data from database.
 		// TODO REPLACE DUMMY METHOD.
@@ -22,7 +33,6 @@ public class FinalStoryExporter {
 	/**
 	 * Creates a csv file with given data provided, returns String file name
 	 * which represents data which has been written.
-	 * 
 	 * 
 	 * @param disposableListData - data to be written in CSV file, will be discarded from list as used.
 	 * @return String as new LinkedList object ready to be written.

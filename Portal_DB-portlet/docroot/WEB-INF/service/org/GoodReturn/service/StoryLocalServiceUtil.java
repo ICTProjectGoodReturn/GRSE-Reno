@@ -303,6 +303,20 @@ public class StoryLocalServiceUtil {
 	}
 
 	/**
+	* Retrieves all loans which have borrower_Loan_Id and story_Type.
+	*
+	* @param groupId - group_Id field which is associated with groups.
+	* @param status
+	* @return
+	* @throws SystemException
+	*/
+	public static java.util.List<org.goodreturn.model.Story> getStoryByG_S(
+		long groupId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getStoryByG_S(groupId, status);
+	}
+
+	/**
 	* Updates the status of the Story object.
 	*
 	* @param userId - Id of the user updating the object resource.

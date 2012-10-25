@@ -1,9 +1,15 @@
-package org.goodreturn;
+package org.goodreturn.story.exporter;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+/**
+ * Basic InputStream which wraps a series of lines to be fed as individual characters
+ * to the input stream reader.
+ * 
+ * @author Kyle Pink
+ */
 public class LinesInputStream extends InputStream {
 
 	private String currentLine;

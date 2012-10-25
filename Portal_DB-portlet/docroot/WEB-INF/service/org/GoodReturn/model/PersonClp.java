@@ -79,6 +79,8 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 		attributes.put("occupation", getOccupation());
 		attributes.put("changed_By", getChanged_By());
 		attributes.put("changed_Time", getChanged_Time());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("organizationId", getOrganizationId());
 
 		return attributes;
 	}
@@ -173,6 +175,18 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 
 		if (changed_Time != null) {
 			setChanged_Time(changed_Time);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long organizationId = (Long)attributes.get("organizationId");
+
+		if (organizationId != null) {
+			setOrganizationId(organizationId);
 		}
 	}
 
@@ -296,6 +310,22 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 		_changed_Time = changed_Time;
 	}
 
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
+	public long getOrganizationId() {
+		return _organizationId;
+	}
+
+	public void setOrganizationId(long organizationId) {
+		_organizationId = organizationId;
+	}
+
 	public BaseModel<?> getPersonRemoteModel() {
 		return _personRemoteModel;
 	}
@@ -338,6 +368,8 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 		clone.setOccupation(getOccupation());
 		clone.setChanged_By(getChanged_By());
 		clone.setChanged_Time(getChanged_Time());
+		clone.setCompanyId(getCompanyId());
+		clone.setOrganizationId(getOrganizationId());
 
 		return clone;
 	}
@@ -394,7 +426,7 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{abacus_Person_Id=");
 		sb.append(getAbacus_Person_Id());
@@ -426,13 +458,17 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 		sb.append(getChanged_By());
 		sb.append(", changed_Time=");
 		sb.append(getChanged_Time());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
+		sb.append(", organizationId=");
+		sb.append(getOrganizationId());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Person");
@@ -498,6 +534,14 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
 		sb.append(getChanged_Time());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>organizationId</column-name><column-value><![CDATA[");
+		sb.append(getOrganizationId());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -519,5 +563,7 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 	private String _occupation;
 	private String _changed_By;
 	private long _changed_Time;
+	private long _companyId;
+	private long _organizationId;
 	private BaseModel<?> _personRemoteModel;
 }

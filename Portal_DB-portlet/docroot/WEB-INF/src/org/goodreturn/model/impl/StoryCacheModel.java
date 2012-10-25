@@ -34,7 +34,7 @@ import java.util.Date;
 public class StoryCacheModel implements CacheModel<Story>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(35);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -60,10 +60,6 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 		sb.append(status_By_User_Name);
 		sb.append(", status_Date=");
 		sb.append(status_Date);
-		sb.append(", changed_By=");
-		sb.append(changed_By);
-		sb.append(", changed_Time=");
-		sb.append(changed_Time);
 		sb.append(", company_Id=");
 		sb.append(company_Id);
 		sb.append(", group_Id=");
@@ -128,14 +124,6 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 			storyImpl.setStatus_Date(new Date(status_Date));
 		}
 
-		if (changed_By == null) {
-			storyImpl.setChanged_By(StringPool.BLANK);
-		}
-		else {
-			storyImpl.setChanged_By(changed_By);
-		}
-
-		storyImpl.setChanged_Time(changed_Time);
 		storyImpl.setCompany_Id(company_Id);
 		storyImpl.setGroup_Id(group_Id);
 		storyImpl.setUser_Id(user_Id);
@@ -157,8 +145,6 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 	public long status_By_User_Id;
 	public String status_By_User_Name;
 	public long status_Date;
-	public String changed_By;
-	public long changed_Time;
 	public long company_Id;
 	public long group_Id;
 	public long user_Id;

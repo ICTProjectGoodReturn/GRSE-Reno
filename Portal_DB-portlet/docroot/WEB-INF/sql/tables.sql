@@ -65,7 +65,9 @@ create table GoodReturn_Person (
 	photo_URL VARCHAR(75) null,
 	occupation VARCHAR(75) null,
 	changed_By VARCHAR(75) null,
-	changed_Time LONG
+	changed_Time LONG,
+	companyId LONG,
+	organizationId LONG
 );
 
 create table GoodReturn_Story (
@@ -81,8 +83,6 @@ create table GoodReturn_Story (
 	status_By_User_Id LONG,
 	status_By_User_Name VARCHAR(75) null,
 	status_Date DATE null,
-	changed_By VARCHAR(75) null,
-	changed_Time LONG,
 	company_Id LONG,
 	group_Id LONG,
 	user_Id LONG

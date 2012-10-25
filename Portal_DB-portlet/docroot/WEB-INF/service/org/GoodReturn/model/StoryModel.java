@@ -248,35 +248,6 @@ public interface StoryModel extends BaseModel<Story> {
 	public void setStatus_Date(Date status_Date);
 
 	/**
-	 * Returns the changed_ by of this story.
-	 *
-	 * @return the changed_ by of this story
-	 */
-	@AutoEscape
-	public String getChanged_By();
-
-	/**
-	 * Sets the changed_ by of this story.
-	 *
-	 * @param changed_By the changed_ by of this story
-	 */
-	public void setChanged_By(String changed_By);
-
-	/**
-	 * Returns the changed_ time of this story.
-	 *
-	 * @return the changed_ time of this story
-	 */
-	public long getChanged_Time();
-
-	/**
-	 * Sets the changed_ time of this story.
-	 *
-	 * @param changed_Time the changed_ time of this story
-	 */
-	public void setChanged_Time(long changed_Time);
-
-	/**
 	 * Returns the company_ ID of this story.
 	 *
 	 * @return the company_ ID of this story

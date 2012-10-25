@@ -89,6 +89,8 @@
 		<property name="occupation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="changed_By" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="changed_Time" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="organizationId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="org.goodreturn.model.impl.StoryImpl" table="GoodReturn_Story">
 		<cache usage="read-write" />
@@ -106,8 +108,6 @@
 		<property name="status_By_User_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="status_By_User_Name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="status_Date" type="org.hibernate.type.TimestampType" />
-		<property name="changed_By" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="changed_Time" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="company_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="group_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="user_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />

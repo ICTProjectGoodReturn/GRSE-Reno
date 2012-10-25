@@ -43,8 +43,6 @@ public class StorySoap implements Serializable {
 		soapModel.setStatus_By_User_Id(model.getStatus_By_User_Id());
 		soapModel.setStatus_By_User_Name(model.getStatus_By_User_Name());
 		soapModel.setStatus_Date(model.getStatus_Date());
-		soapModel.setChanged_By(model.getChanged_By());
-		soapModel.setChanged_Time(model.getChanged_Time());
 		soapModel.setCompany_Id(model.getCompany_Id());
 		soapModel.setGroup_Id(model.getGroup_Id());
 		soapModel.setUser_Id(model.getUser_Id());
@@ -205,22 +203,6 @@ public class StorySoap implements Serializable {
 		_status_Date = status_Date;
 	}
 
-	public String getChanged_By() {
-		return _changed_By;
-	}
-
-	public void setChanged_By(String changed_By) {
-		_changed_By = changed_By;
-	}
-
-	public long getChanged_Time() {
-		return _changed_Time;
-	}
-
-	public void setChanged_Time(long changed_Time) {
-		_changed_Time = changed_Time;
-	}
-
 	public long getCompany_Id() {
 		return _company_Id;
 	}
@@ -257,8 +239,6 @@ public class StorySoap implements Serializable {
 	private long _status_By_User_Id;
 	private String _status_By_User_Name;
 	private Date _status_Date;
-	private String _changed_By;
-	private long _changed_Time;
 	private long _company_Id;
 	private long _group_Id;
 	private long _user_Id;
