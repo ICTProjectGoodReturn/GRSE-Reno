@@ -52,6 +52,8 @@ public class BorrowerWrapper implements Borrower, ModelWrapper<Borrower> {
 		attributes.put("currency", getCurrency());
 		attributes.put("changed_By", getChanged_By());
 		attributes.put("changed_Time", getChanged_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -103,6 +105,18 @@ public class BorrowerWrapper implements Borrower, ModelWrapper<Borrower> {
 
 		if (changed_Time != null) {
 			setChanged_Time(changed_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -266,6 +280,42 @@ public class BorrowerWrapper implements Borrower, ModelWrapper<Borrower> {
 	*/
 	public void setChanged_Time(long changed_Time) {
 		_borrower.setChanged_Time(changed_Time);
+	}
+
+	/**
+	* Returns the group ID of this borrower.
+	*
+	* @return the group ID of this borrower
+	*/
+	public long getGroupId() {
+		return _borrower.getGroupId();
+	}
+
+	/**
+	* Sets the group ID of this borrower.
+	*
+	* @param groupId the group ID of this borrower
+	*/
+	public void setGroupId(long groupId) {
+		_borrower.setGroupId(groupId);
+	}
+
+	/**
+	* Returns the company ID of this borrower.
+	*
+	* @return the company ID of this borrower
+	*/
+	public long getCompanyId() {
+		return _borrower.getCompanyId();
+	}
+
+	/**
+	* Sets the company ID of this borrower.
+	*
+	* @param companyId the company ID of this borrower
+	*/
+	public void setCompanyId(long companyId) {
+		_borrower.setCompanyId(companyId);
 	}
 
 	public boolean isNew() {

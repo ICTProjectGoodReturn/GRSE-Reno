@@ -65,9 +65,11 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			{ "team_Id", Types.BIGINT },
 			{ "team_Name", Types.VARCHAR },
 			{ "change_By", Types.VARCHAR },
-			{ "change_Time", Types.BIGINT }
+			{ "change_Time", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
+			{ "companyId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Team (team_Id LONG not null primary key,team_Name VARCHAR(75) null,change_By VARCHAR(75) null,change_Time LONG)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Team (team_Id LONG not null primary key,team_Name VARCHAR(75) null,change_By VARCHAR(75) null,change_Time LONG,groupId LONG,companyId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Team";
 	public static final String ORDER_BY_JPQL = " ORDER BY team.team_Id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Team.team_Id ASC";
@@ -99,6 +101,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 		model.setTeam_Name(soapModel.getTeam_Name());
 		model.setChange_By(soapModel.getChange_By());
 		model.setChange_Time(soapModel.getChange_Time());
+		model.setGroupId(soapModel.getGroupId());
+		model.setCompanyId(soapModel.getCompanyId());
 
 		return model;
 	}
@@ -161,6 +165,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 		attributes.put("team_Name", getTeam_Name());
 		attributes.put("change_By", getChange_By());
 		attributes.put("change_Time", getChange_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -189,6 +195,18 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 
 		if (change_Time != null) {
 			setChange_Time(change_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -238,9 +256,27 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 		_change_Time = change_Time;
 	}
 
+	@JSON
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	@JSON
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			Team.class.getName(), getPrimaryKey());
 	}
 
@@ -270,6 +306,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 		teamImpl.setTeam_Name(getTeam_Name());
 		teamImpl.setChange_By(getChange_By());
 		teamImpl.setChange_Time(getChange_Time());
+		teamImpl.setGroupId(getGroupId());
+		teamImpl.setCompanyId(getCompanyId());
 
 		teamImpl.resetOriginalValues();
 
@@ -354,12 +392,16 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 
 		teamCacheModel.change_Time = getChange_Time();
 
+		teamCacheModel.groupId = getGroupId();
+
+		teamCacheModel.companyId = getCompanyId();
+
 		return teamCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{team_Id=");
 		sb.append(getTeam_Id());
@@ -369,13 +411,17 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 		sb.append(getChange_By());
 		sb.append(", change_Time=");
 		sb.append(getChange_Time());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(16);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Team");
@@ -397,6 +443,14 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			"<column><column-name>change_Time</column-name><column-value><![CDATA[");
 		sb.append(getChange_Time());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -411,5 +465,7 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 	private String _team_Name;
 	private String _change_By;
 	private long _change_Time;
+	private long _groupId;
+	private long _companyId;
 	private Team _escapedModelProxy;
 }

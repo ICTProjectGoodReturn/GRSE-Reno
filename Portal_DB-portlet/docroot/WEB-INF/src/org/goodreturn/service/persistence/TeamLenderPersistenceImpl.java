@@ -306,6 +306,8 @@ public class TeamLenderPersistenceImpl extends BasePersistenceImpl<TeamLender>
 		teamLenderImpl.setTeam_Id(teamLender.getTeam_Id());
 		teamLenderImpl.setChanged_By(teamLender.getChanged_By());
 		teamLenderImpl.setChanged_Time(teamLender.getChanged_Time());
+		teamLenderImpl.setGroupId(teamLender.getGroupId());
+		teamLenderImpl.setCompanyId(teamLender.getCompanyId());
 
 		return teamLenderImpl;
 	}

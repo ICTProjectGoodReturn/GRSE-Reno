@@ -354,6 +354,8 @@ public class BorrowerLoanPersistenceImpl extends BasePersistenceImpl<BorrowerLoa
 		borrowerLoanImpl.setAbacus_mfi_Id(borrowerLoan.getAbacus_mfi_Id());
 		borrowerLoanImpl.setChanged_By(borrowerLoan.getChanged_By());
 		borrowerLoanImpl.setChanged_Time(borrowerLoan.getChanged_Time());
+		borrowerLoanImpl.setGroupId(borrowerLoan.getGroupId());
+		borrowerLoanImpl.setCompanyId(borrowerLoan.getCompanyId());
 
 		return borrowerLoanImpl;
 	}

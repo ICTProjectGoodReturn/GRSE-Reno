@@ -32,7 +32,7 @@ import java.io.Serializable;
 public class TeamCacheModel implements CacheModel<Team>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{team_Id=");
 		sb.append(team_Id);
@@ -42,6 +42,10 @@ public class TeamCacheModel implements CacheModel<Team>, Serializable {
 		sb.append(change_By);
 		sb.append(", change_Time=");
 		sb.append(change_Time);
+		sb.append(", groupId=");
+		sb.append(groupId);
+		sb.append(", companyId=");
+		sb.append(companyId);
 		sb.append("}");
 
 		return sb.toString();
@@ -67,6 +71,8 @@ public class TeamCacheModel implements CacheModel<Team>, Serializable {
 		}
 
 		teamImpl.setChange_Time(change_Time);
+		teamImpl.setGroupId(groupId);
+		teamImpl.setCompanyId(companyId);
 
 		teamImpl.resetOriginalValues();
 
@@ -77,4 +83,6 @@ public class TeamCacheModel implements CacheModel<Team>, Serializable {
 	public String team_Name;
 	public String change_By;
 	public long change_Time;
+	public long groupId;
+	public long companyId;
 }

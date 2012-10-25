@@ -85,9 +85,11 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 			{ "featured_Lender", Types.VARCHAR },
 			{ "is_Loan_Donation", Types.BOOLEAN },
 			{ "changed_By", Types.VARCHAR },
-			{ "changed_Time", Types.BIGINT }
+			{ "changed_Time", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
+			{ "companyId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Lender (lender_Id LONG not null primary key,abacus_Person_Id LONG,certificate_Id LONG,employer_Name VARCHAR(75) null,comment_ VARCHAR(75) null,heard_Of_Us VARCHAR(75) null,display_Name VARCHAR(75) null,date_Of_Birth DATE null,reason_For_Lending VARCHAR(75) null,about_Themselves VARCHAR(75) null,personal_Link VARCHAR(75) null,is_Public_Profile BOOLEAN,recieve_Emails BOOLEAN,recieve_GoodReturn_Info BOOLEAN,is_Anonymous BOOLEAN,is_Validated BOOLEAN,password_ VARCHAR(75) null,last_Login_Date DATE null,featured_Lender VARCHAR(75) null,is_Loan_Donation BOOLEAN,changed_By VARCHAR(75) null,changed_Time LONG)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Lender (lender_Id LONG not null primary key,abacus_Person_Id LONG,certificate_Id LONG,employer_Name VARCHAR(75) null,comment_ VARCHAR(75) null,heard_Of_Us VARCHAR(75) null,display_Name VARCHAR(75) null,date_Of_Birth DATE null,reason_For_Lending VARCHAR(75) null,about_Themselves VARCHAR(75) null,personal_Link VARCHAR(75) null,is_Public_Profile BOOLEAN,recieve_Emails BOOLEAN,recieve_GoodReturn_Info BOOLEAN,is_Anonymous BOOLEAN,is_Validated BOOLEAN,password_ VARCHAR(75) null,last_Login_Date DATE null,featured_Lender VARCHAR(75) null,is_Loan_Donation BOOLEAN,changed_By VARCHAR(75) null,changed_Time LONG,groupId LONG,companyId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Lender";
 	public static final String ORDER_BY_JPQL = " ORDER BY lender.lender_Id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Lender.lender_Id ASC";
@@ -137,6 +139,8 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		model.setIs_Loan_Donation(soapModel.getIs_Loan_Donation());
 		model.setChanged_By(soapModel.getChanged_By());
 		model.setChanged_Time(soapModel.getChanged_Time());
+		model.setGroupId(soapModel.getGroupId());
+		model.setCompanyId(soapModel.getCompanyId());
 
 		return model;
 	}
@@ -217,6 +221,8 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		attributes.put("is_Loan_Donation", getIs_Loan_Donation());
 		attributes.put("changed_By", getChanged_By());
 		attributes.put("changed_Time", getChanged_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -354,6 +360,18 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 
 		if (changed_Time != null) {
 			setChanged_Time(changed_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -629,9 +647,27 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		_changed_Time = changed_Time;
 	}
 
+	@JSON
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	@JSON
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			Lender.class.getName(), getPrimaryKey());
 	}
 
@@ -679,6 +715,8 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		lenderImpl.setIs_Loan_Donation(getIs_Loan_Donation());
 		lenderImpl.setChanged_By(getChanged_By());
 		lenderImpl.setChanged_Time(getChanged_Time());
+		lenderImpl.setGroupId(getGroupId());
+		lenderImpl.setCompanyId(getCompanyId());
 
 		lenderImpl.resetOriginalValues();
 
@@ -861,12 +899,16 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 
 		lenderCacheModel.changed_Time = getChanged_Time();
 
+		lenderCacheModel.groupId = getGroupId();
+
+		lenderCacheModel.companyId = getCompanyId();
+
 		return lenderCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(45);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("{lender_Id=");
 		sb.append(getLender_Id());
@@ -912,13 +954,17 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 		sb.append(getChanged_By());
 		sb.append(", changed_Time=");
 		sb.append(getChanged_Time());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(70);
+		StringBundler sb = new StringBundler(76);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Lender");
@@ -1012,6 +1058,14 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
 		sb.append(getChanged_Time());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -1044,5 +1098,7 @@ public class LenderModelImpl extends BaseModelImpl<Lender>
 	private boolean _is_Loan_Donation;
 	private String _changed_By;
 	private long _changed_Time;
+	private long _groupId;
+	private long _companyId;
 	private Lender _escapedModelProxy;
 }

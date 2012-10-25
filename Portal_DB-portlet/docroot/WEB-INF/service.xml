@@ -28,6 +28,11 @@
 		<column name="occupation" type="String" />
 		<column name="changed_By" type="String" />
 		<column name="changed_Time" type="long" />
+		
+		<!-- Admin Fields -->
+		<column name="groupId" type="long"/>
+		<column name="companyId" type="long"/>
+		
 
 		<!-- Order -->
 		<order by="asc">
@@ -67,6 +72,10 @@
 		<column name="is_Loan_Donation" type="boolean" />
 		<column name="changed_By" type="String" />
 		<column name="changed_Time" type="long" />
+		
+		<!-- Admin Fields -->
+		<column name="groupId" type="long"/>
+		<column name="companyId" type="long"/>
 
 		<!-- Order -->
 
@@ -74,7 +83,8 @@
 			<order-column name="lender_Id" />
 		</order>
 
-
+		
+		
 
 	</entity>
 
@@ -96,7 +106,9 @@
 		<column name="changed_By" type="String" />
 		<column name="changed_Time" type="long" />
 		
-
+		<!-- Admin Fields -->
+		<column name="groupId" type="long"/>
+		<column name="companyId" type="long"/>
 
 		<!-- Order -->
 		<order by="asc">
@@ -118,6 +130,10 @@
 		<column name="change_By" type="String" />
 		<column name="change_Time" type="long" />
 
+		<!-- Admin Fields -->
+		<column name="groupId" type="long"/>
+		<column name="companyId" type="long"/>
+		
 		<!-- Order -->
 		<order by="asc">
 			<order-column name="team_Id" />
@@ -139,7 +155,11 @@
 		<column name="certificate_Type" type="String" />
 		<column name="changed_By" type="String" />
 		<column name="changed_Time" type="long" />
-
+		
+		<!-- Admin Fields -->
+		<column name="groupId" type="long"/>
+		<column name="companyId" type="long"/>
+		
 		<!-- Order -->
 		<order by="asc">
 			<order-column name="certificate_Id" />
@@ -159,6 +179,10 @@
 		<column name="abacus_mfi_Id" type="long" />
 		<column name="changed_By" type="String" />
 		<column name="changed_Time" type="String" />
+		
+		<!-- Admin Fields -->
+		<column name="groupId" type="long"/>
+		<column name="companyId" type="long"/>
 		
 		<!-- Order -->
 		<order by="asc">
@@ -230,9 +254,14 @@
 		<column name="lender_Id" type="long" />
 		<column name="team_Id" type="long" />
 		
+
 		<!-- Other fields -->
 		<column name="changed_By" type="String" />
 		<column name="changed_Time" type="long" />
+	
+		<!-- Admin Fields -->
+		<column name="groupId" type="long"/>
+		<column name="companyId" type="long"/>
 
 		<!-- Order -->
 		<order by="asc">

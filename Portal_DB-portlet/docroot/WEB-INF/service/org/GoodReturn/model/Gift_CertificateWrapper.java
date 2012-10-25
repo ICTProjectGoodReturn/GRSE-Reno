@@ -50,6 +50,8 @@ public class Gift_CertificateWrapper implements Gift_Certificate,
 		attributes.put("certificate_Type", getCertificate_Type());
 		attributes.put("changed_By", getChanged_By());
 		attributes.put("changed_Time", getChanged_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -83,6 +85,18 @@ public class Gift_CertificateWrapper implements Gift_Certificate,
 
 		if (changed_Time != null) {
 			setChanged_Time(changed_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -192,6 +206,42 @@ public class Gift_CertificateWrapper implements Gift_Certificate,
 	*/
 	public void setChanged_Time(long changed_Time) {
 		_gift_Certificate.setChanged_Time(changed_Time);
+	}
+
+	/**
+	* Returns the group ID of this gift_ certificate.
+	*
+	* @return the group ID of this gift_ certificate
+	*/
+	public long getGroupId() {
+		return _gift_Certificate.getGroupId();
+	}
+
+	/**
+	* Sets the group ID of this gift_ certificate.
+	*
+	* @param groupId the group ID of this gift_ certificate
+	*/
+	public void setGroupId(long groupId) {
+		_gift_Certificate.setGroupId(groupId);
+	}
+
+	/**
+	* Returns the company ID of this gift_ certificate.
+	*
+	* @return the company ID of this gift_ certificate
+	*/
+	public long getCompanyId() {
+		return _gift_Certificate.getCompanyId();
+	}
+
+	/**
+	* Sets the company ID of this gift_ certificate.
+	*
+	* @param companyId the company ID of this gift_ certificate
+	*/
+	public void setCompanyId(long companyId) {
+		_gift_Certificate.setCompanyId(companyId);
 	}
 
 	public boolean isNew() {

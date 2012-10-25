@@ -59,6 +59,8 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
 		attributes.put("occupation", getOccupation());
 		attributes.put("changed_By", getChanged_By());
 		attributes.put("changed_Time", getChanged_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -152,6 +154,18 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
 
 		if (changed_Time != null) {
 			setChanged_Time(changed_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -441,6 +455,42 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
 	*/
 	public void setChanged_Time(long changed_Time) {
 		_person.setChanged_Time(changed_Time);
+	}
+
+	/**
+	* Returns the group ID of this person.
+	*
+	* @return the group ID of this person
+	*/
+	public long getGroupId() {
+		return _person.getGroupId();
+	}
+
+	/**
+	* Sets the group ID of this person.
+	*
+	* @param groupId the group ID of this person
+	*/
+	public void setGroupId(long groupId) {
+		_person.setGroupId(groupId);
+	}
+
+	/**
+	* Returns the company ID of this person.
+	*
+	* @return the company ID of this person
+	*/
+	public long getCompanyId() {
+		return _person.getCompanyId();
+	}
+
+	/**
+	* Sets the company ID of this person.
+	*
+	* @param companyId the company ID of this person
+	*/
+	public void setCompanyId(long companyId) {
+		_person.setCompanyId(companyId);
 	}
 
 	public boolean isNew() {

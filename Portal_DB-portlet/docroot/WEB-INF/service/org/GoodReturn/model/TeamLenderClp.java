@@ -70,6 +70,8 @@ public class TeamLenderClp extends BaseModelImpl<TeamLender>
 		attributes.put("team_Id", getTeam_Id());
 		attributes.put("changed_By", getChanged_By());
 		attributes.put("changed_Time", getChanged_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -104,6 +106,18 @@ public class TeamLenderClp extends BaseModelImpl<TeamLender>
 
 		if (changed_Time != null) {
 			setChanged_Time(changed_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -147,6 +161,22 @@ public class TeamLenderClp extends BaseModelImpl<TeamLender>
 		_changed_Time = changed_Time;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	public BaseModel<?> getTeamLenderRemoteModel() {
 		return _teamLenderRemoteModel;
 	}
@@ -179,6 +209,8 @@ public class TeamLenderClp extends BaseModelImpl<TeamLender>
 		clone.setTeam_Id(getTeam_Id());
 		clone.setChanged_By(getChanged_By());
 		clone.setChanged_Time(getChanged_Time());
+		clone.setGroupId(getGroupId());
+		clone.setCompanyId(getCompanyId());
 
 		return clone;
 	}
@@ -235,7 +267,7 @@ public class TeamLenderClp extends BaseModelImpl<TeamLender>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{team_lender_Id=");
 		sb.append(getTeam_lender_Id());
@@ -247,13 +279,17 @@ public class TeamLenderClp extends BaseModelImpl<TeamLender>
 		sb.append(getChanged_By());
 		sb.append(", changed_Time=");
 		sb.append(getChanged_Time());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.TeamLender");
@@ -279,6 +315,14 @@ public class TeamLenderClp extends BaseModelImpl<TeamLender>
 			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
 		sb.append(getChanged_Time());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -290,5 +334,7 @@ public class TeamLenderClp extends BaseModelImpl<TeamLender>
 	private long _team_Id;
 	private String _changed_By;
 	private long _changed_Time;
+	private long _groupId;
+	private long _companyId;
 	private BaseModel<?> _teamLenderRemoteModel;
 }

@@ -34,7 +34,7 @@ import java.util.Date;
 public class LenderCacheModel implements CacheModel<Lender>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(45);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("{lender_Id=");
 		sb.append(lender_Id);
@@ -80,6 +80,10 @@ public class LenderCacheModel implements CacheModel<Lender>, Serializable {
 		sb.append(changed_By);
 		sb.append(", changed_Time=");
 		sb.append(changed_Time);
+		sb.append(", groupId=");
+		sb.append(groupId);
+		sb.append(", companyId=");
+		sb.append(companyId);
 		sb.append("}");
 
 		return sb.toString();
@@ -185,6 +189,8 @@ public class LenderCacheModel implements CacheModel<Lender>, Serializable {
 		}
 
 		lenderImpl.setChanged_Time(changed_Time);
+		lenderImpl.setGroupId(groupId);
+		lenderImpl.setCompanyId(companyId);
 
 		lenderImpl.resetOriginalValues();
 
@@ -213,4 +219,6 @@ public class LenderCacheModel implements CacheModel<Lender>, Serializable {
 	public boolean is_Loan_Donation;
 	public String changed_By;
 	public long changed_Time;
+	public long groupId;
+	public long companyId;
 }

@@ -68,6 +68,8 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 		attributes.put("team_Name", getTeam_Name());
 		attributes.put("change_By", getChange_By());
 		attributes.put("change_Time", getChange_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -96,6 +98,18 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 
 		if (change_Time != null) {
 			setChange_Time(change_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -131,6 +145,22 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 		_change_Time = change_Time;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	public BaseModel<?> getTeamRemoteModel() {
 		return _teamRemoteModel;
 	}
@@ -162,6 +192,8 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 		clone.setTeam_Name(getTeam_Name());
 		clone.setChange_By(getChange_By());
 		clone.setChange_Time(getChange_Time());
+		clone.setGroupId(getGroupId());
+		clone.setCompanyId(getCompanyId());
 
 		return clone;
 	}
@@ -218,7 +250,7 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{team_Id=");
 		sb.append(getTeam_Id());
@@ -228,13 +260,17 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 		sb.append(getChange_By());
 		sb.append(", change_Time=");
 		sb.append(getChange_Time());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(16);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Team");
@@ -256,6 +292,14 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 			"<column><column-name>change_Time</column-name><column-value><![CDATA[");
 		sb.append(getChange_Time());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -266,5 +310,7 @@ public class TeamClp extends BaseModelImpl<Team> implements Team {
 	private String _team_Name;
 	private String _change_By;
 	private long _change_Time;
+	private long _groupId;
+	private long _companyId;
 	private BaseModel<?> _teamRemoteModel;
 }

@@ -87,6 +87,8 @@ public class LenderClp extends BaseModelImpl<Lender> implements Lender {
 		attributes.put("is_Loan_Donation", getIs_Loan_Donation());
 		attributes.put("changed_By", getChanged_By());
 		attributes.put("changed_Time", getChanged_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -224,6 +226,18 @@ public class LenderClp extends BaseModelImpl<Lender> implements Lender {
 
 		if (changed_Time != null) {
 			setChanged_Time(changed_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -427,6 +441,22 @@ public class LenderClp extends BaseModelImpl<Lender> implements Lender {
 		_changed_Time = changed_Time;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	public BaseModel<?> getLenderRemoteModel() {
 		return _lenderRemoteModel;
 	}
@@ -476,6 +506,8 @@ public class LenderClp extends BaseModelImpl<Lender> implements Lender {
 		clone.setIs_Loan_Donation(getIs_Loan_Donation());
 		clone.setChanged_By(getChanged_By());
 		clone.setChanged_Time(getChanged_Time());
+		clone.setGroupId(getGroupId());
+		clone.setCompanyId(getCompanyId());
 
 		return clone;
 	}
@@ -532,7 +564,7 @@ public class LenderClp extends BaseModelImpl<Lender> implements Lender {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(45);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("{lender_Id=");
 		sb.append(getLender_Id());
@@ -578,13 +610,17 @@ public class LenderClp extends BaseModelImpl<Lender> implements Lender {
 		sb.append(getChanged_By());
 		sb.append(", changed_Time=");
 		sb.append(getChanged_Time());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(70);
+		StringBundler sb = new StringBundler(76);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Lender");
@@ -678,6 +714,14 @@ public class LenderClp extends BaseModelImpl<Lender> implements Lender {
 			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
 		sb.append(getChanged_Time());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -706,5 +750,7 @@ public class LenderClp extends BaseModelImpl<Lender> implements Lender {
 	private boolean _is_Loan_Donation;
 	private String _changed_By;
 	private long _changed_Time;
+	private long _groupId;
+	private long _companyId;
 	private BaseModel<?> _lenderRemoteModel;
 }

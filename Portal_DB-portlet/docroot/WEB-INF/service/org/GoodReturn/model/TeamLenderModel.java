@@ -128,6 +128,34 @@ public interface TeamLenderModel extends BaseModel<TeamLender> {
 	 */
 	public void setChanged_Time(long changed_Time);
 
+	/**
+	 * Returns the group ID of this team lender.
+	 *
+	 * @return the group ID of this team lender
+	 */
+	public long getGroupId();
+
+	/**
+	 * Sets the group ID of this team lender.
+	 *
+	 * @param groupId the group ID of this team lender
+	 */
+	public void setGroupId(long groupId);
+
+	/**
+	 * Returns the company ID of this team lender.
+	 *
+	 * @return the company ID of this team lender
+	 */
+	public long getCompanyId();
+
+	/**
+	 * Sets the company ID of this team lender.
+	 *
+	 * @param companyId the company ID of this team lender
+	 */
+	public void setCompanyId(long companyId);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);

@@ -129,6 +129,34 @@ public interface BorrowerLoanModel extends BaseModel<BorrowerLoan> {
 	 */
 	public void setChanged_Time(String changed_Time);
 
+	/**
+	 * Returns the group ID of this borrower loan.
+	 *
+	 * @return the group ID of this borrower loan
+	 */
+	public long getGroupId();
+
+	/**
+	 * Sets the group ID of this borrower loan.
+	 *
+	 * @param groupId the group ID of this borrower loan
+	 */
+	public void setGroupId(long groupId);
+
+	/**
+	 * Returns the company ID of this borrower loan.
+	 *
+	 * @return the company ID of this borrower loan
+	 */
+	public long getCompanyId();
+
+	/**
+	 * Sets the company ID of this borrower loan.
+	 *
+	 * @param companyId the company ID of this borrower loan
+	 */
+	public void setCompanyId(long companyId);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);

@@ -129,6 +129,34 @@ public interface Gift_CertificateModel extends BaseModel<Gift_Certificate> {
 	 */
 	public void setChanged_Time(long changed_Time);
 
+	/**
+	 * Returns the group ID of this gift_ certificate.
+	 *
+	 * @return the group ID of this gift_ certificate
+	 */
+	public long getGroupId();
+
+	/**
+	 * Sets the group ID of this gift_ certificate.
+	 *
+	 * @param groupId the group ID of this gift_ certificate
+	 */
+	public void setGroupId(long groupId);
+
+	/**
+	 * Returns the company ID of this gift_ certificate.
+	 *
+	 * @return the company ID of this gift_ certificate
+	 */
+	public long getCompanyId();
+
+	/**
+	 * Sets the company ID of this gift_ certificate.
+	 *
+	 * @param companyId the company ID of this gift_ certificate
+	 */
+	public void setCompanyId(long companyId);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);

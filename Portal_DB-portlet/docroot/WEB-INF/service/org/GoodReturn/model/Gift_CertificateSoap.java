@@ -35,6 +35,8 @@ public class Gift_CertificateSoap implements Serializable {
 		soapModel.setCertificate_Type(model.getCertificate_Type());
 		soapModel.setChanged_By(model.getChanged_By());
 		soapModel.setChanged_Time(model.getChanged_Time());
+		soapModel.setGroupId(model.getGroupId());
+		soapModel.setCompanyId(model.getCompanyId());
 
 		return soapModel;
 	}
@@ -129,9 +131,27 @@ public class Gift_CertificateSoap implements Serializable {
 		_changed_Time = changed_Time;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	private long _certificate_Id;
 	private double _certificate_Amount;
 	private String _certificate_Type;
 	private String _changed_By;
 	private long _changed_Time;
+	private long _groupId;
+	private long _companyId;
 }

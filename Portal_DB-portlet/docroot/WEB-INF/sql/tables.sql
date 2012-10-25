@@ -6,7 +6,9 @@ create table GoodReturn_Borrower (
 	pdf_Link VARCHAR(75) null,
 	currency_ DOUBLE,
 	changed_By VARCHAR(75) null,
-	changed_Time LONG
+	changed_Time LONG,
+	groupId LONG,
+	companyId LONG
 );
 
 create table GoodReturn_BorrowerLoan (
@@ -14,7 +16,9 @@ create table GoodReturn_BorrowerLoan (
 	borrower_Id LONG,
 	abacus_mfi_Id LONG,
 	changed_By VARCHAR(75) null,
-	changed_Time VARCHAR(75) null
+	changed_Time VARCHAR(75) null,
+	groupId LONG,
+	companyId LONG
 );
 
 create table GoodReturn_Gift_Certificate (
@@ -22,7 +26,9 @@ create table GoodReturn_Gift_Certificate (
 	certificate_Amount DOUBLE,
 	certificate_Type VARCHAR(75) null,
 	changed_By VARCHAR(75) null,
-	changed_Time LONG
+	changed_Time LONG,
+	groupId LONG,
+	companyId LONG
 );
 
 create table GoodReturn_Lender (
@@ -47,7 +53,9 @@ create table GoodReturn_Lender (
 	featured_Lender VARCHAR(75) null,
 	is_Loan_Donation BOOLEAN,
 	changed_By VARCHAR(75) null,
-	changed_Time LONG
+	changed_Time LONG,
+	groupId LONG,
+	companyId LONG
 );
 
 create table GoodReturn_Person (
@@ -65,7 +73,9 @@ create table GoodReturn_Person (
 	photo_URL VARCHAR(75) null,
 	occupation VARCHAR(75) null,
 	changed_By VARCHAR(75) null,
-	changed_Time LONG
+	changed_Time LONG,
+	groupId LONG,
+	companyId LONG
 );
 
 create table GoodReturn_Story (
@@ -94,7 +104,9 @@ create table GoodReturn_Team (
 	team_Id LONG not null primary key,
 	team_Name VARCHAR(75) null,
 	change_By VARCHAR(75) null,
-	change_Time LONG
+	change_Time LONG,
+	groupId LONG,
+	companyId LONG
 );
 
 create table GoodReturn_TeamLender (
@@ -102,7 +114,9 @@ create table GoodReturn_TeamLender (
 	lender_Id LONG,
 	team_Id LONG,
 	changed_By VARCHAR(75) null,
-	changed_Time LONG
+	changed_Time LONG,
+	groupId LONG,
+	companyId LONG
 );
 
 create table GoodReturn_TeamLenderLoan (

@@ -38,6 +38,8 @@ public class BorrowerSoap implements Serializable {
 		soapModel.setCurrency(model.getCurrency());
 		soapModel.setChanged_By(model.getChanged_By());
 		soapModel.setChanged_Time(model.getChanged_Time());
+		soapModel.setGroupId(model.getGroupId());
+		soapModel.setCompanyId(model.getCompanyId());
 
 		return soapModel;
 	}
@@ -154,6 +156,22 @@ public class BorrowerSoap implements Serializable {
 		_changed_Time = changed_Time;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	private long _borrower_Id;
 	private long _abacus_Person_Id;
 	private String _village;
@@ -162,4 +180,6 @@ public class BorrowerSoap implements Serializable {
 	private double _currency;
 	private String _changed_By;
 	private long _changed_Time;
+	private long _groupId;
+	private long _companyId;
 }

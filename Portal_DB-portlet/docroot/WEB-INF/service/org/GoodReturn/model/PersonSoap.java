@@ -45,6 +45,8 @@ public class PersonSoap implements Serializable {
 		soapModel.setOccupation(model.getOccupation());
 		soapModel.setChanged_By(model.getChanged_By());
 		soapModel.setChanged_Time(model.getChanged_Time());
+		soapModel.setGroupId(model.getGroupId());
+		soapModel.setCompanyId(model.getCompanyId());
 
 		return soapModel;
 	}
@@ -217,6 +219,22 @@ public class PersonSoap implements Serializable {
 		_changed_Time = changed_Time;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	private long _abacus_Person_Id;
 	private String _first_Name;
 	private String _last_Name;
@@ -232,4 +250,6 @@ public class PersonSoap implements Serializable {
 	private String _occupation;
 	private String _changed_By;
 	private long _changed_Time;
+	private long _groupId;
+	private long _companyId;
 }
