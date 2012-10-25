@@ -320,6 +320,21 @@ public class ActionUtil {
 
 		return tempResult;
 	}
+	
+	public static List<TempBl> getTempBls(RenderRequest request) {
+		//Requested data.
+		long groupId = ((ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY)).getScopeGroupId();
+		
+		//Retrieves data
+        List<TempBl> results;
+        try {
+            results = TempBlLocalServiceUtil.getAllTempBls(groupId);
+        } catch (SystemException ex) {
+            results  = Collections.EMPTY_LIST;
+        }
+
+        return results;
+	}
 
 	//
 	//	Action Phase Processing Methods
@@ -454,10 +469,10 @@ public class ActionUtil {
 	/**
 	 * Creates a new TempBl object from the data which is attached to the request.
 	 * 
-	 * @param request
-	 * @return
+	 * @param request which contains the relevant data for the Tempbl object.
+	 * @return TempBl object which represents the data within the request.
 	 */
-	public TempBl tempBlFromRequest(ActionRequest request) {
+	public static TempBl tempBlFromRequest(ActionRequest request) {
 		String borrowerName = ParamUtil.getString(request, "borrower_Name");
 		long borrowerLoanId = ParamUtil.getLong(request, "borrower_Loan_Id");
 		boolean newTempBl = true;

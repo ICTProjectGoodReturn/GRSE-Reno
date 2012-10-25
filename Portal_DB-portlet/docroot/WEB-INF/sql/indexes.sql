@@ -8,3 +8,5 @@ create index IX_AD79647B on GoodReturn_Story (loan_Account_Id, story_Type);
 create index IX_656CF1A8 on GoodReturn_Story (story_Id, status);
 create index IX_71B7B40B on GoodReturn_Story (uuid_);
 create unique index IX_51601CFF on GoodReturn_Story (uuid_, groupId);
+
+create index IX_F6526234 on GoodReturn_TempBl (groupId);

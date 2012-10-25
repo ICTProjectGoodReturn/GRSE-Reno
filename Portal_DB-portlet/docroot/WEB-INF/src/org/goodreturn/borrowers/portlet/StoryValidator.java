@@ -22,19 +22,20 @@ public class StoryValidator {
 	 */
 	public static boolean validateStory(Story story, List<String> errors) {
 		//TODO add error entries for each of the errors.
+		boolean storyValid = true;
 		//null check
 		if (story == null) {
-			return false;
+			storyValid = false;
 		}
 
 		//Valid story types.
 		if (!(story.getStory_Type().equals("initial") || story.getStory_Type().equals("final"))) {
-			return false;
+			storyValid = false;
 		}
 
 		//non null borrower_loan_Id
 		if (story.getAbacus_Borrower_Loan_Id() <= 0) {
-			return false;
+			storyValid = false;
 		}
 
 		//URL
@@ -45,10 +46,10 @@ public class StoryValidator {
 				story.setVideo_Url("");
 				
 			} else if (!Validator.isUrl(story.getVideo_Url())) {
-				return false;
+				storyValid = false;
 			}
 		}
 		
-		return true;
+		return storyValid;
 	}
 }

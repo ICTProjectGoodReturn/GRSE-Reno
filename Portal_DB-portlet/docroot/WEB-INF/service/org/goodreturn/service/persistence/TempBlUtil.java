@@ -189,6 +189,143 @@ public class TempBlUtil {
 	}
 
 	/**
+	* Returns all the temp bls where groupId = &#63;.
+	*
+	* @param groupId the group ID
+	* @return the matching temp bls
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<org.goodreturn.model.TempBl> findByGroupId(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByGroupId(groupId);
+	}
+
+	/**
+	* Returns a range of all the temp bls where groupId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param start the lower bound of the range of temp bls
+	* @param end the upper bound of the range of temp bls (not inclusive)
+	* @return the range of matching temp bls
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<org.goodreturn.model.TempBl> findByGroupId(
+		long groupId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByGroupId(groupId, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the temp bls where groupId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param start the lower bound of the range of temp bls
+	* @param end the upper bound of the range of temp bls (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching temp bls
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<org.goodreturn.model.TempBl> findByGroupId(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByGroupId(groupId, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first temp bl in the ordered set where groupId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching temp bl
+	* @throws org.goodreturn.NoSuchTempBlException if a matching temp bl could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static org.goodreturn.model.TempBl findByGroupId_First(
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			org.goodreturn.NoSuchTempBlException {
+		return getPersistence().findByGroupId_First(groupId, orderByComparator);
+	}
+
+	/**
+	* Returns the first temp bl in the ordered set where groupId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching temp bl, or <code>null</code> if a matching temp bl could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static org.goodreturn.model.TempBl fetchByGroupId_First(
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByGroupId_First(groupId, orderByComparator);
+	}
+
+	/**
+	* Returns the last temp bl in the ordered set where groupId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching temp bl
+	* @throws org.goodreturn.NoSuchTempBlException if a matching temp bl could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static org.goodreturn.model.TempBl findByGroupId_Last(long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			org.goodreturn.NoSuchTempBlException {
+		return getPersistence().findByGroupId_Last(groupId, orderByComparator);
+	}
+
+	/**
+	* Returns the last temp bl in the ordered set where groupId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching temp bl, or <code>null</code> if a matching temp bl could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static org.goodreturn.model.TempBl fetchByGroupId_Last(
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByGroupId_Last(groupId, orderByComparator);
+	}
+
+	/**
+	* Returns the temp bls before and after the current temp bl in the ordered set where groupId = &#63;.
+	*
+	* @param tempBlPK the primary key of the current temp bl
+	* @param groupId the group ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next temp bl
+	* @throws org.goodreturn.NoSuchTempBlException if a temp bl with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static org.goodreturn.model.TempBl[] findByGroupId_PrevAndNext(
+		org.goodreturn.service.persistence.TempBlPK tempBlPK, long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			org.goodreturn.NoSuchTempBlException {
+		return getPersistence()
+				   .findByGroupId_PrevAndNext(tempBlPK, groupId,
+			orderByComparator);
+	}
+
+	/**
 	* Returns all the temp bls.
 	*
 	* @return the temp bls
@@ -238,6 +375,17 @@ public class TempBlUtil {
 	}
 
 	/**
+	* Removes all the temp bls where groupId = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByGroupId(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByGroupId(groupId);
+	}
+
+	/**
 	* Removes all the temp bls from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -245,6 +393,18 @@ public class TempBlUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
+	}
+
+	/**
+	* Returns the number of temp bls where groupId = &#63;.
+	*
+	* @param groupId the group ID
+	* @return the number of matching temp bls
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByGroupId(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByGroupId(groupId);
 	}
 
 	/**

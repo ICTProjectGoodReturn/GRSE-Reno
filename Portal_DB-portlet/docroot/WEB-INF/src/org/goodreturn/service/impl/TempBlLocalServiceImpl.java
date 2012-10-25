@@ -14,7 +14,12 @@
 
 package org.goodreturn.service.impl;
 
+import java.util.List;
+
+import org.goodreturn.model.TempBl;
 import org.goodreturn.service.base.TempBlLocalServiceBaseImpl;
+
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the temp bl local service.
@@ -36,4 +41,10 @@ public class TempBlLocalServiceImpl extends TempBlLocalServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link org.goodreturn.service.TempBlLocalServiceUtil} to access the temp bl local service.
 	 */
+	
+	public List<TempBl> getAllTempBls(long groupId)
+		    throws SystemException {
+		    List<TempBl> products = tempBlPersistence.findByGroupId(groupId);
+		    return products;
+		}
 }

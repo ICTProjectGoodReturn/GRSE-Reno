@@ -2,7 +2,6 @@ package org.goodreturn.borrowers.portlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -13,9 +12,7 @@ import org.goodreturn.borrowers.util.WebKeys;
 import org.goodreturn.model.Borrower;
 import org.goodreturn.model.BorrowerLoan;
 import org.goodreturn.model.Story;
-import org.goodreturn.model.impl.BorrowerImpl;
-import org.goodreturn.model.impl.BorrowerLoanImpl;
-import org.goodreturn.model.impl.StoryImpl;
+import org.goodreturn.model.TempBl;
 import org.goodreturn.service.BorrowerLoanLocalServiceUtil;
 import org.goodreturn.service.BorrowerLocalServiceUtil;
 import org.goodreturn.service.StoryLocalServiceUtil;
@@ -24,8 +21,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -228,7 +223,36 @@ public class BorrowersPortlet extends MVCPortlet {
 		}
 	}
 
-	public void updateTempBL(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException, PortalException, SystemException {
-		//TODO TONIGHT
+	public void addTempBl(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException, PortalException, SystemException {
+		//Data retrieval
+		TempBl tempBl = ActionUtil.tempBlFromRequest(actionRequest);
+		ArrayList<String> errors = new ArrayList<String>();
+		
+		ServiceContext serviceContext = null;
+		serviceContext = ServiceContextFactory.getInstance(Story.class.getName(), actionRequest);
+
+		//Updates or adds tempBl to database if valid.
+		boolean operationFailed = true;
+		if (TempBlValidator.validateTempBl(tempBl, errors)) {
+			//TODO replace with checking if already exists through call.
+			if (true) {
+				// Updating
+			} else {
+				// Adding
+			}
+		} else {
+			errors.add("tempbl-data-invalid-error");
+		}
+		
+		//Add/Update failed, adds all errors for user display.
+		if (operationFailed) {
+			for (String error : errors) {
+				SessionErrors.add(actionRequest, error);
+			}
+			
+			// Sets render page with data.
+			actionRequest.setAttribute(WebKeys.TEMPBL_ENTRY, tempBl);//TODO CHECK
+			//actionResponse.setRenderParameter("jspPage", "/html/tempbl/view_tempbl.jsp");
+		}
 	}
 }

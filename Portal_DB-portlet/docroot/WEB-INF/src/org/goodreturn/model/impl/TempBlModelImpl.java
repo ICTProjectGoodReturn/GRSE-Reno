@@ -77,7 +77,10 @@ public class TempBlModelImpl extends BaseModelImpl<TempBl>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.org.goodreturn.model.TempBl"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.org.goodreturn.model.TempBl"),
+			true);
+	public static long GROUPID_COLUMN_BITMASK = 1L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -219,7 +222,19 @@ public class TempBlModelImpl extends BaseModelImpl<TempBl>
 	}
 
 	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
+
+		if (!_setOriginalGroupId) {
+			_setOriginalGroupId = true;
+
+			_originalGroupId = _groupId;
+		}
+
 		_groupId = groupId;
+	}
+
+	public long getOriginalGroupId() {
+		return _originalGroupId;
 	}
 
 	@JSON
@@ -229,6 +244,10 @@ public class TempBlModelImpl extends BaseModelImpl<TempBl>
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -294,6 +313,13 @@ public class TempBlModelImpl extends BaseModelImpl<TempBl>
 
 	@Override
 	public void resetOriginalValues() {
+		TempBlModelImpl tempBlModelImpl = this;
+
+		tempBlModelImpl._originalGroupId = tempBlModelImpl._groupId;
+
+		tempBlModelImpl._setOriginalGroupId = false;
+
+		tempBlModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -370,6 +396,9 @@ public class TempBlModelImpl extends BaseModelImpl<TempBl>
 	private String _borrower_Name;
 	private long _borrower_Loan_Id;
 	private long _groupId;
+	private long _originalGroupId;
+	private boolean _setOriginalGroupId;
 	private long _companyId;
+	private long _columnBitmask;
 	private TempBl _escapedModelProxy;
 }

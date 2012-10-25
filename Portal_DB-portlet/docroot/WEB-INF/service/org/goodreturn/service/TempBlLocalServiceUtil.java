@@ -273,6 +273,12 @@ public class TempBlLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static java.util.List<org.goodreturn.model.TempBl> getAllTempBls(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getAllTempBls(groupId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

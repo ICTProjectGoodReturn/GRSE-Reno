@@ -265,6 +265,12 @@ public class TempBlLocalServiceWrapper implements TempBlLocalService,
 		return _tempBlLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public java.util.List<org.goodreturn.model.TempBl> getAllTempBls(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _tempBlLocalService.getAllTempBls(groupId);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

@@ -277,5 +277,10 @@
 		<!-- Other Fields -->
 		<column name="groupId" type="long"/>
 		<column name="companyId" type="long"/>
+		
+		<!-- Finder Fields -->
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
 	</entity>
 </service-builder>

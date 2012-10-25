@@ -7,7 +7,7 @@
 		<portlet-class>org.goodreturn.borrowers.portlet.BorrowersPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
-			<value>/html/borrowersportlet/view.jsp</value>
+			<value>/html/temp_bl/view_tempbl.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>

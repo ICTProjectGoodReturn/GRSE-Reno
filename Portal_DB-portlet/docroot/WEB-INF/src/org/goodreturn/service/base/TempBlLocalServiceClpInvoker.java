@@ -113,6 +113,10 @@ public class TempBlLocalServiceClpInvoker {
 		_methodName87 = "setBeanIdentifier";
 
 		_methodParameterTypes87 = new String[] { "java.lang.String" };
+
+		_methodName92 = "getAllTempBls";
+
+		_methodParameterTypes92 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -214,6 +218,11 @@ public class TempBlLocalServiceClpInvoker {
 			TempBlLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
+		if (_methodName92.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes92, parameterTypes)) {
+			return TempBlLocalServiceUtil.getAllTempBls(((Long)arguments[0]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -253,4 +262,6 @@ public class TempBlLocalServiceClpInvoker {
 	private String[] _methodParameterTypes86;
 	private String _methodName87;
 	private String[] _methodParameterTypes87;
+	private String _methodName92;
+	private String[] _methodParameterTypes92;
 }
