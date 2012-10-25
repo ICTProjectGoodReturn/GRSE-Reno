@@ -319,6 +319,8 @@ public class PersonPersistenceImpl extends BasePersistenceImpl<Person>
 		personImpl.setOccupation(person.getOccupation());
 		personImpl.setChanged_By(person.getChanged_By());
 		personImpl.setChanged_Time(person.getChanged_Time());
+		personImpl.setGroupId(person.getGroupId());
+		personImpl.setCompanyId(person.getCompanyId());
 
 		return personImpl;
 	}

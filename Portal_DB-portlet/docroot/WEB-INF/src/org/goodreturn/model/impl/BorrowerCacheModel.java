@@ -32,7 +32,7 @@ import java.io.Serializable;
 public class BorrowerCacheModel implements CacheModel<Borrower>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{borrower_Id=");
 		sb.append(borrower_Id);
@@ -50,6 +50,10 @@ public class BorrowerCacheModel implements CacheModel<Borrower>, Serializable {
 		sb.append(changed_By);
 		sb.append(", changed_Time=");
 		sb.append(changed_Time);
+		sb.append(", groupId=");
+		sb.append(groupId);
+		sb.append(", companyId=");
+		sb.append(companyId);
 		sb.append("}");
 
 		return sb.toString();
@@ -92,6 +96,8 @@ public class BorrowerCacheModel implements CacheModel<Borrower>, Serializable {
 		}
 
 		borrowerImpl.setChanged_Time(changed_Time);
+		borrowerImpl.setGroupId(groupId);
+		borrowerImpl.setCompanyId(companyId);
 
 		borrowerImpl.resetOriginalValues();
 
@@ -106,4 +112,6 @@ public class BorrowerCacheModel implements CacheModel<Borrower>, Serializable {
 	public double currency;
 	public String changed_By;
 	public long changed_Time;
+	public long groupId;
+	public long companyId;
 }

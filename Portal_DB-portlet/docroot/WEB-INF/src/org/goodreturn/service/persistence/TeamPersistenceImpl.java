@@ -307,6 +307,8 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 		teamImpl.setTeam_Name(team.getTeam_Name());
 		teamImpl.setChange_By(team.getChange_By());
 		teamImpl.setChange_Time(team.getChange_Time());
+		teamImpl.setGroupId(team.getGroupId());
+		teamImpl.setCompanyId(team.getCompanyId());
 
 		return teamImpl;
 	}

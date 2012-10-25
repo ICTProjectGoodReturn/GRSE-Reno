@@ -67,9 +67,11 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 			{ "certificate_Amount", Types.DOUBLE },
 			{ "certificate_Type", Types.VARCHAR },
 			{ "changed_By", Types.VARCHAR },
-			{ "changed_Time", Types.BIGINT }
+			{ "changed_Time", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
+			{ "companyId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Gift_Certificate (certificate_Id LONG not null primary key,certificate_Amount DOUBLE,certificate_Type VARCHAR(75) null,changed_By VARCHAR(75) null,changed_Time LONG)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Gift_Certificate (certificate_Id LONG not null primary key,certificate_Amount DOUBLE,certificate_Type VARCHAR(75) null,changed_By VARCHAR(75) null,changed_Time LONG,groupId LONG,companyId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Gift_Certificate";
 	public static final String ORDER_BY_JPQL = " ORDER BY gift_Certificate.certificate_Id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Gift_Certificate.certificate_Id ASC";
@@ -102,6 +104,8 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 		model.setCertificate_Type(soapModel.getCertificate_Type());
 		model.setChanged_By(soapModel.getChanged_By());
 		model.setChanged_Time(soapModel.getChanged_Time());
+		model.setGroupId(soapModel.getGroupId());
+		model.setCompanyId(soapModel.getCompanyId());
 
 		return model;
 	}
@@ -166,6 +170,8 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 		attributes.put("certificate_Type", getCertificate_Type());
 		attributes.put("changed_By", getChanged_By());
 		attributes.put("changed_Time", getChanged_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -200,6 +206,18 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 
 		if (changed_Time != null) {
 			setChanged_Time(changed_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -258,9 +276,27 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 		_changed_Time = changed_Time;
 	}
 
+	@JSON
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	@JSON
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			Gift_Certificate.class.getName(), getPrimaryKey());
 	}
 
@@ -291,6 +327,8 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 		gift_CertificateImpl.setCertificate_Type(getCertificate_Type());
 		gift_CertificateImpl.setChanged_By(getChanged_By());
 		gift_CertificateImpl.setChanged_Time(getChanged_Time());
+		gift_CertificateImpl.setGroupId(getGroupId());
+		gift_CertificateImpl.setCompanyId(getCompanyId());
 
 		gift_CertificateImpl.resetOriginalValues();
 
@@ -377,12 +415,16 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 
 		gift_CertificateCacheModel.changed_Time = getChanged_Time();
 
+		gift_CertificateCacheModel.groupId = getGroupId();
+
+		gift_CertificateCacheModel.companyId = getCompanyId();
+
 		return gift_CertificateCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{certificate_Id=");
 		sb.append(getCertificate_Id());
@@ -394,13 +436,17 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 		sb.append(getChanged_By());
 		sb.append(", changed_Time=");
 		sb.append(getChanged_Time());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Gift_Certificate");
@@ -426,6 +472,14 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
 		sb.append(getChanged_Time());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -441,5 +495,7 @@ public class Gift_CertificateModelImpl extends BaseModelImpl<Gift_Certificate>
 	private String _certificate_Type;
 	private String _changed_By;
 	private long _changed_Time;
+	private long _groupId;
+	private long _companyId;
 	private Gift_Certificate _escapedModelProxy;
 }

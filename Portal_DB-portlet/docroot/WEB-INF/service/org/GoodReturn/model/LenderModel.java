@@ -419,6 +419,34 @@ public interface LenderModel extends BaseModel<Lender> {
 	 */
 	public void setChanged_Time(long changed_Time);
 
+	/**
+	 * Returns the group ID of this lender.
+	 *
+	 * @return the group ID of this lender
+	 */
+	public long getGroupId();
+
+	/**
+	 * Sets the group ID of this lender.
+	 *
+	 * @param groupId the group ID of this lender
+	 */
+	public void setGroupId(long groupId);
+
+	/**
+	 * Returns the company ID of this lender.
+	 *
+	 * @return the company ID of this lender
+	 */
+	public long getCompanyId();
+
+	/**
+	 * Sets the company ID of this lender.
+	 *
+	 * @param companyId the company ID of this lender
+	 */
+	public void setCompanyId(long companyId);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);

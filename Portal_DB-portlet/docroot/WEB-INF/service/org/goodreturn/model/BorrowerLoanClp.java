@@ -70,6 +70,8 @@ public class BorrowerLoanClp extends BaseModelImpl<BorrowerLoan>
 		attributes.put("abacus_mfi_Id", getAbacus_mfi_Id());
 		attributes.put("changed_By", getChanged_By());
 		attributes.put("changed_Time", getChanged_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -105,6 +107,18 @@ public class BorrowerLoanClp extends BaseModelImpl<BorrowerLoan>
 
 		if (changed_Time != null) {
 			setChanged_Time(changed_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -148,6 +162,22 @@ public class BorrowerLoanClp extends BaseModelImpl<BorrowerLoan>
 		_changed_Time = changed_Time;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	public BaseModel<?> getBorrowerLoanRemoteModel() {
 		return _borrowerLoanRemoteModel;
 	}
@@ -180,6 +210,8 @@ public class BorrowerLoanClp extends BaseModelImpl<BorrowerLoan>
 		clone.setAbacus_mfi_Id(getAbacus_mfi_Id());
 		clone.setChanged_By(getChanged_By());
 		clone.setChanged_Time(getChanged_Time());
+		clone.setGroupId(getGroupId());
+		clone.setCompanyId(getCompanyId());
 
 		return clone;
 	}
@@ -236,7 +268,7 @@ public class BorrowerLoanClp extends BaseModelImpl<BorrowerLoan>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{abacus_Borrower_Loan_Id=");
 		sb.append(getAbacus_Borrower_Loan_Id());
@@ -248,13 +280,17 @@ public class BorrowerLoanClp extends BaseModelImpl<BorrowerLoan>
 		sb.append(getChanged_By());
 		sb.append(", changed_Time=");
 		sb.append(getChanged_Time());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.BorrowerLoan");
@@ -280,6 +316,14 @@ public class BorrowerLoanClp extends BaseModelImpl<BorrowerLoan>
 			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
 		sb.append(getChanged_Time());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -291,5 +335,7 @@ public class BorrowerLoanClp extends BaseModelImpl<BorrowerLoan>
 	private long _abacus_mfi_Id;
 	private String _changed_By;
 	private String _changed_Time;
+	private long _groupId;
+	private long _companyId;
 	private BaseModel<?> _borrowerLoanRemoteModel;
 }

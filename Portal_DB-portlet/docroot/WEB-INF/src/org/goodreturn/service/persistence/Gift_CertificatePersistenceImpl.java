@@ -318,6 +318,8 @@ public class Gift_CertificatePersistenceImpl extends BasePersistenceImpl<Gift_Ce
 		gift_CertificateImpl.setCertificate_Type(gift_Certificate.getCertificate_Type());
 		gift_CertificateImpl.setChanged_By(gift_Certificate.getChanged_By());
 		gift_CertificateImpl.setChanged_Time(gift_Certificate.getChanged_Time());
+		gift_CertificateImpl.setGroupId(gift_Certificate.getGroupId());
+		gift_CertificateImpl.setCompanyId(gift_Certificate.getCompanyId());
 
 		return gift_CertificateImpl;
 	}

@@ -313,6 +313,8 @@ public class BorrowerPersistenceImpl extends BasePersistenceImpl<Borrower>
 		borrowerImpl.setCurrency(borrower.getCurrency());
 		borrowerImpl.setChanged_By(borrower.getChanged_By());
 		borrowerImpl.setChanged_Time(borrower.getChanged_Time());
+		borrowerImpl.setGroupId(borrower.getGroupId());
+		borrowerImpl.setCompanyId(borrower.getCompanyId());
 
 		return borrowerImpl;
 	}

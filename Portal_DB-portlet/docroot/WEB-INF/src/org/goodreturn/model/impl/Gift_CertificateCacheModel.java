@@ -33,7 +33,7 @@ public class Gift_CertificateCacheModel implements CacheModel<Gift_Certificate>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{certificate_Id=");
 		sb.append(certificate_Id);
@@ -45,6 +45,10 @@ public class Gift_CertificateCacheModel implements CacheModel<Gift_Certificate>,
 		sb.append(changed_By);
 		sb.append(", changed_Time=");
 		sb.append(changed_Time);
+		sb.append(", groupId=");
+		sb.append(groupId);
+		sb.append(", companyId=");
+		sb.append(companyId);
 		sb.append("}");
 
 		return sb.toString();
@@ -71,6 +75,8 @@ public class Gift_CertificateCacheModel implements CacheModel<Gift_Certificate>,
 		}
 
 		gift_CertificateImpl.setChanged_Time(changed_Time);
+		gift_CertificateImpl.setGroupId(groupId);
+		gift_CertificateImpl.setCompanyId(companyId);
 
 		gift_CertificateImpl.resetOriginalValues();
 
@@ -82,4 +88,6 @@ public class Gift_CertificateCacheModel implements CacheModel<Gift_Certificate>,
 	public String certificate_Type;
 	public String changed_By;
 	public long changed_Time;
+	public long groupId;
+	public long companyId;
 }

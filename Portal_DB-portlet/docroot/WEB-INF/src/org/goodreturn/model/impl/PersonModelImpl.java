@@ -77,9 +77,11 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 			{ "photo_URL", Types.VARCHAR },
 			{ "occupation", Types.VARCHAR },
 			{ "changed_By", Types.VARCHAR },
-			{ "changed_Time", Types.BIGINT }
+			{ "changed_Time", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
+			{ "companyId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Person (abacus_Person_Id LONG not null primary key,first_Name VARCHAR(75) null,last_Name VARCHAR(75) null,email VARCHAR(75) null,address VARCHAR(75) null,address_Type VARCHAR(75) null,country VARCHAR(75) null,gender VARCHAR(75) null,salutation VARCHAR(75) null,status VARCHAR(75) null,phone_Number LONG,photo_URL VARCHAR(75) null,occupation VARCHAR(75) null,changed_By VARCHAR(75) null,changed_Time LONG)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Person (abacus_Person_Id LONG not null primary key,first_Name VARCHAR(75) null,last_Name VARCHAR(75) null,email VARCHAR(75) null,address VARCHAR(75) null,address_Type VARCHAR(75) null,country VARCHAR(75) null,gender VARCHAR(75) null,salutation VARCHAR(75) null,status VARCHAR(75) null,phone_Number LONG,photo_URL VARCHAR(75) null,occupation VARCHAR(75) null,changed_By VARCHAR(75) null,changed_Time LONG,groupId LONG,companyId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Person";
 	public static final String ORDER_BY_JPQL = " ORDER BY person.abacus_Person_Id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Person.abacus_Person_Id ASC";
@@ -122,6 +124,8 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 		model.setOccupation(soapModel.getOccupation());
 		model.setChanged_By(soapModel.getChanged_By());
 		model.setChanged_Time(soapModel.getChanged_Time());
+		model.setGroupId(soapModel.getGroupId());
+		model.setCompanyId(soapModel.getCompanyId());
 
 		return model;
 	}
@@ -195,6 +199,8 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 		attributes.put("occupation", getOccupation());
 		attributes.put("changed_By", getChanged_By());
 		attributes.put("changed_Time", getChanged_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -289,6 +295,18 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 
 		if (changed_Time != null) {
 			setChanged_Time(changed_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -487,9 +505,27 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 		_changed_Time = changed_Time;
 	}
 
+	@JSON
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	@JSON
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			Person.class.getName(), getPrimaryKey());
 	}
 
@@ -530,6 +566,8 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 		personImpl.setOccupation(getOccupation());
 		personImpl.setChanged_By(getChanged_By());
 		personImpl.setChanged_Time(getChanged_Time());
+		personImpl.setGroupId(getGroupId());
+		personImpl.setCompanyId(getCompanyId());
 
 		personImpl.resetOriginalValues();
 
@@ -696,12 +734,16 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 
 		personCacheModel.changed_Time = getChanged_Time();
 
+		personCacheModel.groupId = getGroupId();
+
+		personCacheModel.companyId = getCompanyId();
+
 		return personCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{abacus_Person_Id=");
 		sb.append(getAbacus_Person_Id());
@@ -733,13 +775,17 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 		sb.append(getChanged_By());
 		sb.append(", changed_Time=");
 		sb.append(getChanged_Time());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.Person");
@@ -805,6 +851,14 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
 		sb.append(getChanged_Time());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -830,5 +884,7 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 	private String _occupation;
 	private String _changed_By;
 	private long _changed_Time;
+	private long _groupId;
+	private long _companyId;
 	private Person _escapedModelProxy;
 }

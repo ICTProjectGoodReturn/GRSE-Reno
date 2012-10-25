@@ -48,6 +48,8 @@ public class TeamWrapper implements Team, ModelWrapper<Team> {
 		attributes.put("team_Name", getTeam_Name());
 		attributes.put("change_By", getChange_By());
 		attributes.put("change_Time", getChange_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -75,6 +77,18 @@ public class TeamWrapper implements Team, ModelWrapper<Team> {
 
 		if (change_Time != null) {
 			setChange_Time(change_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -166,6 +180,42 @@ public class TeamWrapper implements Team, ModelWrapper<Team> {
 	*/
 	public void setChange_Time(long change_Time) {
 		_team.setChange_Time(change_Time);
+	}
+
+	/**
+	* Returns the group ID of this team.
+	*
+	* @return the group ID of this team
+	*/
+	public long getGroupId() {
+		return _team.getGroupId();
+	}
+
+	/**
+	* Sets the group ID of this team.
+	*
+	* @param groupId the group ID of this team
+	*/
+	public void setGroupId(long groupId) {
+		_team.setGroupId(groupId);
+	}
+
+	/**
+	* Returns the company ID of this team.
+	*
+	* @return the company ID of this team
+	*/
+	public long getCompanyId() {
+		return _team.getCompanyId();
+	}
+
+	/**
+	* Sets the company ID of this team.
+	*
+	* @param companyId the company ID of this team
+	*/
+	public void setCompanyId(long companyId) {
+		_team.setCompanyId(companyId);
 	}
 
 	public boolean isNew() {

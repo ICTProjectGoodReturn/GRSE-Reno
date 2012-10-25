@@ -35,6 +35,8 @@ public class BorrowerLoanSoap implements Serializable {
 		soapModel.setAbacus_mfi_Id(model.getAbacus_mfi_Id());
 		soapModel.setChanged_By(model.getChanged_By());
 		soapModel.setChanged_Time(model.getChanged_Time());
+		soapModel.setGroupId(model.getGroupId());
+		soapModel.setCompanyId(model.getCompanyId());
 
 		return soapModel;
 	}
@@ -127,9 +129,27 @@ public class BorrowerLoanSoap implements Serializable {
 		_changed_Time = changed_Time;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	private long _abacus_Borrower_Loan_Id;
 	private long _borrower_Id;
 	private long _abacus_mfi_Id;
 	private String _changed_By;
 	private String _changed_Time;
+	private long _groupId;
+	private long _companyId;
 }

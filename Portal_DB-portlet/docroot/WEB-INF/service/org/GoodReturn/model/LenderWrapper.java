@@ -67,6 +67,8 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 		attributes.put("is_Loan_Donation", getIs_Loan_Donation());
 		attributes.put("changed_By", getChanged_By());
 		attributes.put("changed_Time", getChanged_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -203,6 +205,18 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 
 		if (changed_Time != null) {
 			setChanged_Time(changed_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -672,6 +686,42 @@ public class LenderWrapper implements Lender, ModelWrapper<Lender> {
 	*/
 	public void setChanged_Time(long changed_Time) {
 		_lender.setChanged_Time(changed_Time);
+	}
+
+	/**
+	* Returns the group ID of this lender.
+	*
+	* @return the group ID of this lender
+	*/
+	public long getGroupId() {
+		return _lender.getGroupId();
+	}
+
+	/**
+	* Sets the group ID of this lender.
+	*
+	* @param groupId the group ID of this lender
+	*/
+	public void setGroupId(long groupId) {
+		_lender.setGroupId(groupId);
+	}
+
+	/**
+	* Returns the company ID of this lender.
+	*
+	* @return the company ID of this lender
+	*/
+	public long getCompanyId() {
+		return _lender.getCompanyId();
+	}
+
+	/**
+	* Sets the company ID of this lender.
+	*
+	* @param companyId the company ID of this lender
+	*/
+	public void setCompanyId(long companyId) {
+		_lender.setCompanyId(companyId);
 	}
 
 	public boolean isNew() {

@@ -67,9 +67,11 @@ public class BorrowerLoanModelImpl extends BaseModelImpl<BorrowerLoan>
 			{ "borrower_Id", Types.BIGINT },
 			{ "abacus_mfi_Id", Types.BIGINT },
 			{ "changed_By", Types.VARCHAR },
-			{ "changed_Time", Types.VARCHAR }
+			{ "changed_Time", Types.VARCHAR },
+			{ "groupId", Types.BIGINT },
+			{ "companyId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_BorrowerLoan (abacus_Borrower_Loan_Id LONG not null primary key,borrower_Id LONG,abacus_mfi_Id LONG,changed_By VARCHAR(75) null,changed_Time VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_BorrowerLoan (abacus_Borrower_Loan_Id LONG not null primary key,borrower_Id LONG,abacus_mfi_Id LONG,changed_By VARCHAR(75) null,changed_Time VARCHAR(75) null,groupId LONG,companyId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_BorrowerLoan";
 	public static final String ORDER_BY_JPQL = " ORDER BY borrowerLoan.abacus_Borrower_Loan_Id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_BorrowerLoan.abacus_Borrower_Loan_Id ASC";
@@ -105,6 +107,8 @@ public class BorrowerLoanModelImpl extends BaseModelImpl<BorrowerLoan>
 		model.setAbacus_mfi_Id(soapModel.getAbacus_mfi_Id());
 		model.setChanged_By(soapModel.getChanged_By());
 		model.setChanged_Time(soapModel.getChanged_Time());
+		model.setGroupId(soapModel.getGroupId());
+		model.setCompanyId(soapModel.getCompanyId());
 
 		return model;
 	}
@@ -168,6 +172,8 @@ public class BorrowerLoanModelImpl extends BaseModelImpl<BorrowerLoan>
 		attributes.put("abacus_mfi_Id", getAbacus_mfi_Id());
 		attributes.put("changed_By", getChanged_By());
 		attributes.put("changed_Time", getChanged_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -203,6 +209,18 @@ public class BorrowerLoanModelImpl extends BaseModelImpl<BorrowerLoan>
 
 		if (changed_Time != null) {
 			setChanged_Time(changed_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -275,13 +293,31 @@ public class BorrowerLoanModelImpl extends BaseModelImpl<BorrowerLoan>
 		_changed_Time = changed_Time;
 	}
 
+	@JSON
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	@JSON
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			BorrowerLoan.class.getName(), getPrimaryKey());
 	}
 
@@ -312,6 +348,8 @@ public class BorrowerLoanModelImpl extends BaseModelImpl<BorrowerLoan>
 		borrowerLoanImpl.setAbacus_mfi_Id(getAbacus_mfi_Id());
 		borrowerLoanImpl.setChanged_By(getChanged_By());
 		borrowerLoanImpl.setChanged_Time(getChanged_Time());
+		borrowerLoanImpl.setGroupId(getGroupId());
+		borrowerLoanImpl.setCompanyId(getCompanyId());
 
 		borrowerLoanImpl.resetOriginalValues();
 
@@ -405,12 +443,16 @@ public class BorrowerLoanModelImpl extends BaseModelImpl<BorrowerLoan>
 			borrowerLoanCacheModel.changed_Time = null;
 		}
 
+		borrowerLoanCacheModel.groupId = getGroupId();
+
+		borrowerLoanCacheModel.companyId = getCompanyId();
+
 		return borrowerLoanCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{abacus_Borrower_Loan_Id=");
 		sb.append(getAbacus_Borrower_Loan_Id());
@@ -422,13 +464,17 @@ public class BorrowerLoanModelImpl extends BaseModelImpl<BorrowerLoan>
 		sb.append(getChanged_By());
 		sb.append(", changed_Time=");
 		sb.append(getChanged_Time());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.BorrowerLoan");
@@ -454,6 +500,14 @@ public class BorrowerLoanModelImpl extends BaseModelImpl<BorrowerLoan>
 			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
 		sb.append(getChanged_Time());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -471,6 +525,8 @@ public class BorrowerLoanModelImpl extends BaseModelImpl<BorrowerLoan>
 	private long _abacus_mfi_Id;
 	private String _changed_By;
 	private String _changed_Time;
+	private long _groupId;
+	private long _companyId;
 	private long _columnBitmask;
 	private BorrowerLoan _escapedModelProxy;
 }

@@ -67,9 +67,11 @@ public class TeamLenderModelImpl extends BaseModelImpl<TeamLender>
 			{ "lender_Id", Types.BIGINT },
 			{ "team_Id", Types.BIGINT },
 			{ "changed_By", Types.VARCHAR },
-			{ "changed_Time", Types.BIGINT }
+			{ "changed_Time", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
+			{ "companyId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_TeamLender (team_lender_Id LONG not null primary key,lender_Id LONG,team_Id LONG,changed_By VARCHAR(75) null,changed_Time LONG)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_TeamLender (team_lender_Id LONG not null primary key,lender_Id LONG,team_Id LONG,changed_By VARCHAR(75) null,changed_Time LONG,groupId LONG,companyId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_TeamLender";
 	public static final String ORDER_BY_JPQL = " ORDER BY teamLender.team_lender_Id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_TeamLender.team_lender_Id ASC";
@@ -102,6 +104,8 @@ public class TeamLenderModelImpl extends BaseModelImpl<TeamLender>
 		model.setTeam_Id(soapModel.getTeam_Id());
 		model.setChanged_By(soapModel.getChanged_By());
 		model.setChanged_Time(soapModel.getChanged_Time());
+		model.setGroupId(soapModel.getGroupId());
+		model.setCompanyId(soapModel.getCompanyId());
 
 		return model;
 	}
@@ -165,6 +169,8 @@ public class TeamLenderModelImpl extends BaseModelImpl<TeamLender>
 		attributes.put("team_Id", getTeam_Id());
 		attributes.put("changed_By", getChanged_By());
 		attributes.put("changed_Time", getChanged_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -199,6 +205,18 @@ public class TeamLenderModelImpl extends BaseModelImpl<TeamLender>
 
 		if (changed_Time != null) {
 			setChanged_Time(changed_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -252,9 +270,27 @@ public class TeamLenderModelImpl extends BaseModelImpl<TeamLender>
 		_changed_Time = changed_Time;
 	}
 
+	@JSON
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	@JSON
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			TeamLender.class.getName(), getPrimaryKey());
 	}
 
@@ -285,6 +321,8 @@ public class TeamLenderModelImpl extends BaseModelImpl<TeamLender>
 		teamLenderImpl.setTeam_Id(getTeam_Id());
 		teamLenderImpl.setChanged_By(getChanged_By());
 		teamLenderImpl.setChanged_Time(getChanged_Time());
+		teamLenderImpl.setGroupId(getGroupId());
+		teamLenderImpl.setCompanyId(getCompanyId());
 
 		teamLenderImpl.resetOriginalValues();
 
@@ -365,12 +403,16 @@ public class TeamLenderModelImpl extends BaseModelImpl<TeamLender>
 
 		teamLenderCacheModel.changed_Time = getChanged_Time();
 
+		teamLenderCacheModel.groupId = getGroupId();
+
+		teamLenderCacheModel.companyId = getCompanyId();
+
 		return teamLenderCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{team_lender_Id=");
 		sb.append(getTeam_lender_Id());
@@ -382,13 +424,17 @@ public class TeamLenderModelImpl extends BaseModelImpl<TeamLender>
 		sb.append(getChanged_By());
 		sb.append(", changed_Time=");
 		sb.append(getChanged_Time());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("org.goodreturn.model.TeamLender");
@@ -414,6 +460,14 @@ public class TeamLenderModelImpl extends BaseModelImpl<TeamLender>
 			"<column><column-name>changed_Time</column-name><column-value><![CDATA[");
 		sb.append(getChanged_Time());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -429,5 +483,7 @@ public class TeamLenderModelImpl extends BaseModelImpl<TeamLender>
 	private long _team_Id;
 	private String _changed_By;
 	private long _changed_Time;
+	private long _groupId;
+	private long _companyId;
 	private TeamLender _escapedModelProxy;
 }

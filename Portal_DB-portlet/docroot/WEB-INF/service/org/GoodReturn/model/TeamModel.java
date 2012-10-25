@@ -115,6 +115,34 @@ public interface TeamModel extends BaseModel<Team> {
 	 */
 	public void setChange_Time(long change_Time);
 
+	/**
+	 * Returns the group ID of this team.
+	 *
+	 * @return the group ID of this team
+	 */
+	public long getGroupId();
+
+	/**
+	 * Sets the group ID of this team.
+	 *
+	 * @param groupId the group ID of this team
+	 */
+	public void setGroupId(long groupId);
+
+	/**
+	 * Returns the company ID of this team.
+	 *
+	 * @return the company ID of this team
+	 */
+	public long getCompanyId();
+
+	/**
+	 * Sets the company ID of this team.
+	 *
+	 * @param companyId the company ID of this team
+	 */
+	public void setCompanyId(long companyId);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);

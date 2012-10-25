@@ -33,7 +33,7 @@ public class BorrowerLoanCacheModel implements CacheModel<BorrowerLoan>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{abacus_Borrower_Loan_Id=");
 		sb.append(abacus_Borrower_Loan_Id);
@@ -45,6 +45,10 @@ public class BorrowerLoanCacheModel implements CacheModel<BorrowerLoan>,
 		sb.append(changed_By);
 		sb.append(", changed_Time=");
 		sb.append(changed_Time);
+		sb.append(", groupId=");
+		sb.append(groupId);
+		sb.append(", companyId=");
+		sb.append(companyId);
 		sb.append("}");
 
 		return sb.toString();
@@ -71,6 +75,9 @@ public class BorrowerLoanCacheModel implements CacheModel<BorrowerLoan>,
 			borrowerLoanImpl.setChanged_Time(changed_Time);
 		}
 
+		borrowerLoanImpl.setGroupId(groupId);
+		borrowerLoanImpl.setCompanyId(companyId);
+
 		borrowerLoanImpl.resetOriginalValues();
 
 		return borrowerLoanImpl;
@@ -81,4 +88,6 @@ public class BorrowerLoanCacheModel implements CacheModel<BorrowerLoan>,
 	public long abacus_mfi_Id;
 	public String changed_By;
 	public String changed_Time;
+	public long groupId;
+	public long companyId;
 }

@@ -326,6 +326,8 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 		lenderImpl.setIs_Loan_Donation(lender.isIs_Loan_Donation());
 		lenderImpl.setChanged_By(lender.getChanged_By());
 		lenderImpl.setChanged_Time(lender.getChanged_Time());
+		lenderImpl.setGroupId(lender.getGroupId());
+		lenderImpl.setCompanyId(lender.getCompanyId());
 
 		return lenderImpl;
 	}

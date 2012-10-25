@@ -50,6 +50,8 @@ public class BorrowerLoanWrapper implements BorrowerLoan,
 		attributes.put("abacus_mfi_Id", getAbacus_mfi_Id());
 		attributes.put("changed_By", getChanged_By());
 		attributes.put("changed_Time", getChanged_Time());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
 
 		return attributes;
 	}
@@ -84,6 +86,18 @@ public class BorrowerLoanWrapper implements BorrowerLoan,
 
 		if (changed_Time != null) {
 			setChanged_Time(changed_Time);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 	}
 
@@ -193,6 +207,42 @@ public class BorrowerLoanWrapper implements BorrowerLoan,
 	*/
 	public void setChanged_Time(java.lang.String changed_Time) {
 		_borrowerLoan.setChanged_Time(changed_Time);
+	}
+
+	/**
+	* Returns the group ID of this borrower loan.
+	*
+	* @return the group ID of this borrower loan
+	*/
+	public long getGroupId() {
+		return _borrowerLoan.getGroupId();
+	}
+
+	/**
+	* Sets the group ID of this borrower loan.
+	*
+	* @param groupId the group ID of this borrower loan
+	*/
+	public void setGroupId(long groupId) {
+		_borrowerLoan.setGroupId(groupId);
+	}
+
+	/**
+	* Returns the company ID of this borrower loan.
+	*
+	* @return the company ID of this borrower loan
+	*/
+	public long getCompanyId() {
+		return _borrowerLoan.getCompanyId();
+	}
+
+	/**
+	* Sets the company ID of this borrower loan.
+	*
+	* @param companyId the company ID of this borrower loan
+	*/
+	public void setCompanyId(long companyId) {
+		_borrowerLoan.setCompanyId(companyId);
 	}
 
 	public boolean isNew() {
