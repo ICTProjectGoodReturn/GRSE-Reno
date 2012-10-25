@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.util.PortalUtil;
 
 import org.goodreturn.service.StoryLocalServiceUtil;
 
@@ -78,9 +79,9 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		attributes.put("status_By_User_Id", getStatus_By_User_Id());
 		attributes.put("status_By_User_Name", getStatus_By_User_Name());
 		attributes.put("status_Date", getStatus_Date());
-		attributes.put("company_Id", getCompany_Id());
-		attributes.put("group_Id", getGroup_Id());
-		attributes.put("user_Id", getUser_Id());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("userId", getUserId());
 
 		return attributes;
 	}
@@ -163,22 +164,22 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 			setStatus_Date(status_Date);
 		}
 
-		Long company_Id = (Long)attributes.get("company_Id");
+		Long companyId = (Long)attributes.get("companyId");
 
-		if (company_Id != null) {
-			setCompany_Id(company_Id);
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 
-		Long group_Id = (Long)attributes.get("group_Id");
+		Long groupId = (Long)attributes.get("groupId");
 
-		if (group_Id != null) {
-			setGroup_Id(group_Id);
+		if (groupId != null) {
+			setGroupId(groupId);
 		}
 
-		Long user_Id = (Long)attributes.get("user_Id");
+		Long userId = (Long)attributes.get("userId");
 
-		if (user_Id != null) {
-			setUser_Id(user_Id);
+		if (userId != null) {
+			setUserId(userId);
 		}
 	}
 
@@ -287,28 +288,36 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		_status_Date = status_Date;
 	}
 
-	public long getCompany_Id() {
-		return _company_Id;
+	public long getCompanyId() {
+		return _companyId;
 	}
 
-	public void setCompany_Id(long company_Id) {
-		_company_Id = company_Id;
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
 	}
 
-	public long getGroup_Id() {
-		return _group_Id;
+	public long getGroupId() {
+		return _groupId;
 	}
 
-	public void setGroup_Id(long group_Id) {
-		_group_Id = group_Id;
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
 	}
 
-	public long getUser_Id() {
-		return _user_Id;
+	public long getUserId() {
+		return _userId;
 	}
 
-	public void setUser_Id(long user_Id) {
-		_user_Id = user_Id;
+	public void setUserId(long userId) {
+		_userId = userId;
+	}
+
+	public String getUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+	}
+
+	public void setUserUuid(String userUuid) {
+		_userUuid = userUuid;
 	}
 
 	public BaseModel<?> getStoryRemoteModel() {
@@ -350,9 +359,9 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		clone.setStatus_By_User_Id(getStatus_By_User_Id());
 		clone.setStatus_By_User_Name(getStatus_By_User_Name());
 		clone.setStatus_Date(getStatus_Date());
-		clone.setCompany_Id(getCompany_Id());
-		clone.setGroup_Id(getGroup_Id());
-		clone.setUser_Id(getUser_Id());
+		clone.setCompanyId(getCompanyId());
+		clone.setGroupId(getGroupId());
+		clone.setUserId(getUserId());
 
 		return clone;
 	}
@@ -435,12 +444,12 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		sb.append(getStatus_By_User_Name());
 		sb.append(", status_Date=");
 		sb.append(getStatus_Date());
-		sb.append(", company_Id=");
-		sb.append(getCompany_Id());
-		sb.append(", group_Id=");
-		sb.append(getGroup_Id());
-		sb.append(", user_Id=");
-		sb.append(getUser_Id());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
+		sb.append(", userId=");
+		sb.append(getUserId());
 		sb.append("}");
 
 		return sb.toString();
@@ -502,16 +511,16 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 		sb.append(getStatus_Date());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>company_Id</column-name><column-value><![CDATA[");
-		sb.append(getCompany_Id());
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>group_Id</column-name><column-value><![CDATA[");
-		sb.append(getGroup_Id());
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>user_Id</column-name><column-value><![CDATA[");
-		sb.append(getUser_Id());
+			"<column><column-name>userId</column-name><column-value><![CDATA[");
+		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -531,8 +540,9 @@ public class StoryClp extends BaseModelImpl<Story> implements Story {
 	private long _status_By_User_Id;
 	private String _status_By_User_Name;
 	private Date _status_Date;
-	private long _company_Id;
-	private long _group_Id;
-	private long _user_Id;
+	private long _companyId;
+	private long _groupId;
+	private long _userId;
+	private String _userUuid;
 	private BaseModel<?> _storyRemoteModel;
 }

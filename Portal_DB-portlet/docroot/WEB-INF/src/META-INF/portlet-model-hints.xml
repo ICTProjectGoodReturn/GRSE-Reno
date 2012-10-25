@@ -65,8 +65,6 @@
 		<field name="occupation" type="String" />
 		<field name="changed_By" type="String" />
 		<field name="changed_Time" type="long" />
-		<field name="companyId" type="long" />
-		<field name="organizationId" type="long" />
 	</model>
 	<model name="org.goodreturn.model.Story">
 		<field name="uuid" type="String" />
@@ -81,9 +79,9 @@
 		<field name="status_By_User_Id" type="long" />
 		<field name="status_By_User_Name" type="String" />
 		<field name="status_Date" type="Date" />
-		<field name="company_Id" type="long" />
-		<field name="group_Id" type="long" />
-		<field name="user_Id" type="long" />
+		<field name="companyId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="userId" type="long" />
 	</model>
 	<model name="org.goodreturn.model.Team">
 		<field name="team_Id" type="long" />
@@ -97,5 +95,11 @@
 		<field name="team_Id" type="long" />
 		<field name="changed_By" type="String" />
 		<field name="changed_Time" type="long" />
+	</model>
+	<model name="org.goodreturn.model.TempBl">
+		<field name="borrower_Name" type="String" />
+		<field name="borrower_Loan_Id" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
 	</model>
 </model-hints>

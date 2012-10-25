@@ -213,67 +213,43 @@ public interface StoryPersistence extends BasePersistence<Story> {
 			org.goodreturn.NoSuchStoryException;
 
 	/**
-	* Returns all the stories that the user has permission to view where uuid = &#63;.
+	* Returns the story where uuid = &#63; and groupId = &#63; or throws a {@link org.goodreturn.NoSuchStoryException} if it could not be found.
 	*
 	* @param uuid the uuid
-	* @return the matching stories that the user has permission to view
+	* @param groupId the group ID
+	* @return the matching story
+	* @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.goodreturn.model.Story> filterFindByUuid(
-		java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns a range of all the stories that the user has permission to view where uuid = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param start the lower bound of the range of stories
-	* @param end the upper bound of the range of stories (not inclusive)
-	* @return the range of matching stories that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<org.goodreturn.model.Story> filterFindByUuid(
-		java.lang.String uuid, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns an ordered range of all the stories that the user has permissions to view where uuid = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param start the lower bound of the range of stories
-	* @param end the upper bound of the range of stories (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching stories that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<org.goodreturn.model.Story> filterFindByUuid(
-		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the stories before and after the current story in the ordered set of stories that the user has permission to view where uuid = &#63;.
-	*
-	* @param story_Id the primary key of the current story
-	* @param uuid the uuid
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next story
-	* @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public org.goodreturn.model.Story[] filterFindByUuid_PrevAndNext(
-		long story_Id, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+	public org.goodreturn.model.Story findByUUID_G(java.lang.String uuid,
+		long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchStoryException;
+
+	/**
+	* Returns the story where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param uuid the uuid
+	* @param groupId the group ID
+	* @return the matching story, or <code>null</code> if a matching story could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public org.goodreturn.model.Story fetchByUUID_G(java.lang.String uuid,
+		long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the story where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param uuid the uuid
+	* @param groupId the group ID
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching story, or <code>null</code> if a matching story could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public org.goodreturn.model.Story fetchByUUID_G(java.lang.String uuid,
+		long groupId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the stories where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
@@ -404,111 +380,42 @@ public interface StoryPersistence extends BasePersistence<Story> {
 			org.goodreturn.NoSuchStoryException;
 
 	/**
-	* Returns all the stories that the user has permission to view where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
+	* Returns all the stories where groupId = &#63; and status = &#63;.
 	*
-	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
-	* @param story_Type the story_ type
-	* @return the matching stories that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<org.goodreturn.model.Story> filterFindByL_S(
-		long abacus_Borrower_Loan_Id, java.lang.String story_Type)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns a range of all the stories that the user has permission to view where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
-	* @param story_Type the story_ type
-	* @param start the lower bound of the range of stories
-	* @param end the upper bound of the range of stories (not inclusive)
-	* @return the range of matching stories that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<org.goodreturn.model.Story> filterFindByL_S(
-		long abacus_Borrower_Loan_Id, java.lang.String story_Type, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns an ordered range of all the stories that the user has permissions to view where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
-	* @param story_Type the story_ type
-	* @param start the lower bound of the range of stories
-	* @param end the upper bound of the range of stories (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching stories that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<org.goodreturn.model.Story> filterFindByL_S(
-		long abacus_Borrower_Loan_Id, java.lang.String story_Type, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the stories before and after the current story in the ordered set of stories that the user has permission to view where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
-	*
-	* @param story_Id the primary key of the current story
-	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
-	* @param story_Type the story_ type
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next story
-	* @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public org.goodreturn.model.Story[] filterFindByL_S_PrevAndNext(
-		long story_Id, long abacus_Borrower_Loan_Id,
-		java.lang.String story_Type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			org.goodreturn.NoSuchStoryException;
-
-	/**
-	* Returns all the stories where group_Id = &#63; and status = &#63;.
-	*
-	* @param group_Id the group_ ID
+	* @param groupId the group ID
 	* @param status the status
 	* @return the matching stories
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.goodreturn.model.Story> findByG_S(long group_Id,
+	public java.util.List<org.goodreturn.model.Story> findByG_S(long groupId,
 		int status) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the stories where group_Id = &#63; and status = &#63;.
+	* Returns a range of all the stories where groupId = &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param group_Id the group_ ID
+	* @param groupId the group ID
 	* @param status the status
 	* @param start the lower bound of the range of stories
 	* @param end the upper bound of the range of stories (not inclusive)
 	* @return the range of matching stories
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.goodreturn.model.Story> findByG_S(long group_Id,
+	public java.util.List<org.goodreturn.model.Story> findByG_S(long groupId,
 		int status, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns an ordered range of all the stories where group_Id = &#63; and status = &#63;.
+	* Returns an ordered range of all the stories where groupId = &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param group_Id the group_ ID
+	* @param groupId the group ID
 	* @param status the status
 	* @param start the lower bound of the range of stories
 	* @param end the upper bound of the range of stories (not inclusive)
@@ -516,75 +423,73 @@ public interface StoryPersistence extends BasePersistence<Story> {
 	* @return the ordered range of matching stories
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<org.goodreturn.model.Story> findByG_S(long group_Id,
+	public java.util.List<org.goodreturn.model.Story> findByG_S(long groupId,
 		int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the first story in the ordered set where group_Id = &#63; and status = &#63;.
+	* Returns the first story in the ordered set where groupId = &#63; and status = &#63;.
 	*
-	* @param group_Id the group_ ID
+	* @param groupId the group ID
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching story
 	* @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.Story findByG_S_First(long group_Id,
-		int status,
+	public org.goodreturn.model.Story findByG_S_First(long groupId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchStoryException;
 
 	/**
-	* Returns the first story in the ordered set where group_Id = &#63; and status = &#63;.
+	* Returns the first story in the ordered set where groupId = &#63; and status = &#63;.
 	*
-	* @param group_Id the group_ ID
+	* @param groupId the group ID
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching story, or <code>null</code> if a matching story could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.Story fetchByG_S_First(long group_Id,
+	public org.goodreturn.model.Story fetchByG_S_First(long groupId,
 		int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last story in the ordered set where group_Id = &#63; and status = &#63;.
+	* Returns the last story in the ordered set where groupId = &#63; and status = &#63;.
 	*
-	* @param group_Id the group_ ID
+	* @param groupId the group ID
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching story
 	* @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.Story findByG_S_Last(long group_Id, int status,
+	public org.goodreturn.model.Story findByG_S_Last(long groupId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchStoryException;
 
 	/**
-	* Returns the last story in the ordered set where group_Id = &#63; and status = &#63;.
+	* Returns the last story in the ordered set where groupId = &#63; and status = &#63;.
 	*
-	* @param group_Id the group_ ID
+	* @param groupId the group ID
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching story, or <code>null</code> if a matching story could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.Story fetchByG_S_Last(long group_Id,
-		int status,
+	public org.goodreturn.model.Story fetchByG_S_Last(long groupId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the stories before and after the current story in the ordered set where group_Id = &#63; and status = &#63;.
+	* Returns the stories before and after the current story in the ordered set where groupId = &#63; and status = &#63;.
 	*
 	* @param story_Id the primary key of the current story
-	* @param group_Id the group_ ID
+	* @param groupId the group ID
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next story
@@ -592,31 +497,31 @@ public interface StoryPersistence extends BasePersistence<Story> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public org.goodreturn.model.Story[] findByG_S_PrevAndNext(long story_Id,
-		long group_Id, int status,
+		long groupId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchStoryException;
 
 	/**
-	* Returns all the stories that the user has permission to view where group_Id = &#63; and status = &#63;.
+	* Returns all the stories that the user has permission to view where groupId = &#63; and status = &#63;.
 	*
-	* @param group_Id the group_ ID
+	* @param groupId the group ID
 	* @param status the status
 	* @return the matching stories that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<org.goodreturn.model.Story> filterFindByG_S(
-		long group_Id, int status)
+		long groupId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the stories that the user has permission to view where group_Id = &#63; and status = &#63;.
+	* Returns a range of all the stories that the user has permission to view where groupId = &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param group_Id the group_ ID
+	* @param groupId the group ID
 	* @param status the status
 	* @param start the lower bound of the range of stories
 	* @param end the upper bound of the range of stories (not inclusive)
@@ -624,17 +529,17 @@ public interface StoryPersistence extends BasePersistence<Story> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<org.goodreturn.model.Story> filterFindByG_S(
-		long group_Id, int status, int start, int end)
+		long groupId, int status, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns an ordered range of all the stories that the user has permissions to view where group_Id = &#63; and status = &#63;.
+	* Returns an ordered range of all the stories that the user has permissions to view where groupId = &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param group_Id the group_ ID
+	* @param groupId the group ID
 	* @param status the status
 	* @param start the lower bound of the range of stories
 	* @param end the upper bound of the range of stories (not inclusive)
@@ -643,15 +548,15 @@ public interface StoryPersistence extends BasePersistence<Story> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<org.goodreturn.model.Story> filterFindByG_S(
-		long group_Id, int status, int start, int end,
+		long groupId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the stories before and after the current story in the ordered set of stories that the user has permission to view where group_Id = &#63; and status = &#63;.
+	* Returns the stories before and after the current story in the ordered set of stories that the user has permission to view where groupId = &#63; and status = &#63;.
 	*
 	* @param story_Id the primary key of the current story
-	* @param group_Id the group_ ID
+	* @param groupId the group ID
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next story
@@ -659,7 +564,7 @@ public interface StoryPersistence extends BasePersistence<Story> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public org.goodreturn.model.Story[] filterFindByG_S_PrevAndNext(
-		long story_Id, long group_Id, int status,
+		long story_Id, long groupId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchStoryException;
@@ -716,6 +621,19 @@ public interface StoryPersistence extends BasePersistence<Story> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes the story where uuid = &#63; and groupId = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @param groupId the group ID
+	* @return the story that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public org.goodreturn.model.Story removeByUUID_G(java.lang.String uuid,
+		long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			org.goodreturn.NoSuchStoryException;
+
+	/**
 	* Removes all the stories where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63; from the database.
 	*
 	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
@@ -727,13 +645,13 @@ public interface StoryPersistence extends BasePersistence<Story> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the stories where group_Id = &#63; and status = &#63; from the database.
+	* Removes all the stories where groupId = &#63; and status = &#63; from the database.
 	*
-	* @param group_Id the group_ ID
+	* @param groupId the group ID
 	* @param status the status
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByG_S(long group_Id, int status)
+	public void removeByG_S(long groupId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -755,13 +673,14 @@ public interface StoryPersistence extends BasePersistence<Story> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of stories that the user has permission to view where uuid = &#63;.
+	* Returns the number of stories where uuid = &#63; and groupId = &#63;.
 	*
 	* @param uuid the uuid
-	* @return the number of matching stories that the user has permission to view
+	* @param groupId the group ID
+	* @return the number of matching stories
 	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByUuid(java.lang.String uuid)
+	public int countByUUID_G(java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -777,37 +696,25 @@ public interface StoryPersistence extends BasePersistence<Story> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of stories that the user has permission to view where abacus_Borrower_Loan_Id = &#63; and story_Type = &#63;.
+	* Returns the number of stories where groupId = &#63; and status = &#63;.
 	*
-	* @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
-	* @param story_Type the story_ type
-	* @return the number of matching stories that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByL_S(long abacus_Borrower_Loan_Id,
-		java.lang.String story_Type)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of stories where group_Id = &#63; and status = &#63;.
-	*
-	* @param group_Id the group_ ID
+	* @param groupId the group ID
 	* @param status the status
 	* @return the number of matching stories
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByG_S(long group_Id, int status)
+	public int countByG_S(long groupId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of stories that the user has permission to view where group_Id = &#63; and status = &#63;.
+	* Returns the number of stories that the user has permission to view where groupId = &#63; and status = &#63;.
 	*
-	* @param group_Id the group_ ID
+	* @param groupId the group ID
 	* @param status the status
 	* @return the number of matching stories that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByG_S(long group_Id, int status)
+	public int filterCountByG_S(long groupId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

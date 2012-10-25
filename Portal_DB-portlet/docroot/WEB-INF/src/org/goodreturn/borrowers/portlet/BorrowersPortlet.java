@@ -228,22 +228,7 @@ public class BorrowersPortlet extends MVCPortlet {
 		}
 	}
 
-	/**
-	 * Deletes the story from the database.
-	 *
-	 * @param request - request object to initiate the deletion, should contain the resourcePrimKey for story.
-	 * @param response - response object.
-	 
-	public void deleteStory(ActionRequest request, ActionResponse response) throws Exception {
-
-		long storyKey = ParamUtil.getLong(request, WebKeys.ATTR_STORY_ID);
-
-		if (Validator.isNotNull(storyKey)) {
-			StoryLocalServiceUtil.deleteStory(storyKey);
-			SessionMessages.add(request, "story-delete-success");
-		} else {
-			SessionErrors.add(request, "story-delete-error");
-		}
-		response.setRenderParameter("jspPage",request.getParameter("jspPage"));
-	}*/
+	public void updateTempBL(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException, PortalException, SystemException {
+		//TODO TONIGHT
+	}
 }

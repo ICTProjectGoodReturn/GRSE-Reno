@@ -58,9 +58,9 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 		attributes.put("status_By_User_Id", getStatus_By_User_Id());
 		attributes.put("status_By_User_Name", getStatus_By_User_Name());
 		attributes.put("status_Date", getStatus_Date());
-		attributes.put("company_Id", getCompany_Id());
-		attributes.put("group_Id", getGroup_Id());
-		attributes.put("user_Id", getUser_Id());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("userId", getUserId());
 
 		return attributes;
 	}
@@ -142,22 +142,22 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 			setStatus_Date(status_Date);
 		}
 
-		Long company_Id = (Long)attributes.get("company_Id");
+		Long companyId = (Long)attributes.get("companyId");
 
-		if (company_Id != null) {
-			setCompany_Id(company_Id);
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 
-		Long group_Id = (Long)attributes.get("group_Id");
+		Long groupId = (Long)attributes.get("groupId");
 
-		if (group_Id != null) {
-			setGroup_Id(group_Id);
+		if (groupId != null) {
+			setGroupId(groupId);
 		}
 
-		Long user_Id = (Long)attributes.get("user_Id");
+		Long userId = (Long)attributes.get("userId");
 
-		if (user_Id != null) {
-			setUser_Id(user_Id);
+		if (userId != null) {
+			setUserId(userId);
 		}
 	}
 
@@ -415,57 +415,77 @@ public class StoryWrapper implements Story, ModelWrapper<Story> {
 	}
 
 	/**
-	* Returns the company_ ID of this story.
+	* Returns the company ID of this story.
 	*
-	* @return the company_ ID of this story
+	* @return the company ID of this story
 	*/
-	public long getCompany_Id() {
-		return _story.getCompany_Id();
+	public long getCompanyId() {
+		return _story.getCompanyId();
 	}
 
 	/**
-	* Sets the company_ ID of this story.
+	* Sets the company ID of this story.
 	*
-	* @param company_Id the company_ ID of this story
+	* @param companyId the company ID of this story
 	*/
-	public void setCompany_Id(long company_Id) {
-		_story.setCompany_Id(company_Id);
+	public void setCompanyId(long companyId) {
+		_story.setCompanyId(companyId);
 	}
 
 	/**
-	* Returns the group_ ID of this story.
+	* Returns the group ID of this story.
 	*
-	* @return the group_ ID of this story
+	* @return the group ID of this story
 	*/
-	public long getGroup_Id() {
-		return _story.getGroup_Id();
+	public long getGroupId() {
+		return _story.getGroupId();
 	}
 
 	/**
-	* Sets the group_ ID of this story.
+	* Sets the group ID of this story.
 	*
-	* @param group_Id the group_ ID of this story
+	* @param groupId the group ID of this story
 	*/
-	public void setGroup_Id(long group_Id) {
-		_story.setGroup_Id(group_Id);
+	public void setGroupId(long groupId) {
+		_story.setGroupId(groupId);
 	}
 
 	/**
-	* Returns the user_ ID of this story.
+	* Returns the user ID of this story.
 	*
-	* @return the user_ ID of this story
+	* @return the user ID of this story
 	*/
-	public long getUser_Id() {
-		return _story.getUser_Id();
+	public long getUserId() {
+		return _story.getUserId();
 	}
 
 	/**
-	* Sets the user_ ID of this story.
+	* Sets the user ID of this story.
 	*
-	* @param user_Id the user_ ID of this story
+	* @param userId the user ID of this story
 	*/
-	public void setUser_Id(long user_Id) {
-		_story.setUser_Id(user_Id);
+	public void setUserId(long userId) {
+		_story.setUserId(userId);
+	}
+
+	/**
+	* Returns the user uuid of this story.
+	*
+	* @return the user uuid of this story
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.lang.String getUserUuid()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _story.getUserUuid();
+	}
+
+	/**
+	* Sets the user uuid of this story.
+	*
+	* @param userUuid the user uuid of this story
+	*/
+	public void setUserUuid(java.lang.String userUuid) {
+		_story.setUserUuid(userUuid);
 	}
 
 	public boolean isNew() {

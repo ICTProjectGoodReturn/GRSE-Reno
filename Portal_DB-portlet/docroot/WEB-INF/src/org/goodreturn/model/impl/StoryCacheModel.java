@@ -60,12 +60,12 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 		sb.append(status_By_User_Name);
 		sb.append(", status_Date=");
 		sb.append(status_Date);
-		sb.append(", company_Id=");
-		sb.append(company_Id);
-		sb.append(", group_Id=");
-		sb.append(group_Id);
-		sb.append(", user_Id=");
-		sb.append(user_Id);
+		sb.append(", companyId=");
+		sb.append(companyId);
+		sb.append(", groupId=");
+		sb.append(groupId);
+		sb.append(", userId=");
+		sb.append(userId);
 		sb.append("}");
 
 		return sb.toString();
@@ -124,9 +124,9 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 			storyImpl.setStatus_Date(new Date(status_Date));
 		}
 
-		storyImpl.setCompany_Id(company_Id);
-		storyImpl.setGroup_Id(group_Id);
-		storyImpl.setUser_Id(user_Id);
+		storyImpl.setCompanyId(companyId);
+		storyImpl.setGroupId(groupId);
+		storyImpl.setUserId(userId);
 
 		storyImpl.resetOriginalValues();
 
@@ -145,7 +145,7 @@ public class StoryCacheModel implements CacheModel<Story>, Serializable {
 	public long status_By_User_Id;
 	public String status_By_User_Name;
 	public long status_Date;
-	public long company_Id;
-	public long group_Id;
-	public long user_Id;
+	public long companyId;
+	public long groupId;
+	public long userId;
 }

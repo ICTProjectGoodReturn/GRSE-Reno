@@ -33,12 +33,12 @@ public class StoryValidator {
 		}
 
 		//non null borrower_loan_Id
-		if (story.getAbacus_Borrower_Loan_Id() == 0) {
+		if (story.getAbacus_Borrower_Loan_Id() <= 0) {
 			return false;
 		}
 
 		//URL
-		//Only validates if videoUrl exists.
+		//Only validates for URL if videoUrl exists.
 		if (!story.getVideo_Url().equals("")) {
 			//If pointless white space remove it.
 			if (story.getVideo_Url().trim().equals("")) {
@@ -47,7 +47,6 @@ public class StoryValidator {
 			} else if (!Validator.isUrl(story.getVideo_Url())) {
 				return false;
 			}
-
 		}
 		
 		return true;

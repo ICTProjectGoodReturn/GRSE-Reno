@@ -319,8 +319,6 @@ public class PersonPersistenceImpl extends BasePersistenceImpl<Person>
 		personImpl.setOccupation(person.getOccupation());
 		personImpl.setChanged_By(person.getChanged_By());
 		personImpl.setChanged_Time(person.getChanged_Time());
-		personImpl.setCompanyId(person.getCompanyId());
-		personImpl.setOrganizationId(person.getOrganizationId());
 
 		return personImpl;
 	}
@@ -1100,6 +1098,8 @@ public class PersonPersistenceImpl extends BasePersistenceImpl<Person>
 	protected TeamPersistence teamPersistence;
 	@BeanReference(type = TeamLenderPersistence.class)
 	protected TeamLenderPersistence teamLenderPersistence;
+	@BeanReference(type = TempBlPersistence.class)
+	protected TempBlPersistence tempBlPersistence;
 	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)

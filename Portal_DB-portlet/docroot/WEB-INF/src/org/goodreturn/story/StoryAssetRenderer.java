@@ -37,7 +37,7 @@ public class StoryAssetRenderer extends BaseAssetRenderer {
 
 	@Override
 	public long getGroupId() {
-		return story.getGroup_Id();
+		return story.getGroupId();
 	}
 
 	@Override
@@ -56,13 +56,13 @@ public class StoryAssetRenderer extends BaseAssetRenderer {
 
 	@Override
 	public long getUserId() {
-		return story.getUser_Id();
+		return story.getUserId();
 	}
 
 	@Override
 	public String getUserName() {
 		try {
-			return UserLocalServiceUtil.getUser(story.getUser_Id()).getFullName();
+			return UserLocalServiceUtil.getUser(story.getUserId()).getFullName();
 		} catch (PortalException e) {} catch (SystemException e) {}
 		
 		return "Unknown User";

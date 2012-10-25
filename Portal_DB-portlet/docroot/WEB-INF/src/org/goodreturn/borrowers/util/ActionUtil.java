@@ -10,19 +10,21 @@ import org.goodreturn.NoSuchStoryException;
 import org.goodreturn.model.Borrower;
 import org.goodreturn.model.BorrowerLoan;
 import org.goodreturn.model.Story;
+import org.goodreturn.model.TempBl;
 import org.goodreturn.model.impl.BorrowerImpl;
 import org.goodreturn.model.impl.BorrowerLoanImpl;
 import org.goodreturn.model.impl.StoryImpl;
+import org.goodreturn.model.impl.TempBlImpl;
 import org.goodreturn.service.StoryLocalServiceUtil;
+import org.goodreturn.service.TempBlLocalServiceUtil;
+import org.goodreturn.service.persistence.TempBlPK;
 
 import com.liferay.portal.NoSuchOrganizationException;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Organization;
-import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 
@@ -40,7 +42,7 @@ public class ActionUtil {
 	//
 
 	/**
-	 * Retrieves 
+	 * Retrieves MFI organization id of user within the themeDisplay object.
 	 * Does not support member being part of multiple mfi organizations. returns first found.
 	 * 
 	 * @param themeDisplay
@@ -131,7 +133,6 @@ public class ActionUtil {
 	}
 
 
-
 	/**
 	 * Retrieves all BorrowerLoans for specific borrower_Id. Designed to be called from render phase. 
 	 * 
@@ -202,7 +203,7 @@ public class ActionUtil {
 	 * @return List of LenderContribution objects for specific Loan - based on loan_Id.
 	 */
 	public static List<String> getLenderContributions(RenderRequest request) {
-		//TODO fix class return type and retrieve from accubus.
+		//TODO fix class return type and retrieve from abacus.
 		return null;
 	}
 
@@ -213,7 +214,7 @@ public class ActionUtil {
 	 * @return specific LenderContribution object.
 	 */
 	public static String getLenderContribution(RenderRequest request) {
-		//TODO fix class return type and retrieve from accubus.
+		//TODO fix class return type and retrieve from abacus.
 		return null;
 	}
 
@@ -261,13 +262,59 @@ public class ActionUtil {
 	}
 
 	private static Story getStoryByType(long borrowerLoanId, String storyType) {
+		//Gets story based on loanId and type or returns null.
 		Story tempResult;
-
 		try {
 			tempResult = StoryLocalServiceUtil.getStoryByL_S(borrowerLoanId, storyType).get(0);
 		} catch (SystemException se) {
 			tempResult = null;
 		} catch (IndexOutOfBoundsException e) {
+			tempResult = null;
+		}
+
+		return tempResult;
+	}
+	
+
+
+	/**
+	 * Retrieves tempBl object based on data within request. Or returns new object.
+	 * 
+	 * @param request Render request which has access from the render phase.
+	 * @return TempBl object which represented in the data.
+	 */
+	public static TempBl getEditableTempBl(RenderRequest request) {
+
+		//Retrieves tempBl based on PK (composite).
+		TempBl tempBl;
+		tempBl = ActionUtil.getEditableTempBl(request);
+
+		//Returns new story if it could not be found. (with storyType and BorrowerLoanId).
+		if (tempBl == null) {
+			tempBl = new TempBlImpl();
+		}
+
+		return tempBl;
+	}
+
+	/**
+	 * Retrieves the tempBl object represented within the request object. or else returns null.
+	 * 
+	 * @param request - request object which contains the data to obtain the TempBl object from db.
+	 * @return tempBl object from the db, or returns null.
+	 */
+	public static TempBl getTempBl(RenderRequest request) {
+		//request data.
+		String borrowerName = ParamUtil.getString(request, WebKeys.ATTR_TEMPBL_BORROWER_NAME);
+		long borrowerLoanId = ParamUtil.getLong(request, WebKeys.ATTR_TEMBL_LOAN_ID);
+		TempBl tempResult;
+
+		//Attempts retrieval from db or sets null.
+		try {
+			tempResult = TempBlLocalServiceUtil.getTempBl(new TempBlPK(borrowerName, borrowerLoanId));
+		} catch (PortalException e) {
+			tempResult = null;
+		} catch (SystemException e) {
 			tempResult = null;
 		}
 
@@ -389,9 +436,9 @@ public class ActionUtil {
 
 			//Portal Identifying info
 			ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-			story.setCompany_Id(themeDisplay.getCompanyId());
-			story.setGroup_Id(themeDisplay.getScopeGroupId());
-			story.setUser_Id(themeDisplay.getUserId());
+			story.setCompanyId(themeDisplay.getCompanyId());
+			story.setGroupId(themeDisplay.getScopeGroupId());
+			story.setUserId(themeDisplay.getUserId());
 		}
 
 		//Data
@@ -402,5 +449,44 @@ public class ActionUtil {
 		story.setStory_Type(ParamUtil.getString(request, "story_Type"));
 
 		return story;
+	}
+	
+	/**
+	 * Creates a new TempBl object from the data which is attached to the request.
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public TempBl tempBlFromRequest(ActionRequest request) {
+		String borrowerName = ParamUtil.getString(request, "borrower_Name");
+		long borrowerLoanId = ParamUtil.getLong(request, "borrower_Loan_Id");
+		boolean newTempBl = true;
+		TempBl tempBl = null;
+
+		//Loads existing data if it exists.
+		try {
+			tempBl = TempBlLocalServiceUtil.getTempBl(new TempBlPK(borrowerName, borrowerLoanId));
+			newTempBl = false;
+			
+		//Pointless exceptions as flag wont be set which will allow new object.
+		} catch (NoSuchStoryException e) {}
+		  catch (PortalException e) {}
+		  catch (SystemException e) {}
+
+		//Creates new TempBL if needed.
+		if (newTempBl) {
+			tempBl = new TempBlImpl();
+			
+			//Portal Identifying info
+			ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
+			tempBl.setCompanyId(themeDisplay.getCompanyId());
+			tempBl.setGroupId(themeDisplay.getScopeGroupId());
+		}
+
+		//Data
+		tempBl.setBorrower_Name(borrowerName);
+		tempBl.setBorrower_Loan_Id(borrowerLoanId);
+
+		return tempBl;
 	}
 }

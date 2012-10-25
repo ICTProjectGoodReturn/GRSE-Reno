@@ -177,6 +177,23 @@ public interface StoryLocalService extends BaseLocalService,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Returns the story with the UUID in the group.
+	*
+	* @param uuid the UUID of story
+	* @param groupId the group id of the story
+	* @return the story
+	* @throws PortalException if a story with the UUID in the group could not be found
+	* @throws SystemException if a system exception occurred
+	* @throws org.goodreturn.NoSuchStoryException
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public org.goodreturn.model.Story getStoryByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException,
+			org.goodreturn.NoSuchStoryException;
+
+	/**
 	* Returns a range of all the stories.
 	*
 	* <p>

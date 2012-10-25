@@ -873,6 +873,8 @@ public class LenderPersistenceImpl extends BasePersistenceImpl<Lender>
 	protected TeamPersistence teamPersistence;
 	@BeanReference(type = TeamLenderPersistence.class)
 	protected TeamLenderPersistence teamLenderPersistence;
+	@BeanReference(type = TempBlPersistence.class)
+	protected TempBlPersistence tempBlPersistence;
 	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)

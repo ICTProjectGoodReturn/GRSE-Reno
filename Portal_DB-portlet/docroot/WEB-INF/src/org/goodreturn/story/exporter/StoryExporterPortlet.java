@@ -24,6 +24,8 @@ public class StoryExporterPortlet extends MVCPortlet {
 
 	public void serveResource(ResourceRequest req, ResourceResponse res) throws PortletException, IOException {
 		boolean downloadCsv = ParamUtil.getBoolean(req, "downloadCsv");
+		
+		//TODO OTHER OPTIONS?
 
 		if (downloadCsv) {
 			//Retrieves data as Csv data.

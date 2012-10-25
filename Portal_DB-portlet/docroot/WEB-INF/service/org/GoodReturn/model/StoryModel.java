@@ -15,6 +15,7 @@
 package org.goodreturn.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -248,46 +249,61 @@ public interface StoryModel extends BaseModel<Story> {
 	public void setStatus_Date(Date status_Date);
 
 	/**
-	 * Returns the company_ ID of this story.
+	 * Returns the company ID of this story.
 	 *
-	 * @return the company_ ID of this story
+	 * @return the company ID of this story
 	 */
-	public long getCompany_Id();
+	public long getCompanyId();
 
 	/**
-	 * Sets the company_ ID of this story.
+	 * Sets the company ID of this story.
 	 *
-	 * @param company_Id the company_ ID of this story
+	 * @param companyId the company ID of this story
 	 */
-	public void setCompany_Id(long company_Id);
+	public void setCompanyId(long companyId);
 
 	/**
-	 * Returns the group_ ID of this story.
+	 * Returns the group ID of this story.
 	 *
-	 * @return the group_ ID of this story
+	 * @return the group ID of this story
 	 */
-	public long getGroup_Id();
+	public long getGroupId();
 
 	/**
-	 * Sets the group_ ID of this story.
+	 * Sets the group ID of this story.
 	 *
-	 * @param group_Id the group_ ID of this story
+	 * @param groupId the group ID of this story
 	 */
-	public void setGroup_Id(long group_Id);
+	public void setGroupId(long groupId);
 
 	/**
-	 * Returns the user_ ID of this story.
+	 * Returns the user ID of this story.
 	 *
-	 * @return the user_ ID of this story
+	 * @return the user ID of this story
 	 */
-	public long getUser_Id();
+	public long getUserId();
 
 	/**
-	 * Sets the user_ ID of this story.
+	 * Sets the user ID of this story.
 	 *
-	 * @param user_Id the user_ ID of this story
+	 * @param userId the user ID of this story
 	 */
-	public void setUser_Id(long user_Id);
+	public void setUserId(long userId);
+
+	/**
+	 * Returns the user uuid of this story.
+	 *
+	 * @return the user uuid of this story
+	 * @throws SystemException if a system exception occurred
+	 */
+	public String getUserUuid() throws SystemException;
+
+	/**
+	 * Sets the user uuid of this story.
+	 *
+	 * @param userUuid the user uuid of this story
+	 */
+	public void setUserUuid(String userUuid);
 
 	public boolean isNew();
 

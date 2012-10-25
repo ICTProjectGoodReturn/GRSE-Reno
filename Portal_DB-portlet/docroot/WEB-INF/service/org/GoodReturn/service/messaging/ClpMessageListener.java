@@ -34,6 +34,8 @@ import org.goodreturn.service.TeamLenderLocalServiceUtil;
 import org.goodreturn.service.TeamLenderServiceUtil;
 import org.goodreturn.service.TeamLocalServiceUtil;
 import org.goodreturn.service.TeamServiceUtil;
+import org.goodreturn.service.TempBlLocalServiceUtil;
+import org.goodreturn.service.TempBlServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
@@ -74,6 +76,9 @@ public class ClpMessageListener extends BaseMessageListener {
 			TeamLenderLocalServiceUtil.clearService();
 
 			TeamLenderServiceUtil.clearService();
+			TempBlLocalServiceUtil.clearService();
+
+			TempBlServiceUtil.clearService();
 		}
 	}
 }

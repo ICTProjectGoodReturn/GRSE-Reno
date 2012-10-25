@@ -65,9 +65,7 @@ create table GoodReturn_Person (
 	photo_URL VARCHAR(75) null,
 	occupation VARCHAR(75) null,
 	changed_By VARCHAR(75) null,
-	changed_Time LONG,
-	companyId LONG,
-	organizationId LONG
+	changed_Time LONG
 );
 
 create table GoodReturn_Story (
@@ -83,9 +81,9 @@ create table GoodReturn_Story (
 	status_By_User_Id LONG,
 	status_By_User_Name VARCHAR(75) null,
 	status_Date DATE null,
-	company_Id LONG,
-	group_Id LONG,
-	user_Id LONG
+	companyId LONG,
+	groupId LONG,
+	userId LONG
 );
 
 create table GoodReturn_Supplementary_Table (
@@ -109,4 +107,20 @@ create table GoodReturn_TeamLender (
 
 create table GoodReturn_TeamLenderLoan (
 	account_Id LONG not null primary key
+);
+
+create table GoodReturn_TempBL (
+	borrower_Name VARCHAR(75) not null,
+	borrower_Loan_Id LONG not null,
+	groupId LONG,
+	companyId LONG,
+	primary key (borrower_Name, borrower_Loan_Id)
+);
+
+create table GoodReturn_TempBl (
+	borrower_Name VARCHAR(75) not null,
+	borrower_Loan_Id LONG not null,
+	groupId LONG,
+	companyId LONG,
+	primary key (borrower_Name, borrower_Loan_Id)
 );

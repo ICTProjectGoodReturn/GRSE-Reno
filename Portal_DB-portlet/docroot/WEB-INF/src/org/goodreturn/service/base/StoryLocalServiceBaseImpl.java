@@ -61,6 +61,8 @@ import org.goodreturn.service.TeamLenderLocalService;
 import org.goodreturn.service.TeamLenderService;
 import org.goodreturn.service.TeamLocalService;
 import org.goodreturn.service.TeamService;
+import org.goodreturn.service.TempBlLocalService;
+import org.goodreturn.service.TempBlService;
 import org.goodreturn.service.persistence.BorrowerLoanPersistence;
 import org.goodreturn.service.persistence.BorrowerPersistence;
 import org.goodreturn.service.persistence.Gift_CertificatePersistence;
@@ -69,6 +71,7 @@ import org.goodreturn.service.persistence.PersonPersistence;
 import org.goodreturn.service.persistence.StoryPersistence;
 import org.goodreturn.service.persistence.TeamLenderPersistence;
 import org.goodreturn.service.persistence.TeamPersistence;
+import org.goodreturn.service.persistence.TempBlPersistence;
 
 import java.io.Serializable;
 
@@ -240,6 +243,22 @@ public abstract class StoryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return storyPersistence.findByPrimaryKey(primaryKeyObj);
+	}
+
+	/**
+	 * Returns the story with the UUID in the group.
+	 *
+	 * @param uuid the UUID of story
+	 * @param groupId the group id of the story
+	 * @return the story
+	 * @throws PortalException if a story with the UUID in the group could not be found
+	 * @throws SystemException if a system exception occurred
+	 * @throws org.goodreturn.NoSuchStoryException
+	 */
+	public Story getStoryByUuidAndGroupId(String uuid, long groupId)
+		throws PortalException, SystemException,
+			org.goodreturn.NoSuchStoryException {
+		return storyPersistence.findByUUID_G(uuid, groupId);
 	}
 
 	/**
@@ -737,6 +756,60 @@ public abstract class StoryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the temp bl local service.
+	 *
+	 * @return the temp bl local service
+	 */
+	public TempBlLocalService getTempBlLocalService() {
+		return tempBlLocalService;
+	}
+
+	/**
+	 * Sets the temp bl local service.
+	 *
+	 * @param tempBlLocalService the temp bl local service
+	 */
+	public void setTempBlLocalService(TempBlLocalService tempBlLocalService) {
+		this.tempBlLocalService = tempBlLocalService;
+	}
+
+	/**
+	 * Returns the temp bl remote service.
+	 *
+	 * @return the temp bl remote service
+	 */
+	public TempBlService getTempBlService() {
+		return tempBlService;
+	}
+
+	/**
+	 * Sets the temp bl remote service.
+	 *
+	 * @param tempBlService the temp bl remote service
+	 */
+	public void setTempBlService(TempBlService tempBlService) {
+		this.tempBlService = tempBlService;
+	}
+
+	/**
+	 * Returns the temp bl persistence.
+	 *
+	 * @return the temp bl persistence
+	 */
+	public TempBlPersistence getTempBlPersistence() {
+		return tempBlPersistence;
+	}
+
+	/**
+	 * Sets the temp bl persistence.
+	 *
+	 * @param tempBlPersistence the temp bl persistence
+	 */
+	public void setTempBlPersistence(TempBlPersistence tempBlPersistence) {
+		this.tempBlPersistence = tempBlPersistence;
+	}
+
+	/**
 	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
@@ -1065,6 +1138,12 @@ public abstract class StoryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected TeamLenderService teamLenderService;
 	@BeanReference(type = TeamLenderPersistence.class)
 	protected TeamLenderPersistence teamLenderPersistence;
+	@BeanReference(type = TempBlLocalService.class)
+	protected TempBlLocalService tempBlLocalService;
+	@BeanReference(type = TempBlService.class)
+	protected TempBlService tempBlService;
+	@BeanReference(type = TempBlPersistence.class)
+	protected TempBlPersistence tempBlPersistence;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)

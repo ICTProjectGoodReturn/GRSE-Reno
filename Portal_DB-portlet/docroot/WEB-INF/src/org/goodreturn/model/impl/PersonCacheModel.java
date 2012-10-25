@@ -32,7 +32,7 @@ import java.io.Serializable;
 public class PersonCacheModel implements CacheModel<Person>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(35);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{abacus_Person_Id=");
 		sb.append(abacus_Person_Id);
@@ -64,10 +64,6 @@ public class PersonCacheModel implements CacheModel<Person>, Serializable {
 		sb.append(changed_By);
 		sb.append(", changed_Time=");
 		sb.append(changed_Time);
-		sb.append(", companyId=");
-		sb.append(companyId);
-		sb.append(", organizationId=");
-		sb.append(organizationId);
 		sb.append("}");
 
 		return sb.toString();
@@ -165,8 +161,6 @@ public class PersonCacheModel implements CacheModel<Person>, Serializable {
 		}
 
 		personImpl.setChanged_Time(changed_Time);
-		personImpl.setCompanyId(companyId);
-		personImpl.setOrganizationId(organizationId);
 
 		personImpl.resetOriginalValues();
 
@@ -188,6 +182,4 @@ public class PersonCacheModel implements CacheModel<Person>, Serializable {
 	public String occupation;
 	public String changed_By;
 	public long changed_Time;
-	public long companyId;
-	public long organizationId;
 }

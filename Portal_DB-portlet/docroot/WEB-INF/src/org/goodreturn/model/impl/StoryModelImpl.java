@@ -15,6 +15,7 @@
 package org.goodreturn.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -23,6 +24,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -75,11 +77,11 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			{ "status_By_User_Id", Types.BIGINT },
 			{ "status_By_User_Name", Types.VARCHAR },
 			{ "status_Date", Types.TIMESTAMP },
-			{ "company_Id", Types.BIGINT },
-			{ "group_Id", Types.BIGINT },
-			{ "user_Id", Types.BIGINT }
+			{ "companyId", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
+			{ "userId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Story (uuid_ VARCHAR(75) null,story_Id LONG not null primary key,abacus_Borrower_Loan_Id LONG,story_Type VARCHAR(75) null,story_Text VARCHAR(75) null,video_Url VARCHAR(75) null,is_Good_Enough_For_Marketing BOOLEAN,is_Good_Enough_For_Story BOOLEAN,status INTEGER,status_By_User_Id LONG,status_By_User_Name VARCHAR(75) null,status_Date DATE null,company_Id LONG,group_Id LONG,user_Id LONG)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Story (uuid_ VARCHAR(75) null,story_Id LONG not null primary key,abacus_Borrower_Loan_Id LONG,story_Type VARCHAR(75) null,story_Text VARCHAR(75) null,video_Url VARCHAR(75) null,is_Good_Enough_For_Marketing BOOLEAN,is_Good_Enough_For_Story BOOLEAN,status INTEGER,status_By_User_Id LONG,status_By_User_Name VARCHAR(75) null,status_Date DATE null,companyId LONG,groupId LONG,userId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Story";
 	public static final String ORDER_BY_JPQL = " ORDER BY story.story_Id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Story.story_Id ASC";
@@ -96,7 +98,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 				"value.object.column.bitmask.enabled.org.goodreturn.model.Story"),
 			true);
 	public static long ABACUS_BORROWER_LOAN_ID_COLUMN_BITMASK = 1L;
-	public static long GROUP_ID_COLUMN_BITMASK = 2L;
+	public static long GROUPID_COLUMN_BITMASK = 2L;
 	public static long STATUS_COLUMN_BITMASK = 4L;
 	public static long STORY_TYPE_COLUMN_BITMASK = 8L;
 	public static long UUID_COLUMN_BITMASK = 16L;
@@ -126,9 +128,9 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		model.setStatus_By_User_Id(soapModel.getStatus_By_User_Id());
 		model.setStatus_By_User_Name(soapModel.getStatus_By_User_Name());
 		model.setStatus_Date(soapModel.getStatus_Date());
-		model.setCompany_Id(soapModel.getCompany_Id());
-		model.setGroup_Id(soapModel.getGroup_Id());
-		model.setUser_Id(soapModel.getUser_Id());
+		model.setCompanyId(soapModel.getCompanyId());
+		model.setGroupId(soapModel.getGroupId());
+		model.setUserId(soapModel.getUserId());
 
 		return model;
 	}
@@ -200,9 +202,9 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		attributes.put("status_By_User_Id", getStatus_By_User_Id());
 		attributes.put("status_By_User_Name", getStatus_By_User_Name());
 		attributes.put("status_Date", getStatus_Date());
-		attributes.put("company_Id", getCompany_Id());
-		attributes.put("group_Id", getGroup_Id());
-		attributes.put("user_Id", getUser_Id());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("userId", getUserId());
 
 		return attributes;
 	}
@@ -285,22 +287,22 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			setStatus_Date(status_Date);
 		}
 
-		Long company_Id = (Long)attributes.get("company_Id");
+		Long companyId = (Long)attributes.get("companyId");
 
-		if (company_Id != null) {
-			setCompany_Id(company_Id);
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 
-		Long group_Id = (Long)attributes.get("group_Id");
+		Long groupId = (Long)attributes.get("groupId");
 
-		if (group_Id != null) {
-			setGroup_Id(group_Id);
+		if (groupId != null) {
+			setGroupId(groupId);
 		}
 
-		Long user_Id = (Long)attributes.get("user_Id");
+		Long userId = (Long)attributes.get("userId");
 
-		if (user_Id != null) {
-			setUser_Id(user_Id);
+		if (userId != null) {
+			setUserId(userId);
 		}
 	}
 
@@ -491,42 +493,50 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	}
 
 	@JSON
-	public long getCompany_Id() {
-		return _company_Id;
+	public long getCompanyId() {
+		return _companyId;
 	}
 
-	public void setCompany_Id(long company_Id) {
-		_company_Id = company_Id;
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
 	}
 
 	@JSON
-	public long getGroup_Id() {
-		return _group_Id;
+	public long getGroupId() {
+		return _groupId;
 	}
 
-	public void setGroup_Id(long group_Id) {
-		_columnBitmask |= GROUP_ID_COLUMN_BITMASK;
+	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
 
-		if (!_setOriginalGroup_Id) {
-			_setOriginalGroup_Id = true;
+		if (!_setOriginalGroupId) {
+			_setOriginalGroupId = true;
 
-			_originalGroup_Id = _group_Id;
+			_originalGroupId = _groupId;
 		}
 
-		_group_Id = group_Id;
+		_groupId = groupId;
 	}
 
-	public long getOriginalGroup_Id() {
-		return _originalGroup_Id;
+	public long getOriginalGroupId() {
+		return _originalGroupId;
 	}
 
 	@JSON
-	public long getUser_Id() {
-		return _user_Id;
+	public long getUserId() {
+		return _userId;
 	}
 
-	public void setUser_Id(long user_Id) {
-		_user_Id = user_Id;
+	public void setUserId(long userId) {
+		_userId = userId;
+	}
+
+	public String getUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+	}
+
+	public void setUserUuid(String userUuid) {
+		_userUuid = userUuid;
 	}
 
 	public long getColumnBitmask() {
@@ -535,7 +545,7 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			Story.class.getName(), getPrimaryKey());
 	}
 
@@ -573,9 +583,9 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		storyImpl.setStatus_By_User_Id(getStatus_By_User_Id());
 		storyImpl.setStatus_By_User_Name(getStatus_By_User_Name());
 		storyImpl.setStatus_Date(getStatus_Date());
-		storyImpl.setCompany_Id(getCompany_Id());
-		storyImpl.setGroup_Id(getGroup_Id());
-		storyImpl.setUser_Id(getUser_Id());
+		storyImpl.setCompanyId(getCompanyId());
+		storyImpl.setGroupId(getGroupId());
+		storyImpl.setUserId(getUserId());
 
 		storyImpl.resetOriginalValues();
 
@@ -648,9 +658,9 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 
 		storyModelImpl._setOriginalStatus = false;
 
-		storyModelImpl._originalGroup_Id = storyModelImpl._group_Id;
+		storyModelImpl._originalGroupId = storyModelImpl._groupId;
 
-		storyModelImpl._setOriginalGroup_Id = false;
+		storyModelImpl._setOriginalGroupId = false;
 
 		storyModelImpl._columnBitmask = 0;
 	}
@@ -721,11 +731,11 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 			storyCacheModel.status_Date = Long.MIN_VALUE;
 		}
 
-		storyCacheModel.company_Id = getCompany_Id();
+		storyCacheModel.companyId = getCompanyId();
 
-		storyCacheModel.group_Id = getGroup_Id();
+		storyCacheModel.groupId = getGroupId();
 
-		storyCacheModel.user_Id = getUser_Id();
+		storyCacheModel.userId = getUserId();
 
 		return storyCacheModel;
 	}
@@ -758,12 +768,12 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		sb.append(getStatus_By_User_Name());
 		sb.append(", status_Date=");
 		sb.append(getStatus_Date());
-		sb.append(", company_Id=");
-		sb.append(getCompany_Id());
-		sb.append(", group_Id=");
-		sb.append(getGroup_Id());
-		sb.append(", user_Id=");
-		sb.append(getUser_Id());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
+		sb.append(", userId=");
+		sb.append(getUserId());
 		sb.append("}");
 
 		return sb.toString();
@@ -825,16 +835,16 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 		sb.append(getStatus_Date());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>company_Id</column-name><column-value><![CDATA[");
-		sb.append(getCompany_Id());
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>group_Id</column-name><column-value><![CDATA[");
-		sb.append(getGroup_Id());
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>user_Id</column-name><column-value><![CDATA[");
-		sb.append(getUser_Id());
+			"<column><column-name>userId</column-name><column-value><![CDATA[");
+		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -864,11 +874,12 @@ public class StoryModelImpl extends BaseModelImpl<Story> implements StoryModel {
 	private long _status_By_User_Id;
 	private String _status_By_User_Name;
 	private Date _status_Date;
-	private long _company_Id;
-	private long _group_Id;
-	private long _originalGroup_Id;
-	private boolean _setOriginalGroup_Id;
-	private long _user_Id;
+	private long _companyId;
+	private long _groupId;
+	private long _originalGroupId;
+	private boolean _setOriginalGroupId;
+	private long _userId;
+	private String _userUuid;
 	private long _columnBitmask;
 	private Story _escapedModelProxy;
 }

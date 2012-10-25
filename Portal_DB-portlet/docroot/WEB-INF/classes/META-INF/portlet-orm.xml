@@ -102,8 +102,6 @@
 			<basic name="occupation" />
 			<basic name="changed_By" />
 			<basic name="changed_Time" />
-			<basic name="companyId" />
-			<basic name="organizationId" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -127,12 +125,13 @@
 			<basic name="status_Date">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="company_Id" />
-			<basic name="group_Id" />
-			<basic name="user_Id" />
+			<basic name="companyId" />
+			<basic name="groupId" />
+			<basic name="userId" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="org.goodreturn.model.impl.TeamModelImpl">
@@ -153,6 +152,18 @@
 			<basic name="team_Id" />
 			<basic name="changed_By" />
 			<basic name="changed_Time" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="org.goodreturn.model.impl.TempBlModelImpl">
+		<id-class class="org.goodreturn.service.persistence.TempBlPK" />
+		<attributes>
+			<id name="borrower_Name" />
+			<id name="borrower_Loan_Id" />
+			<basic name="groupId" />
+			<basic name="companyId" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -188,6 +199,10 @@
 	</entity>
 	<entity class="org.goodreturn.model.impl.TeamLenderImpl" name="TeamLender">
 		<table name="GoodReturn_TeamLender" />
+		<attributes />
+	</entity>
+	<entity class="org.goodreturn.model.impl.TempBlImpl" name="TempBl">
+		<table name="GoodReturn_TempBl" />
 		<attributes />
 	</entity>
 </entity-mappings>

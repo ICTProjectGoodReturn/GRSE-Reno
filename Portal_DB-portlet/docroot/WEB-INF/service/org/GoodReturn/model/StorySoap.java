@@ -43,9 +43,9 @@ public class StorySoap implements Serializable {
 		soapModel.setStatus_By_User_Id(model.getStatus_By_User_Id());
 		soapModel.setStatus_By_User_Name(model.getStatus_By_User_Name());
 		soapModel.setStatus_Date(model.getStatus_Date());
-		soapModel.setCompany_Id(model.getCompany_Id());
-		soapModel.setGroup_Id(model.getGroup_Id());
-		soapModel.setUser_Id(model.getUser_Id());
+		soapModel.setCompanyId(model.getCompanyId());
+		soapModel.setGroupId(model.getGroupId());
+		soapModel.setUserId(model.getUserId());
 
 		return soapModel;
 	}
@@ -203,28 +203,28 @@ public class StorySoap implements Serializable {
 		_status_Date = status_Date;
 	}
 
-	public long getCompany_Id() {
-		return _company_Id;
+	public long getCompanyId() {
+		return _companyId;
 	}
 
-	public void setCompany_Id(long company_Id) {
-		_company_Id = company_Id;
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
 	}
 
-	public long getGroup_Id() {
-		return _group_Id;
+	public long getGroupId() {
+		return _groupId;
 	}
 
-	public void setGroup_Id(long group_Id) {
-		_group_Id = group_Id;
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
 	}
 
-	public long getUser_Id() {
-		return _user_Id;
+	public long getUserId() {
+		return _userId;
 	}
 
-	public void setUser_Id(long user_Id) {
-		_user_Id = user_Id;
+	public void setUserId(long userId) {
+		_userId = userId;
 	}
 
 	private String _uuid;
@@ -239,7 +239,7 @@ public class StorySoap implements Serializable {
 	private long _status_By_User_Id;
 	private String _status_By_User_Name;
 	private Date _status_Date;
-	private long _company_Id;
-	private long _group_Id;
-	private long _user_Id;
+	private long _companyId;
+	private long _groupId;
+	private long _userId;
 }

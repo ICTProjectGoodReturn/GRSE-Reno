@@ -4,7 +4,6 @@
 * for BorrowerLoan objects. Should be used in conjunction.
 */
 --%>
-<%@page import="org.goodreturn.service.StoryLocalServiceUtil"%>
 <%@include file="/html/init.jsp"%>
 
 <!-- Data Definitions -->
@@ -30,10 +29,10 @@
 
 <!-- Link Definitions -->
 <portlet:renderURL windowState="normal" var="backUrl">
-	<portlet:param name="jspPage" value="/html/storyportlet/view_story.jsp" />
+	<portlet:param name="jspPage" value="/html/story/view_story.jsp" />
 </portlet:renderURL>
 <portlet:actionURL name="updateStory" var="updateStoryUrl">
-	<portlet:param name="redirect" value="<%=redirect%>" />
+	<portlet:param name="jspPage" value="/html/story/edit_story.jsp"/>
 </portlet:actionURL>
 <portlet:renderURL var="cancelUrl">
 	<portlet:param name="jspPage" value="/html/borrowersportlet/view.jsp" />
@@ -88,7 +87,7 @@
 		
 		<aui:button-row>
 			<aui:button type="submit" />
-			<aui:button type="cancel" value="Cancel" onClick="<%=backUrl%>" />
+			<aui:button type="cancel" value="Cancel" onClick="<%=backUrl.toString()%>" />
 		</aui:button-row>
 		
 	</aui:fieldset>

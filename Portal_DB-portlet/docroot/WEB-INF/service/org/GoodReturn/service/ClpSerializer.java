@@ -33,6 +33,7 @@ import org.goodreturn.model.PersonClp;
 import org.goodreturn.model.StoryClp;
 import org.goodreturn.model.TeamClp;
 import org.goodreturn.model.TeamLenderClp;
+import org.goodreturn.model.TempBlClp;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -141,6 +142,10 @@ public class ClpSerializer {
 			return translateInputTeamLender(oldModel);
 		}
 
+		if (oldModelClassName.equals(TempBlClp.class.getName())) {
+			return translateInputTempBl(oldModel);
+		}
+
 		return oldModel;
 	}
 
@@ -236,6 +241,16 @@ public class ClpSerializer {
 		return newModel;
 	}
 
+	public static Object translateInputTempBl(BaseModel<?> oldModel) {
+		TempBlClp oldClpModel = (TempBlClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getTempBlRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
 	public static Object translateInput(Object obj) {
 		if (obj instanceof BaseModel<?>) {
 			return translateInput((BaseModel<?>)obj);
@@ -285,6 +300,10 @@ public class ClpSerializer {
 
 		if (oldModelClassName.equals("org.goodreturn.model.impl.TeamLenderImpl")) {
 			return translateOutputTeamLender(oldModel);
+		}
+
+		if (oldModelClassName.equals("org.goodreturn.model.impl.TempBlImpl")) {
+			return translateOutputTempBl(oldModel);
 		}
 
 		return oldModel;
@@ -399,6 +418,10 @@ public class ClpSerializer {
 			return new org.goodreturn.NoSuchTeamLenderException();
 		}
 
+		if (className.equals("org.goodreturn.NoSuchTempBlException")) {
+			return new org.goodreturn.NoSuchTempBlException();
+		}
+
 		return throwable;
 	}
 
@@ -478,6 +501,16 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setTeamLenderRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputTempBl(BaseModel<?> oldModel) {
+		TempBlClp newModel = new TempBlClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setTempBlRemoteModel(oldModel);
 
 		return newModel;
 	}

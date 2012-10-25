@@ -37,7 +37,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>storyexporterportlet</portlet-name>
-		<display-name>Story Exporter Portlet</display-name>
+		<display-name>Story Exporter</display-name>
 		<portlet-class>
 			org.goodreturn.story.exporter.StoryExporterPortlet
 		</portlet-class>
@@ -51,8 +51,8 @@
 			<portlet-mode>view</portlet-mode>
 		</supports>
 		<portlet-info>
-			<title>Story Exporter Portlet</title>
-			<short-title>Story Exporter Portlet</short-title>
+			<title>Story Exporter</title>
+			<short-title>Story Exporter</short-title>
 			<keywords></keywords>
 		</portlet-info>
 		<security-role-ref>

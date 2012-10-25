@@ -279,34 +279,6 @@ public interface PersonModel extends BaseModel<Person> {
 	 */
 	public void setChanged_Time(long changed_Time);
 
-	/**
-	 * Returns the company ID of this person.
-	 *
-	 * @return the company ID of this person
-	 */
-	public long getCompanyId();
-
-	/**
-	 * Sets the company ID of this person.
-	 *
-	 * @param companyId the company ID of this person
-	 */
-	public void setCompanyId(long companyId);
-
-	/**
-	 * Returns the organization ID of this person.
-	 *
-	 * @return the organization ID of this person
-	 */
-	public long getOrganizationId();
-
-	/**
-	 * Sets the organization ID of this person.
-	 *
-	 * @param organizationId the organization ID of this person
-	 */
-	public void setOrganizationId(long organizationId);
-
 	public boolean isNew();
 
 	public void setNew(boolean n);

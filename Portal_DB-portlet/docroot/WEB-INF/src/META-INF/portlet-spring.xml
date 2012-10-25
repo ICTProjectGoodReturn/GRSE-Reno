@@ -25,4 +25,7 @@
 	<bean id="org.goodreturn.service.TeamLenderLocalService" class="org.goodreturn.service.impl.TeamLenderLocalServiceImpl" />
 	<bean id="org.goodreturn.service.TeamLenderService" class="org.goodreturn.service.impl.TeamLenderServiceImpl" />
 	<bean id="org.goodreturn.service.persistence.TeamLenderPersistence" class="org.goodreturn.service.persistence.TeamLenderPersistenceImpl" parent="basePersistence" />
+	<bean id="org.goodreturn.service.TempBlLocalService" class="org.goodreturn.service.impl.TempBlLocalServiceImpl" />
+	<bean id="org.goodreturn.service.TempBlService" class="org.goodreturn.service.impl.TempBlServiceImpl" />
+	<bean id="org.goodreturn.service.persistence.TempBlPersistence" class="org.goodreturn.service.persistence.TempBlPersistenceImpl" parent="basePersistence" />
 </beans>

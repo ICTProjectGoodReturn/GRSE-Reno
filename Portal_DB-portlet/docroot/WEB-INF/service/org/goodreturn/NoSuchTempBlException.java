@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
@@ -12,10 +11,30 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-%>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+package org.goodreturn;
 
-<portlet:defineObjects />
+import com.liferay.portal.NoSuchModelException;
 
-This is the <b>Portal DB</b> portlet.
+/**
+ * @author gilaa004
+ */
+public class NoSuchTempBlException extends NoSuchModelException {
+
+	public NoSuchTempBlException() {
+		super();
+	}
+
+	public NoSuchTempBlException(String msg) {
+		super(msg);
+	}
+
+	public NoSuchTempBlException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public NoSuchTempBlException(Throwable cause) {
+		super(cause);
+	}
+
+}

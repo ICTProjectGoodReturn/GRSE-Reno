@@ -19,7 +19,8 @@
 		<portlet-name>storyexporterportlet</portlet-name>
 		<icon>/icon.png</icon>
 		<control-panel-entry-category>portal</control-panel-entry-category>
-		<control-panel-entry-weight>1.5</control-panel-entry-weight>
+		<control-panel-entry-weight>1.0</control-panel-entry-weight>
+		<control-panel-entry-class>org.goodreturn.story.exporter.StoryExporterUsersControlPanelEntry</control-panel-entry-class>
 		<instanceable>false</instanceable>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>

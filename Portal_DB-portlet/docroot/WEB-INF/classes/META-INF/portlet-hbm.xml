@@ -10,6 +10,7 @@
 	<import class="org.goodreturn.model.Story" />
 	<import class="org.goodreturn.model.Team" />
 	<import class="org.goodreturn.model.TeamLender" />
+	<import class="org.goodreturn.model.TempBl" />
 	<class name="org.goodreturn.model.impl.BorrowerImpl" table="GoodReturn_Borrower">
 		<cache usage="read-write" />
 		<id name="borrower_Id" type="long">
@@ -89,8 +90,6 @@
 		<property name="occupation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="changed_By" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="changed_Time" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="organizationId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="org.goodreturn.model.impl.StoryImpl" table="GoodReturn_Story">
 		<cache usage="read-write" />
@@ -108,9 +107,9 @@
 		<property name="status_By_User_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="status_By_User_Name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="status_Date" type="org.hibernate.type.TimestampType" />
-		<property name="company_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="group_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="user_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="org.goodreturn.model.impl.TeamImpl" table="GoodReturn_Team">
 		<cache usage="read-write" />
@@ -130,5 +129,14 @@
 		<property name="team_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="changed_By" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="changed_Time" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="org.goodreturn.model.impl.TempBlImpl" table="GoodReturn_TempBl">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="org.goodreturn.service.persistence.TempBlPK">
+			<key-property name="borrower_Name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+			<key-property name="borrower_Loan_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 </hibernate-mapping>

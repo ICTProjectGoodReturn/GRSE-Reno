@@ -71,9 +71,9 @@ public class StoryLocalServiceImpl extends StoryLocalServiceBaseImpl {
 		story.setIs_Good_Enough_For_Marketing(newStory.getIs_Good_Enough_For_Marketing());
 		story.setIs_Good_Enough_For_Story(newStory.getIs_Good_Enough_For_Story());
 
-		story.setCompany_Id(newStory.getCompany_Id());
-		story.setGroup_Id(newStory.getGroup_Id());
-		story.setUser_Id(userId);
+		story.setCompanyId(newStory.getCompanyId());
+		story.setGroupId(newStory.getGroupId());
+		story.setUserId(userId);
 		
 		story.setStatus(WorkflowConstants.STATUS_DRAFT);
 
@@ -81,16 +81,16 @@ public class StoryLocalServiceImpl extends StoryLocalServiceBaseImpl {
 		storyPersistence.update(story, false);
 
 		resourceLocalService.addResources(
-				story.getCompany_Id(), story.getGroup_Id(), userId,
+				story.getCompanyId(), story.getGroupId(), userId,
 				Story.class.getName(), story.getPrimaryKey(), false, 
 				true, true);
 
 		assetEntryLocalService.updateEntry(              
-				userId, story.getGroup_Id(), Story.class.getName(),
+				userId, story.getGroupId(), Story.class.getName(),
 				story.getStory_Id(), serviceContext.getAssetCategoryIds(),
 				serviceContext.getAssetTagNames());
 		
-		WorkflowHandlerRegistryUtil.startWorkflowInstance(story.getCompany_Id(),
+		WorkflowHandlerRegistryUtil.startWorkflowInstance(story.getCompanyId(),
 				userId, Story.class.getName(), story.getPrimaryKey(),
 				story, serviceContext);
 
@@ -106,7 +106,7 @@ public class StoryLocalServiceImpl extends StoryLocalServiceBaseImpl {
 
 	
 	public Story deleteStory(Story story) throws SystemException {
-		long companyId = story.getCompany_Id();
+		long companyId = story.getCompanyId();
 		
 		//Updates resource and asset status.
 		try {
