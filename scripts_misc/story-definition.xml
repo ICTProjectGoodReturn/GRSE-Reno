@@ -4,8 +4,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="urn:liferay.com:liferay-workflow_6.1.0 http://www.liferay.com/dtd/liferay-workflow-definition_6_1_0.xsd">
 	
-	<name>Final Story Workflow</name>
-	<description>The final story workflow process for final story content.</description>
+	<name>Story Workflow</name>
+	<description>The story workflow process for final story content.</description>
 	<version>1</version>
 	
 	<state>
@@ -25,7 +25,7 @@
 		<actions>
 			<notification>
 				<name>Video Approval Notification</name>
-				<template>You have a new final story video submission waiting for the videos to be approved in the workflow.</template>
+				<template>You have a new story video submission waiting for the videos to be approved in the workflow.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
 				<recipients>
@@ -76,8 +76,8 @@
 		<name>Volunteer Edit</name>
 		<actions>
 			<notification>
-				<name>Final Story Edit Notification</name>
-				<template>You have a new final story submission waiting for your review and edit in the workflow.</template>
+				<name>Story Edit Notification</name>
+				<template>You have a new story submission waiting for your review and edit in the workflow.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
 				<recipients>
@@ -89,19 +89,6 @@
 					</roles>
 				</recipients>
 				<execution-type>onEntry</execution-type>
-			</notification>
-			<!-- TODO MAYBE REMOVE THIS LATER, HOW DOES IT KNOW WHO TO SEND IT TO.. -->
-			<notification>
-				<name>Review Completion Notification</name>
-				<template>
-					Your final story submission has been reviewed and edited by the first editor and has applied the following ${taskComments}.
-				</template>
-				<template-language>freemarker</template-language>
-				<notification-type>email</notification-type>
-				<recipients>
-					<user />
-				</recipients>
-				<execution-type>onExit</execution-type>
 			</notification>
 		</actions>
 		<assignments>
@@ -124,7 +111,7 @@
 		</assignments>
 		<transitions>
 			<transition>
-				<name>Send Finalised Final Story Edit</name>
+				<name>Send Finalised Story Edit</name>
 				<target>Final Edit</target>
 				<default>true</default>
 			</transition>
@@ -149,7 +136,7 @@
 		<actions>
 			<notification>
 				<name>Edit Notification</name>
-				<template>You have a new final story submission waiting for your final review, edit and publish approval in the workflow.</template>
+				<template>You have a new story submission waiting for your final review, edit and publish approval in the workflow.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
 				<recipients>
@@ -166,7 +153,7 @@
 			<notification>
 				<name>Review Completion Notification</name>
 				<template>
-					Your final story submission has been reviewed by the final editor and approved for publishing. They have applied the following ${taskComments}.
+					Your story submission has been reviewed by the final editor and approved for publishing. They have applied the following ${taskComments}.
 				</template>
 				<template-language>freemarker</template-language>
 				<notification-type>email</notification-type>

@@ -32,7 +32,7 @@
 </portlet:renderURL>
 
 <!-- Structure Definition -->
-<!-- TODO ERRORS/MESSAGES -->
+<liferay-ui:error key="no-such-story" message="no-such-story" />
 
 
 <c:if test="<%=story!=null%>">

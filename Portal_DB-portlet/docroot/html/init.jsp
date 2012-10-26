@@ -15,6 +15,7 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.UnicodeFormatter" %>
@@ -22,6 +23,8 @@
 <%@ page import="com.liferay.portal.kernel.util.ListUtil" %>
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %>
+<%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
+<%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 
 <%@ page import="java.util.List" %>
 
