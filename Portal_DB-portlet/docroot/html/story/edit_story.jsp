@@ -28,7 +28,7 @@
 %>
 
 <!-- Link Definitions -->
-<portlet:renderURL windowState="normal" var="backUrl">
+<portlet:renderURL var="backUrl">
 	<portlet:param name="jspPage" value="/html/story/view_story.jsp" />
 </portlet:renderURL>
 <portlet:actionURL name="updateStory" var="updateStoryUrl">
@@ -44,12 +44,16 @@
 							+ story.getAbacus_Borrower_Loan_Id()%>'
 />
 
-<!-- Errors and messages -->
-<liferay-ui:error key="story-update-error" message="story-update-error" />
-<liferay-ui:error key="story-add-error" message="story-add-error" />
-<liferay-ui:error key="story-data-invalid-error" message="story-data-invalid-error" />
-<liferay-ui:success key="story-update-success" message="story-update-success"/>
-<liferay-ui:success key="story-add-success" message="story-add-success"/>
+<!-- Error and Success messages -->
+<liferay-ui:error key="story-update-error" message="Errors encounted, story could not be updated." />
+<liferay-ui:error key="story-add-error" message="Errors encounted, story could not be added." />
+<liferay-ui:error key="story-data-invalid-error" message="Story data is invalid, check story input for problems." />
+<liferay-ui:error key="story-null-error" message="Story data could not loaded for save." />
+<liferay-ui:error key="story-type-error" message="Story type provided is not valid." />
+<liferay-ui:error key="story-loan-id-error" message="Story id is not valid." />
+<liferay-ui:error key="story-vid-url-error" message="URL for story is not a valid URL address." />
+<liferay-ui:success key="story-update-success" message="Success! Story has been updated."/>
+<liferay-ui:success key="story-add-success" message="Success! Story has been successfully been added to system."/>
 
 
 <aui:form action="<%=updateStoryUrl.toString()%>" method="post">
@@ -64,11 +68,11 @@
 
 		<!-- TODO Borrower information?? -->
 		
-		<aui:input name="story_Id" type="text" />
+		<aui:input name="story_Id" type="hidden" />
 		
-		<aui:input name="abacus_Borrower_Loan_Id" type="text" />
+		<aui:input name="abacus_Borrower_Loan_Id" type="hidden" />
 		
-		<aui:input name="story_Type" type="text" />
+		<aui:input name="story_Type" type="hidden" />
 		
 		<aui:input label="Good enough for marketing?" name="is_Good_Enough_For_Marketing" first="true" autoFocus="true" />
 		

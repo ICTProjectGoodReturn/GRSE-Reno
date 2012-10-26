@@ -25,16 +25,19 @@ public class StoryValidator {
 		boolean storyValid = true;
 		//null check
 		if (story == null) {
+			errors.add("story-null-error");
 			storyValid = false;
 		}
 
 		//Valid story types.
 		if (!(story.getStory_Type().equals("initial") || story.getStory_Type().equals("final"))) {
+			errors.add("story-type-error");
 			storyValid = false;
 		}
 
 		//non null borrower_loan_Id
 		if (story.getAbacus_Borrower_Loan_Id() <= 0) {
+			errors.add("story-loan-id-error");
 			storyValid = false;
 		}
 
@@ -46,6 +49,7 @@ public class StoryValidator {
 				story.setVideo_Url("");
 				
 			} else if (!Validator.isUrl(story.getVideo_Url())) {
+				errors.add("story-vid-url-error");
 				storyValid = false;
 			}
 		}

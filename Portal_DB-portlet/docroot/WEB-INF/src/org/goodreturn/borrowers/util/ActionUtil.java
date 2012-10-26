@@ -261,7 +261,7 @@ public class ActionUtil {
 		return story;
 	}
 
-	private static Story getStoryByType(long borrowerLoanId, String storyType) {
+	public static Story getStoryByType(long borrowerLoanId, String storyType) {
 		//Gets story based on loanId and type or returns null.
 		Story tempResult;
 		try {
@@ -306,7 +306,7 @@ public class ActionUtil {
 	public static TempBl getTempBl(RenderRequest request) {
 		//request data.
 		String borrowerName = ParamUtil.getString(request, WebKeys.ATTR_TEMPBL_BORROWER_NAME);
-		long borrowerLoanId = ParamUtil.getLong(request, WebKeys.ATTR_TEMBL_LOAN_ID);
+		long borrowerLoanId = ParamUtil.getLong(request, WebKeys.ATTR_TEMPBL_LOAN_ID);
 		TempBl tempResult;
 
 		//Attempts retrieval from db or sets null.
@@ -366,10 +366,8 @@ public class ActionUtil {
 
 
 		//Portal Identifying info
-		//TODO Set specific data?
-		//borrower.setCompany_Id(themeDisplay.getCompanyId());
-		//borrower.setGroup_Id(themeDisplay.getScopeGroupId());
-		//borrower.setUser_Id(themeDisplay.getUserId());
+		borrower.setCompanyId(themeDisplay.getCompanyId());
+		borrower.setGroupId(themeDisplay.getScopeGroupId());//TODO BASE ON MFI
 
 		return borrower;
 	}
@@ -398,11 +396,8 @@ public class ActionUtil {
 		borrowerLoan.setChanged_Time(ParamUtil.getString(request, "changed_Time"));
 
 		//Portal Identifying info
-		//TODO set other data.
-		//borrowerLoan.setCompany_Id(themeDisplay.getCompanyId());
-		//borrowerLoan.setGroup_Id(themeDisplay.getScopeGroupId());
-		//borrowerLoan.setUser_Id(themeDisplay.getUserId());
-
+		borrowerLoan.setCompanyId(themeDisplay.getCompanyId());
+		borrowerLoan.setGroupId(themeDisplay.getScopeGroupId()); //TODO Base on MFI
 		return borrowerLoan;
 	}
 

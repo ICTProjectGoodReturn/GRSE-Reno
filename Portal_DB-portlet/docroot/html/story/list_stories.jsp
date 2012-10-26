@@ -1,22 +1,54 @@
 
-<%@page import="java.util.ArrayList"%>
 <%@include file="/html/init.jsp"%>
 
 <%
 //Retrieves data needed.
-long borrowerLoanId = ParamUtil.getLong(request, WebKeys.ATTR_TEMBL_LOAN_ID);
+long borrowerLoanId = ParamUtil.getLong(request, WebKeys.ATTR_TEMPBL_LOAN_ID);
 String borrowerLoanIdString = String.valueOf(borrowerLoanId);
 
 Story initialStory = ActionUtil.getStoryByType(borrowerLoanId, "initial");
 Story finalStory = ActionUtil.getStoryByType(borrowerLoanId, "final");
+TempBl borrower = ActionUtil.getTempBl(renderRequest);
 %>
 
 <liferay-ui:header title="Borrower" />
 
 
+<liferay-ui:search-container emptyResultsMessage="no-loan" delta="5">
+	<liferay-ui:search-container-results>
+	<%
+    //Sets results.
+    List<TempBl> borrowerCol = new ArrayList<TempBl>();
+	if (borrower!= null) {
+		borrowerCol.add(borrower);
+		total = 1;
+	} else {
+		total = 0;
+	}
+    
+
+    pageContext.setAttribute("results", borrowerCol);
+    pageContext.setAttribute("total", total);
+    %>
+	</liferay-ui:search-container-results>
+
+	<liferay-ui:search-container-row
+		className="org.goodreturn.model.TempBl"
+		keyProperty="borrower_Name" modelVar="tempBl">
+
+		<liferay-ui:search-container-column-text name="Name" property="borrower_Name" />
+		<liferay-ui:search-container-column-text name="Loan Id" property="borrower_Loan_Id" />
+		
+	</liferay-ui:search-container-row>
+
+	<liferay-ui:search-iterator />
+
+</liferay-ui:search-container>
+
+
 <liferay-ui:header title="Story Entries" />
 
-<liferay-ui:search-container emptyResultsMessage="no-stories" delta="5">
+<liferay-ui:search-container emptyResultsMessage="No Stories Currently Exist." delta="5">
 	<liferay-ui:search-container-results>
 	<%
 	//Retrieves stories to display.

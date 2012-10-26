@@ -211,14 +211,15 @@ public interface PersonModel extends BaseModel<Person> {
 	 *
 	 * @return the phone_ number of this person
 	 */
-	public long getPhone_Number();
+	@AutoEscape
+	public String getPhone_Number();
 
 	/**
 	 * Sets the phone_ number of this person.
 	 *
 	 * @param phone_Number the phone_ number of this person
 	 */
-	public void setPhone_Number(long phone_Number);
+	public void setPhone_Number(String phone_Number);
 
 	/**
 	 * Returns the photo_ u r l of this person.

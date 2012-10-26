@@ -14,7 +14,6 @@
 			<mime-type>text/html</mime-type>
 			<portlet-mode>view</portlet-mode>
 		</supports>
-		<resource-bundle>org.goodreturn.borrowers.messages</resource-bundle>
 		<portlet-info>
 			<title>MFI Story Portlet</title>
 			<short-title>Story Portlet</short-title>
@@ -32,8 +31,33 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
-		<!-- Fix roles above to cover: MFI Leader, MFI Finance, MFI Story, WEAL Owner,
-			WEAL Admin, WEAL Marketing, WEAL Finance, WEAL Operations, WEAL Volunteer -->
+		
+		
+	<!-- Additional Roles added all WEAL (except weal-admin) / MFI -->
+		<security-role-ref>
+			<role-name>weal-owner</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>weal-marketing</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>weal-finance</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>weal-operations</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>weal-volunteer</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>mfi-leader</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>mfi-finance</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>mfi-story</role-name>
+		</security-role-ref>
 	</portlet>
 	<portlet>
 		<portlet-name>storyexporterportlet</portlet-name>

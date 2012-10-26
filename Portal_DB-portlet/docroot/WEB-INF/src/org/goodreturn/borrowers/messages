@@ -1,7 +1,0 @@
-final-story=Final Story
-org.goodreturn.model.Story=Story
-model.resource.org.goodreturn.model.Story=Story
-
-no-story-exists=No Story exits for specified borrower.
-story-saved-successfully=Story has successfully been saved.
-story-fields-required=Story requires fields.

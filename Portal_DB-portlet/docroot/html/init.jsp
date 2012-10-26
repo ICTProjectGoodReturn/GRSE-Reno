@@ -27,6 +27,7 @@
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 
 <%@ page import="java.util.List" %>
+<%@page import="java.util.ArrayList"%>
 
 <%@ page import="org.goodreturn.model.Story" %>
 <%@ page import="org.goodreturn.model.TempBl" %>

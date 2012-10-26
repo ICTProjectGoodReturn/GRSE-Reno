@@ -141,7 +141,12 @@ public class PersonCacheModel implements CacheModel<Person>, Serializable {
 			personImpl.setStatus(status);
 		}
 
-		personImpl.setPhone_Number(phone_Number);
+		if (phone_Number == null) {
+			personImpl.setPhone_Number(StringPool.BLANK);
+		}
+		else {
+			personImpl.setPhone_Number(phone_Number);
+		}
 
 		if (photo_URL == null) {
 			personImpl.setPhoto_URL(StringPool.BLANK);
@@ -183,7 +188,7 @@ public class PersonCacheModel implements CacheModel<Person>, Serializable {
 	public String gender;
 	public String salutation;
 	public String status;
-	public long phone_Number;
+	public String phone_Number;
 	public String photo_URL;
 	public String occupation;
 	public String changed_By;

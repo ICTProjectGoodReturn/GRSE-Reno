@@ -16,6 +16,8 @@ import org.goodreturn.model.TempBl;
 import org.goodreturn.service.BorrowerLoanLocalServiceUtil;
 import org.goodreturn.service.BorrowerLocalServiceUtil;
 import org.goodreturn.service.StoryLocalServiceUtil;
+import org.goodreturn.service.TempBlLocalService;
+import org.goodreturn.service.TempBlLocalServiceUtil;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -223,7 +225,7 @@ public class BorrowersPortlet extends MVCPortlet {
 		}
 	}
 
-	public void addTempBl(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException, PortalException, SystemException {
+	public void updateTempBl(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException, PortalException, SystemException {
 		//Data retrieval
 		TempBl tempBl = ActionUtil.tempBlFromRequest(actionRequest);
 		ArrayList<String> errors = new ArrayList<String>();
@@ -234,12 +236,9 @@ public class BorrowersPortlet extends MVCPortlet {
 		//Updates or adds tempBl to database if valid.
 		boolean operationFailed = true;
 		if (TempBlValidator.validateTempBl(tempBl, errors)) {
-			//TODO replace with checking if already exists through call.
-			if (true) {
-				// Updating
-			} else {
-				// Adding
-			}
+			TempBlLocalServiceUtil.addTempBl(tempBl);
+			SessionMessages.add(actionRequest, "tempbl-data-add-success");
+			operationFailed = false;
 		} else {
 			errors.add("tempbl-data-invalid-error");
 		}

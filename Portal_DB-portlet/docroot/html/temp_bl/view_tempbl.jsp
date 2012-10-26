@@ -1,9 +1,17 @@
 
 <%@include file="/html/init.jsp"%>
 
-<portlet:actionURL name="addTempBl" var="addTempBlUrl"/>
+<!-- Error/Success Messages -->
+<liferay-ui:error key="tempbl-data-invalid-error" message="Invalid data found, fix errors before resubmitting." />
+<liferay-ui:error key="tempbl-null-error" message="Error encounted, could not save borrower into system." />
+<liferay-ui:error key="tempbl-borrower-name-error" message="Borrower Name provided is not valid." />
+<liferay-ui:error key="tempbl-borrower-loan-id-error" message="Borrower loan ID is not valid." />
+<liferay-ui:error key="tempbl-already-exists-error" message="Error, Borrower already exists within the system." />
+<liferay-ui:success key="tempbl-data-add-success" message="Success! Borrower added to system successfully." />
 
-<aui:form action="<%= addTempBlUrl.toString() %>" method="post">
+<portlet:actionURL name="updateTempBl" var="updateTempBlUrl"/>
+
+<aui:form action="<%= updateTempBlUrl.toString() %>" method="post">
 	<aui:fieldset>
 		<aui:input label="Borrower Loan ID:" name="borrower_Loan_Id" size="45" />
 		<aui:input label="Borrower Name:" name="borrower_Name" size="45" />
@@ -17,9 +25,10 @@
 <br />
 <br />
 
-<liferay-ui:header title="Borrower Entries" />
+<liferay-ui:header title="Loan Entries" />
 
-<liferay-ui:search-container emptyResultsMessage="no-tempbls" delta="5">
+
+<liferay-ui:search-container emptyResultsMessage="No Loans Currently Exist." delta="5">
 	<liferay-ui:search-container-results>
 	<%
     List<TempBl> tempResults = ActionUtil.getTempBls(renderRequest);
@@ -36,8 +45,8 @@
 		className="org.goodreturn.model.TempBl"
 		keyProperty="borrower_Name" modelVar="tempBl">
 
-		<liferay-ui:search-container-column-text name="borrower-name" property="borrower_Name" />
-		<liferay-ui:search-container-column-text name="borrower-loan-id" property="borrower_Loan_Id" />
+		<liferay-ui:search-container-column-text name="Name" property="borrower_Name" />
+		<liferay-ui:search-container-column-text name="Loan Id" property="borrower_Loan_Id" />
 		<liferay-ui:search-container-column-jsp	path="/html/temp_bl/actions_tempbl.jsp" align="right" />
 		
 	</liferay-ui:search-container-row>

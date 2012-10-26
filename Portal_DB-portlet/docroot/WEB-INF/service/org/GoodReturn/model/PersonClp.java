@@ -147,7 +147,7 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 			setStatus(status);
 		}
 
-		Long phone_Number = (Long)attributes.get("phone_Number");
+		String phone_Number = (String)attributes.get("phone_Number");
 
 		if (phone_Number != null) {
 			setPhone_Number(phone_Number);
@@ -270,11 +270,11 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 		_status = status;
 	}
 
-	public long getPhone_Number() {
+	public String getPhone_Number() {
 		return _phone_Number;
 	}
 
-	public void setPhone_Number(long phone_Number) {
+	public void setPhone_Number(String phone_Number) {
 		_phone_Number = phone_Number;
 	}
 
@@ -558,7 +558,7 @@ public class PersonClp extends BaseModelImpl<Person> implements Person {
 	private String _gender;
 	private String _salutation;
 	private String _status;
-	private long _phone_Number;
+	private String _phone_Number;
 	private String _photo_URL;
 	private String _occupation;
 	private String _changed_By;

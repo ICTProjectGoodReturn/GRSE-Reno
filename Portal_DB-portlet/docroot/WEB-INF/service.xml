@@ -23,7 +23,7 @@
 		<column name="gender" type="String" />
 		<column name="salutation" type="String"/>
 		<column name="status" type="String" />
-		<column name="phone_Number" type="long" />
+		<column name="phone_Number" type="String" />
 		<column name="photo_URL" type="String" />
 		<column name="occupation" type="String" />
 		<column name="changed_By" type="String" />
@@ -38,7 +38,6 @@
 		<order by="asc">
 			<order-column name="abacus_Person_Id" />
 		</order>
-		
 		
 	</entity>
 
@@ -78,14 +77,10 @@
 		<column name="companyId" type="long"/>
 
 		<!-- Order -->
-
 		<order by="asc">
 			<order-column name="lender_Id" />
 		</order>
-
 		
-		
-
 	</entity>
 
 	<entity name="Borrower" remote-service="true" local-service="true">
@@ -114,7 +109,7 @@
 		<order by="asc">
 			<order-column name="borrower_Id" />
 		</order>
-
+		
 	</entity>
 
 	<entity name="Team" remote-service="true" local-service="true">
@@ -138,8 +133,7 @@
 		<order by="asc">
 			<order-column name="team_Id" />
 		</order>
-
-
+		
 	</entity>
 
 	<entity name="Gift_Certificate" remote-service="true" local-service="true">
@@ -267,9 +261,11 @@
 		<order by="asc">
 			<order-column name="team_lender_Id" />
 		</order>
+		
 	</entity>
 
 	<entity name="TempBl" local-service="true" remote-service="true">
+	
 		<!-- PK Fields -->
 		<column name="borrower_Name" type="String" primary="true"/>
 		<column name="borrower_Loan_Id" type="long" primary="true"/>
@@ -282,5 +278,6 @@
 		<finder name="GroupId" return-type="Collection">
 			<finder-column name="groupId" />
 		</finder>
+		
 	</entity>
 </service-builder>

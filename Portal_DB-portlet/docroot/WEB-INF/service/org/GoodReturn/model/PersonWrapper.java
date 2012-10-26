@@ -126,7 +126,7 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
 			setStatus(status);
 		}
 
-		Long phone_Number = (Long)attributes.get("phone_Number");
+		String phone_Number = (String)attributes.get("phone_Number");
 
 		if (phone_Number != null) {
 			setPhone_Number(phone_Number);
@@ -372,7 +372,7 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
 	*
 	* @return the phone_ number of this person
 	*/
-	public long getPhone_Number() {
+	public java.lang.String getPhone_Number() {
 		return _person.getPhone_Number();
 	}
 
@@ -381,7 +381,7 @@ public class PersonWrapper implements Person, ModelWrapper<Person> {
 	*
 	* @param phone_Number the phone_ number of this person
 	*/
-	public void setPhone_Number(long phone_Number) {
+	public void setPhone_Number(java.lang.String phone_Number) {
 		_person.setPhone_Number(phone_Number);
 	}
 

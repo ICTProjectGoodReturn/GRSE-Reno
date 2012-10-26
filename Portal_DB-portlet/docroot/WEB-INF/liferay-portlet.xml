@@ -46,4 +46,42 @@
 		<role-name>user</role-name>
 		<role-link>User</role-link>
 	</role-mapper>
+	
+	<!-- Additional Roles added -->
+	<role-mapper>
+		<role-name>weal-owner</role-name>
+		<role-link>WEAL Owner</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>weal-admin</role-name>
+		<role-link>WEAL Admin</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>weal-marketing</role-name>
+		<role-link>WEAL Marketing</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>weal-finance</role-name>
+		<role-link>WEAL Finance</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>weal-operations</role-name>
+		<role-link>WEAL Operations</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>weal-volunteer</role-name>
+		<role-link>WEAL Volunteer</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>mfi-leader</role-name>
+		<role-link>MFI Leader</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>mfi-finance</role-name>
+		<role-link>MFI Finance</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>mfi-story</role-name>
+		<role-link>MFI Story</role-link>
+	</role-mapper>
 </liferay-portlet-app>

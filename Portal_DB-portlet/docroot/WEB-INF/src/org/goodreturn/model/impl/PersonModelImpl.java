@@ -73,7 +73,7 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 			{ "gender", Types.VARCHAR },
 			{ "salutation", Types.VARCHAR },
 			{ "status", Types.VARCHAR },
-			{ "phone_Number", Types.BIGINT },
+			{ "phone_Number", Types.VARCHAR },
 			{ "photo_URL", Types.VARCHAR },
 			{ "occupation", Types.VARCHAR },
 			{ "changed_By", Types.VARCHAR },
@@ -81,7 +81,7 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 			{ "groupId", Types.BIGINT },
 			{ "companyId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Person (abacus_Person_Id LONG not null primary key,first_Name VARCHAR(75) null,last_Name VARCHAR(75) null,email VARCHAR(75) null,address VARCHAR(75) null,address_Type VARCHAR(75) null,country VARCHAR(75) null,gender VARCHAR(75) null,salutation VARCHAR(75) null,status VARCHAR(75) null,phone_Number LONG,photo_URL VARCHAR(75) null,occupation VARCHAR(75) null,changed_By VARCHAR(75) null,changed_Time LONG,groupId LONG,companyId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_Person (abacus_Person_Id LONG not null primary key,first_Name VARCHAR(75) null,last_Name VARCHAR(75) null,email VARCHAR(75) null,address VARCHAR(75) null,address_Type VARCHAR(75) null,country VARCHAR(75) null,gender VARCHAR(75) null,salutation VARCHAR(75) null,status VARCHAR(75) null,phone_Number VARCHAR(75) null,photo_URL VARCHAR(75) null,occupation VARCHAR(75) null,changed_By VARCHAR(75) null,changed_Time LONG,groupId LONG,companyId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_Person";
 	public static final String ORDER_BY_JPQL = " ORDER BY person.abacus_Person_Id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GoodReturn_Person.abacus_Person_Id ASC";
@@ -267,7 +267,7 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 			setStatus(status);
 		}
 
-		Long phone_Number = (Long)attributes.get("phone_Number");
+		String phone_Number = (String)attributes.get("phone_Number");
 
 		if (phone_Number != null) {
 			setPhone_Number(phone_Number);
@@ -446,11 +446,16 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 	}
 
 	@JSON
-	public long getPhone_Number() {
-		return _phone_Number;
+	public String getPhone_Number() {
+		if (_phone_Number == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _phone_Number;
+		}
 	}
 
-	public void setPhone_Number(long phone_Number) {
+	public void setPhone_Number(String phone_Number) {
 		_phone_Number = phone_Number;
 	}
 
@@ -708,6 +713,12 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 
 		personCacheModel.phone_Number = getPhone_Number();
 
+		String phone_Number = personCacheModel.phone_Number;
+
+		if ((phone_Number != null) && (phone_Number.length() == 0)) {
+			personCacheModel.phone_Number = null;
+		}
+
 		personCacheModel.photo_URL = getPhoto_URL();
 
 		String photo_URL = personCacheModel.photo_URL;
@@ -879,7 +890,7 @@ public class PersonModelImpl extends BaseModelImpl<Person>
 	private String _gender;
 	private String _salutation;
 	private String _status;
-	private long _phone_Number;
+	private String _phone_Number;
 	private String _photo_URL;
 	private String _occupation;
 	private String _changed_By;

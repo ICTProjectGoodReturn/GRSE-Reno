@@ -93,7 +93,7 @@
 		<property name="gender" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="salutation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="phone_Number" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="phone_Number" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="photo_URL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="occupation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="changed_By" type="com.liferay.portal.dao.orm.hibernate.StringType" />

@@ -6,43 +6,22 @@
 		<portlet-name>borrowersportlet</portlet-name>
 		<permissions>
 			<supports>
-			<!-- 
-				<action-key>VIEW_BORROWER</action-key>
-				<action-key>EDIT_BORROWER</action-key>
-				<action-key>DELETE_BORROWER</action-key>
-
-				<action-key>VIEW_BORROWER_LOAN</action-key>
-				<action-key>EDIT_BORROWER_LOAN</action-key>
-				<action-key>DELETE_BORROWER_LOAN</action-key>
-			-->
-				<action-key>VIEW_STORY</action-key>
-				<action-key>EDIT_ENTRY_STORY</action-key>
-				<action-key>EDIT_VID_STORY</action-key>
-				<action-key>EDIT_APPROVE_STORY</action-key>
-				<action-key>EDIT_STORY</action-key>
-				<action-key>DELETE_STORY</action-key>
+				<action-key>VIEW</action-key>
+				<action-key>CONFIGURATION</action-key>
+				<action-key>ADD_TO_PAGE</action-key>
 			</supports>
 			
-            <site-member-defaults />
+            <site-member-defaults>
+				<action-key>VIEW</action-key>
+            </site-member-defaults>
             
-			<guest-defaults />
+			<guest-defaults>
+			</guest-defaults>
 
 			<guest-unsupported>
-			<!-- 
-				<action-key>VIEW_BORROWER</action-key>
-				<action-key>EDIT_BORROWER</action-key>
-				<action-key>DELETE_BORROWER</action-key>
-
-				<action-key>VIEW_BORROWER_LOAN</action-key>
-				<action-key>EDIT_BORROWER_LOAN</action-key>
-				<action-key>DELETE_BORROWER_LOAN</action-key>
-			-->
-				<action-key>VIEW_STORY</action-key>
-				<action-key>EDIT_ENTRY_STORY</action-key>
-				<action-key>EDIT_VID_STORY</action-key>
-				<action-key>EDIT_APPROVE_STORY</action-key>
-				<action-key>EDIT_STORY</action-key>
-				<action-key>DELETE_STORY</action-key>
+				<action-key>VIEW</action-key>
+				<action-key>CONFIGURATION</action-key>
+				<action-key>ADD_TO_PAGE</action-key>
 			</guest-unsupported>
 		</permissions>
 	</portlet-resource>
@@ -51,17 +30,22 @@
 		<portlet-name>storyexporterportlet</portlet-name>
 		<permissions>
 			<supports>
-				<action-key>EXPORT_STORY</action-key>
+				<action-key>VIEW</action-key>
             	<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
+				<action-key>EXPORT_STORY</action-key>
 			</supports>
 			
-            <site-member-defaults />
+            <site-member-defaults>
+				<action-key>VIEW</action-key>
+            </site-member-defaults>
             
-			<guest-defaults />
+			<guest-defaults>
+			</guest-defaults>
 
 			<guest-unsupported>
-				<action-key>EXPORT_STORY</action-key>
+				<action-key>VIEW</action-key>
 				<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
+				<action-key>EXPORT_STORY</action-key>
 			</guest-unsupported>
 		</permissions>
 	</portlet-resource>

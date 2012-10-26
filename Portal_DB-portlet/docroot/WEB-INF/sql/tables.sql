@@ -69,7 +69,7 @@ create table GoodReturn_Person (
 	gender VARCHAR(75) null,
 	salutation VARCHAR(75) null,
 	status VARCHAR(75) null,
-	phone_Number LONG,
+	phone_Number VARCHAR(75) null,
 	photo_URL VARCHAR(75) null,
 	occupation VARCHAR(75) null,
 	changed_By VARCHAR(75) null,
