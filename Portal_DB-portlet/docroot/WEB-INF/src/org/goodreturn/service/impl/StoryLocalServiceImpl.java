@@ -128,33 +128,24 @@ public class StoryLocalServiceImpl extends StoryLocalServiceBaseImpl {
 		return storyPersistence.findByPrimaryKey(PK);
 	}
 	
-	/**
-	 * Retrieves all loans which have borrower_Loan_Id and story_Type.
-	 * 
-	 * @param borrowerLoanId - Primary key field which is associated with borrower which contains specific
-	 * @param storyType
-	 * @return
-	 * @throws SystemException
-	 */
+	
 	public List<Story> getStoryByL_S(long borrowerLoanId, String storyType) throws SystemException {
 		return storyPersistence.findByL_S(borrowerLoanId, storyType);
 	}
 	
-	/**
-	 * Retrieves all loans which have borrower_Loan_Id and story_Type.
-	 * 
-	 * @param groupId - group_Id field which is associated with groups.
-	 * @param status
-	 * @return
-	 * @throws SystemException
-	 */
+
 	public List<Story> getStoryByG_S(long groupId, int status) throws SystemException {
 		return storyPersistence.findByG_S(groupId, status);
 	}
 	
+
+	public List<Story> getStoryByL_G(long abacus_Borrower_Loan_Id, long groupId) throws SystemException {
+		return storyPersistence.findByL_G(abacus_Borrower_Loan_Id, groupId);
+	}
+	
 	
 	/**
-	 * Updates the status of the Story object.
+	 * Updates the status of the Story Entity.
 	 * 
 	 * @param userId - Id of the user updating the object resource.
 	 * @param resourcePrimKey - Id of the Story object to be updated.

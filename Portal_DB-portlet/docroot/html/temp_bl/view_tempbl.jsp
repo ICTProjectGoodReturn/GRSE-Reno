@@ -3,11 +3,12 @@
 
 <!-- Error/Success Messages -->
 <liferay-ui:error key="tempbl-data-invalid-error" message="Invalid data found, fix errors before resubmitting." />
-<liferay-ui:error key="tempbl-null-error" message="Error encounted, could not save borrower into system." />
+<liferay-ui:error key="tempbl-null-error" message="Error encounted, could not save borrower's loan into system." />
 <liferay-ui:error key="tempbl-borrower-name-error" message="Borrower Name provided is not valid." />
-<liferay-ui:error key="tempbl-borrower-loan-id-error" message="Borrower loan ID is not valid." />
-<liferay-ui:error key="tempbl-already-exists-error" message="Error, Borrower already exists within the system." />
-<liferay-ui:success key="tempbl-data-add-success" message="Success! Borrower added to system successfully." />
+<liferay-ui:error key="tempbl-borrower-loan-id-error" message="Borrower's loan ID is not valid." />
+<liferay-ui:error key="tempbl-already-exists-error" message="Error, borrower's loan already exists within the system." />
+<liferay-ui:error key="borrower-no-mfi-group" message="Borrower creation denied, not in a required MFI Group" />
+<liferay-ui:success key="tempbl-data-add-success" message="Success! Borrower's loan added to system successfully." />
 
 <portlet:actionURL name="updateTempBl" var="updateTempBlUrl"/>
 
@@ -26,6 +27,7 @@
 <br />
 
 <liferay-ui:header title="Loan Entries" />
+<liferay-ui:error key="borrower-no-mfi-group" message="Borrower data inaccessible, not in a required MFI Group" />
 
 
 <liferay-ui:search-container emptyResultsMessage="No Loans Currently Exist." delta="5">

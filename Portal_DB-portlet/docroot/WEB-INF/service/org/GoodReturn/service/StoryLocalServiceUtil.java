@@ -306,36 +306,26 @@ public class StoryLocalServiceUtil {
 		return getService().addStory(newStory, userId, serviceContext);
 	}
 
-	/**
-	* Retrieves all loans which have borrower_Loan_Id and story_Type.
-	*
-	* @param borrowerLoanId - Primary key field which is associated with borrower which contains specific
-	* @param storyType
-	* @return
-	* @throws SystemException
-	*/
 	public static java.util.List<org.goodreturn.model.Story> getStoryByL_S(
 		long borrowerLoanId, java.lang.String storyType)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getStoryByL_S(borrowerLoanId, storyType);
 	}
 
-	/**
-	* Retrieves all loans which have borrower_Loan_Id and story_Type.
-	*
-	* @param groupId - group_Id field which is associated with groups.
-	* @param status
-	* @return
-	* @throws SystemException
-	*/
 	public static java.util.List<org.goodreturn.model.Story> getStoryByG_S(
 		long groupId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getStoryByG_S(groupId, status);
 	}
 
+	public static java.util.List<org.goodreturn.model.Story> getStoryByL_G(
+		long abacus_Borrower_Loan_Id, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getStoryByL_G(abacus_Borrower_Loan_Id, groupId);
+	}
+
 	/**
-	* Updates the status of the Story object.
+	* Updates the status of the Story Entity.
 	*
 	* @param userId - Id of the user updating the object resource.
 	* @param resourcePrimKey - Id of the Story object to be updated.

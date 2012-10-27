@@ -17,7 +17,7 @@ public class TempBlValidator {
 		//Checks for null.
 		if(tempBl == null) {
 			errors.add("tempbl-null-error");
-			tempBlValid = false;
+			return false;
 		}
 		
 		//Checks Name

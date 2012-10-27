@@ -22,6 +22,7 @@ import org.goodreturn.service.persistence.TempBlPK;
 import com.liferay.portal.NoSuchOrganizationException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Organization;
@@ -40,6 +41,20 @@ public class ActionUtil {
 	//
 	//	Render Phase (like) Data Retrieval Methods
 	//
+	
+	//Wrappers for both types of requests.
+	public static long getUserMfiGroupId(ActionRequest request) throws NoSuchOrganizationException {
+		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
+
+		return getUserMfiGroupId(themeDisplay);
+	}
+	
+	
+	public static long getUserMfiGroupId(RenderRequest request) throws NoSuchOrganizationException {
+		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
+		
+		return getUserMfiGroupId(themeDisplay);		
+	}
 
 	/**
 	 * Retrieves MFI organization id of user within the themeDisplay object.
@@ -49,7 +64,8 @@ public class ActionUtil {
 	 * @return
 	 * @throws NoSuchOrganizationException 
 	 */
-	private static long getMfiId(ThemeDisplay themeDisplay) throws NoSuchOrganizationException {
+	private static long getUserMfiGroupId(ThemeDisplay themeDisplay) throws NoSuchOrganizationException {
+
 		try {
 			//Retrieves mfi parent id.
 			long mfiOrganizationId;
@@ -60,7 +76,7 @@ public class ActionUtil {
 			List<Organization> orgs = themeDisplay.getUser().getOrganizations();
 			for (Organization currentOrganization : orgs) {
 				if (currentOrganization.getParentOrganizationId() == mfiOrganizationId) {
-					return currentOrganization.getOrganizationId();
+					return currentOrganization.getGroupId();
 				}
 			}
 
@@ -81,6 +97,7 @@ public class ActionUtil {
 	 * @return List of Borrower objects for specific MFI.
 	 */
 	public static List<Borrower> getBorrowers(RenderRequest request) {
+		//TODO NEEDS WORK
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
 
@@ -104,6 +121,7 @@ public class ActionUtil {
 	 * @return Specific Borrower object for specific borrower_Id. null if not found.
 	 */
 	public static Borrower getBorrower(RenderRequest request) {
+		//TODO NEEDS WORK
 		//Values to retrieve data.
 		long borrowerId = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_ID);
 		Borrower tempResult;
@@ -121,6 +139,7 @@ public class ActionUtil {
 	}
 
 	public static Borrower getEditableBorrower(RenderRequest request) {
+		//TODO NEEDS WORK
 		Borrower borrower = ActionUtil.getBorrower(request);
 
 		if (borrower == null) {
@@ -140,6 +159,7 @@ public class ActionUtil {
 	 * @return List of BorrowerLoan objects for specific Borrower.
 	 */
 	public static List<BorrowerLoan> getBorrowerLoans(RenderRequest request) {
+		//TODO NEEDS WORK
 		//Retrieves values needed for request.
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
@@ -165,6 +185,7 @@ public class ActionUtil {
 	 * @return specific BorrowerLoan object for specific borrower_Loan_Id.
 	 */
 	public static BorrowerLoan getBorrowerLoan(RenderRequest request) {
+		//TODO NEEDS WORK
 		//Retrieves values needed for request.
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		long groupId = themeDisplay.getScopeGroupId();
@@ -184,6 +205,7 @@ public class ActionUtil {
 	}
 
 	public static BorrowerLoan getEditableBorrowerLoan(RenderRequest request) {
+		//TODO NEEDS WORK
 
 		BorrowerLoan borrowerLoan = ActionUtil.getBorrowerLoan(request);
 
@@ -274,7 +296,30 @@ public class ActionUtil {
 
 		return tempResult;
 	}
-	
+
+
+	public static List<Story> getAllStoriesByLoan(RenderRequest request) {
+		try {
+			long borrowerLoanId = ParamUtil.getLong(request, WebKeys.ATTR_TEMPBL_LOAN_ID);
+			long mfiId = ActionUtil.getUserMfiGroupId(request);
+
+			//Gets story based on loanId and group or returns empty collection.
+			List<Story> tempResult;
+			try {
+				tempResult = StoryLocalServiceUtil.getStoryByL_G(borrowerLoanId, mfiId);
+				System.out.println("!!!OccuRS!!!");
+			} catch (SystemException se) {
+				tempResult = Collections.EMPTY_LIST;
+			} catch (IndexOutOfBoundsException e) {
+				tempResult = Collections.EMPTY_LIST;
+			}
+
+			return Collections.EMPTY_LIST;
+		} catch (NoSuchOrganizationException e) {
+			SessionErrors.add(request, "story-no-mfi-group");
+			return Collections.EMPTY_LIST;
+		}
+	}
 
 
 	/**
@@ -287,7 +332,7 @@ public class ActionUtil {
 
 		//Retrieves tempBl based on PK (composite).
 		TempBl tempBl;
-		tempBl = ActionUtil.getEditableTempBl(request);
+		tempBl = ActionUtil.getTempBl(request);
 
 		//Returns new story if it could not be found. (with storyType and BorrowerLoanId).
 		if (tempBl == null) {
@@ -320,20 +365,22 @@ public class ActionUtil {
 
 		return tempResult;
 	}
-	
-	public static List<TempBl> getTempBls(RenderRequest request) {
-		//Requested data.
-		long groupId = ((ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY)).getScopeGroupId();
-		
-		//Retrieves data
-        List<TempBl> results;
-        try {
-            results = TempBlLocalServiceUtil.getAllTempBls(groupId);
-        } catch (SystemException ex) {
-            results  = Collections.EMPTY_LIST;
-        }
 
-        return results;
+	public static List<TempBl> getTempBls(RenderRequest request) {
+		try {
+			//Request data.
+			long mfiId = ActionUtil.getUserMfiGroupId(request);
+
+			//Retrieves data
+			try {
+				return TempBlLocalServiceUtil.getAllTempBls(mfiId);
+			} catch (SystemException ex) {
+				return Collections.EMPTY_LIST;
+			}
+		} catch (NoSuchOrganizationException e) {
+			SessionErrors.add(request, "borrower-no-mfi-group");
+			return Collections.EMPTY_LIST;
+		}
 	}
 
 	//
@@ -367,7 +414,7 @@ public class ActionUtil {
 
 		//Portal Identifying info
 		borrower.setCompanyId(themeDisplay.getCompanyId());
-		borrower.setGroupId(themeDisplay.getScopeGroupId());//TODO BASE ON MFI
+		borrower.setGroupId(themeDisplay.getScopeGroupId()); //TODO BASE ON MFI, see Story/TempBl
 
 		return borrower;
 	}
@@ -397,7 +444,7 @@ public class ActionUtil {
 
 		//Portal Identifying info
 		borrowerLoan.setCompanyId(themeDisplay.getCompanyId());
-		borrowerLoan.setGroupId(themeDisplay.getScopeGroupId()); //TODO Base on MFI
+		borrowerLoan.setGroupId(themeDisplay.getScopeGroupId()); //TODO BASE ON MFI, see Story/TempBl
 		return borrowerLoan;
 	}
 
@@ -418,6 +465,7 @@ public class ActionUtil {
 	 * 
 	 * @param request - The request which contains relevant data to build Story object.
 	 * @return - Story object which has been built from the request object.
+	 * @throws NoSuchOrganizationException - thrown if attempting to create new Story and user not in MFI Organization.
 	 */
 	public static Story storyFromRequest(ActionRequest request) {
 		long storyId = ParamUtil.getLong(request, "story_Id");
@@ -429,12 +477,12 @@ public class ActionUtil {
 			try {
 				story = StoryLocalServiceUtil.getStory(storyId);
 				newStory = false;
-				
-			//Pointless exceptions as flag wont be set which will allow new story
-			//to be made.
+
+				//Pointless exceptions as flag wont be set which will allow new story
+				//to be made.
 			} catch (NoSuchStoryException e) {}
-			  catch (PortalException e) {}
-			  catch (SystemException e) {}
+			catch (PortalException e) {}
+			catch (SystemException e) {}
 		} 
 
 		//Creates new Story if needed.
@@ -444,11 +492,16 @@ public class ActionUtil {
 			story.setStory_Id(storyId); //Shouldn't matter either way.
 			story.setAbacus_Borrower_Loan_Id(ParamUtil.getLong(request, "abacus_Borrower_Loan_Id"));
 
-			//Portal Identifying info
-			ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-			story.setCompanyId(themeDisplay.getCompanyId());
-			story.setGroupId(themeDisplay.getScopeGroupId());
-			story.setUserId(themeDisplay.getUserId());
+			try {
+				//Portal Identifying info
+				ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
+				story.setCompanyId(themeDisplay.getCompanyId());
+				story.setGroupId(ActionUtil.getUserMfiGroupId(request));
+				story.setUserId(themeDisplay.getUserId());
+			} catch (NoSuchOrganizationException e) {
+				SessionErrors.add(request, "story-no-mfi-group");
+				return null;
+			}
 		}
 
 		//Data
@@ -460,12 +513,13 @@ public class ActionUtil {
 
 		return story;
 	}
-	
+
 	/**
 	 * Creates a new TempBl object from the data which is attached to the request.
 	 * 
 	 * @param request which contains the relevant data for the Tempbl object.
 	 * @return TempBl object which represents the data within the request.
+	 * @throws NoSuchOrganizationException - thrown if attempting to create new TempBl and user not in MFI Organization.
 	 */
 	public static TempBl tempBlFromRequest(ActionRequest request) {
 		String borrowerName = ParamUtil.getString(request, "borrower_Name");
@@ -477,20 +531,25 @@ public class ActionUtil {
 		try {
 			tempBl = TempBlLocalServiceUtil.getTempBl(new TempBlPK(borrowerName, borrowerLoanId));
 			newTempBl = false;
-			
-		//Pointless exceptions as flag wont be set which will allow new object.
+
+			//Pointless exceptions as flag wont be set which will allow new object.
 		} catch (NoSuchStoryException e) {}
-		  catch (PortalException e) {}
-		  catch (SystemException e) {}
+		catch (PortalException e) {}
+		catch (SystemException e) {}
 
 		//Creates new TempBL if needed.
 		if (newTempBl) {
 			tempBl = new TempBlImpl();
-			
+
+			try {
 			//Portal Identifying info
 			ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 			tempBl.setCompanyId(themeDisplay.getCompanyId());
-			tempBl.setGroupId(themeDisplay.getScopeGroupId());
+				tempBl.setGroupId(ActionUtil.getUserMfiGroupId(request));
+			} catch (NoSuchOrganizationException e) {
+				SessionErrors.add(request, "borrower-no-mfi-group");
+				return null;
+			}
 		}
 
 		//Data

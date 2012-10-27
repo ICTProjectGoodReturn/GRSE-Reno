@@ -23,6 +23,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -56,12 +58,12 @@ public class BorrowersPortlet extends MVCPortlet {
 					Borrower fromDB = BorrowerLocalServiceUtil.getBorrower(borrower.getBorrower_Id());
 
 					if (fromDB != null && (borrower.getBorrower_Id() == fromDB.getBorrower_Id())) {
-						
+
 						fromDB = BorrowerLocalServiceUtil.updateBorrower(borrower, false);
 						SessionMessages.add(request, "borrower-update-success");
 						operationFailed = false;
 					}
-				//Borrower could not be updated.
+					//Borrower could not be updated.
 				} catch (PortalException e) {
 					errors.add("borrower-update-error");
 				} catch (SystemException e) {
@@ -85,7 +87,7 @@ public class BorrowersPortlet extends MVCPortlet {
 		} else {
 			errors.add("borrower-data-invalid-error");
 		}
-		
+
 		//Add/Update failed, adds all errors for user display.
 		if (operationFailed) {
 			for (String error : errors) {
@@ -100,8 +102,8 @@ public class BorrowersPortlet extends MVCPortlet {
 			response.setRenderParameter("jspPage",request.getParameter("jspPage"));
 		}
 	}
-	
-	
+
+
 	public void updateBorrowerLoan(ActionRequest request, ActionResponse response) throws PortalException, SystemException {
 		//TODO may need another look at.
 		//Retrieves data for processing request.
@@ -118,12 +120,12 @@ public class BorrowersPortlet extends MVCPortlet {
 					BorrowerLoan fromDB = BorrowerLoanLocalServiceUtil.getBorrowerLoan(borrowerLoan.getAbacus_Borrower_Loan_Id());
 
 					if (fromDB != null && (borrowerLoan.getAbacus_Borrower_Loan_Id() == fromDB.getAbacus_Borrower_Loan_Id())) {
-						
+
 						fromDB = BorrowerLoanLocalServiceUtil.updateBorrowerLoan(borrowerLoan, false);
 						SessionMessages.add(request, "borrower-loan-update-success");
 						operationFailed = false;
 					}
-				//BorrowerLoan could not be updated.
+					//BorrowerLoan could not be updated.
 				} catch (PortalException e) {
 					errors.add("borrower-loan-update-error");
 				} catch (SystemException e) {
@@ -143,12 +145,12 @@ public class BorrowersPortlet extends MVCPortlet {
 				} catch (PortalException e) {
 					errors.add("borrower-loan-add-error");
 				}
-				*/
+				 */
 			}
 		} else {
 			errors.add("borrower-loan-data-invalid-error");
 		}
-		
+
 		//Add/Update failed, adds all errors for user display.
 		if (operationFailed) {
 			for (String error : errors) {
@@ -163,36 +165,23 @@ public class BorrowersPortlet extends MVCPortlet {
 			response.setRenderParameter("jspPage",request.getParameter("jspPage"));
 		}
 	}
-	
+
 
 	public void updateStory(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException, PortalException, SystemException {
 		//Retrieves data for processing request.
 		Story story = ActionUtil.storyFromRequest(actionRequest);
 		ArrayList<String> errors = new ArrayList<String>();
 		ServiceContext serviceContext = null;
-		
+
 		serviceContext = ServiceContextFactory.getInstance(Story.class.getName(), actionRequest);
 
-		//Updates or adds story to database if valid.
+		
 		boolean operationFailed = true;
+		boolean isNewStory = story.getStory_Id() <= 0;
+		
+		//Updates or adds story to database if valid.
 		if (StoryValidator.validateStory(story, errors)) {
-			if (story.getStory_Id() > 0) {
-				// Updating
-				try {
-					Story fromDB = StoryLocalServiceUtil.getStory(story.getStory_Id());
-
-					if (fromDB != null && (story.getStory_Id() == fromDB.getStory_Id())) {
-						fromDB = StoryLocalServiceUtil.updateStory(story, false);
-						SessionMessages.add(actionRequest, "story-update-success");
-						operationFailed = false;
-					}
-				//Story could not be updated.
-				} catch (PortalException e) {
-					errors.add("story-update-error");
-				} catch (SystemException e) {
-					errors.add("story-update-error");
-				}
-			} else {
+			if (isNewStory) {
 				// Adding
 				try {
 					long userId = ((ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY)).getUserId();
@@ -208,20 +197,48 @@ public class BorrowersPortlet extends MVCPortlet {
 					e.printStackTrace();
 					errors.add("story-add-error");
 				}
+			} else {
+				// Updating
+				try {
+					Story fromDB = StoryLocalServiceUtil.getStory(story.getStory_Id());
+
+					if (fromDB != null && (story.getStory_Id() == fromDB.getStory_Id())) {
+						fromDB = StoryLocalServiceUtil.updateStory(story, false);
+						SessionMessages.add(actionRequest, "story-update-success");
+						operationFailed = false;
+					}
+				//Story could not be updated.
+				} catch (PortalException e) {
+					errors.add("story-update-error");
+				} catch (SystemException e) {
+					errors.add("story-update-error");
+				}
 			}
 		} else {
 			errors.add("story-data-invalid-error");
 		}
-		
+
 		//Add/Update failed, adds all errors for user display.
 		if (operationFailed) {
 			for (String error : errors) {
 				SessionErrors.add(actionRequest, error);
+
 			}
-			
+
 			// Sets render page with data.
 			actionRequest.setAttribute(WebKeys.STORY_ENTRY, story);
 			actionResponse.setRenderParameter("jspPage", "/html/story/edit_story.jsp");
+
+		} else {
+			//redirects based on weather new or edit.
+			if (isNewStory) {
+				actionResponse.setRenderParameter("jspPage", ParamUtil.getString(actionRequest, "jspPage"));
+				actionResponse.setRenderParameter(WebKeys.ATTR_TEMPBL_LOAN_ID, ParamUtil.getString(actionRequest, WebKeys.ATTR_TEMPBL_LOAN_ID));
+				actionResponse.setRenderParameter(WebKeys.ATTR_TEMPBL_BORROWER_NAME, ParamUtil.getString(actionRequest, WebKeys.ATTR_TEMPBL_BORROWER_NAME));
+			} else {
+				actionResponse.setRenderParameter("jspPage", "/html/story/edit_story.jsp");
+				actionResponse.setRenderParameter(WebKeys.ATTR_STORY_ID, String.valueOf(story.getStory_Id()));
+			}
 		}
 	}
 
@@ -229,7 +246,7 @@ public class BorrowersPortlet extends MVCPortlet {
 		//Data retrieval
 		TempBl tempBl = ActionUtil.tempBlFromRequest(actionRequest);
 		ArrayList<String> errors = new ArrayList<String>();
-		
+
 		ServiceContext serviceContext = null;
 		serviceContext = ServiceContextFactory.getInstance(Story.class.getName(), actionRequest);
 
@@ -242,16 +259,18 @@ public class BorrowersPortlet extends MVCPortlet {
 		} else {
 			errors.add("tempbl-data-invalid-error");
 		}
-		
+
 		//Add/Update failed, adds all errors for user display.
 		if (operationFailed) {
 			for (String error : errors) {
 				SessionErrors.add(actionRequest, error);
 			}
-			
+
 			// Sets render page with data.
-			actionRequest.setAttribute(WebKeys.TEMPBL_ENTRY, tempBl);//TODO CHECK
-			//actionResponse.setRenderParameter("jspPage", "/html/tempbl/view_tempbl.jsp");
+			actionRequest.setAttribute(WebKeys.TEMPBL_ENTRY, tempBl);
 		}
+
+		//Ensure page is redirected to.
+		actionResponse.setRenderParameter("jspPage", "/html/temp_bl/view_tempbl.jsp");
 	}
 }

@@ -28,7 +28,7 @@ public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 	//public static final String ATTR_LENDER_CONTRIBUTION_ID = "lender_Contribution_Id";
 	public static final String ATTR_STORY_ID = "story_Id";
 	public static final String ATTR_STORY_TYPE = "story_Type";
-	
+
 	public static final String ATTR_TEMPBL_BORROWER_NAME = "borrower_Name";
 	public static final String ATTR_TEMPBL_LOAN_ID = "borrower_Loan_Id";
 }

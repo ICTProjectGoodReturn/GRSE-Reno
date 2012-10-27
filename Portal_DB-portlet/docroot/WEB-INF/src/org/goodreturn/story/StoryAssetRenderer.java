@@ -44,14 +44,14 @@ public class StoryAssetRenderer extends BaseAssetRenderer {
 	public String getSummary(Locale locale) {
 		String storyType = story.getStory_Type();
 		storyType = storyType.substring(0, 1).toUpperCase()+storyType.substring(1);
-		return storyType + " Story with ID: " + story.getStory_Id();
+		return storyType + " Story for loan with ID: " + story.getAbacus_Borrower_Loan_Id();
 	}
 
 	@Override
 	public String getTitle(Locale locale) {
 		String storyType = story.getStory_Type();
 		storyType = storyType.substring(0, 1).toUpperCase()+storyType.substring(1);
-		return storyType + " Story with ID: " + story.getStory_Id();
+		return storyType + " Story for loan with ID: " + story.getAbacus_Borrower_Loan_Id();
 	}
 
 	@Override

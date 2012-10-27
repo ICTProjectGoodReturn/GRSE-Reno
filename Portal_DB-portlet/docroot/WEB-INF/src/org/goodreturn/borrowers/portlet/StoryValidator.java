@@ -3,7 +3,11 @@ package org.goodreturn.borrowers.portlet;
 import java.util.List;
 
 import org.goodreturn.model.Story;
+import org.goodreturn.service.StoryLocalServiceUtil;
+import org.goodreturn.service.persistence.TempBlPK;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 
 /**
@@ -26,7 +30,7 @@ public class StoryValidator {
 		//null check
 		if (story == null) {
 			errors.add("story-null-error");
-			storyValid = false;
+			return false;
 		}
 
 		//Valid story types.

@@ -151,6 +151,25 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 			StoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_S",
 			new String[] { Long.class.getName(), Integer.class.getName() });
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_L_G = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
+			StoryModelImpl.FINDER_CACHE_ENABLED, StoryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByL_G",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_L_G = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
+			StoryModelImpl.FINDER_CACHE_ENABLED, StoryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByL_G",
+			new String[] { Long.class.getName(), Long.class.getName() },
+			StoryModelImpl.ABACUS_BORROWER_LOAN_ID_COLUMN_BITMASK |
+			StoryModelImpl.GROUPID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_L_G = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
+			StoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByL_G",
+			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(StoryModelImpl.ENTITY_CACHE_ENABLED,
 			StoryModelImpl.FINDER_CACHE_ENABLED, StoryImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
@@ -439,6 +458,27 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_S, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_S,
+					args);
+			}
+
+			if ((storyModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_L_G.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(storyModelImpl.getOriginalAbacus_Borrower_Loan_Id()),
+						Long.valueOf(storyModelImpl.getOriginalGroupId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_L_G, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_L_G,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(storyModelImpl.getAbacus_Borrower_Loan_Id()),
+						Long.valueOf(storyModelImpl.getGroupId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_L_G, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_L_G,
 					args);
 			}
 		}
@@ -2331,6 +2371,745 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
+	 * Returns all the stories where abacus_Borrower_Loan_Id = &#63; and groupId = &#63;.
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param groupId the group ID
+	 * @return the matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> findByL_G(long abacus_Borrower_Loan_Id, long groupId)
+		throws SystemException {
+		return findByL_G(abacus_Borrower_Loan_Id, groupId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the stories where abacus_Borrower_Loan_Id = &#63; and groupId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @return the range of matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> findByL_G(long abacus_Borrower_Loan_Id, long groupId,
+		int start, int end) throws SystemException {
+		return findByL_G(abacus_Borrower_Loan_Id, groupId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the stories where abacus_Borrower_Loan_Id = &#63; and groupId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> findByL_G(long abacus_Borrower_Loan_Id, long groupId,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_L_G;
+			finderArgs = new Object[] { abacus_Borrower_Loan_Id, groupId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_L_G;
+			finderArgs = new Object[] {
+					abacus_Borrower_Loan_Id, groupId,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<Story> list = (List<Story>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Story story : list) {
+				if ((abacus_Borrower_Loan_Id != story.getAbacus_Borrower_Loan_Id()) ||
+						(groupId != story.getGroupId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_STORY_WHERE);
+
+			query.append(_FINDER_COLUMN_L_G_ABACUS_BORROWER_LOAN_ID_2);
+
+			query.append(_FINDER_COLUMN_L_G_GROUPID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(StoryModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(abacus_Borrower_Loan_Id);
+
+				qPos.add(groupId);
+
+				list = (List<Story>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first story in the ordered set where abacus_Borrower_Loan_Id = &#63; and groupId = &#63;.
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param groupId the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching story
+	 * @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story findByL_G_First(long abacus_Borrower_Loan_Id, long groupId,
+		OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		Story story = fetchByL_G_First(abacus_Borrower_Loan_Id, groupId,
+				orderByComparator);
+
+		if (story != null) {
+			return story;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("abacus_Borrower_Loan_Id=");
+		msg.append(abacus_Borrower_Loan_Id);
+
+		msg.append(", groupId=");
+		msg.append(groupId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchStoryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first story in the ordered set where abacus_Borrower_Loan_Id = &#63; and groupId = &#63;.
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param groupId the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching story, or <code>null</code> if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story fetchByL_G_First(long abacus_Borrower_Loan_Id, long groupId,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Story> list = findByL_G(abacus_Borrower_Loan_Id, groupId, 0, 1,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last story in the ordered set where abacus_Borrower_Loan_Id = &#63; and groupId = &#63;.
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param groupId the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching story
+	 * @throws org.goodreturn.NoSuchStoryException if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story findByL_G_Last(long abacus_Borrower_Loan_Id, long groupId,
+		OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		Story story = fetchByL_G_Last(abacus_Borrower_Loan_Id, groupId,
+				orderByComparator);
+
+		if (story != null) {
+			return story;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("abacus_Borrower_Loan_Id=");
+		msg.append(abacus_Borrower_Loan_Id);
+
+		msg.append(", groupId=");
+		msg.append(groupId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchStoryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last story in the ordered set where abacus_Borrower_Loan_Id = &#63; and groupId = &#63;.
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param groupId the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching story, or <code>null</code> if a matching story could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story fetchByL_G_Last(long abacus_Borrower_Loan_Id, long groupId,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByL_G(abacus_Borrower_Loan_Id, groupId);
+
+		List<Story> list = findByL_G(abacus_Borrower_Loan_Id, groupId,
+				count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the stories before and after the current story in the ordered set where abacus_Borrower_Loan_Id = &#63; and groupId = &#63;.
+	 *
+	 * @param story_Id the primary key of the current story
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param groupId the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next story
+	 * @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story[] findByL_G_PrevAndNext(long story_Id,
+		long abacus_Borrower_Loan_Id, long groupId,
+		OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		Story story = findByPrimaryKey(story_Id);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Story[] array = new StoryImpl[3];
+
+			array[0] = getByL_G_PrevAndNext(session, story,
+					abacus_Borrower_Loan_Id, groupId, orderByComparator, true);
+
+			array[1] = story;
+
+			array[2] = getByL_G_PrevAndNext(session, story,
+					abacus_Borrower_Loan_Id, groupId, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Story getByL_G_PrevAndNext(Session session, Story story,
+		long abacus_Borrower_Loan_Id, long groupId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_STORY_WHERE);
+
+		query.append(_FINDER_COLUMN_L_G_ABACUS_BORROWER_LOAN_ID_2);
+
+		query.append(_FINDER_COLUMN_L_G_GROUPID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(StoryModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(abacus_Borrower_Loan_Id);
+
+		qPos.add(groupId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(story);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Story> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Returns all the stories that the user has permission to view where abacus_Borrower_Loan_Id = &#63; and groupId = &#63;.
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param groupId the group ID
+	 * @return the matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> filterFindByL_G(long abacus_Borrower_Loan_Id,
+		long groupId) throws SystemException {
+		return filterFindByL_G(abacus_Borrower_Loan_Id, groupId,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the stories that the user has permission to view where abacus_Borrower_Loan_Id = &#63; and groupId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @return the range of matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> filterFindByL_G(long abacus_Borrower_Loan_Id,
+		long groupId, int start, int end) throws SystemException {
+		return filterFindByL_G(abacus_Borrower_Loan_Id, groupId, start, end,
+			null);
+	}
+
+	/**
+	 * Returns an ordered range of all the stories that the user has permissions to view where abacus_Borrower_Loan_Id = &#63; and groupId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of stories
+	 * @param end the upper bound of the range of stories (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Story> filterFindByL_G(long abacus_Borrower_Loan_Id,
+		long groupId, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByL_G(abacus_Borrower_Loan_Id, groupId, start, end,
+				orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(4);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_L_G_ABACUS_BORROWER_LOAN_ID_2);
+
+		query.append(_FINDER_COLUMN_L_G_GROUPID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(StoryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(StoryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Story.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN,
+				groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, StoryImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, StoryImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(abacus_Borrower_Loan_Id);
+
+			qPos.add(groupId);
+
+			return (List<Story>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the stories before and after the current story in the ordered set of stories that the user has permission to view where abacus_Borrower_Loan_Id = &#63; and groupId = &#63;.
+	 *
+	 * @param story_Id the primary key of the current story
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param groupId the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next story
+	 * @throws org.goodreturn.NoSuchStoryException if a story with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Story[] filterFindByL_G_PrevAndNext(long story_Id,
+		long abacus_Borrower_Loan_Id, long groupId,
+		OrderByComparator orderByComparator)
+		throws NoSuchStoryException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByL_G_PrevAndNext(story_Id, abacus_Borrower_Loan_Id,
+				groupId, orderByComparator);
+		}
+
+		Story story = findByPrimaryKey(story_Id);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Story[] array = new StoryImpl[3];
+
+			array[0] = filterGetByL_G_PrevAndNext(session, story,
+					abacus_Borrower_Loan_Id, groupId, orderByComparator, true);
+
+			array[1] = story;
+
+			array[2] = filterGetByL_G_PrevAndNext(session, story,
+					abacus_Borrower_Loan_Id, groupId, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Story filterGetByL_G_PrevAndNext(Session session, Story story,
+		long abacus_Borrower_Loan_Id, long groupId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_L_G_ABACUS_BORROWER_LOAN_ID_2);
+
+		query.append(_FINDER_COLUMN_L_G_GROUPID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(StoryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(StoryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Story.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN,
+				groupId);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, StoryImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, StoryImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(abacus_Borrower_Loan_Id);
+
+		qPos.add(groupId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(story);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Story> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Returns all the stories.
 	 *
 	 * @return the stories
@@ -2494,6 +3273,20 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	 */
 	public void removeByG_S(long groupId, int status) throws SystemException {
 		for (Story story : findByG_S(groupId, status)) {
+			remove(story);
+		}
+	}
+
+	/**
+	 * Removes all the stories where abacus_Borrower_Loan_Id = &#63; and groupId = &#63; from the database.
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param groupId the group ID
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByL_G(long abacus_Borrower_Loan_Id, long groupId)
+		throws SystemException {
+		for (Story story : findByL_G(abacus_Borrower_Loan_Id, groupId)) {
 			remove(story);
 		}
 	}
@@ -2829,6 +3622,119 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	}
 
 	/**
+	 * Returns the number of stories where abacus_Borrower_Loan_Id = &#63; and groupId = &#63;.
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param groupId the group ID
+	 * @return the number of matching stories
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByL_G(long abacus_Borrower_Loan_Id, long groupId)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { abacus_Borrower_Loan_Id, groupId };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_L_G,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_STORY_WHERE);
+
+			query.append(_FINDER_COLUMN_L_G_ABACUS_BORROWER_LOAN_ID_2);
+
+			query.append(_FINDER_COLUMN_L_G_GROUPID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(abacus_Borrower_Loan_Id);
+
+				qPos.add(groupId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_L_G, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of stories that the user has permission to view where abacus_Borrower_Loan_Id = &#63; and groupId = &#63;.
+	 *
+	 * @param abacus_Borrower_Loan_Id the abacus_ borrower_ loan_ ID
+	 * @param groupId the group ID
+	 * @return the number of matching stories that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByL_G(long abacus_Borrower_Loan_Id, long groupId)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return countByL_G(abacus_Borrower_Loan_Id, groupId);
+		}
+
+		StringBundler query = new StringBundler(3);
+
+		query.append(_FILTER_SQL_COUNT_STORY_WHERE);
+
+		query.append(_FINDER_COLUMN_L_G_ABACUS_BORROWER_LOAN_ID_2);
+
+		query.append(_FINDER_COLUMN_L_G_GROUPID_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Story.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN,
+				groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(abacus_Borrower_Loan_Id);
+
+			qPos.add(groupId);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
 	 * Returns the number of stories.
 	 *
 	 * @return the number of stories
@@ -2940,6 +3846,8 @@ public class StoryPersistenceImpl extends BasePersistenceImpl<Story>
 	private static final String _FINDER_COLUMN_L_S_STORY_TYPE_3 = "(story.story_Type IS NULL OR story.story_Type = ?)";
 	private static final String _FINDER_COLUMN_G_S_GROUPID_2 = "story.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_S_STATUS_2 = "story.status = ?";
+	private static final String _FINDER_COLUMN_L_G_ABACUS_BORROWER_LOAN_ID_2 = "story.abacus_Borrower_Loan_Id = ? AND ";
+	private static final String _FINDER_COLUMN_L_G_GROUPID_2 = "story.groupId = ?";
 	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "story.story_Id";
 	private static final String _FILTER_SQL_SELECT_STORY_WHERE = "SELECT DISTINCT {story.*} FROM GoodReturn_Story story WHERE ";
 	private static final String _FILTER_SQL_SELECT_STORY_NO_INLINE_DISTINCT_WHERE_1 =

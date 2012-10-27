@@ -125,9 +125,13 @@ public class StoryLocalServiceClp implements StoryLocalService {
 
 		_methodParameterTypes22 = new String[] { "long", "int" };
 
-		_methodName23 = "updateStatus";
+		_methodName23 = "getStoryByL_G";
 
-		_methodParameterTypes23 = new String[] {
+		_methodParameterTypes23 = new String[] { "long", "long" };
+
+		_methodName24 = "updateStatus";
+
+		_methodParameterTypes24 = new String[] {
 				"long", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -799,6 +803,35 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		return (java.util.List<org.goodreturn.model.Story>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.util.List<org.goodreturn.model.Story> getStoryByL_G(
+		long abacus_Borrower_Loan_Id, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
+					new Object[] { abacus_Borrower_Loan_Id, groupId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<org.goodreturn.model.Story>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public org.goodreturn.model.Story updateStatus(long userId,
 		long resourcePrimKey, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -807,8 +840,8 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] {
 						userId,
 						
@@ -889,4 +922,6 @@ public class StoryLocalServiceClp implements StoryLocalService {
 	private String[] _methodParameterTypes22;
 	private String _methodName23;
 	private String[] _methodParameterTypes23;
+	private String _methodName24;
+	private String[] _methodParameterTypes24;
 }

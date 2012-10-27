@@ -3,18 +3,21 @@
 
 <%
 //Retrieves data needed.
-long borrowerLoanId = ParamUtil.getLong(request, WebKeys.ATTR_TEMPBL_LOAN_ID);
-String borrowerLoanIdString = String.valueOf(borrowerLoanId);
+long tempBlLoanId = ParamUtil.getLong(renderRequest, WebKeys.ATTR_TEMPBL_LOAN_ID);
+String tempBlLoanBorrowerName = ParamUtil.getString(renderRequest, WebKeys.ATTR_TEMPBL_BORROWER_NAME);
 
-Story initialStory = ActionUtil.getStoryByType(borrowerLoanId, "initial");
-Story finalStory = ActionUtil.getStoryByType(borrowerLoanId, "final");
+List<Story> stories = ActionUtil.getAllStoriesByLoan(renderRequest);
 TempBl borrower = ActionUtil.getTempBl(renderRequest);
 %>
 
-<liferay-ui:header title="Borrower" />
+<portlet:renderURL  var="backUrl" >
+	<portlet:param name="jspPage" value="/html/temp_bl/view_tempbl.jsp"/>
+</portlet:renderURL>
+<liferay-ui:header title="Borrower" backURL="backURl" />
 
+<liferay-ui:error key="borrower-no-mfi-group" message="Borrower data inaccessible, not in a required MFI Group" />
 
-<liferay-ui:search-container emptyResultsMessage="no-loan" delta="5">
+<liferay-ui:search-container emptyResultsMessage="No Loan" delta="5">
 	<liferay-ui:search-container-results>
 	<%
     //Sets results.
@@ -25,7 +28,6 @@ TempBl borrower = ActionUtil.getTempBl(renderRequest);
 	} else {
 		total = 0;
 	}
-    
 
     pageContext.setAttribute("results", borrowerCol);
     pageContext.setAttribute("total", total);
@@ -47,24 +49,17 @@ TempBl borrower = ActionUtil.getTempBl(renderRequest);
 
 
 <liferay-ui:header title="Story Entries" />
+<liferay-ui:success key="story-add-success" message="Success! Story has been successfully been added to system."/>
+<liferay-ui:error key="story-add-error" message="Errors encounted, story could not be added." />
+<liferay-ui:error key="story-no-mfi-group" message="Story data inaccessible, not in a required MFI Group" />
+
 
 <liferay-ui:search-container emptyResultsMessage="No Stories Currently Exist." delta="5">
 	<liferay-ui:search-container-results>
 	<%
-	//Retrieves stories to display.
-    List<Story> tempResults = new ArrayList<Story>();
-    
-    //Adds results.
-    if (initialStory != null) {
-    	tempResults.add(initialStory);
-    }
-    if (finalStory != null) {
-    	tempResults.add(finalStory);
-    }
-    
     //Sets results.
-    results = ListUtil.subList(tempResults, searchContainer.getStart(), searchContainer.getEnd());
-    total = tempResults.size();
+    results = ListUtil.subList(stories, searchContainer.getStart(), searchContainer.getEnd());
+    total = stories.size();
 
     pageContext.setAttribute("results", results);
     pageContext.setAttribute("total", total);
@@ -75,13 +70,12 @@ TempBl borrower = ActionUtil.getTempBl(renderRequest);
 		className="org.goodreturn.model.Story"
 		keyProperty="story_Id" modelVar="story">
 
-		<liferay-ui:search-container-column-text name="borrower-loan-id" property="abacus_Borrower_Loan_Id" />
-		<liferay-ui:search-container-column-text name="story-id" property="story_Id" />
-		<liferay-ui:search-container-column-text name="type" property="story_Type" />
-		<liferay-ui:search-container-column-text name="video-url" property="video_Url" href="video_Url" />
-		<liferay-ui:search-container-column-text name="marketable" property="is_Good_Enough_For_Marketing" />
-		<liferay-ui:search-container-column-text name="publicable" property="is_Good_Enough_For_Story" />
-		<liferay-ui:search-container-column-jsp	path="/html/story/actions_story.jsp" align="right" />
+		<liferay-ui:search-container-column-text name="Borrower Loan Id" property="abacus_Borrower_Loan_Id" />
+		<liferay-ui:search-container-column-text name="Story ID" property="story_Id" />
+		<liferay-ui:search-container-column-text name="Story Type" property="story_Type" />
+		<liferay-ui:search-container-column-text name="Video URL" property="video_Url" href="video_Url" />
+		<liferay-ui:search-container-column-text name="Ok for Marketing" property="is_Good_Enough_For_Marketing" />
+		<liferay-ui:search-container-column-text name="Ok for publishing" property="is_Good_Enough_For_Story" />
 		
 	</liferay-ui:search-container-row>
 
@@ -91,20 +85,21 @@ TempBl borrower = ActionUtil.getTempBl(renderRequest);
 
 
 <aui:button-row>
-	<c:if test="<%=initialStory==null%>">
-		<portlet:renderURL var="createInitialStoryUrl">
-			<portlet:param name="jspPage" value="/html/story/edit_story.jsp"/>
-			<portlet:param name="<%=WebKeys.ATTR_BORROWER_LOAN_ID%>" value="<%=borrowerLoanIdString%>"/>
-			<portlet:param name="<%=WebKeys.ATTR_STORY_TYPE %>" value="initial"/>
-		</portlet:renderURL>
-		<aui:button value="Create Initial Story" href="<%=createInitialStoryUrl.toString()%>" />
-	</c:if>
-	<c:if test="<%=finalStory==null%>">
-		<portlet:renderURL var="createFinalStoryUrl">
-			<portlet:param name="jspPage" value="/html/story/edit_story.jsp"/>
-			<portlet:param name="<%=WebKeys.ATTR_BORROWER_LOAN_ID%>" value="<%=borrowerLoanIdString%>"/>
-			<portlet:param name="<%=WebKeys.ATTR_STORY_TYPE %>" value="final"/>
-		</portlet:renderURL>
-		<aui:button value="Create Final Story" href="<%=createFinalStoryUrl.toString()%>" />
-	</c:if>
+	<portlet:renderURL var="createInitialStoryUrl">
+		<portlet:param name="jspPage" value="/html/story/edit_story.jsp"/>
+		<portlet:param name="<%=WebKeys.ATTR_TEMPBL_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
+		<portlet:param name="<%=WebKeys.ATTR_TEMPBL_BORROWER_NAME%>" value="<%=tempBlLoanBorrowerName%>"/>
+		<portlet:param name="<%=WebKeys.ATTR_BORROWER_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
+		<portlet:param name="<%=WebKeys.ATTR_STORY_TYPE %>" value="initial"/>
+	</portlet:renderURL>
+	<aui:button value="Create Initial Story" href="<%=createInitialStoryUrl.toString()%>" />
+	
+	<portlet:renderURL var="createFinalStoryUrl">
+		<portlet:param name="jspPage" value="/html/story/edit_story.jsp"/>
+		<portlet:param name="<%=WebKeys.ATTR_TEMPBL_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
+		<portlet:param name="<%=WebKeys.ATTR_TEMPBL_BORROWER_NAME%>" value="<%=tempBlLoanBorrowerName%>"/>
+		<portlet:param name="<%=WebKeys.ATTR_BORROWER_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
+		<portlet:param name="<%=WebKeys.ATTR_STORY_TYPE %>" value="final"/>
+	</portlet:renderURL>
+	<aui:button value="Create Final Story" href="<%=createFinalStoryUrl.toString()%>" />
 </aui:button-row>
