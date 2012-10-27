@@ -307,14 +307,13 @@ public class ActionUtil {
 			List<Story> tempResult;
 			try {
 				tempResult = StoryLocalServiceUtil.getStoryByL_G(borrowerLoanId, mfiId);
-				System.out.println("!!!OccuRS!!!");
 			} catch (SystemException se) {
 				tempResult = Collections.EMPTY_LIST;
 			} catch (IndexOutOfBoundsException e) {
 				tempResult = Collections.EMPTY_LIST;
 			}
 
-			return Collections.EMPTY_LIST;
+			return tempResult;
 		} catch (NoSuchOrganizationException e) {
 			SessionErrors.add(request, "story-no-mfi-group");
 			return Collections.EMPTY_LIST;
