@@ -2,6 +2,7 @@ package org.goodreturn.story.exporter;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -13,10 +14,9 @@ import java.util.List;
 public class LinesInputStream extends InputStream {
 
 	private String currentLine;
-	private int currentLineRow;
 	private int currentLineCol;
 
-	private List<String> linesData;
+	private Iterator<String> linesData;
 
 	/**
 	 * Creates an inputstream that iterates through all lines of a 
@@ -26,34 +26,34 @@ public class LinesInputStream extends InputStream {
 	 */
 	public LinesInputStream(List<String> LinesInputData) {
 		//Sets counters to start.
-		currentLineRow = 0;
 		currentLineCol = 0;
-		linesData = LinesInputData;
+		linesData = LinesInputData.iterator();
 
-		//Sets first line if necessary.
-		if (linesData.size() > 0) {
-			goNextLine();
-		}
+		//Sets first line if possible.
+		goNextLine();
 	}
-	
+
 	private void goNextLine() {
-		//Sets nextline to currentline sets associated counters.
+		//Sets currentline and associated counters. Cl null if no lines.
 		currentLineCol = 0;
-		currentLine = linesData.get(currentLineRow);
-		currentLineRow++;
+		if (linesData.hasNext()) {
+			currentLine = linesData.next();
+		} else {
+			currentLine = null;
+		}
 	}
 
 	@Override
 	public int read() throws IOException {
-		//Null/Row check, will only get executed once if list
-		//was empty before placing in this class.
-		if (currentLine == null && currentLineRow < linesData.size()) {
-			goNextLine();
-		}
-		
 		//Processing finished if current line is null.
 		if (currentLine == null) {
 			return -1;
+		}
+
+		//Line ending addition/check.
+		if (currentLineCol == currentLine.length()) {
+			goNextLine();
+			return '\n';
 		}
 
 		//Line portion.
@@ -61,21 +61,8 @@ public class LinesInputStream extends InputStream {
 		if (currentLineCol < currentLine.length()) {
 			return currentLine.charAt(currentLineCol++);
 		}
-		
-		//Line ending addition/check.
-		if (currentLineCol == currentLine.length()) {
-			currentLineCol++;
-			return '\n';
-		}
 
-		//Row portion.
-		//Goes to next line if possible.
-		if (currentLineRow < linesData.size()) {
-			goNextLine();
-			return read();
-		}
-		
-		//Finished with current line, no new lines exist.
+		//Should never occur but.
 		return -1;
 	}
 }
