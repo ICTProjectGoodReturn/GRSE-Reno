@@ -81,6 +81,7 @@ public class StoryAssetRenderer extends BaseAssetRenderer {
 
 		 editPortletURL.setParameter("jspPage", "/html/story/edit_story.jsp");
 		 editPortletURL.setParameter(WebKeys.ATTR_STORY_ID, String.valueOf(story.getStory_Id()));
+		 editPortletURL.setParameter(WebKeys.WORKFLOW_INTERFACE, String.valueOf(true));
 		 return editPortletURL;
 	}
 	

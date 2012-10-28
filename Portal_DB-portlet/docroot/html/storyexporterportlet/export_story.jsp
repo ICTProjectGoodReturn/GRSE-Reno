@@ -21,8 +21,7 @@ Export stories to Comma Separated Values (CSV) file.
 		<portlet:param name="downloadCsv" value="true" />
 	</portlet:resourceURL>
 	<aui:form>
-		<aui:input name="approvedOnly" label="Approved Stories Only" type="checkbox" />
-		<br />
+		<!--<aui:input name="approvedOnly" label="Approved Stories Only" type="checkbox" /> -->
 
 		<aui:button name="Export" value="Export to CSV" onClick="<%=downloadCsv%>" />
 	</aui:form>

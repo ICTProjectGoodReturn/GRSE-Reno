@@ -11,13 +11,12 @@
 	//Gets loan data.
 	long tempBlLoanId = ParamUtil.getLong(renderRequest, WebKeys.ATTR_TEMPBL_LOAN_ID);
 	String tempBlLoanBorrowerName = ParamUtil.getString(renderRequest, WebKeys.ATTR_TEMPBL_BORROWER_NAME);
+	boolean workflowInterface = ParamUtil.getBoolean(renderRequest, WebKeys.WORKFLOW_INTERFACE);
 	
 	//Retrieves story data.
 	Story story = (Story) request.getAttribute(WebKeys.STORY_ENTRY);
-	boolean workflowInterface = true;
 	if (story == null) {
 		story = ActionUtil.getEditableStory(renderRequest);
-		workflowInterface = false;
 	}
 	String redirect = ParamUtil.getString(request, "redirect");
 
@@ -43,6 +42,7 @@
 	<portlet:param name="jspPage" value="/html/story/list_stories.jsp"/>
 	<portlet:param name="<%=WebKeys.ATTR_TEMPBL_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
 	<portlet:param name="<%=WebKeys.ATTR_TEMPBL_BORROWER_NAME%>" value="<%=tempBlLoanBorrowerName%>"/>
+	<portlet:param name="<%=WebKeys.WORKFLOW_INTERFACE %>" value="<%=String.valueOf(workflowInterface) %>"/>
 </portlet:actionURL>
 
 <c:choose>
@@ -91,9 +91,9 @@
 			
 			<aui:input name="story_Type" type="hidden" />
 			
-			<aui:input label="Good enough for marketing?" name="is_Good_Enough_For_Marketing" first="true" autoFocus="true" />
+			<aui:input label="Video good enough for marketing?" name="is_Good_Enough_For_Marketing" first="true" autoFocus="true" />
 			
-			<aui:input label="Good enough for final story?" name="is_Good_Enough_For_Story" />
+			<aui:input label="Video good enough for story?" name="is_Good_Enough_For_Story" />
 			
 			<aui:input label="Video URL" name="video_Url" last="true" />
 			

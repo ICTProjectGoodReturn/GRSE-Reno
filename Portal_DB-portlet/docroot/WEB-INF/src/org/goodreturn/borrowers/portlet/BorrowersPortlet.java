@@ -222,11 +222,11 @@ public class BorrowersPortlet extends MVCPortlet {
 		if (operationFailed) {
 			for (String error : errors) {
 				SessionErrors.add(actionRequest, error);
-
 			}
 
 			// Sets render page with data.
 			actionRequest.setAttribute(WebKeys.STORY_ENTRY, story);
+			actionResponse.setRenderParameter(WebKeys.WORKFLOW_INTERFACE, String.valueOf(ParamUtil.getBoolean(actionRequest, WebKeys.WORKFLOW_INTERFACE)));
 			actionResponse.setRenderParameter("jspPage", "/html/story/edit_story.jsp");
 
 		} else {

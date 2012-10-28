@@ -47,8 +47,8 @@
 		className="org.goodreturn.model.TempBl"
 		keyProperty="borrower_Name" modelVar="tempBl">
 
-		<liferay-ui:search-container-column-text name="Name" property="borrower_Name" />
-		<liferay-ui:search-container-column-text name="Loan Id" property="borrower_Loan_Id" />
+		<liferay-ui:search-container-column-text name="Borrower Name" property="borrower_Name" />
+		<liferay-ui:search-container-column-text name="Loan ID" property="borrower_Loan_Id" />
 		<liferay-ui:search-container-column-jsp	path="/html/temp_bl/actions_tempbl.jsp" align="right" />
 		
 	</liferay-ui:search-container-row>

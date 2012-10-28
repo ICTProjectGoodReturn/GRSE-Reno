@@ -8,12 +8,24 @@ String tempBlLoanBorrowerName = ParamUtil.getString(renderRequest, WebKeys.ATTR_
 
 List<Story> stories = ActionUtil.getAllStoriesByLoan(renderRequest);
 TempBl borrower = ActionUtil.getTempBl(renderRequest);
+
+//Sets if both types already exist.
+boolean initialStoryExists = false;
+boolean finalStoryExists = false;
+
+for(Story story : stories) {
+	if ("initial".equals(story.getStory_Type())) {
+		initialStoryExists = true;
+	} else if ("final".equals(story.getStory_Type())) {
+		finalStoryExists = true;
+	}
+}
 %>
 
 <portlet:renderURL  var="backUrl" >
 	<portlet:param name="jspPage" value="/html/temp_bl/view_tempbl.jsp"/>
 </portlet:renderURL>
-<liferay-ui:header title="Borrower" backURL="backURl" />
+<liferay-ui:header title="Loan" backURL="backURl" />
 
 <liferay-ui:error key="borrower-no-mfi-group" message="Borrower data inaccessible, not in a required MFI Group" />
 
@@ -38,7 +50,7 @@ TempBl borrower = ActionUtil.getTempBl(renderRequest);
 		className="org.goodreturn.model.TempBl"
 		keyProperty="borrower_Name" modelVar="tempBl">
 
-		<liferay-ui:search-container-column-text name="Name" property="borrower_Name" />
+		<liferay-ui:search-container-column-text name="Borrower Name" property="borrower_Name" />
 		<liferay-ui:search-container-column-text name="Loan Id" property="borrower_Loan_Id" />
 		
 	</liferay-ui:search-container-row>
@@ -70,7 +82,7 @@ TempBl borrower = ActionUtil.getTempBl(renderRequest);
 		className="org.goodreturn.model.Story"
 		keyProperty="story_Id" modelVar="story">
 
-		<liferay-ui:search-container-column-text name="Borrower Loan Id" property="abacus_Borrower_Loan_Id" />
+		<liferay-ui:search-container-column-text name="Borrower Loan ID" property="abacus_Borrower_Loan_Id" />
 		<liferay-ui:search-container-column-text name="Story ID" property="story_Id" />
 		<liferay-ui:search-container-column-text name="Story Type" property="story_Type" />
 		<liferay-ui:search-container-column-text name="Video URL" property="video_Url" href="video_Url" />
@@ -85,21 +97,28 @@ TempBl borrower = ActionUtil.getTempBl(renderRequest);
 
 
 <aui:button-row>
-	<portlet:renderURL var="createInitialStoryUrl">
-		<portlet:param name="jspPage" value="/html/story/edit_story.jsp"/>
-		<portlet:param name="<%=WebKeys.ATTR_TEMPBL_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
-		<portlet:param name="<%=WebKeys.ATTR_TEMPBL_BORROWER_NAME%>" value="<%=tempBlLoanBorrowerName%>"/>
-		<portlet:param name="<%=WebKeys.ATTR_BORROWER_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
-		<portlet:param name="<%=WebKeys.ATTR_STORY_TYPE %>" value="initial"/>
-	</portlet:renderURL>
-	<aui:button value="Create Initial Story" href="<%=createInitialStoryUrl.toString()%>" />
+
+	<c:if test="<%=!initialStoryExists%>">
+		<portlet:renderURL var="createInitialStoryUrl">
+			<portlet:param name="jspPage" value="/html/story/edit_story.jsp"/>
+			<portlet:param name="<%=WebKeys.ATTR_TEMPBL_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
+			<portlet:param name="<%=WebKeys.ATTR_TEMPBL_BORROWER_NAME%>" value="<%=tempBlLoanBorrowerName%>"/>
+			<portlet:param name="<%=WebKeys.ATTR_BORROWER_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
+			<portlet:param name="<%=WebKeys.ATTR_STORY_TYPE %>" value="initial"/>
+		</portlet:renderURL>
+		<aui:button value="Create Initial Story" href="<%=createInitialStoryUrl.toString()%>" />
+	</c:if>
 	
-	<portlet:renderURL var="createFinalStoryUrl">
-		<portlet:param name="jspPage" value="/html/story/edit_story.jsp"/>
-		<portlet:param name="<%=WebKeys.ATTR_TEMPBL_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
-		<portlet:param name="<%=WebKeys.ATTR_TEMPBL_BORROWER_NAME%>" value="<%=tempBlLoanBorrowerName%>"/>
-		<portlet:param name="<%=WebKeys.ATTR_BORROWER_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
-		<portlet:param name="<%=WebKeys.ATTR_STORY_TYPE %>" value="final"/>
-	</portlet:renderURL>
-	<aui:button value="Create Final Story" href="<%=createFinalStoryUrl.toString()%>" />
+	<c:if test="<%=!finalStoryExists%>">
+		<portlet:renderURL var="createFinalStoryUrl">
+			<portlet:param name="jspPage" value="/html/story/edit_story.jsp"/>
+			<portlet:param name="<%=WebKeys.ATTR_TEMPBL_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
+			<portlet:param name="<%=WebKeys.ATTR_TEMPBL_BORROWER_NAME%>" value="<%=tempBlLoanBorrowerName%>"/>
+			<portlet:param name="<%=WebKeys.ATTR_BORROWER_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
+			<portlet:param name="<%=WebKeys.ATTR_STORY_TYPE %>" value="final"/>
+		</portlet:renderURL>
+		<aui:button value="Create Final Story" href="<%=createFinalStoryUrl.toString()%>" />
+	</c:if>
 </aui:button-row>
+
+
