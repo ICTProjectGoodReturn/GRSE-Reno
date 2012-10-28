@@ -38,6 +38,12 @@ public class StoryValidator {
 			errors.add("story-type-error");
 			storyValid = false;
 		}
+		
+		//Validates story text not being 1000(max).
+		if (story.getStory_Text().length() > 999) {
+			errors.add("story-text-error");
+			storyValid = false;
+		}
 
 		//non null borrower_loan_Id
 		if (story.getAbacus_Borrower_Loan_Id() <= 0) {

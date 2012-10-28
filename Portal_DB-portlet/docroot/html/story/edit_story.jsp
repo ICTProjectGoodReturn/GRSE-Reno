@@ -67,6 +67,7 @@
 <liferay-ui:error key="story-data-invalid-error" message="Story data is invalid, check story input for problems." />
 <liferay-ui:error key="story-null-error" message="Story data could not loaded for save." />
 <liferay-ui:error key="story-type-error" message="Story type provided is not valid." />
+<liferay-ui:error key="story-text-error" message="Story text provided is too long, please shorten." />
 <liferay-ui:error key="story-loan-id-error" message="Story loan id is not valid." />
 <liferay-ui:error key="story-vid-url-error" message="URL for story is not a valid URL address." />
 <liferay-ui:error key="no-mfi-group" message="Story data inaccessible, not in required MFI Group" />
