@@ -33,10 +33,12 @@
 				<action-key>VIEW</action-key>
             	<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
 				<action-key>EXPORT_STORY</action-key>
+				<action-key>ADD_TO_PAGE</action-key>
 			</supports>
 			
             <site-member-defaults>
 				<action-key>VIEW</action-key>
+				<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
             </site-member-defaults>
             
 			<guest-defaults>

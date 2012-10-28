@@ -222,7 +222,6 @@
 		</order>
 
 		<!-- Finder Values -->
-		
 		<finder name="L_S" return-type="Collection">
 			<finder-column name="abacus_Borrower_Loan_Id" />
 			<finder-column name="story_Type" />
@@ -236,6 +235,10 @@
 		<finder name="L_G" return-type="Collection">
 			<finder-column name="abacus_Borrower_Loan_Id" />
 			<finder-column name="groupId" />
+		</finder>
+		
+		<finder name="status" return-type="Collection">
+			<finder-column name="status" />
 		</finder>
 
 		<!-- Reference -->
@@ -273,7 +276,7 @@
 	<entity name="TempBl" local-service="true" remote-service="true">
 	
 		<!-- PK/Data Fields -->		
-		<column name="borrower_Name" type="String" primary="true" />
+		<column name="borrower_Name" type="String" />
 		<column name="borrower_Loan_Id" type="long" primary="true" />
 		
 		<!-- Other Fields -->

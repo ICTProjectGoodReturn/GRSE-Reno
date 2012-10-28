@@ -22,12 +22,14 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.service.ServiceContext;
+
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import org.goodreturn.model.TempBl;
 import org.goodreturn.model.TempBlModel;
 import org.goodreturn.model.TempBlSoap;
-
-import org.goodreturn.service.persistence.TempBlPK;
 
 import java.io.Serializable;
 
@@ -66,7 +68,7 @@ public class TempBlModelImpl extends BaseModelImpl<TempBl>
 			{ "groupId", Types.BIGINT },
 			{ "companyId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table GoodReturn_TempBl (borrower_Name VARCHAR(75) not null,borrower_Loan_Id LONG not null,groupId LONG,companyId LONG,primary key (borrower_Name, borrower_Loan_Id))";
+	public static final String TABLE_SQL_CREATE = "create table GoodReturn_TempBl (borrower_Name VARCHAR(75) null,borrower_Loan_Id LONG not null primary key,groupId LONG,companyId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table GoodReturn_TempBl";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -129,21 +131,20 @@ public class TempBlModelImpl extends BaseModelImpl<TempBl>
 	public TempBlModelImpl() {
 	}
 
-	public TempBlPK getPrimaryKey() {
-		return new TempBlPK(_borrower_Name, _borrower_Loan_Id);
+	public long getPrimaryKey() {
+		return _borrower_Loan_Id;
 	}
 
-	public void setPrimaryKey(TempBlPK primaryKey) {
-		setBorrower_Name(primaryKey.borrower_Name);
-		setBorrower_Loan_Id(primaryKey.borrower_Loan_Id);
+	public void setPrimaryKey(long primaryKey) {
+		setBorrower_Loan_Id(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new TempBlPK(_borrower_Name, _borrower_Loan_Id);
+		return new Long(_borrower_Loan_Id);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey((TempBlPK)primaryKeyObj);
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public Class<?> getModelClass() {
@@ -251,6 +252,19 @@ public class TempBlModelImpl extends BaseModelImpl<TempBl>
 	}
 
 	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			TempBl.class.getName(), getPrimaryKey());
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
 	public TempBl toEscapedModel() {
 		if (_escapedModelProxy == null) {
 			_escapedModelProxy = (TempBl)ProxyUtil.newProxyInstance(_classLoader,
@@ -276,9 +290,17 @@ public class TempBlModelImpl extends BaseModelImpl<TempBl>
 	}
 
 	public int compareTo(TempBl tempBl) {
-		TempBlPK primaryKey = tempBl.getPrimaryKey();
+		long primaryKey = tempBl.getPrimaryKey();
 
-		return getPrimaryKey().compareTo(primaryKey);
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
+		}
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -296,9 +318,9 @@ public class TempBlModelImpl extends BaseModelImpl<TempBl>
 			return false;
 		}
 
-		TempBlPK primaryKey = tempBl.getPrimaryKey();
+		long primaryKey = tempBl.getPrimaryKey();
 
-		if (getPrimaryKey().equals(primaryKey)) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {
@@ -308,7 +330,7 @@ public class TempBlModelImpl extends BaseModelImpl<TempBl>
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override

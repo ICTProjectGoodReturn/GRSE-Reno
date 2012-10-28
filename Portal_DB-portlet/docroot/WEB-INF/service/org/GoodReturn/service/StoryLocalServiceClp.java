@@ -129,9 +129,17 @@ public class StoryLocalServiceClp implements StoryLocalService {
 
 		_methodParameterTypes23 = new String[] { "long", "long" };
 
-		_methodName24 = "updateStatus";
+		_methodName24 = "getAllStorys";
 
-		_methodParameterTypes24 = new String[] {
+		_methodParameterTypes24 = new String[] {  };
+
+		_methodName25 = "getStoryByStatus";
+
+		_methodParameterTypes25 = new String[] { "int" };
+
+		_methodName26 = "updateStatus";
+
+		_methodParameterTypes26 = new String[] {
 				"long", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -832,6 +840,60 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		return (java.util.List<org.goodreturn.model.Story>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.util.List<org.goodreturn.model.Story> getAllStorys()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<org.goodreturn.model.Story>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<org.goodreturn.model.Story> getStoryByStatus(
+		int status) throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25, new Object[] { status });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<org.goodreturn.model.Story>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public org.goodreturn.model.Story updateStatus(long userId,
 		long resourcePrimKey, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -840,8 +902,8 @@ public class StoryLocalServiceClp implements StoryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] {
 						userId,
 						
@@ -924,4 +986,8 @@ public class StoryLocalServiceClp implements StoryLocalService {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
+	private String _methodName26;
+	private String[] _methodParameterTypes26;
 }

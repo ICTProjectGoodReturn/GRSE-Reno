@@ -14,8 +14,6 @@
 
 package org.goodreturn.model;
 
-import org.goodreturn.service.persistence.TempBlPK;
-
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -80,13 +78,12 @@ public class TempBlSoap implements Serializable {
 	public TempBlSoap() {
 	}
 
-	public TempBlPK getPrimaryKey() {
-		return new TempBlPK(_borrower_Name, _borrower_Loan_Id);
+	public long getPrimaryKey() {
+		return _borrower_Loan_Id;
 	}
 
-	public void setPrimaryKey(TempBlPK pk) {
-		setBorrower_Name(pk.borrower_Name);
-		setBorrower_Loan_Id(pk.borrower_Loan_Id);
+	public void setPrimaryKey(long pk) {
+		setBorrower_Loan_Id(pk);
 	}
 
 	public String getBorrower_Name() {

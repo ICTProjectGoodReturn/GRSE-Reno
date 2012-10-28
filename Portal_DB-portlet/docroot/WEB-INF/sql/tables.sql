@@ -132,9 +132,8 @@ create table GoodReturn_TempBL (
 );
 
 create table GoodReturn_TempBl (
-	borrower_Name VARCHAR(75) not null,
-	borrower_Loan_Id LONG not null,
+	borrower_Name VARCHAR(75) null,
+	borrower_Loan_Id LONG not null primary key,
 	groupId LONG,
-	companyId LONG,
-	primary key (borrower_Name, borrower_Loan_Id)
+	companyId LONG
 );

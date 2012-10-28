@@ -42,9 +42,11 @@ public class TempBlLocalServiceImpl extends TempBlLocalServiceBaseImpl {
 	 * Never reference this interface directly. Always use {@link org.goodreturn.service.TempBlLocalServiceUtil} to access the temp bl local service.
 	 */
 	
-	public List<TempBl> getAllTempBls(long groupId)
-		    throws SystemException {
-		    List<TempBl> products = tempBlPersistence.findByGroupId(groupId);
-		    return products;
+	public List<TempBl> getAllTempBls(long groupId) throws SystemException {
+		return tempBlPersistence.findByGroupId(groupId);
 		}
+	
+	public List<TempBl> getAllTempBls() throws SystemException {
+		return tempBlPersistence.findAll();
+	}
 }

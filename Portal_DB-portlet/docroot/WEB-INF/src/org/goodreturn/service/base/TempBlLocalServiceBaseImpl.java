@@ -65,7 +65,6 @@ import org.goodreturn.service.persistence.PersonPersistence;
 import org.goodreturn.service.persistence.StoryPersistence;
 import org.goodreturn.service.persistence.TeamLenderPersistence;
 import org.goodreturn.service.persistence.TeamPersistence;
-import org.goodreturn.service.persistence.TempBlPK;
 import org.goodreturn.service.persistence.TempBlPersistence;
 
 import java.io.Serializable;
@@ -111,25 +110,25 @@ public abstract class TempBlLocalServiceBaseImpl extends BaseLocalServiceImpl
 	/**
 	 * Creates a new temp bl with the primary key. Does not add the temp bl to the database.
 	 *
-	 * @param tempBlPK the primary key for the new temp bl
+	 * @param borrower_Loan_Id the primary key for the new temp bl
 	 * @return the new temp bl
 	 */
-	public TempBl createTempBl(TempBlPK tempBlPK) {
-		return tempBlPersistence.create(tempBlPK);
+	public TempBl createTempBl(long borrower_Loan_Id) {
+		return tempBlPersistence.create(borrower_Loan_Id);
 	}
 
 	/**
 	 * Deletes the temp bl with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param tempBlPK the primary key of the temp bl
+	 * @param borrower_Loan_Id the primary key of the temp bl
 	 * @return the temp bl that was removed
 	 * @throws PortalException if a temp bl with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public TempBl deleteTempBl(TempBlPK tempBlPK)
+	public TempBl deleteTempBl(long borrower_Loan_Id)
 		throws PortalException, SystemException {
-		return tempBlPersistence.remove(tempBlPK);
+		return tempBlPersistence.remove(borrower_Loan_Id);
 	}
 
 	/**
@@ -216,21 +215,21 @@ public abstract class TempBlLocalServiceBaseImpl extends BaseLocalServiceImpl
 		return tempBlPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
-	public TempBl fetchTempBl(TempBlPK tempBlPK) throws SystemException {
-		return tempBlPersistence.fetchByPrimaryKey(tempBlPK);
+	public TempBl fetchTempBl(long borrower_Loan_Id) throws SystemException {
+		return tempBlPersistence.fetchByPrimaryKey(borrower_Loan_Id);
 	}
 
 	/**
 	 * Returns the temp bl with the primary key.
 	 *
-	 * @param tempBlPK the primary key of the temp bl
+	 * @param borrower_Loan_Id the primary key of the temp bl
 	 * @return the temp bl
 	 * @throws PortalException if a temp bl with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public TempBl getTempBl(TempBlPK tempBlPK)
+	public TempBl getTempBl(long borrower_Loan_Id)
 		throws PortalException, SystemException {
-		return tempBlPersistence.findByPrimaryKey(tempBlPK);
+		return tempBlPersistence.findByPrimaryKey(borrower_Loan_Id);
 	}
 
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)

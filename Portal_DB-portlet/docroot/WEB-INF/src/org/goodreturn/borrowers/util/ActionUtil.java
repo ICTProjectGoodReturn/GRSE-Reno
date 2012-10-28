@@ -355,7 +355,7 @@ public class ActionUtil {
 
 		//Attempts retrieval from db or sets null.
 		try {
-			tempResult = TempBlLocalServiceUtil.getTempBl(new TempBlPK(borrowerName, borrowerLoanId));
+			tempResult = TempBlLocalServiceUtil.getTempBl(borrowerLoanId);
 		} catch (PortalException e) {
 			tempResult = null;
 		} catch (SystemException e) {
@@ -528,7 +528,7 @@ public class ActionUtil {
 
 		//Loads existing data if it exists.
 		try {
-			tempBl = TempBlLocalServiceUtil.getTempBl(new TempBlPK(borrowerName, borrowerLoanId));
+			tempBl = TempBlLocalServiceUtil.getTempBl(borrowerLoanId);
 			newTempBl = false;
 
 			//Pointless exceptions as flag wont be set which will allow new object.

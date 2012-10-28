@@ -146,10 +146,10 @@
 	</class>
 	<class name="org.goodreturn.model.impl.TempBlImpl" table="GoodReturn_TempBl">
 		<cache usage="read-write" />
-		<composite-id name="primaryKey" class="org.goodreturn.service.persistence.TempBlPK">
-			<key-property name="borrower_Name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-			<key-property name="borrower_Loan_Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		</composite-id>
+		<id name="borrower_Loan_Id" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="borrower_Name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>

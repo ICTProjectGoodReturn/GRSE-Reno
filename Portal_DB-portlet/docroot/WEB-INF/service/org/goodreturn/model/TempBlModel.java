@@ -21,8 +21,6 @@ import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 
-import org.goodreturn.service.persistence.TempBlPK;
-
 import java.io.Serializable;
 
 /**
@@ -50,14 +48,14 @@ public interface TempBlModel extends BaseModel<TempBl> {
 	 *
 	 * @return the primary key of this temp bl
 	 */
-	public TempBlPK getPrimaryKey();
+	public long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this temp bl.
 	 *
 	 * @param primaryKey the primary key of this temp bl
 	 */
-	public void setPrimaryKey(TempBlPK primaryKey);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Returns the borrower_ name of this temp bl.

@@ -318,10 +318,23 @@ public class StoryLocalServiceUtil {
 		return getService().getStoryByG_S(groupId, status);
 	}
 
+	/**
+	* Retrieves and returns all stories which have the correlating fields of abacus_Borrower_Loan_Id and groupId(mfi groupid).
+	*/
 	public static java.util.List<org.goodreturn.model.Story> getStoryByL_G(
 		long abacus_Borrower_Loan_Id, long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getStoryByL_G(abacus_Borrower_Loan_Id, groupId);
+	}
+
+	public static java.util.List<org.goodreturn.model.Story> getAllStorys()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getAllStorys();
+	}
+
+	public static java.util.List<org.goodreturn.model.Story> getStoryByStatus(
+		int status) throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getStoryByStatus(status);
 	}
 
 	/**

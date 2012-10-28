@@ -29,15 +29,11 @@ public class TempBlLocalServiceClp implements TempBlLocalService {
 
 		_methodName1 = "createTempBl";
 
-		_methodParameterTypes1 = new String[] {
-				"org.goodreturn.service.persistence.TempBlPK"
-			};
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteTempBl";
 
-		_methodParameterTypes2 = new String[] {
-				"org.goodreturn.service.persistence.TempBlPK"
-			};
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteTempBl";
 
@@ -74,15 +70,11 @@ public class TempBlLocalServiceClp implements TempBlLocalService {
 
 		_methodName9 = "fetchTempBl";
 
-		_methodParameterTypes9 = new String[] {
-				"org.goodreturn.service.persistence.TempBlPK"
-			};
+		_methodParameterTypes9 = new String[] { "long" };
 
 		_methodName10 = "getTempBl";
 
-		_methodParameterTypes10 = new String[] {
-				"org.goodreturn.service.persistence.TempBlPK"
-			};
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getPersistedModel";
 
@@ -117,6 +109,10 @@ public class TempBlLocalServiceClp implements TempBlLocalService {
 		_methodName19 = "getAllTempBls";
 
 		_methodParameterTypes19 = new String[] { "long" };
+
+		_methodName20 = "getAllTempBls";
+
+		_methodParameterTypes20 = new String[] {  };
 	}
 
 	public org.goodreturn.model.TempBl addTempBl(
@@ -148,14 +144,12 @@ public class TempBlLocalServiceClp implements TempBlLocalService {
 		return (org.goodreturn.model.TempBl)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.goodreturn.model.TempBl createTempBl(
-		org.goodreturn.service.persistence.TempBlPK tempBlPK) {
+	public org.goodreturn.model.TempBl createTempBl(long borrower_Loan_Id) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1,
-					new Object[] { ClpSerializer.translateInput(tempBlPK) });
+					_methodParameterTypes1, new Object[] { borrower_Loan_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -172,16 +166,14 @@ public class TempBlLocalServiceClp implements TempBlLocalService {
 		return (org.goodreturn.model.TempBl)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.goodreturn.model.TempBl deleteTempBl(
-		org.goodreturn.service.persistence.TempBlPK tempBlPK)
+	public org.goodreturn.model.TempBl deleteTempBl(long borrower_Loan_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2,
-					new Object[] { ClpSerializer.translateInput(tempBlPK) });
+					_methodParameterTypes2, new Object[] { borrower_Loan_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -392,15 +384,13 @@ public class TempBlLocalServiceClp implements TempBlLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
-	public org.goodreturn.model.TempBl fetchTempBl(
-		org.goodreturn.service.persistence.TempBlPK tempBlPK)
+	public org.goodreturn.model.TempBl fetchTempBl(long borrower_Loan_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
-					new Object[] { ClpSerializer.translateInput(tempBlPK) });
+					_methodParameterTypes9, new Object[] { borrower_Loan_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -421,16 +411,14 @@ public class TempBlLocalServiceClp implements TempBlLocalService {
 		return (org.goodreturn.model.TempBl)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public org.goodreturn.model.TempBl getTempBl(
-		org.goodreturn.service.persistence.TempBlPK tempBlPK)
+	public org.goodreturn.model.TempBl getTempBl(long borrower_Loan_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
-					new Object[] { ClpSerializer.translateInput(tempBlPK) });
+					_methodParameterTypes10, new Object[] { borrower_Loan_Id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -676,6 +664,33 @@ public class TempBlLocalServiceClp implements TempBlLocalService {
 		return (java.util.List<org.goodreturn.model.TempBl>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.util.List<org.goodreturn.model.TempBl> getAllTempBls()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<org.goodreturn.model.TempBl>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -715,4 +730,6 @@ public class TempBlLocalServiceClp implements TempBlLocalService {
 	private String[] _methodParameterTypes17;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
 }

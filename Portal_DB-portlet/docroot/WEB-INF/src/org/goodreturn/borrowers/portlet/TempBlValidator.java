@@ -36,9 +36,7 @@ public class TempBlValidator {
 		//Checks if already exists within database.
 		TempBl fromDB = null;
 		try {
-			fromDB = 
-					TempBlLocalServiceUtil.getTempBl(new TempBlPK(tempBl.getBorrower_Name(),
-					tempBl.getBorrower_Loan_Id()));
+			fromDB = TempBlLocalServiceUtil.getTempBl(tempBl.getBorrower_Loan_Id());
 		} catch (PortalException e) {
 		} catch (SystemException e) {
 		}

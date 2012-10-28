@@ -187,14 +187,14 @@ public class TempBlPersistenceImpl extends BasePersistenceImpl<TempBl>
 	/**
 	 * Creates a new temp bl with the primary key. Does not add the temp bl to the database.
 	 *
-	 * @param tempBlPK the primary key for the new temp bl
+	 * @param borrower_Loan_Id the primary key for the new temp bl
 	 * @return the new temp bl
 	 */
-	public TempBl create(TempBlPK tempBlPK) {
+	public TempBl create(long borrower_Loan_Id) {
 		TempBl tempBl = new TempBlImpl();
 
 		tempBl.setNew(true);
-		tempBl.setPrimaryKey(tempBlPK);
+		tempBl.setPrimaryKey(borrower_Loan_Id);
 
 		return tempBl;
 	}
@@ -202,14 +202,14 @@ public class TempBlPersistenceImpl extends BasePersistenceImpl<TempBl>
 	/**
 	 * Removes the temp bl with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param tempBlPK the primary key of the temp bl
+	 * @param borrower_Loan_Id the primary key of the temp bl
 	 * @return the temp bl that was removed
 	 * @throws org.goodreturn.NoSuchTempBlException if a temp bl with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public TempBl remove(TempBlPK tempBlPK)
+	public TempBl remove(long borrower_Loan_Id)
 		throws NoSuchTempBlException, SystemException {
-		return remove((Serializable)tempBlPK);
+		return remove(Long.valueOf(borrower_Loan_Id));
 	}
 
 	/**
@@ -360,28 +360,28 @@ public class TempBlPersistenceImpl extends BasePersistenceImpl<TempBl>
 	@Override
 	public TempBl findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey((TempBlPK)primaryKey);
+		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
 	 * Returns the temp bl with the primary key or throws a {@link org.goodreturn.NoSuchTempBlException} if it could not be found.
 	 *
-	 * @param tempBlPK the primary key of the temp bl
+	 * @param borrower_Loan_Id the primary key of the temp bl
 	 * @return the temp bl
 	 * @throws org.goodreturn.NoSuchTempBlException if a temp bl with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public TempBl findByPrimaryKey(TempBlPK tempBlPK)
+	public TempBl findByPrimaryKey(long borrower_Loan_Id)
 		throws NoSuchTempBlException, SystemException {
-		TempBl tempBl = fetchByPrimaryKey(tempBlPK);
+		TempBl tempBl = fetchByPrimaryKey(borrower_Loan_Id);
 
 		if (tempBl == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + tempBlPK);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + borrower_Loan_Id);
 			}
 
 			throw new NoSuchTempBlException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				tempBlPK);
+				borrower_Loan_Id);
 		}
 
 		return tempBl;
@@ -397,20 +397,20 @@ public class TempBlPersistenceImpl extends BasePersistenceImpl<TempBl>
 	@Override
 	public TempBl fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey((TempBlPK)primaryKey);
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
 	 * Returns the temp bl with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param tempBlPK the primary key of the temp bl
+	 * @param borrower_Loan_Id the primary key of the temp bl
 	 * @return the temp bl, or <code>null</code> if a temp bl with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public TempBl fetchByPrimaryKey(TempBlPK tempBlPK)
+	public TempBl fetchByPrimaryKey(long borrower_Loan_Id)
 		throws SystemException {
 		TempBl tempBl = (TempBl)EntityCacheUtil.getResult(TempBlModelImpl.ENTITY_CACHE_ENABLED,
-				TempBlImpl.class, tempBlPK);
+				TempBlImpl.class, borrower_Loan_Id);
 
 		if (tempBl == _nullTempBl) {
 			return null;
@@ -424,7 +424,8 @@ public class TempBlPersistenceImpl extends BasePersistenceImpl<TempBl>
 			try {
 				session = openSession();
 
-				tempBl = (TempBl)session.get(TempBlImpl.class, tempBlPK);
+				tempBl = (TempBl)session.get(TempBlImpl.class,
+						Long.valueOf(borrower_Loan_Id));
 			}
 			catch (Exception e) {
 				hasException = true;
@@ -437,7 +438,7 @@ public class TempBlPersistenceImpl extends BasePersistenceImpl<TempBl>
 				}
 				else if (!hasException) {
 					EntityCacheUtil.putResult(TempBlModelImpl.ENTITY_CACHE_ENABLED,
-						TempBlImpl.class, tempBlPK, _nullTempBl);
+						TempBlImpl.class, borrower_Loan_Id, _nullTempBl);
 				}
 
 				closeSession(session);
@@ -677,17 +678,17 @@ public class TempBlPersistenceImpl extends BasePersistenceImpl<TempBl>
 	/**
 	 * Returns the temp bls before and after the current temp bl in the ordered set where groupId = &#63;.
 	 *
-	 * @param tempBlPK the primary key of the current temp bl
+	 * @param borrower_Loan_Id the primary key of the current temp bl
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next temp bl
 	 * @throws org.goodreturn.NoSuchTempBlException if a temp bl with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public TempBl[] findByGroupId_PrevAndNext(TempBlPK tempBlPK, long groupId,
-		OrderByComparator orderByComparator)
+	public TempBl[] findByGroupId_PrevAndNext(long borrower_Loan_Id,
+		long groupId, OrderByComparator orderByComparator)
 		throws NoSuchTempBlException, SystemException {
-		TempBl tempBl = findByPrimaryKey(tempBlPK);
+		TempBl tempBl = findByPrimaryKey(borrower_Loan_Id);
 
 		Session session = null;
 

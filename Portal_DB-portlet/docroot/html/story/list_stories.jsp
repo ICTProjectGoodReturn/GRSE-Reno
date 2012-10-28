@@ -75,7 +75,7 @@ TempBl borrower = ActionUtil.getTempBl(renderRequest);
 		<liferay-ui:search-container-column-text name="Story Type" property="story_Type" />
 		<liferay-ui:search-container-column-text name="Video URL" property="video_Url" href="video_Url" />
 		<liferay-ui:search-container-column-text name="Ok for Marketing" property="is_Good_Enough_For_Marketing" />
-		<liferay-ui:search-container-column-text name="Ok for publishing" property="is_Good_Enough_For_Story" />
+		<liferay-ui:search-container-column-text name="Ok for Publishing" property="is_Good_Enough_For_Story" />
 		
 	</liferay-ui:search-container-row>
 

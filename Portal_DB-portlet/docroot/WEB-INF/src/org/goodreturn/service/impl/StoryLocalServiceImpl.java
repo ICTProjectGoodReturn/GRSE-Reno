@@ -123,7 +123,9 @@ public class StoryLocalServiceImpl extends StoryLocalServiceBaseImpl {
 		return storyPersistence.remove(story);
 	}
 
-	
+	/**
+	 * Retrieves and returns specific story which has the correlating story_Id.
+	 */
 	public Story getStory(long PK) throws NoSuchStoryException, SystemException {
 		return storyPersistence.findByPrimaryKey(PK);
 	}
@@ -138,9 +140,20 @@ public class StoryLocalServiceImpl extends StoryLocalServiceBaseImpl {
 		return storyPersistence.findByG_S(groupId, status);
 	}
 	
-
+	/**
+	 * Retrieves and returns all stories which have the correlating fields of abacus_Borrower_Loan_Id and groupId(mfi groupid).
+	 */
 	public List<Story> getStoryByL_G(long abacus_Borrower_Loan_Id, long groupId) throws SystemException {
 		return storyPersistence.findByL_G(abacus_Borrower_Loan_Id, groupId);
+	}
+	
+	
+	public List<Story> getAllStorys() throws SystemException {
+		return storyPersistence.findAll();
+	}
+	
+	public List<Story> getStoryByStatus(int status) throws SystemException {
+		return storyPersistence.findBystatus(status);
 	}
 	
 	

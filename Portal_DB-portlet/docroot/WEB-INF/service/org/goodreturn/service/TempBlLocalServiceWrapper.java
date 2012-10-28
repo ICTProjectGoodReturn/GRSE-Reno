@@ -47,27 +47,25 @@ public class TempBlLocalServiceWrapper implements TempBlLocalService,
 	/**
 	* Creates a new temp bl with the primary key. Does not add the temp bl to the database.
 	*
-	* @param tempBlPK the primary key for the new temp bl
+	* @param borrower_Loan_Id the primary key for the new temp bl
 	* @return the new temp bl
 	*/
-	public org.goodreturn.model.TempBl createTempBl(
-		org.goodreturn.service.persistence.TempBlPK tempBlPK) {
-		return _tempBlLocalService.createTempBl(tempBlPK);
+	public org.goodreturn.model.TempBl createTempBl(long borrower_Loan_Id) {
+		return _tempBlLocalService.createTempBl(borrower_Loan_Id);
 	}
 
 	/**
 	* Deletes the temp bl with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param tempBlPK the primary key of the temp bl
+	* @param borrower_Loan_Id the primary key of the temp bl
 	* @return the temp bl that was removed
 	* @throws PortalException if a temp bl with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.TempBl deleteTempBl(
-		org.goodreturn.service.persistence.TempBlPK tempBlPK)
+	public org.goodreturn.model.TempBl deleteTempBl(long borrower_Loan_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _tempBlLocalService.deleteTempBl(tempBlPK);
+		return _tempBlLocalService.deleteTempBl(borrower_Loan_Id);
 	}
 
 	/**
@@ -158,25 +156,23 @@ public class TempBlLocalServiceWrapper implements TempBlLocalService,
 		return _tempBlLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
-	public org.goodreturn.model.TempBl fetchTempBl(
-		org.goodreturn.service.persistence.TempBlPK tempBlPK)
+	public org.goodreturn.model.TempBl fetchTempBl(long borrower_Loan_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _tempBlLocalService.fetchTempBl(tempBlPK);
+		return _tempBlLocalService.fetchTempBl(borrower_Loan_Id);
 	}
 
 	/**
 	* Returns the temp bl with the primary key.
 	*
-	* @param tempBlPK the primary key of the temp bl
+	* @param borrower_Loan_Id the primary key of the temp bl
 	* @return the temp bl
 	* @throws PortalException if a temp bl with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public org.goodreturn.model.TempBl getTempBl(
-		org.goodreturn.service.persistence.TempBlPK tempBlPK)
+	public org.goodreturn.model.TempBl getTempBl(long borrower_Loan_Id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _tempBlLocalService.getTempBl(tempBlPK);
+		return _tempBlLocalService.getTempBl(borrower_Loan_Id);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -269,6 +265,11 @@ public class TempBlLocalServiceWrapper implements TempBlLocalService,
 		long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tempBlLocalService.getAllTempBls(groupId);
+	}
+
+	public java.util.List<org.goodreturn.model.TempBl> getAllTempBls()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _tempBlLocalService.getAllTempBls();
 	}
 
 	/**

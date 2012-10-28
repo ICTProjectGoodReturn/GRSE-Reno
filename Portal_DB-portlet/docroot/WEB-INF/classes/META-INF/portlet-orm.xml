@@ -172,10 +172,9 @@
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="org.goodreturn.model.impl.TempBlModelImpl">
-		<id-class class="org.goodreturn.service.persistence.TempBlPK" />
 		<attributes>
-			<id name="borrower_Name" />
 			<id name="borrower_Loan_Id" />
+			<basic name="borrower_Name" />
 			<basic name="groupId" />
 			<basic name="companyId" />
 			<transient name="modelAttributes" />

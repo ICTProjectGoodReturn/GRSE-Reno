@@ -67,7 +67,7 @@
 		</portlet-class>
 		<init-param>
 			<name>view-template</name>
-			<value>/html/story/export_story.jsp</value>
+			<value>/html/storyexporterportlet/export_story.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -90,6 +90,15 @@
 		</security-role-ref>
 		<security-role-ref>
 			<role-name>user</role-name>
+		</security-role-ref>
+		
+		
+	<!-- Additional Roles added -->
+		<security-role-ref>
+			<role-name>weal-owner</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>weal-operations</role-name>
 		</security-role-ref>
 	</portlet>
 </portlet-app>

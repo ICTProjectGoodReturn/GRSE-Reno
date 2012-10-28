@@ -83,7 +83,7 @@ public class TempBlWrapper implements TempBl, ModelWrapper<TempBl> {
 	*
 	* @return the primary key of this temp bl
 	*/
-	public org.goodreturn.service.persistence.TempBlPK getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _tempBl.getPrimaryKey();
 	}
 
@@ -92,8 +92,7 @@ public class TempBlWrapper implements TempBl, ModelWrapper<TempBl> {
 	*
 	* @param primaryKey the primary key of this temp bl
 	*/
-	public void setPrimaryKey(
-		org.goodreturn.service.persistence.TempBlPK primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		_tempBl.setPrimaryKey(primaryKey);
 	}
 

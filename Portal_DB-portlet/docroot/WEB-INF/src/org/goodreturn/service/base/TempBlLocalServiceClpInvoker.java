@@ -29,15 +29,11 @@ public class TempBlLocalServiceClpInvoker {
 
 		_methodName1 = "createTempBl";
 
-		_methodParameterTypes1 = new String[] {
-				"org.goodreturn.service.persistence.TempBlPK"
-			};
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteTempBl";
 
-		_methodParameterTypes2 = new String[] {
-				"org.goodreturn.service.persistence.TempBlPK"
-			};
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteTempBl";
 
@@ -74,15 +70,11 @@ public class TempBlLocalServiceClpInvoker {
 
 		_methodName9 = "fetchTempBl";
 
-		_methodParameterTypes9 = new String[] {
-				"org.goodreturn.service.persistence.TempBlPK"
-			};
+		_methodParameterTypes9 = new String[] { "long" };
 
 		_methodName10 = "getTempBl";
 
-		_methodParameterTypes10 = new String[] {
-				"org.goodreturn.service.persistence.TempBlPK"
-			};
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getPersistedModel";
 
@@ -117,6 +109,10 @@ public class TempBlLocalServiceClpInvoker {
 		_methodName92 = "getAllTempBls";
 
 		_methodParameterTypes92 = new String[] { "long" };
+
+		_methodName93 = "getAllTempBls";
+
+		_methodParameterTypes93 = new String[] {  };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -128,12 +124,12 @@ public class TempBlLocalServiceClpInvoker {
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return TempBlLocalServiceUtil.createTempBl((org.goodreturn.service.persistence.TempBlPK)arguments[0]);
+			return TempBlLocalServiceUtil.createTempBl(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return TempBlLocalServiceUtil.deleteTempBl((org.goodreturn.service.persistence.TempBlPK)arguments[0]);
+			return TempBlLocalServiceUtil.deleteTempBl(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName3.equals(name) &&
@@ -173,12 +169,12 @@ public class TempBlLocalServiceClpInvoker {
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return TempBlLocalServiceUtil.fetchTempBl((org.goodreturn.service.persistence.TempBlPK)arguments[0]);
+			return TempBlLocalServiceUtil.fetchTempBl(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return TempBlLocalServiceUtil.getTempBl((org.goodreturn.service.persistence.TempBlPK)arguments[0]);
+			return TempBlLocalServiceUtil.getTempBl(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
@@ -223,6 +219,11 @@ public class TempBlLocalServiceClpInvoker {
 			return TempBlLocalServiceUtil.getAllTempBls(((Long)arguments[0]).longValue());
 		}
 
+		if (_methodName93.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes93, parameterTypes)) {
+			return TempBlLocalServiceUtil.getAllTempBls();
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -264,4 +265,6 @@ public class TempBlLocalServiceClpInvoker {
 	private String[] _methodParameterTypes87;
 	private String _methodName92;
 	private String[] _methodParameterTypes92;
+	private String _methodName93;
+	private String[] _methodParameterTypes93;
 }

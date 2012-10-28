@@ -131,27 +131,25 @@ public class TempBlUtil {
 	/**
 	* Creates a new temp bl with the primary key. Does not add the temp bl to the database.
 	*
-	* @param tempBlPK the primary key for the new temp bl
+	* @param borrower_Loan_Id the primary key for the new temp bl
 	* @return the new temp bl
 	*/
-	public static org.goodreturn.model.TempBl create(
-		org.goodreturn.service.persistence.TempBlPK tempBlPK) {
-		return getPersistence().create(tempBlPK);
+	public static org.goodreturn.model.TempBl create(long borrower_Loan_Id) {
+		return getPersistence().create(borrower_Loan_Id);
 	}
 
 	/**
 	* Removes the temp bl with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param tempBlPK the primary key of the temp bl
+	* @param borrower_Loan_Id the primary key of the temp bl
 	* @return the temp bl that was removed
 	* @throws org.goodreturn.NoSuchTempBlException if a temp bl with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static org.goodreturn.model.TempBl remove(
-		org.goodreturn.service.persistence.TempBlPK tempBlPK)
+	public static org.goodreturn.model.TempBl remove(long borrower_Loan_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchTempBlException {
-		return getPersistence().remove(tempBlPK);
+		return getPersistence().remove(borrower_Loan_Id);
 	}
 
 	public static org.goodreturn.model.TempBl updateImpl(
@@ -163,29 +161,29 @@ public class TempBlUtil {
 	/**
 	* Returns the temp bl with the primary key or throws a {@link org.goodreturn.NoSuchTempBlException} if it could not be found.
 	*
-	* @param tempBlPK the primary key of the temp bl
+	* @param borrower_Loan_Id the primary key of the temp bl
 	* @return the temp bl
 	* @throws org.goodreturn.NoSuchTempBlException if a temp bl with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.TempBl findByPrimaryKey(
-		org.goodreturn.service.persistence.TempBlPK tempBlPK)
+		long borrower_Loan_Id)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchTempBlException {
-		return getPersistence().findByPrimaryKey(tempBlPK);
+		return getPersistence().findByPrimaryKey(borrower_Loan_Id);
 	}
 
 	/**
 	* Returns the temp bl with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param tempBlPK the primary key of the temp bl
+	* @param borrower_Loan_Id the primary key of the temp bl
 	* @return the temp bl, or <code>null</code> if a temp bl with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.TempBl fetchByPrimaryKey(
-		org.goodreturn.service.persistence.TempBlPK tempBlPK)
+		long borrower_Loan_Id)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(tempBlPK);
+		return getPersistence().fetchByPrimaryKey(borrower_Loan_Id);
 	}
 
 	/**
@@ -308,7 +306,7 @@ public class TempBlUtil {
 	/**
 	* Returns the temp bls before and after the current temp bl in the ordered set where groupId = &#63;.
 	*
-	* @param tempBlPK the primary key of the current temp bl
+	* @param borrower_Loan_Id the primary key of the current temp bl
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next temp bl
@@ -316,12 +314,12 @@ public class TempBlUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static org.goodreturn.model.TempBl[] findByGroupId_PrevAndNext(
-		org.goodreturn.service.persistence.TempBlPK tempBlPK, long groupId,
+		long borrower_Loan_Id, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			org.goodreturn.NoSuchTempBlException {
 		return getPersistence()
-				   .findByGroupId_PrevAndNext(tempBlPK, groupId,
+				   .findByGroupId_PrevAndNext(borrower_Loan_Id, groupId,
 			orderByComparator);
 	}
 

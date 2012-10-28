@@ -141,9 +141,17 @@ public class StoryLocalServiceClpInvoker {
 
 		_methodParameterTypes109 = new String[] { "long", "long" };
 
-		_methodName110 = "updateStatus";
+		_methodName110 = "getAllStorys";
 
-		_methodParameterTypes110 = new String[] {
+		_methodParameterTypes110 = new String[] {  };
+
+		_methodName111 = "getStoryByStatus";
+
+		_methodParameterTypes111 = new String[] { "int" };
+
+		_methodName112 = "updateStatus";
+
+		_methodParameterTypes112 = new String[] {
 				"long", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -296,6 +304,16 @@ public class StoryLocalServiceClpInvoker {
 
 		if (_methodName110.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
+			return StoryLocalServiceUtil.getAllStorys();
+		}
+
+		if (_methodName111.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes111, parameterTypes)) {
+			return StoryLocalServiceUtil.getStoryByStatus(((Integer)arguments[0]).intValue());
+		}
+
+		if (_methodName112.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes112, parameterTypes)) {
 			return StoryLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -359,4 +377,8 @@ public class StoryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes109;
 	private String _methodName110;
 	private String[] _methodParameterTypes110;
+	private String _methodName111;
+	private String[] _methodParameterTypes111;
+	private String _methodName112;
+	private String[] _methodParameterTypes112;
 }

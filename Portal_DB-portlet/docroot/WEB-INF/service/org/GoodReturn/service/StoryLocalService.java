@@ -285,10 +285,21 @@ public interface StoryLocalService extends BaseLocalService,
 		long groupId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Retrieves and returns all stories which have the correlating fields of abacus_Borrower_Loan_Id and groupId(mfi groupid).
+	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<org.goodreturn.model.Story> getStoryByL_G(
 		long abacus_Borrower_Loan_Id, long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<org.goodreturn.model.Story> getAllStorys()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<org.goodreturn.model.Story> getStoryByStatus(
+		int status) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Updates the status of the Story Entity.

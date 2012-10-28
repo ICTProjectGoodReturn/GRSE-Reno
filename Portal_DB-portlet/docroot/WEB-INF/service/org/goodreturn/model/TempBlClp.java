@@ -21,7 +21,6 @@ import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import org.goodreturn.service.TempBlLocalServiceUtil;
-import org.goodreturn.service.persistence.TempBlPK;
 
 import java.io.Serializable;
 
@@ -45,21 +44,20 @@ public class TempBlClp extends BaseModelImpl<TempBl> implements TempBl {
 		return TempBl.class.getName();
 	}
 
-	public TempBlPK getPrimaryKey() {
-		return new TempBlPK(_borrower_Name, _borrower_Loan_Id);
+	public long getPrimaryKey() {
+		return _borrower_Loan_Id;
 	}
 
-	public void setPrimaryKey(TempBlPK primaryKey) {
-		setBorrower_Name(primaryKey.borrower_Name);
-		setBorrower_Loan_Id(primaryKey.borrower_Loan_Id);
+	public void setPrimaryKey(long primaryKey) {
+		setBorrower_Loan_Id(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new TempBlPK(_borrower_Name, _borrower_Loan_Id);
+		return new Long(_borrower_Loan_Id);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey((TempBlPK)primaryKeyObj);
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	@Override
@@ -169,9 +167,17 @@ public class TempBlClp extends BaseModelImpl<TempBl> implements TempBl {
 	}
 
 	public int compareTo(TempBl tempBl) {
-		TempBlPK primaryKey = tempBl.getPrimaryKey();
+		long primaryKey = tempBl.getPrimaryKey();
 
-		return getPrimaryKey().compareTo(primaryKey);
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
+		}
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -189,9 +195,9 @@ public class TempBlClp extends BaseModelImpl<TempBl> implements TempBl {
 			return false;
 		}
 
-		TempBlPK primaryKey = tempBl.getPrimaryKey();
+		long primaryKey = tempBl.getPrimaryKey();
 
-		if (getPrimaryKey().equals(primaryKey)) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {
@@ -201,7 +207,7 @@ public class TempBlClp extends BaseModelImpl<TempBl> implements TempBl {
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
