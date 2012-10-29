@@ -70,7 +70,8 @@ public class StoryExporter {
 				"Story Text",
 				"Video URL",
 				"Video Acceptable Marketing",
-				"Video Acceptable Publishing"});
+				"Video Acceptable Publishing",
+				"Workflow Process Complete"});
 		
 		for (Story story : stories) {
 			data.add(new String[]{
@@ -80,7 +81,8 @@ public class StoryExporter {
 					story.getStory_Text().replace("\n", ""),
 					story.getVideo_Url(),
 					booleanDataStringValue(story.getIs_Good_Enough_For_Marketing()),
-					booleanDataStringValue(story.getIs_Good_Enough_For_Story())					
+					booleanDataStringValue(story.getIs_Good_Enough_For_Story()),
+					booleanDataStringValue(story.getStatus() == WorkflowConstants.STATUS_APPROVED)
 			});
 		}
 

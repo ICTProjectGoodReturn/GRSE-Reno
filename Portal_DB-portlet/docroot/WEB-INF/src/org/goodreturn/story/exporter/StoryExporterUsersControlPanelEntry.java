@@ -20,6 +20,6 @@ public class StoryExporterUsersControlPanelEntry extends BaseControlPanelEntry {
 	public static boolean hasExportPermissions(PermissionChecker permissionChecker, RenderRequest request) {
 		return request.isUserInRole("administrator") ||
 				request.isUserInRole("weal-owner") ||
-				request.isUserInRole("weal-operations"); //TODO ADD permissionChecker check here for EXPORT_STORY
+				request.isUserInRole("weal-operations"); //TODO ADD permissionChecker for EXPORT_STORY
 	}
 }

@@ -62,8 +62,8 @@
 </c:choose>
 
 <!-- Error and Success messages -->
-<liferay-ui:error key="story-update-error" message="Errors encounted, story could not be updated." />
-<liferay-ui:error key="story-add-error" message="Errors encounted, story could not be added." />
+<liferay-ui:error key="story-update-error" message="Errors encountered, story could not be updated." />
+<liferay-ui:error key="story-add-error" message="Errors encountered, story could not be added." />
 <liferay-ui:error key="story-data-invalid-error" message="Story data is invalid, check story input for problems." />
 <liferay-ui:error key="story-null-error" message="Story data could not loaded for save." />
 <liferay-ui:error key="story-type-error" message="Story type provided is not valid." />

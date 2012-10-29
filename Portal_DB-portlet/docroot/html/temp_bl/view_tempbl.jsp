@@ -3,7 +3,7 @@
 
 <!-- Error/Success Messages -->
 <liferay-ui:error key="tempbl-data-invalid-error" message="Invalid data found, fix errors before resubmitting." />
-<liferay-ui:error key="tempbl-null-error" message="Error encounted, could not save borrower's loan into system." />
+<liferay-ui:error key="tempbl-null-error" message="Error encountered, could not save borrower's loan into system." />
 <liferay-ui:error key="tempbl-borrower-name-error" message="Borrower Name provided is not valid." />
 <liferay-ui:error key="tempbl-borrower-loan-id-error" message="Borrower's loan ID is not valid." />
 <liferay-ui:error key="tempbl-already-exists-error" message="Error, borrower's loan already exists within the system." />

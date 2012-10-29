@@ -16,14 +16,22 @@ Export stories to Comma Separated Values (CSV) file.
 <br />
 <br />
 
-	<!-- TODO OTHER OPTIONS -->
-	<portlet:resourceURL var="downloadCsv">
+	<!-- Download links. -->
+	<portlet:resourceURL var="downloadAllCsv">
 		<portlet:param name="downloadCsv" value="true" />
+		<portlet:param name="approvedOnly" value="false" />
 	</portlet:resourceURL>
+	
+	<portlet:resourceURL var="downloadApprovedCsv">
+		<portlet:param name="downloadCsv" value="true" />
+		<portlet:param name="approvedOnly" value="true" />
+	</portlet:resourceURL>
+	
 	<aui:form>
-		<!--<aui:input name="approvedOnly" label="Approved Stories Only" type="checkbox" /> -->
-
-		<aui:button name="Export" value="Export to CSV" onClick="<%=downloadCsv%>" />
+		<aui:button-row>
+			<aui:button value="Export All Stories" onClick="<%=downloadAllCsv%>" />
+			<aui:button value="Export Workflow Approved Stories" onClick="<%=downloadApprovedCsv%>" />
+		</aui:button-row>
 	</aui:form>
 
 </c:if>

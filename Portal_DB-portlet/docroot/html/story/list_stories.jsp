@@ -61,8 +61,8 @@ for(Story story : stories) {
 
 
 <liferay-ui:header title="Story Entries" />
-<liferay-ui:success key="story-add-success" message="Success! Story has been successfully been added to system."/>
-<liferay-ui:error key="story-add-error" message="Errors encounted, story could not be added." />
+<liferay-ui:success key="story-add-success" message="Success! Story has successfully been added to system."/>
+<liferay-ui:error key="story-add-error" message="Errors encountered, story could not be added." />
 <liferay-ui:error key="story-no-mfi-group" message="Story data inaccessible, not in a required MFI Group" />
 
 

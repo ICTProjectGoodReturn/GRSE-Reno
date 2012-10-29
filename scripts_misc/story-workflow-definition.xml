@@ -101,12 +101,10 @@
 					<role-type>regular</role-type>
 					<name>WEAL Operations</name>
 				</role>
-				<!-- TODO CHECK IF THIS ROLE SHOULD BE HERE.
 				<role>
 					<role-type>regular</role-type>
 					<name>WEAL Owner</name>
 				</role>
-				 -->
 			</roles>
 		</assignments>
 		<transitions>
@@ -148,19 +146,6 @@
 					</roles>
 				</recipients>
 				<execution-type>onEntry</execution-type>
-			</notification>
-			<!-- TODO MAYBE REMOVE THIS LATER, HOW DOES IT KNOW WHO TO SEND IT TO.. -->
-			<notification>
-				<name>Review Completion Notification</name>
-				<template>
-					Your story submission has been reviewed by the final editor and approved for publishing. They have applied the following ${taskComments}.
-				</template>
-				<template-language>freemarker</template-language>
-				<notification-type>email</notification-type>
-				<recipients>
-					<user />
-				</recipients>
-				<execution-type>onExit</execution-type>
 			</notification>
 		</actions>
 		<assignments>

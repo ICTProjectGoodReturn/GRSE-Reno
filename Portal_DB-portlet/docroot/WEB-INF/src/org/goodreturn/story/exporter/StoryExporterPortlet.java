@@ -24,11 +24,12 @@ public class StoryExporterPortlet extends MVCPortlet {
 	
 	
 	public void serveResource(ResourceRequest req, ResourceResponse res) throws PortletException, IOException {
-		boolean downloadCsv = ParamUtil.getBoolean(req, "downloadCsv");
 		
-		//Other options TODO
+		boolean downloadCsv = ParamUtil.getBoolean(req, "downloadCsv");
 		boolean approvedOnly = ParamUtil.getBoolean(req, "approvedOnly");
-
+		
+		//TODO Other options
+		
 		if (downloadCsv) {
 			//Retrieves data as CSV data.
 			LinkedList<String[]> data = StoryExporter.loadData(approvedOnly);
