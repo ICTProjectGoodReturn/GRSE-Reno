@@ -3,15 +3,12 @@ package org.goodreturn.borrowers.portlet;
 import java.util.List;
 
 import org.goodreturn.model.Story;
-import org.goodreturn.service.StoryLocalServiceUtil;
-import org.goodreturn.service.persistence.TempBlPK;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 
 /**
- * Validator class which validates the Story object in numerous situations.
+ * Validator class which validates the Story object attributes in different situations.
+ * Provides specific errors when conditions are not met.
  * 
  * @author Kyle Pink
  */

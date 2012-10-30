@@ -9,14 +9,9 @@ import javax.portlet.PortletException;
 
 import org.goodreturn.borrowers.util.ActionUtil;
 import org.goodreturn.borrowers.util.WebKeys;
-import org.goodreturn.model.Borrower;
-import org.goodreturn.model.BorrowerLoan;
 import org.goodreturn.model.Story;
 import org.goodreturn.model.TempBl;
-import org.goodreturn.service.BorrowerLoanLocalServiceUtil;
-import org.goodreturn.service.BorrowerLocalServiceUtil;
 import org.goodreturn.service.StoryLocalServiceUtil;
-import org.goodreturn.service.TempBlLocalService;
 import org.goodreturn.service.TempBlLocalServiceUtil;
 
 import com.liferay.portal.kernel.exception.PortalException;
@@ -24,7 +19,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -39,134 +33,46 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 public class BorrowersPortlet extends MVCPortlet {
 
 
-	/* ****************************************
-	 * Action methods for performing operations.
-	 * ****************************************/
+	/**
+	 * Retrieves the Borrower object to be added or updated in the db,
+	 * First retrieves the Borrower object from the request object, validates the borrower object
+	 * then performs the insert or update operation within the db or fails with errors.
+	 * 
+	 * @param request - which contains the Borrower object attributes.
+	 * @param response - response which will allow for output to be provided to the user.
+	 * @throws PortalException
+	 * @throws SystemException
+	 */
 	public void updateBorrower(ActionRequest request, ActionResponse response) throws PortalException, SystemException {
-		//TODO may need another look at.
-		//Retrieves data for processing request.
-		Borrower borrower = ActionUtil.borrowerFromRequest(request);
-		ArrayList<String> errors = new ArrayList<String>();
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(Story.class.getName(), request);
-
-		//Updates or adds borrower to database if valid.
-		boolean operationFailed = true;
-		if (BorrowerValidator.validateBorrower(borrower, errors)) {
-			if (borrower.getBorrower_Id() > 0) {
-				// Updating
-				try {
-					Borrower fromDB = BorrowerLocalServiceUtil.getBorrower(borrower.getBorrower_Id());
-
-					if (fromDB != null && (borrower.getBorrower_Id() == fromDB.getBorrower_Id())) {
-
-						fromDB = BorrowerLocalServiceUtil.updateBorrower(borrower, false);
-						SessionMessages.add(request, "borrower-update-success");
-						operationFailed = false;
-					}
-					//Borrower could not be updated.
-				} catch (PortalException e) {
-					errors.add("borrower-update-error");
-				} catch (SystemException e) {
-					errors.add("borrower-update-error");
-				}
-			} else {
-				// Adding
-				/*try {
-					long userId = ((ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY)).getUserId();
-					TODO
-					BorrowerLocalServiceUtil.addBorrower(borrower, userId, serviceContext);
-					SessionMessages.add(request, "borrower-add-success");
-					operationFailed = false;
-				//Borrower could not be added.
-				} catch (SystemException e) {
-					errors.add("borrower-add-error");
-				} catch (PortalException e) {
-					errors.add("borrower-add-error");
-				}*/
-			}
-		} else {
-			errors.add("borrower-data-invalid-error");
-		}
-
-		//Add/Update failed, adds all errors for user display.
-		if (operationFailed) {
-			for (String error : errors) {
-				SessionErrors.add(request, error);
-			}
-
-			//Sets render page with data.
-			request.setAttribute(WebKeys.BORROWER_ENTRY, borrower);
-			response.setRenderParameter("jspPage", "/html/borrower/edit_borrower.jsp");
-		} else {
-			//Redirect to new page.
-			response.setRenderParameter("jspPage",request.getParameter("jspPage"));
-		}
+		//TODO
 	}
 
-
+	
+	/**
+	 * Retrieves the BorrowerLoan object to be added or updated in the db,
+	 * First retrieves the BorrowerLoan object from the request object, validates the borrowerloan object
+	 * then performs the insert or update operation within the db or fails with errors.
+	 * 
+	 * @param request - which contains the BorrowerLoan object attributes.
+	 * @param response - response which will allow for output to be provided to the user.
+	 * @throws PortalException
+	 * @throws SystemException
+	 */
 	public void updateBorrowerLoan(ActionRequest request, ActionResponse response) throws PortalException, SystemException {
-		//TODO may need another look at.
-		//Retrieves data for processing request.
-		BorrowerLoan borrowerLoan = ActionUtil.borrowerLoanFromRequest(request);
-		ArrayList<String> errors = new ArrayList<String>();
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(Story.class.getName(), request);
-
-		//Updates or adds borrowerLoan to database if valid.
-		boolean operationFailed = true;
-		if (BorrowerLoanValidator.validateBorrowerLoan(borrowerLoan, errors)) {
-			if (borrowerLoan.getAbacus_Borrower_Loan_Id() > 0) {
-				// Updating
-				try {
-					BorrowerLoan fromDB = BorrowerLoanLocalServiceUtil.getBorrowerLoan(borrowerLoan.getAbacus_Borrower_Loan_Id());
-
-					if (fromDB != null && (borrowerLoan.getAbacus_Borrower_Loan_Id() == fromDB.getAbacus_Borrower_Loan_Id())) {
-
-						fromDB = BorrowerLoanLocalServiceUtil.updateBorrowerLoan(borrowerLoan, false);
-						SessionMessages.add(request, "borrower-loan-update-success");
-						operationFailed = false;
-					}
-					//BorrowerLoan could not be updated.
-				} catch (PortalException e) {
-					errors.add("borrower-loan-update-error");
-				} catch (SystemException e) {
-					errors.add("borrower-loan-update-error");
-				}
-			} else {
-				// Adding
-				/*try {
-					long userId = ((ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY)).getUserId();
-					TODO
-					BorrowerLoanLocalServiceUtil.addBorrowerLoan(borrowerLoan, userId, serviceContext);
-					SessionMessages.add(request, "borrower-loan-add-success");
-					operationFailed = false;
-				//BorrowerLoan could not be added.
-				} catch (SystemException e) {
-					errors.add("borrower-loan-add-error");
-				} catch (PortalException e) {
-					errors.add("borrower-loan-add-error");
-				}
-				 */
-			}
-		} else {
-			errors.add("borrower-loan-data-invalid-error");
-		}
-
-		//Add/Update failed, adds all errors for user display.
-		if (operationFailed) {
-			for (String error : errors) {
-				SessionErrors.add(request, error);
-			}
-
-			//Sets render page with data.
-			request.setAttribute(WebKeys.BORROWER_LOAN_ENTRY, borrowerLoan);
-			response.setRenderParameter("jspPage", "/html/borrower_loan/edit_borrower_loan.jsp");
-		} else {
-			//Redirect to new page.
-			response.setRenderParameter("jspPage",request.getParameter("jspPage"));
-		}
+		//TODO
 	}
 
-
+	
+	/**
+	 * Retrieves the Story object to be added or updated in the db,
+	 * First retrieves the Story object from the request object, validates the story object
+	 * then performs the insert or update operation within the db or fails with errors.
+	 * 
+	 * @param request - which contains the Story object attributes.
+	 * @param response - response which will allow for output to be provided to the user.
+	 * @throws PortalException
+	 * @throws SystemException
+	 */
 	public void updateStory(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException, PortalException, SystemException {
 		//Retrieves data for processing request.
 		Story story = ActionUtil.storyFromRequest(actionRequest);
@@ -241,14 +147,24 @@ public class BorrowersPortlet extends MVCPortlet {
 			}
 		}
 	}
-
+	
+	
+	/**
+	 * Retrieves the TempBl object to be added or updated in the db,
+	 * First retrieves the TempBl object from the request object, validates the TempBl object
+	 * then performs the insert or update operation within the db or fails with errors.
+	 * 
+	 * @param request - which contains the TempBl object attributes.
+	 * @param response - response which will allow for output to be provided to the user.
+	 * @throws PortalException
+	 * @throws SystemException
+	 */
 	public void updateTempBl(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException, PortalException, SystemException {
 		//Data retrieval
 		TempBl tempBl = ActionUtil.tempBlFromRequest(actionRequest);
 		ArrayList<String> errors = new ArrayList<String>();
 
-		ServiceContext serviceContext = null;
-		serviceContext = ServiceContextFactory.getInstance(Story.class.getName(), actionRequest);
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(Story.class.getName(), actionRequest);
 
 		//Updates or adds tempBl to database if valid.
 		boolean operationFailed = true;

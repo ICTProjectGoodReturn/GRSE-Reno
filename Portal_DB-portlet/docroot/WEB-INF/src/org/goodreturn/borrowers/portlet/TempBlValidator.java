@@ -4,16 +4,31 @@ import java.util.List;
 
 import org.goodreturn.model.TempBl;
 import org.goodreturn.service.TempBlLocalServiceUtil;
-import org.goodreturn.service.persistence.TempBlPK;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
+
+/**
+ * Validator class which validates the TempBl object attributes to be used
+ * in different situations.
+ * 
+ * Provides specific errors when conditions are not met.
+ * 
+ * @author Kyle Pink
+ */
 public class TempBlValidator {
 	
+	/**
+	 * Validates the tempBl object.
+	 * 
+	 * @param story - TempBl object to be validated.
+	 * @param errors - List which allows errors to be collected and returned.
+	 * @return boolean to indicate if the tempBl is valid.
+	 */
 	public static boolean validateTempBl(TempBl tempBl, List<String> errors) {
-		//TODO add error entries for each check.
 		boolean tempBlValid = true;
+		
 		//Checks for null.
 		if(tempBl == null) {
 			errors.add("tempbl-null-error");

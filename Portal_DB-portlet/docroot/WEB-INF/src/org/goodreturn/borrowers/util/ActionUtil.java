@@ -97,21 +97,8 @@ public class ActionUtil {
 	 * @return List of Borrower objects for specific MFI.
 	 */
 	public static List<Borrower> getBorrowers(RenderRequest request) {
-		//TODO NEEDS WORK
-		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		long groupId = themeDisplay.getScopeGroupId();
-
-		List<Borrower> tempResults;
-
-		try {
-			//TODO uncomment/fix and remove throw.
-			//tempResults = BorrowerLocalServiceUtil.getAllBorrowers(groupId);
-			throw new SystemException("not implemented");
-		} catch (SystemException ex) {
-			tempResults  = Collections.EMPTY_LIST;
-		}
-
-		return tempResults;
+		//TODO
+		return null;
 	}
 
 	/**
@@ -121,31 +108,17 @@ public class ActionUtil {
 	 * @return Specific Borrower object for specific borrower_Id. null if not found.
 	 */
 	public static Borrower getBorrower(RenderRequest request) {
-		//TODO NEEDS WORK
-		//Values to retrieve data.
-		long borrowerId = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_ID);
-		Borrower tempResult;
-
-		//Returns borrower if possible, else null.
-		try {
-			//TODO uncomment/fix and remove throw.
-			//tempResult = BorrowerLocalServiceUtil.getBorrower(borrowerId);
-			throw new SystemException("not implemented");
-		} catch (SystemException ex) {
-			tempResult = null;
-		}
-
-		return tempResult;
+		//TODO
+		return null;
 	}
 
 	public static Borrower getEditableBorrower(RenderRequest request) {
-		//TODO NEEDS WORK
 		Borrower borrower = ActionUtil.getBorrower(request);
 
 		if (borrower == null) {
-			//TODO
-
 			borrower = new BorrowerImpl();
+			
+			//TODO set specific fields?
 		}
 
 		return borrower;
@@ -159,23 +132,9 @@ public class ActionUtil {
 	 * @return List of BorrowerLoan objects for specific Borrower.
 	 */
 	public static List<BorrowerLoan> getBorrowerLoans(RenderRequest request) {
-		//TODO NEEDS WORK
-		//Retrieves values needed for request.
-		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		long groupId = themeDisplay.getScopeGroupId();
-
-		long borrowerId = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_ID);
-		List<BorrowerLoan> tempResults;
-
-		try {
-			//TODO FIX
-			//tempResults = BorrowerLoanLocalServiceUtil.getAllBorrowerLoans(groupId);
-			throw new SystemException("not implemented");
-		} catch (SystemException se) {
-			tempResults = Collections.EMPTY_LIST;
-		}
-
-		return tempResults;
+		//TODO 
+		
+		return null;
 	}
 
 	/**
@@ -185,34 +144,16 @@ public class ActionUtil {
 	 * @return specific BorrowerLoan object for specific borrower_Loan_Id.
 	 */
 	public static BorrowerLoan getBorrowerLoan(RenderRequest request) {
-		//TODO NEEDS WORK
-		//Retrieves values needed for request.
-		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		long groupId = themeDisplay.getScopeGroupId();
-
-		long borrowerLoanId = ParamUtil.getLong(request, WebKeys.ATTR_BORROWER_LOAN_ID);
-		BorrowerLoan tempResult;
-
-		try {
-			//TODO uncomment/fix and remove throw.
-			//tempResult = BorrowerLoanServiceUtil.getBorrowerLoan(groupId, borrowerLoanId);
-			throw new SystemException("not implemented");
-		} catch (SystemException se) {
-			tempResult = null;
-		}
-
-		return tempResult;
+		//TODO
+		return null;
 	}
 
 	public static BorrowerLoan getEditableBorrowerLoan(RenderRequest request) {
-		//TODO NEEDS WORK
-
 		BorrowerLoan borrowerLoan = ActionUtil.getBorrowerLoan(request);
 
 		if (borrowerLoan == null) {
-			//TODO
-
 			borrowerLoan = new BorrowerLoanImpl();
+			//TODO set specific fields?
 		}
 
 		return borrowerLoan;
@@ -225,7 +166,7 @@ public class ActionUtil {
 	 * @return List of LenderContribution objects for specific Loan - based on loan_Id.
 	 */
 	public static List<String> getLenderContributions(RenderRequest request) {
-		//TODO fix class return type and retrieve from abacus.
+		//TODO fix class return type and retrieve from abacus?
 		return null;
 	}
 
@@ -236,7 +177,7 @@ public class ActionUtil {
 	 * @return specific LenderContribution object.
 	 */
 	public static String getLenderContribution(RenderRequest request) {
-		//TODO fix class return type and retrieve from abacus.
+		//TODO fix class return type and retrieve from abacus?
 		return null;
 	}
 
@@ -258,7 +199,7 @@ public class ActionUtil {
 			try {
 				return StoryLocalServiceUtil.getStory(storyId);
 
-				//These Exceptions should not really occur.
+			//These Exceptions should not really occur.
 			} catch (NoSuchStoryException e) {
 				e.printStackTrace();
 			} catch (PortalException e) {
@@ -354,11 +295,15 @@ public class ActionUtil {
 		TempBl tempResult;
 
 		//Attempts retrieval from db or sets null.
-		try {
-			tempResult = TempBlLocalServiceUtil.getTempBl(borrowerLoanId);
-		} catch (PortalException e) {
-			tempResult = null;
-		} catch (SystemException e) {
+		if (borrowerLoanId > 0) {
+			try {
+				tempResult = TempBlLocalServiceUtil.getTempBl(borrowerLoanId);
+			} catch (PortalException e) {
+				tempResult = null;
+			} catch (SystemException e) {
+				tempResult = null;
+			}
+		} else {
 			tempResult = null;
 		}
 
@@ -392,30 +337,8 @@ public class ActionUtil {
 	 * @return - Borrower object which has been built from the request object.
 	 */
 	public static Borrower borrowerFromRequest(ActionRequest request) {
-		//TODO if edits allowed? retrieve stored entity from db if id indicates it is not new.
-		//This prevents losing data which is not set and allows for data to be set at appropriate times.
-		//Look at storyFromRequest(ActionRequest request) if example needed.
-		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		Borrower borrower = new BorrowerImpl();
-
-		//PK/FK data
-		borrower.setBorrower_Id(ParamUtil.getLong(request, "borrower_Id"));
-		borrower.setAbacus_Person_Id(ParamUtil.getLong(request, "abacus_Person_Id"));
-
-		//Data
-		borrower.setVillage(ParamUtil.getString(request, "village"));
-		borrower.setDistrict(ParamUtil.getString(request, "district"));
-		borrower.setPdf_Link(ParamUtil.getString(request, "pdf_Link"));
-		borrower.setCurrency(ParamUtil.getDouble(request, "currency"));
-		borrower.setChanged_By(ParamUtil.getString(request, "changed_By"));
-		borrower.setChanged_Time(ParamUtil.getLong(request, "changed_Time"));
-
-
-		//Portal Identifying info
-		borrower.setCompanyId(themeDisplay.getCompanyId());
-		borrower.setGroupId(themeDisplay.getScopeGroupId()); //TODO BASE ON MFI, see Story/TempBl
-
-		return borrower;
+		//TODO
+		return null;
 	}
 
 
@@ -426,25 +349,8 @@ public class ActionUtil {
 	 * @return - BorrowerLoan object which has been built from the request object.
 	 */
 	public static BorrowerLoan borrowerLoanFromRequest(ActionRequest request) {
-		//TODO if edits allowed? retrieve stored entity from db if id indicates it is not new.
-		//This prevents losing data which is not set and allows for data to be set at appropriate times.
-		//Look at storyFromRequest(ActionRequest request) if example needed.
-		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		BorrowerLoan borrowerLoan = new BorrowerLoanImpl();
-
-		//PK/FK data
-		borrowerLoan.setAbacus_Borrower_Loan_Id(ParamUtil.getLong(request, "abacus_Borrower_Loan_Id"));
-		borrowerLoan.setBorrower_Id(ParamUtil.getLong(request, "borrower_Id"));
-
-		//Data
-		borrowerLoan.setAbacus_mfi_Id(ParamUtil.getLong(request, "abacus_mfi_Id"));
-		borrowerLoan.setChanged_By(ParamUtil.getString(request, "changed_By"));
-		borrowerLoan.setChanged_Time(ParamUtil.getString(request, "changed_Time"));
-
-		//Portal Identifying info
-		borrowerLoan.setCompanyId(themeDisplay.getCompanyId());
-		borrowerLoan.setGroupId(themeDisplay.getScopeGroupId()); //TODO BASE ON MFI, see Story/TempBl
-		return borrowerLoan;
+		//TODO
+		return null;
 	}
 
 
@@ -477,8 +383,8 @@ public class ActionUtil {
 				story = StoryLocalServiceUtil.getStory(storyId);
 				newStory = false;
 
-				//Pointless exceptions as flag wont be set which will allow new story
-				//to be made.
+			//Pointless exceptions as flag wont be set which will allow new story
+			//to be made.
 			} catch (NoSuchStoryException e) {}
 			catch (PortalException e) {}
 			catch (SystemException e) {}
@@ -523,13 +429,13 @@ public class ActionUtil {
 	public static TempBl tempBlFromRequest(ActionRequest request) {
 		String borrowerName = ParamUtil.getString(request, "borrower_Name");
 		long borrowerLoanId = ParamUtil.getLong(request, "borrower_Loan_Id");
-		boolean newTempBl = true;
+		boolean isNewTempBl = true;
 		TempBl tempBl = null;
 
 		//Loads existing data if it exists.
 		try {
 			tempBl = TempBlLocalServiceUtil.getTempBl(borrowerLoanId);
-			newTempBl = false;
+			isNewTempBl = false;
 
 			//Pointless exceptions as flag wont be set which will allow new object.
 		} catch (NoSuchStoryException e) {}
@@ -537,7 +443,7 @@ public class ActionUtil {
 		catch (SystemException e) {}
 
 		//Creates new TempBL if needed.
-		if (newTempBl) {
+		if (isNewTempBl) {
 			tempBl = new TempBlImpl();
 
 			try {
