@@ -25,7 +25,7 @@ for(Story story : stories) {
 <portlet:renderURL  var="backUrl" >
 	<portlet:param name="jspPage" value="/html/temp_bl/view_tempbl.jsp"/>
 </portlet:renderURL>
-<liferay-ui:header title="Loan" backURL="backURl" />
+<liferay-ui:header title="Loan" backURL="<%=backUrl %>" />
 
 <liferay-ui:error key="borrower-no-mfi-group" message="Borrower data inaccessible, not in a required MFI Group" />
 
@@ -100,7 +100,7 @@ for(Story story : stories) {
 
 	<c:if test="<%=!initialStoryExists%>">
 		<portlet:renderURL var="createInitialStoryUrl">
-			<portlet:param name="jspPage" value="/html/story/edit_story.jsp"/>
+			<portlet:param name="jspPage" value="/html/story/add_story.jsp"/>
 			<portlet:param name="<%=WebKeys.ATTR_TEMPBL_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
 			<portlet:param name="<%=WebKeys.ATTR_TEMPBL_BORROWER_NAME%>" value="<%=tempBlLoanBorrowerName%>"/>
 			<portlet:param name="<%=WebKeys.ATTR_BORROWER_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
@@ -111,7 +111,7 @@ for(Story story : stories) {
 	
 	<c:if test="<%=!finalStoryExists%>">
 		<portlet:renderURL var="createFinalStoryUrl">
-			<portlet:param name="jspPage" value="/html/story/edit_story.jsp"/>
+			<portlet:param name="jspPage" value="/html/story/add_story.jsp"/>
 			<portlet:param name="<%=WebKeys.ATTR_TEMPBL_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
 			<portlet:param name="<%=WebKeys.ATTR_TEMPBL_BORROWER_NAME%>" value="<%=tempBlLoanBorrowerName%>"/>
 			<portlet:param name="<%=WebKeys.ATTR_BORROWER_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>

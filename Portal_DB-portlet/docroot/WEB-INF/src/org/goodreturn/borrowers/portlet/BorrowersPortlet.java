@@ -47,7 +47,7 @@ public class BorrowersPortlet extends MVCPortlet {
 		//TODO
 	}
 
-	
+
 	/**
 	 * Retrieves the BorrowerLoan object to be added or updated in the db,
 	 * First retrieves the BorrowerLoan object from the request object, validates the borrowerloan object
@@ -62,11 +62,76 @@ public class BorrowersPortlet extends MVCPortlet {
 		//TODO
 	}
 
-	
+
 	/**
-	 * Retrieves the Story object to be added or updated in the db,
+	 * Retrieves the Story object to be added in the db,
 	 * First retrieves the Story object from the request object, validates the story object
-	 * then performs the insert or update operation within the db or fails with errors.
+	 * then performs the insert operation within the db or fails with errors.
+	 * 
+	 * @param request - which contains the Story object attributes.
+	 * @param response - response which will allow for output to be provided to the user.
+	 * @throws PortalException
+	 * @throws SystemException
+	 */
+	public void addStory(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException, PortalException, SystemException {
+		//Retrieves data for processing request.
+		Story story = ActionUtil.storyFromRequest(actionRequest);
+		ArrayList<String> errors = new ArrayList<String>();
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(Story.class.getName(), actionRequest);
+		boolean operationFailed = true;
+
+		//Updates or adds story to database if valid.
+		if (StoryValidator.validateStory(story, errors)) {
+			if (story.getStory_Id() == 0) {
+				// Adding
+				try {
+					long userId = ((ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY)).getUserId();
+
+					StoryLocalServiceUtil.addStory(story, userId, serviceContext);
+					SessionMessages.add(actionRequest, "story-add-success");
+					operationFailed = false;
+					//Story could not be added.
+				} catch (SystemException e) {
+					e.printStackTrace();
+					errors.add("story-add-error");
+				} catch (PortalException e) {
+					e.printStackTrace();
+					errors.add("story-add-error");
+				}
+			} else {
+				//Bad id for adding into system.
+				errors.add("story-loan-id-error");
+			}
+		} else {
+			//Should not be updating at this point.
+			errors.add("story-add-error");
+		}
+
+		//Add failed, adds all errors for user display.
+		if (operationFailed) {
+			for (String error : errors) {
+				SessionErrors.add(actionRequest, error);
+			}
+
+			// Sets render page with data.
+			actionRequest.setAttribute(WebKeys.STORY_ENTRY, story);
+			actionResponse.setRenderParameter(WebKeys.ATTR_TEMPBL_LOAN_ID, ParamUtil.getString(actionRequest, WebKeys.ATTR_TEMPBL_LOAN_ID));
+			actionResponse.setRenderParameter(WebKeys.ATTR_TEMPBL_BORROWER_NAME, ParamUtil.getString(actionRequest, WebKeys.ATTR_TEMPBL_BORROWER_NAME));
+			actionResponse.setRenderParameter("jspPage", "/html/story/add_story.jsp");
+		} else {
+			//redirects after successful addition.
+			actionResponse.setRenderParameter(WebKeys.ATTR_TEMPBL_LOAN_ID, ParamUtil.getString(actionRequest, WebKeys.ATTR_TEMPBL_LOAN_ID));
+			actionResponse.setRenderParameter(WebKeys.ATTR_TEMPBL_BORROWER_NAME, ParamUtil.getString(actionRequest, WebKeys.ATTR_TEMPBL_BORROWER_NAME));
+			actionResponse.setRenderParameter("jspPage", "/html/story/list_stories.jsp");
+		}
+	}
+
+
+	/**
+	 * Retrieves the Story object to be updated in the db,
+	 * First retrieves the Story object from the request object, validates the story object
+	 * then performs the update operation within the db or fails with errors.
 	 * 
 	 * @param request - which contains the Story object attributes.
 	 * @param response - response which will allow for output to be provided to the user.
@@ -77,33 +142,13 @@ public class BorrowersPortlet extends MVCPortlet {
 		//Retrieves data for processing request.
 		Story story = ActionUtil.storyFromRequest(actionRequest);
 		ArrayList<String> errors = new ArrayList<String>();
-		ServiceContext serviceContext = null;
 
-		serviceContext = ServiceContextFactory.getInstance(Story.class.getName(), actionRequest);
-
-		
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(Story.class.getName(), actionRequest);
 		boolean operationFailed = true;
-		boolean isNewStory = story.getStory_Id() <= 0;
-		
+
 		//Updates or adds story to database if valid.
 		if (StoryValidator.validateStory(story, errors)) {
-			if (isNewStory) {
-				// Adding
-				try {
-					long userId = ((ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY)).getUserId();
-
-					StoryLocalServiceUtil.addStory(story, userId, serviceContext);
-					SessionMessages.add(actionRequest, "story-add-success");
-					operationFailed = false;
-				//Story could not be added.
-				} catch (SystemException e) {
-					e.printStackTrace();
-					errors.add("story-add-error");
-				} catch (PortalException e) {
-					e.printStackTrace();
-					errors.add("story-add-error");
-				}
-			} else {
+			if (story.getStory_Id() > 0) {
 				// Updating
 				try {
 					Story fromDB = StoryLocalServiceUtil.getStory(story.getStory_Id());
@@ -113,12 +158,14 @@ public class BorrowersPortlet extends MVCPortlet {
 						SessionMessages.add(actionRequest, "story-update-success");
 						operationFailed = false;
 					}
-				//Story could not be updated.
+					//Story could not be updated.
 				} catch (PortalException e) {
 					errors.add("story-update-error");
 				} catch (SystemException e) {
 					errors.add("story-update-error");
 				}
+			} else {
+				errors.add("story-loan-id-error");
 			}
 		} else {
 			errors.add("story-data-invalid-error");
@@ -129,26 +176,14 @@ public class BorrowersPortlet extends MVCPortlet {
 			for (String error : errors) {
 				SessionErrors.add(actionRequest, error);
 			}
-
-			// Sets render page with data.
-			actionRequest.setAttribute(WebKeys.STORY_ENTRY, story);
-			actionResponse.setRenderParameter(WebKeys.WORKFLOW_INTERFACE, String.valueOf(ParamUtil.getBoolean(actionRequest, WebKeys.WORKFLOW_INTERFACE)));
-			actionResponse.setRenderParameter("jspPage", "/html/story/edit_story.jsp");
-
-		} else {
-			//redirects based on weather new or edit.
-			if (isNewStory) {
-				actionResponse.setRenderParameter("jspPage", ParamUtil.getString(actionRequest, "jspPage"));
-				actionResponse.setRenderParameter(WebKeys.ATTR_TEMPBL_LOAN_ID, ParamUtil.getString(actionRequest, WebKeys.ATTR_TEMPBL_LOAN_ID));
-				actionResponse.setRenderParameter(WebKeys.ATTR_TEMPBL_BORROWER_NAME, ParamUtil.getString(actionRequest, WebKeys.ATTR_TEMPBL_BORROWER_NAME));
-			} else {
-				actionResponse.setRenderParameter("jspPage", "/html/story/edit_story.jsp");
-				actionResponse.setRenderParameter(WebKeys.ATTR_STORY_ID, String.valueOf(story.getStory_Id()));
-			}
 		}
+
+		//Sets render page with data.
+		actionRequest.setAttribute(WebKeys.STORY_ENTRY, story);
+		actionResponse.setRenderParameter("jspPage", "/html/story/workflow_edit_story.jsp");
 	}
-	
-	
+
+
 	/**
 	 * Retrieves the TempBl object to be added or updated in the db,
 	 * First retrieves the TempBl object from the request object, validates the TempBl object
@@ -159,15 +194,15 @@ public class BorrowersPortlet extends MVCPortlet {
 	 * @throws PortalException
 	 * @throws SystemException
 	 */
-	public void updateTempBl(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException, PortalException, SystemException {
+	public void addTempBl(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException, PortalException, SystemException {
 		//Data retrieval
 		TempBl tempBl = ActionUtil.tempBlFromRequest(actionRequest);
 		ArrayList<String> errors = new ArrayList<String>();
 
+		boolean operationFailed = true;
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(Story.class.getName(), actionRequest);
 
 		//Updates or adds tempBl to database if valid.
-		boolean operationFailed = true;
 		if (TempBlValidator.validateTempBl(tempBl, errors)) {
 			TempBlLocalServiceUtil.addTempBl(tempBl);
 			SessionMessages.add(actionRequest, "tempbl-data-add-success");

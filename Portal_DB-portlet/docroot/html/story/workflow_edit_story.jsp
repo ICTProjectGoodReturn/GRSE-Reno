@@ -11,14 +11,12 @@
 	//Gets loan data.
 	long tempBlLoanId = ParamUtil.getLong(renderRequest, WebKeys.ATTR_TEMPBL_LOAN_ID);
 	String tempBlLoanBorrowerName = ParamUtil.getString(renderRequest, WebKeys.ATTR_TEMPBL_BORROWER_NAME);
-	boolean workflowInterface = ParamUtil.getBoolean(renderRequest, WebKeys.WORKFLOW_INTERFACE);
 	
 	//Retrieves story data.
 	Story story = (Story) request.getAttribute(WebKeys.STORY_ENTRY);
 	if (story == null) {
 		story = ActionUtil.getEditableStory(renderRequest);
 	}
-	String redirect = ParamUtil.getString(request, "redirect");
 
 	//Prepares story type text.
 	String storyTypeText = story.getStory_Type();
@@ -32,45 +30,19 @@
 	int status = BeanParamUtil.getInteger(story, request, "status", WorkflowConstants.STATUS_DRAFT);
 %>
 
-<!-- Link Definitions -->
-<portlet:renderURL windowState="normal" var="backUrl">
-	<portlet:param name="jspPage" value="/html/story/list_stories.jsp" />
-	<portlet:param name="<%=WebKeys.ATTR_TEMPBL_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
-	<portlet:param name="<%=WebKeys.ATTR_TEMPBL_BORROWER_NAME%>" value="<%=tempBlLoanBorrowerName%>"/>
-</portlet:renderURL>
-<portlet:actionURL name="updateStory" var="updateStoryUrl">
-	<portlet:param name="jspPage" value="/html/story/list_stories.jsp"/>
-	<portlet:param name="<%=WebKeys.ATTR_TEMPBL_LOAN_ID%>" value="<%=String.valueOf(tempBlLoanId)%>"/>
-	<portlet:param name="<%=WebKeys.ATTR_TEMPBL_BORROWER_NAME%>" value="<%=tempBlLoanBorrowerName%>"/>
-	<portlet:param name="<%=WebKeys.WORKFLOW_INTERFACE %>" value="<%=String.valueOf(workflowInterface) %>"/>
-</portlet:actionURL>
+<!-- Link Definition -->
+<portlet:actionURL name="updateStory" var="updateStoryUrl" />
 
-<c:choose>
-	<c:when test="<%=workflowInterface%>">
-		<liferay-ui:header title='<%=(story.getStory_Id() == 0) ? "New " + storyTypeText + " Story"
-							: storyTypeText + " Story for Loan "
-									+ story.getAbacus_Borrower_Loan_Id()%>'
-		/>
-	</c:when>
-	<c:otherwise>
-		<liferay-ui:header backURL="<%=backUrl%>"
-			title='<%=(story.getStory_Id() == 0) ? "New " + storyTypeText + " Story"
-							: storyTypeText + " Story for Loan "
-									+ story.getAbacus_Borrower_Loan_Id()%>'
-		/>
-	</c:otherwise>
-</c:choose>
+<liferay-ui:header title='<%="Edit Story for Loan "	+ story.getAbacus_Borrower_Loan_Id()%>' />
 
 <!-- Error and Success messages -->
 <liferay-ui:error key="story-update-error" message="Errors encountered, story could not be updated." />
-<liferay-ui:error key="story-add-error" message="Errors encountered, story could not be added." />
 <liferay-ui:error key="story-data-invalid-error" message="Story data is invalid, check story input for problems." />
 <liferay-ui:error key="story-null-error" message="Story data could not loaded for save." />
 <liferay-ui:error key="story-type-error" message="Story type provided is not valid." />
 <liferay-ui:error key="story-text-error" message="Story text provided is too long, please shorten." />
-<liferay-ui:error key="story-loan-id-error" message="Story loan id is not valid." />
+<liferay-ui:error key="story-loan-id-error" message="Story's loan ID is not valid." />
 <liferay-ui:error key="story-vid-url-error" message="URL for story is not a valid URL address." />
-<liferay-ui:error key="no-mfi-group" message="Story data inaccessible, not in required MFI Group" />
 <liferay-ui:success key="story-update-success" message="Success! Story has been updated."/>
 
 <c:if test="<%=story!=null %>">
@@ -79,11 +51,8 @@
 		<aui:fieldset>
 			<aui:model-context bean="<%=story%>" model="<%=Story.class%>" />
 			
-			<c:if test="<%=(story != null && story.getStory_Id() > 0)%>">
-				<aui:workflow-status id="<%=String.valueOf(story.getStory_Id())%>" status="<%=story.getStatus()%>" />
-			</c:if>
-		
-	
+			<aui:workflow-status id="<%=String.valueOf(story.getStory_Id())%>" status="<%=story.getStatus()%>" />
+			
 			<!-- TODO Borrower information?? -->
 			
 			<aui:input name="story_Id" type="hidden" />
@@ -107,12 +76,7 @@
 				</script>
 			</aui:field-wrapper>
 			
-			<aui:button-row>
-				<aui:button type="submit" />
-				<c:if test="<%=!workflowInterface%>">
-					<aui:button type="cancel" value="Cancel" onClick="<%=backUrl.toString()%>" />
-				</c:if>
-			</aui:button-row>
+			<aui:button type="submit" value="Save Edit" />
 			
 		</aui:fieldset>
 	

@@ -10,9 +10,9 @@
 <liferay-ui:error key="borrower-no-mfi-group" message="Borrower creation denied, not in a required MFI Group" />
 <liferay-ui:success key="tempbl-data-add-success" message="Success! Borrower's loan added to system successfully." />
 
-<portlet:actionURL name="updateTempBl" var="updateTempBlUrl"/>
+<portlet:actionURL name="addTempBl" var="addTempBlUrl"/>
 
-<aui:form action="<%= updateTempBlUrl.toString() %>" method="post">
+<aui:form action="<%= addTempBlUrl.toString() %>" method="post">
 	<aui:fieldset>
 		<aui:input label="Borrower Loan ID:" name="borrower_Loan_Id" size="45" />
 		<aui:input label="Borrower Name:" name="borrower_Name" size="45" />

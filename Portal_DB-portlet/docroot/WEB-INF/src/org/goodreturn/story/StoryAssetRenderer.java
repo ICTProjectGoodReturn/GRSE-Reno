@@ -1,9 +1,7 @@
 package org.goodreturn.story;
 
-import java.util.List;
 import java.util.Locale;
 
-import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -15,11 +13,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
-import com.liferay.portal.model.Portlet;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.model.BaseAssetRenderer;
 
 public class StoryAssetRenderer extends BaseAssetRenderer {
@@ -79,9 +74,8 @@ public class StoryAssetRenderer extends BaseAssetRenderer {
 
 		 PortletURL editPortletURL = liferayPortletResponse.createRenderURL("borrowersportlet_WAR_Portal_DBportlet");
 
-		 editPortletURL.setParameter("jspPage", "/html/story/edit_story.jsp");
+		 editPortletURL.setParameter("jspPage", "/html/story/workflow_edit_story.jsp");
 		 editPortletURL.setParameter(WebKeys.ATTR_STORY_ID, String.valueOf(story.getStory_Id()));
-		 editPortletURL.setParameter(WebKeys.WORKFLOW_INTERFACE, String.valueOf(true));
 		 return editPortletURL;
 	}
 	
